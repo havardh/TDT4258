@@ -62,6 +62,8 @@ void initAudio(void) {
 
 __int_handler *interrupt_test(void) {
   pioc->sodr = 0x2;
+
+  return 0;
 }
 
 void abdac_isr(void) {
