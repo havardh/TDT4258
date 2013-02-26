@@ -34,7 +34,7 @@ void initHardware(void) {
 	initIntc();
 	initLeds();
 	initButtons();
-	initAudio();
+	//initAudio();
   //initAudio();
 }
 
