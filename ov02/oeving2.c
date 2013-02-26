@@ -15,6 +15,7 @@ int main(int argc, char *argv[]) {
 	initHardware();
 
 	LED_VALUE = 0x1;
+	update_leds();
 
 	while (1) /* update_leds() */;
 	return 0;
