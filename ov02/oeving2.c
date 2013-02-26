@@ -5,6 +5,7 @@
  *****************************************************************************/
 
 #include "oeving2.h"
+#include "button_isr.h"
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 
@@ -43,6 +44,6 @@ void initAudio(void) {
   /* (...) */
 }
 
-void button_isr(void) {}
+
 
 void abdac_isr(void) {}
