@@ -9,11 +9,11 @@ void set_value(int v) {
 }
 
 void rotate_left(void) {
-	//LED_VALUE = (LED_VALUE >> 1);
+	LED_VALUE = (LED_VALUE << 1);
 }
 
 void rotate_right(void) {
-	LED_VALUE = (LED_VALUE << 1);
+	LED_VALUE = (LED_VALUE >> 1);
 }
 
 __int_handler *button_isr(void) {
