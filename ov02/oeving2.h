@@ -24,8 +24,6 @@ static void initLeds(void);
 static void initAudio(void);
 static void initHardware (void);
 
-static __int_handler *interrupt_test(void);
-
 static void update_leds(void);
 static void abdac_isr(void);
 
