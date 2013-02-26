@@ -16,7 +16,7 @@ void rotate_right(void) {
 	LED_VALUE = (LED_VALUE << 1);
 }
 
-void button_isr(void) {
+__int_handler *button_isr(void) {
 	int led_status = piob->isr;
 
 	switch(led_status) {

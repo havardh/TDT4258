@@ -2,11 +2,12 @@
 #define INTERRUPT_H
 
 #include <avr32/ap7000.h>
+#include <sys/interrupts.h>
 
 extern int LED_VALUE;
 extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
-void button_isr(void);
+__int_handler *button_isr(void);
 
 #define SW0 0x1
 #define SW1 0x2
