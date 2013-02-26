@@ -35,24 +35,24 @@ void initHardware(void) {
 	initLeds();
 	initButtons();
 	//initAudio();
-  //initAudio();
+	//initAudio();
 }
 
 void initIntc(void) {
 	set_interrupts_base((void *) AVR32_INTC_ADDRESS);
-  register_interrupt((__int_handler)(interrupt_test), AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
+	register_interrupt((__int_handler)(interrupt_test), AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
 	init_interrupts();
 }
 
 void initButtons(void) {
-  piob->per = 0xff;
-  piob->puer = 0xff;
+	piob->per = 0xff;
+	piob->puer = 0xff;
 }
 
 void initLeds(void) {
 	pioc->per = 0xff; // Sets PIOC-PER to 0xFF, activates all PIOC pins
 	pioc->oer = 0xff; // Sets PIOC-OER to 0xFF, sets all PIOC pins to output
-  /* (...) */
+	/* (...) */
 }
 
 void initAudio(void) {
@@ -61,9 +61,9 @@ void initAudio(void) {
 }
 
 __int_handler *interrupt_test(void) {
-  pioc->sodr = 0x2;
+	pioc->sodr = 0x2;
 
-  return 0;
+	return 0;
 }
 
 void abdac_isr(void) {
