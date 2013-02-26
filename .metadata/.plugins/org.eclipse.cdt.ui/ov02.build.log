@@ -1,0 +1,7 @@
+
+**** Build of configuration Default for project ov02 ****
+
+make all 
+avr32-gcc -g -Wall -Iinclude  -c oeving2.c -o oeving2.o
+make: avr32-gcc: No such file or directory
+make: *** [oeving2.o] Error 1

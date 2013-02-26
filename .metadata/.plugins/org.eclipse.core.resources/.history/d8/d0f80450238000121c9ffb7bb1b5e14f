@@ -1,15 +1,13 @@
 /*****************************************************************************
- *
+ * 
  * Øving 2 UCSysDes
  *
  *****************************************************************************/
 
 #include "oeving2.h"
-#include "button_isr.h"
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 
-int LED_VALUE;
 
 int main (int argc, char *argv[]) {
   initHardware();
@@ -23,7 +21,7 @@ void initHardware (void) {
   initIntc();
   initLeds();
   initButtons();
-  //initAudio();
+  initAudio();
 }
 
 void initIntc(void) {
@@ -37,9 +35,6 @@ void initButtons(void) {
 }
 
 void initLeds(void) {
-	volatile avr32piot *pio = &AVR32_PIOC;
-	pio->oer = 0xff; // Sets PIOC-OER to FF, activates output on all PIOC pins
-	
   /* (...) */
 }
 
@@ -48,6 +43,6 @@ void initAudio(void) {
   /* (...) */
 }
 
-
+void button_isr(void) {}
 
 void abdac_isr(void) {}
