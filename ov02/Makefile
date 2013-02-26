@@ -9,7 +9,7 @@ AVR32PROGRAM = avr32program
 
 ####### RULES ##########################################################
 .PHONY : all
-all: $(TARGET)
+all: git_pull $(TARGET)
 
 oeving2.elf: oeving2.o interrupt.o
 	$(CC) $^ -o $@ $(LDFLAGS)
@@ -19,6 +19,9 @@ interrupt.o: interrupt.c
 
 oeving2.o: oeving2.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+git_pull:
+	git pull origin master
 
 # upload to STK1000 (program flash)
 .PHONY : upload
