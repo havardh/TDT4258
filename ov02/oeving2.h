@@ -1,5 +1,5 @@
 /*****************************************************************************
- * 
+ *
  * Øving 2 UCSysDes
  *
  * Headerfil
@@ -24,7 +24,7 @@ static void initLeds(void);
 static void initAudio(void);
 static void initHardware (void);
 
-static void button_isr(void);
+static void update_leds(void);
 static void abdac_isr(void);
 
 #endif

@@ -13,9 +13,20 @@ int LED_VALUE;
 
 int main(int argc, char *argv[]) {
 	initHardware();
+
+	LED_VALUE = 0x1;
+
 	while (1)
-		;
+		update_leds();
 	return 0;
+}
+
+void update_leds(void) {
+	// Turn off lights
+	pioc->codr = 0xFF;
+
+	// Turn on lights
+	pioc-sodr = LED_VALUE;
 }
 
 /* funksjon for å initialisere maskinvaren, må utvides */
