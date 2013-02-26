@@ -9,6 +9,7 @@
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 
+int LED_VALUE;
 
 int main (int argc, char *argv[]) {
   initHardware();
