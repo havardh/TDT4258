@@ -46,6 +46,7 @@ void initIntc(void) {
 
 void initButtons(void) {
 	piob->per = 0xff;
+	piob->ier = 0xff;
 	piob->puer = 0xff;
 }
 
