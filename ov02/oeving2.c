@@ -40,13 +40,13 @@ void initHardware(void) {
 
 void initIntc(void) {
 	set_interrupts_base((void *) AVR32_INTC_ADDRESS);
+	register_interrupt((__int_handler)(button_isr), AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
 	init_interrupts();
 }
 
 void initButtons(void) {
   piob->oer = 0xff;
   piob->puer = 0xff;
-  register_interrupt((__int_handler)(button_isr), AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
 }
 
 void initLeds(void) {
