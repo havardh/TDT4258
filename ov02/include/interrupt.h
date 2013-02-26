@@ -5,6 +5,7 @@
 
 extern int LED_VALUE;
 extern volatile avr32_pio_t *piob;
+extern volatile avr32_pio_t *pioc;
 void button_isr(void);
 
 #define SW0 0x1
