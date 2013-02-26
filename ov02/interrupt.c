@@ -48,4 +48,6 @@ __int_handler *button_isr(void) {
 	case SW7:
 		break;
 	}
+
+	return 0;
 }
