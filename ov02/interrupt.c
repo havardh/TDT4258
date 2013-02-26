@@ -1,3 +1,5 @@
+#include "interrupt.h"
+
 void rotate_left(void) {
 	LED_VALUE = (LED_VALUE >> 1);
 }
