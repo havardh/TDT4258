@@ -5,7 +5,7 @@
  *****************************************************************************/
 
 #include "oeving2.h"
-#include "button_isr.h"
+#include "interrupt.h"
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 
@@ -39,7 +39,7 @@ void initButtons(void) {
 void initLeds(void) {
 	volatile avr32piot *pio = &AVR32_PIOC;
 	pio->oer = 0xff; // Sets PIOC-OER to FF, activates output on all PIOC pins
-	
+
   /* (...) */
 }
 
