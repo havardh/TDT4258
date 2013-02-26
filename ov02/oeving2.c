@@ -26,7 +26,7 @@ void update_leds(void) {
 	pioc->codr = 0xFF;
 
 	// Turn on lights
-	pioc-sodr = LED_VALUE;
+	pioc->sodr = LED_VALUE;
 }
 
 /* funksjon for å initialisere maskinvaren, må utvides */
