@@ -29,11 +29,11 @@ __int_handler *button_isr(void) {
 
 		switch(led_status) {
 		case SW0:
-			rotate_right();
+			i++;
 			break;
 
 		case SW1:
-			set_value(0x1);
+			i--;
 			break;
 
 		case SW2:
