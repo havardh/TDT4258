@@ -7,10 +7,6 @@
 #include "oeving2.h"
 #include "interrupt.h"
 
-#define BIT_20				1048576
-#define BIT_21				2097152
-#define ON 					1
-
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
 volatile avr32_abdac_t *dac = &AVR32_ABDAC;
@@ -46,12 +42,12 @@ void init_hardware(void) {
 
 void init_intc(void) {
 	set_interrupts_base((void *) AVR32_INTC_ADDRESS);
-	
+
 	init_interrupts();
 }
 
 void init_buttons(void) {
-	register_interrupt((__int_handler)(button_isr), 
+	register_interrupt((__int_handler)(button_isr),
 		AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
 	piob->per = 0xff;
 	piob->ier = 0xff;
@@ -66,14 +62,14 @@ void init_leds(void) {
 }
 
 void init_audio(void) {
-	register_interrupt((__int_handler)(abdac_isr), 
+	register_interrupt((__int_handler)(abdac_isr),
 		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
-	
-	piob->pdr = BIT_20|BIT_21; 		// Set bit 20 and 21
-	piob->asr = BIT_20|BIT_21; 		// Set bit 20 and 21
-	
+
+	piob->pdr = BIT_20|BIT_21;		// Set bit 20 and 21
+	piob->asr = BIT_20|BIT_21;		// Set bit 20 and 21
+
 	sm->gcctrl[6] = 100;			// Set the clock
-	
+
 	dac->CR.en = ON;				// Turn on DAC
 	dac->IER.tx_ready = ON;			// Turn on interrupts
 }
