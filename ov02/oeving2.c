@@ -72,7 +72,7 @@ void init_audio(void) {
 
 	avr32_pm_gcctrl_t *clock = &sm->gcctrl[6];			// Set the clock
 	clock->diven = ON;
-	clock->div = 1;
+	clock->div = 255;
 	clock->cen = ON;
 
 
