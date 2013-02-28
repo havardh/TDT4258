@@ -7,9 +7,9 @@
 #include "oeving2.h"
 #include "interrupt.h"
 
-#define BIT_20				1048576;
-#define BIT_21				2097152;
-#define ON 					1;
+#define BIT_20				1048576
+#define BIT_21				2097152
+#define ON 					1
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
