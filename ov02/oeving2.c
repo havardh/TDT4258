@@ -62,5 +62,18 @@ void initAudio(void) {
 	/* (...) */
 }
 
+
+// button_isr
+// Bytte datastruktur
+
+// Sett klokke hastighet
+
 void abdac_isr(void) {
+	// skriv et tall mellom HIGH og LOW fra en datastruktur til abdac register
 }
+
+// 1. Få interrupt ifra abdac
+// 2. Skriv rand til abdac
+// 3. Still på klokkefrekvens (for interrupt i fra abdac)
+// 4. Skriv en datastruktur til abdac
+// 5. Skriv tonen A (440 Hz) til abdac.
