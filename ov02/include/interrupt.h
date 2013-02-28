@@ -8,7 +8,7 @@ extern int LED_VALUE;
 extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
 
-extern int i;
+//extern int LIMIT;
 
 __int_handler *button_isr(void);
 
