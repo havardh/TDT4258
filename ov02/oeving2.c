@@ -7,6 +7,10 @@
 #include "oeving2.h"
 #include "interrupt.h"
 
+#define BIT_20				1048576;
+#define BIT_21				2097152;
+#define ON 					1;
+
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
 volatile avr32_abdac_t *dac = &AVR32_ABDAC;
@@ -37,7 +41,7 @@ void initHardware(void) {
 	initIntc();
 	initLeds();
 	initButtons();
-	//initAudio();
+	initAudio();
 }
 
 void initIntc(void) {
@@ -65,13 +69,13 @@ void initAudio(void) {
 	register_interrupt((__int_handler)(abdac_isr), 
 		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
 	
-	piob->pdr = 1048576|2097152; // Set bit 20 and 21
-	piob->asr = 1048576|2097152; // Set bit 20 and 21
+	piob->pdr = BIT_20|BIT_21; 		// Set bit 20 and 21
+	piob->asr = BIT_20|BIT_21; 		// Set bit 20 and 21
 	
 	//sm->gcctrl[6] = /* value */;
 	
-	dac->CR.en = 1;
-	dac->IER.tx_ready = 1;
+	dac->CR.en = ON;
+	dac->IER.tx_ready = ON;
 }
 
 
