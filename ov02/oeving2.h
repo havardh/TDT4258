@@ -16,8 +16,6 @@
 #define ABDAC_INT_LEVEL 0
 #define BUTTONS_INT_LEVEL 0
 
-#define BIT_20 1048576 // 2^20
-#define BIT_21 2097152 // 2^21
 #define ON     1
 
 /* prototyper */

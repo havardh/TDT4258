@@ -67,8 +67,10 @@ void init_audio(void) {
 	register_interrupt((__int_handler)(abdac_isr),
 		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
 
-	piob->pdr = BIT_20|BIT_21;		// Set bit 20 and 21
-	piob->asr = BIT_20|BIT_21;		// Set bit 20 and 21
+	piob->PDR.p20 = 1;
+	piob->PDR.p21 = 1;
+	piob->ASR.p20 = 1;
+	piob->ASR.p21 = 1;
 
 	avr32_pm_gcctrl_t *clock = &sm->gcctrl[6];			// Set the clock
 	clock->diven = ON;
