@@ -85,12 +85,11 @@ void init_audio(void) {
 // Bytte datastruktur
 
 // Sett klokke hastighet
-double x = 0;
-double dx = 0.01;
+char x = 0;
 
 void abdac_isr(void) {
-	dac->sdr = sin(x);
-	x += dx;
+	dac->sdr = x++;
+	x = (x == 255 ? 0 : x);
 }
 
 // 1. Få interrupt ifra abdac
