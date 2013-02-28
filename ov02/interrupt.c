@@ -29,11 +29,11 @@ __int_handler *button_isr(void) {
 
 		switch(led_status) {
 		case SW0:
-			i++;
+			LIMIT++;
 			break;
 
 		case SW1:
-			i--;
+			LIMIT--;
 			break;
 
 		case SW2:

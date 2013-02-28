@@ -90,6 +90,7 @@ void init_audio(void) {
 double t = 0;
 
 int i = 0;
+int LIMIT = 2000;
 
 void abdac_isr(void) {
 	if (i == 0) {
@@ -101,7 +102,7 @@ void abdac_isr(void) {
 	}
 
 	i ++;
-	i = (i == 2000 ? 0 : i);
+	i = (i == LIMIT ? 0 : i);
 }
 
 //void play_tune()
