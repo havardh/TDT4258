@@ -6,6 +6,7 @@
 
 #include "oeving2.h"
 #include "interrupt.h"
+#include <stdlib.h>
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
@@ -81,7 +82,7 @@ void init_audio(void) {
 // Sett klokke hastighet
 
 void abdac_isr(void) {
-	// skriv et tall mellom HIGH og LOW fra en datastruktur til abdac register
+	dac->sdr = rand();
 }
 
 // 1. Få interrupt ifra abdac
