@@ -87,17 +87,17 @@ void init_audio(void) {
 // Bytte datastruktur
 
 // Sett klokke hastighet
-double x = 0;
+double t = 0;
 
 int i = 0;
 
 void abdac_isr(void) {
 	if (i == 0) {
-		char y = (char) ((sin(x) * 127) + 128);
-		dac->SDR.channel0 = y;
-		dac->SDR.channel1 = y;
+		char amplitude = (char) ((sin(t) * 127) + 128);
+		dac->SDR.channel0 = amplitude;
+		dac->SDR.channel1 = amplitude;
 
-		x = (x >= 360 ? 0 : x+1);
+		t = (t >= 360 ? 0 : t+1);
 	}
 
 	i ++;
