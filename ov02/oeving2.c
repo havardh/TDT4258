@@ -93,15 +93,19 @@ int i = 0;
 
 void abdac_isr(void) {
 	if (i == 0) {
-		char amplitude = (char) ((sin(t) * 127) + 128);
-		dac->SDR.channel0 = amplitude;
-		dac->SDR.channel1 = amplitude;
+		char sound_wave = sine(10, 2, 2, 0, t);
+		dac->SDR.channel0 = sound_wave;
+		dac->SDR.channel1 = sound_wave;
 
 		t = (t >= 360 ? 0 : t+1);
 	}
 
 	i ++;
 	i = (i == 2000 ? 0 : i);
+}
+
+char sine(int amplitude, int period, int time, int dy, int t) {
+	return (char) (((amplitude * sin(period * t + time) + dy) * 127) + 128);
 }
 
 //void play_tune()
