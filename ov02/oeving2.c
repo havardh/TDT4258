@@ -64,7 +64,7 @@ void initLeds(void) {
 void initAudio(void) {
 	register_interrupt((__int_handler)(abdac_isr), 
 		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
-	AVR32_PIOB_P_20_PIN
+	
 	piob->pdr = 1048576|2097152; // Set bit 20 and 21
 	piob->asr = 1048576|2097152; // Set bit 20 and 21
 	
