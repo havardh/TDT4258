@@ -93,8 +93,9 @@ int i = 0;
 
 void abdac_isr(void) {
 	if (i == 0) {
-		dac->SDR.channel0 = (char) sin(x)*255;
-		dac->SDR.channel1 = (char) sin(x)*255;
+		char y = (char) ((sin(x) * 127) + 128);
+		dac->SDR.channel0 = y;
+		dac->SDR.channel1 = y;
 
 		x = (x >= 360 ? 0 : x+1);
 	}
