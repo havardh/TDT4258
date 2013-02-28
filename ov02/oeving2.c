@@ -92,7 +92,7 @@ int i = 0;
 void abdac_isr(void) {
 	if (i == 0) {
 	dac->SDR.channel0 = x;
-	dac->SDR.scannel1 = 255 - x;
+	dac->SDR.channel1 = 255 - x;
 
 	x = (x == 255 ? 0 : x+5);
 	}
