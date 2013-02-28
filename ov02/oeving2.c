@@ -72,7 +72,7 @@ void init_audio(void) {
 	piob->pdr = BIT_20|BIT_21; 		// Set bit 20 and 21
 	piob->asr = BIT_20|BIT_21; 		// Set bit 20 and 21
 	
-	sm->gcctrl[6] = 1000;			// Set the clock
+	sm->gcctrl[6] = 100;			// Set the clock
 	
 	dac->CR.en = ON;				// Turn on DAC
 	dac->IER.tx_ready = ON;			// Turn on interrupts
