@@ -9,6 +9,9 @@
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
+volatile avr32_abdac_t *dac = &AVR32_ABDAC;
+volatile avr32_pm_t *sm = &AVR32_PM;
+
 int LED_VALUE;
 
 int main(int argc, char *argv[]) {
@@ -61,7 +64,14 @@ void initLeds(void) {
 void initAudio(void) {
 	register_interrupt((__int_handler)(abdac_isr), 
 		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
-	/* (...) */
+	AVR32_PIOB_P_20_PIN
+	piob->pdr = 1048576|2097152; // Set bit 20 and 21
+	piob->asr = 1048576|2097152; // Set bit 20 and 21
+	
+	//sm->gcctrl[6] = /* value */;
+	
+	dac->CR.en = 1;
+	dac->IER.tx_ready = 1;
 }
 
 
