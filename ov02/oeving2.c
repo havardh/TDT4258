@@ -78,9 +78,6 @@ void init_audio(void) {
 
 	dac->CR.en = ON;				// Turn on DAC
 	dac->IER.tx_ready = ON;			// Turn on interrupts
-
-
-	int* a, b;
 }
 
 
