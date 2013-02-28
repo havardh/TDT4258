@@ -18,11 +18,11 @@
 
 /* prototyper */
 int main (int argc, char *argv[]);
-static void initIntc(void);
-static void initButtons(void);
-static void initLeds(void);
-static void initAudio(void);
-static void initHardware (void);
+static void init_intc(void);
+static void init_buttons(void);
+static void init_leds(void);
+static void init_audio(void);
+static void init_hardware (void);
 
 static void update_leds(void);
 static void abdac_isr(void);

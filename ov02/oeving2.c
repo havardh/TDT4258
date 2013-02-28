@@ -19,7 +19,7 @@ volatile avr32_pm_t *sm = &AVR32_PM;
 int LED_VALUE;
 
 int main(int argc, char *argv[]) {
-	initHardware();
+	init_hardware();
 
 	LED_VALUE = 0x8;
 	update_leds();
@@ -37,20 +37,20 @@ void update_leds(void) {
 }
 
 /* funksjon for å initialisere maskinvaren, må utvides */
-void initHardware(void) {
-	initIntc();
-	initLeds();
-	initButtons();
-	initAudio();
+void init_hardware(void) {
+	init_intc();
+	init_leds();
+	init_buttons();
+	init_audio();
 }
 
-void initIntc(void) {
+void init_intc(void) {
 	set_interrupts_base((void *) AVR32_INTC_ADDRESS);
 	
 	init_interrupts();
 }
 
-void initButtons(void) {
+void init_buttons(void) {
 	register_interrupt((__int_handler)(button_isr), 
 		AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
 	piob->per = 0xff;
@@ -59,20 +59,20 @@ void initButtons(void) {
 
 }
 
-void initLeds(void) {
+void init_leds(void) {
 	pioc->per = 0xff; // Sets PIOC-PER to 0xFF, activates all PIOC pins
 	pioc->oer = 0xff; // Sets PIOC-OER to 0xFF, sets all PIOC pins to output
 	/* (...) */
 }
 
-void initAudio(void) {
+void init_audio(void) {
 	register_interrupt((__int_handler)(abdac_isr), 
 		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
 	
 	piob->pdr = BIT_20|BIT_21; 		// Set bit 20 and 21
 	piob->asr = BIT_20|BIT_21; 		// Set bit 20 and 21
 	
-	sm->gcctrl[6] = 1000;
+	sm->gcctrl[6] = 1000;			// Set the clock
 	
 	dac->CR.en = ON;				// Turn on DAC
 	dac->IER.tx_ready = ON;			// Turn on interrupts
