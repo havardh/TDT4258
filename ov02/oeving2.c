@@ -85,21 +85,23 @@ void init_audio(void) {
 // Bytte datastruktur
 
 // Sett klokke hastighet
-char x = 0;
+double x = 0;
 
 int i = 0;
 
 void abdac_isr(void) {
 	if (i == 0) {
-	dac->SDR.channel0 = x;
-	dac->SDR.channel1 = 255 - x;
+		dac->SDR.channel0 = (char) sin(x)*255;
+		dac->SDR.channel1 = (char) sin(x)*255;
 
-	x = (x == 255 ? 0 : x+5);
+		x = (x >= 360 ? 0 : x+1);
 	}
 
 	i ++;
 	i = (i == 2000 ? 0 : i);
 }
+
+//void play_tune()
 
 // 1. Få interrupt ifra abdac
 // 2. Skriv rand til abdac
