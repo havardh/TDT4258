@@ -87,9 +87,16 @@ void init_audio(void) {
 // Sett klokke hastighet
 char x = 0;
 
+int i = 0;
+
 void abdac_isr(void) {
+	if (i == 0) {
 	dac->sdr = x;
 	x = (x == 255 ? 0 : x+5);
+	}
+
+	i ++;
+	i = (i == 2000 ? 0 : i);
 }
 
 // 1. Få interrupt ifra abdac
