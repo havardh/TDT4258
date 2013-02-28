@@ -25,7 +25,7 @@ git_pull:
 
 # upload to STK1000 (program flash)
 .PHONY : upload
-upload : git_pull $(TARGET)
+upload : $(TARGET)
 	$(AVR32PROGRAM) halt
 	sleep 3
 	$(AVR32PROGRAM) program -e -f0,8Mb $<
