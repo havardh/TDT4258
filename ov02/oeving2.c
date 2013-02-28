@@ -88,8 +88,8 @@ void init_audio(void) {
 char x = 0;
 
 void abdac_isr(void) {
-	dac->sdr = x++;
-	x = (x == 255 ? 0 : x);
+	dac->sdr = x;
+	x = (x == 255 ? 0 : x+5);
 }
 
 // 1. Få interrupt ifra abdac
