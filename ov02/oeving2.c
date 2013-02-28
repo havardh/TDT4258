@@ -35,16 +35,17 @@ void initHardware(void) {
 	initLeds();
 	initButtons();
 	//initAudio();
-	//initAudio();
 }
 
 void initIntc(void) {
 	set_interrupts_base((void *) AVR32_INTC_ADDRESS);
-	register_interrupt((__int_handler)(button_isr), AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
+	
 	init_interrupts();
 }
 
 void initButtons(void) {
+	register_interrupt((__int_handler)(button_isr), 
+		AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
 	piob->per = 0xff;
 	piob->ier = 0xff;
 	piob->puer = 0xff;
@@ -58,7 +59,8 @@ void initLeds(void) {
 }
 
 void initAudio(void) {
-	register_interrupt(abdac_isr, AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
+	register_interrupt((__int_handler)(abdac_isr), 
+		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
 	/* (...) */
 }
 
