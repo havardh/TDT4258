@@ -9,15 +9,23 @@
 #include <stdlib.h>
 #include <math.h>
 
+#define SAMPLES 256
+
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
 volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 volatile avr32_pm_t *sm = &AVR32_PM;
 
+void generate_sine_table( void );
+
 int LED_VALUE;
 double period_multiplier = 1.0;
 
+short sine_table[SAMPLES];
+
 int main(int argc, char *argv[]) {
+	generate_sine_table();
+
 	init_hardware();
 
 	while (1);
@@ -105,40 +113,40 @@ short sine_pulse(double t, double ampl, double period) {
 	return normalized;
 }
 
-//   
+//
 //   ----    ----
-//  
-//       ----    ----
-// 
+//
+//	 ----	 ----
+//
 short square_pulse(double t, double ampl, double period) {
 
 	if (t > PI) {
-  		return (SHORT_MAX-1) * ampl;
+		return (SHORT_MAX-1) * ampl;
 	} else {
 		return -SHORT_MAX *ampl;
-	}	
+	}
 
 }
 
-short sin_puls[] = {
-    0,  154,  293,  404,  475,  500,  475,  404,  293,  154,  
-    6, -154, -294, -404, -475, -500, -475, -404, -294, -154
-};
+void generate_sine_table( void ) {
 
-short sq_puls[] = {
-  500,  500,  500,  500,  500,  500,  500,  500,  500,  500,
- -500, -500, -500, -500, -500, -500, -500, -500, -500, -500,
-};
+	int i;
+	for (i=0; i<SAMPLES; i++) {
+		sine_table[i] = sin( ( (double)i / SAMPLES ) *	(2*PI) );
+	}
+
+}
+
 
 int i = 0;
 void abdac_isr(void) {
-	short sound_wave = sin_puls[i];
+	short sound_wave = sine_table[i];
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
-	
+
 	i+=1;
-	
- 	if (i > 20) { i = 0; }
+
+	if (i > SAMPLES) { i = 0; }
 }
 
 //void play_tune()
