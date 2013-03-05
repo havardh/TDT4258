@@ -100,7 +100,6 @@ double t = 0;
 #define PI 3.14
 #define SHORT_MAX 32768
 
-
 short sine_puls(double t, double ampl, double period) {
 	double value = sin(t*period) * ampl;
 	short normalized = (short)(value * SHORT_MAX);
@@ -112,12 +111,7 @@ void abdac_isr(void) {
 	short sound_wave = sine_puls(t, 1, 1);
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
-
-	t = (t >= 2*PI ? 0 : t + 0.01);
-}
-
-char sine(int amplitude, int period, int time, int dy, int t) {
-	return (char) (((amplitude * sin(period * t + time) + dy) * 127) + 128);
+	t = (t >= 2*PI ? 0 : t + 0.1);
 }
 
 //void play_tune()
