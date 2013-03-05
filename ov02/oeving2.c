@@ -129,12 +129,13 @@ short square_pulse(double t, double ampl, double period) {
 }
 
 void generate_sine_table( void ) {
-
 	int i;
 	for (i=0; i<SAMPLES; i++) {
-		sine_table[i] = sin( ( (double)i / SAMPLES ) *	(2*PI) );
+		double fac = (double)i/SAMPLES;
+		double x = fac * (2*PI);
+		double y = sin( x ) * 500;
+		sine_table[i] = (short)y;
 	}
-
 }
 
 
