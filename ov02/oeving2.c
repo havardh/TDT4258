@@ -15,15 +15,13 @@ volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 volatile avr32_pm_t *sm = &AVR32_PM;
 
 int LED_VALUE;
-double period_multiplier;
+double period_multiplier = 1.0;
 
 int main(int argc, char *argv[]) {
 	init_hardware();
 
-	LED_VALUE = 0x8;
-	update_leds();
+	while (1);
 
-	while (1) update_leds() ;
 	return 0;
 }
 
@@ -103,36 +101,44 @@ double t = 0;
 
 short sine_pulse(double t, double ampl, double period) {
 	double value = sin(t*period) * ampl;
-	short normalized = (short)(value * SHORT_MAX);
+	short normalized = (short)(value * (SHORT_MAX-1));
 	return normalized;
 }
 
-int divs (double a, double b) {
-
-	int i;
-	for (i=0; (a-b) > 0; ++i) {
-		a -= b;
-	}
-
-	return i;
-
-}
-
+//   
+//   ----    ----
+//  
+//       ----    ----
+// 
 short square_pulse(double t, double ampl, double period) {
 
-	if ( divs(t * period, PI) % 2 == 0) {
-		return (SHORT_MAX-1) * ampl;
+	if (t > PI) {
+  		return (SHORT_MAX-1) * ampl;
 	} else {
-		return (ampl *-SHORT_MAX);
-	}
+		return -SHORT_MAX *ampl;
+	}	
 
 }
 
+short sin_puls[] = {
+    0,  154,  293,  404,  475,  500,  475,  404,  293,  154,  
+    6, -154, -294, -404, -475, -500, -475, -404, -294, -154
+};
+
+short sq_puls[] = {
+  500,  500,  500,  500,  500,  500,  500,  500,  500,  500,
+ -500, -500, -500, -500, -500, -500, -500, -500, -500, -500,
+};
+
+int i = 0;
 void abdac_isr(void) {
-	short sound_wave = sine_pulse(t, 0.2, period_multiplier);
+	short sound_wave = sin_puls[i];
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
-	t = (t >= 2*PI ? 0 : t + PI/4);
+	
+	i+=1;
+	
+ 	if (i > 20) { i = 0; }
 }
 
 //void play_tune()
