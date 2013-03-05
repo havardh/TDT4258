@@ -97,9 +97,7 @@ void init_audio(void) {
 // Bytte datastruktur
 
 double t = 0;
-
-int i = 0;
-int LIMIT = 2000;
+#define PI 3.14
 #define SHORT_MAX 32768
 
 
@@ -111,16 +109,11 @@ short sine_puls(double t, double ampl, double period) {
 
 
 void abdac_isr(void) {
-	if (i == 0) {
-		short sound_wave = sine_puls(t, 1, 1);
-		dac->SDR.channel0 = sound_wave;
-		dac->SDR.channel1 = sound_wave;
+	short sound_wave = sine_puls(t, 1, 1);
+	dac->SDR.channel0 = sound_wave;
+	dac->SDR.channel1 = sound_wave;
 
-		t = (t >= 360 ? 0 : t+1);
-	}
-
-	i ++;
-	i = (i == LIMIT ? 0 : i);
+	t = (t >= 2*PI ? 0 : t + 0.01);
 }
 
 char sine(int amplitude, int period, int time, int dy, int t) {
