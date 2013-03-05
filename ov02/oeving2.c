@@ -15,6 +15,7 @@ volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 volatile avr32_pm_t *sm = &AVR32_PM;
 
 int LED_VALUE;
+double period_multiplier;
 
 int main(int argc, char *argv[]) {
 	init_hardware();
@@ -128,7 +129,7 @@ short square_pulse(double t, double ampl, double period) {
 }
 
 void abdac_isr(void) {
-	short sound_wave = square_pulse(t, 0.2, 20);
+	short sound_wave = sine_pulse(t, 0.2, period_multiplier);
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
 	t = (t >= 2*PI ? 0 : t + PI/4);

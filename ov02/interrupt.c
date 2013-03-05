@@ -29,15 +29,15 @@ __int_handler *button_isr(void) {
 
 		switch(led_status) {
 		case SW0:
-			//LIMIT++;
+			period_multiplier = 1.0;
 			break;
 
 		case SW1:
-			//LIMIT--;
+			period_multiplier = 0.1;
 			break;
 
 		case SW2:
-			rotate_left();
+			period_multiplier = 0.01;
 			break;
 
 		case SW3:
