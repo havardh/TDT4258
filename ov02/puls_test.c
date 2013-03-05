@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 
+// http://amarkham.com/?p=49
+
 #define PI 3.14
 #define CROP 512
 #define SHORT_MAX 32768
 #define N 64
-#define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
 
 short sine_puls(double t, double ampl, double period) {
 	double value = sin(t*period) * ampl;
@@ -74,12 +75,19 @@ void print_samples(int *samples, int n) {
 	}
 }
 
-void test( short (*tone_fn)(double, double, double)) {
+// f(n) = rot(2, 12)^(n-49) * 440 Hz
+// A4 = 49 => f(A4) = 440 Hz
+
+void test(short (*tone_fn)(double, double, double)) {
+
+	double sample_rate = 81920;
+	double frequency = 440;
+	double R = (65536 * (sample_rate / frequency)) ; //2^16
 
 	int samples[N];
-	double t = 0, dt = 0.1;
+	double t = 0, dt = R;
 	for(int i=0; i<N; i++, t += dt) {
-		samples[i] = tone_fn(t, 0.5, 2.0);
+		samples[i] = tone_fn(t, 1, 1);
 	}
 
 	print_samples(samples, N);
@@ -108,12 +116,12 @@ int main() {
 
 	//sawtooth_test();
 
-	//exit(0);
 	printf(" ---  sine --- \n");
 	test(&sine_puls);
 
 	printf(" ---  square --- \n");
 	test(&square_puls);
+	exit(0);
 
 	printf(" ---  triangle --- \n");
 	test(&triangle_puls);
