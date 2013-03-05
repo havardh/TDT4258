@@ -128,7 +128,7 @@ short square_pulse(double t, double ampl, double period) {
 }
 
 void abdac_isr(void) {
-	short sound_wave = square_pulse(t, 1, 1);
+	short sound_wave = square_pulse(t, 0.2, 20);
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
 	t = (t >= 2*PI ? 0 : t + PI/4);
