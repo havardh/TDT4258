@@ -8,9 +8,9 @@
 #define SHORT_MAX 32768
 #define N 64
 
-short sine_puls(double t, double ampl, double period) {
+int16_t sine_puls(double t, double ampl, double period) {
 	double value = sin(t*period) * ampl;
-	short normalized = (short)(value * SHORT_MAX);
+	int16_t normalized = (int16_t)(value * SHORT_MAX);
 	return normalized;
 }
 
@@ -25,7 +25,7 @@ int divs (double a, double b) {
 
 }
 
-short square_puls(double t, double ampl, double period) {
+int16_t square_puls(double t, double ampl, double period) {
 
 	if ( divs(t * period, PI) % 2 == 0) {
 		return (SHORT_MAX-1) * ampl;
@@ -36,7 +36,7 @@ short square_puls(double t, double ampl, double period) {
 }
 
 
-short sawtooth_puls(double t, double ampl, double period) {
+int16_t sawtooth_puls(double t, double ampl, double period) {
 	int div = divs(t*period/2*PI, 2*PI);
 	double value = t*period/2*PI - div*2*PI;
 	double normalized = value * (SHORT_MAX *ampl) - (SHORT_MAX*ampl);
@@ -45,10 +45,10 @@ short sawtooth_puls(double t, double ampl, double period) {
 }
 
 
-short triangle_puls(double t, double ampl, double period) {
+int16_t triangle_puls(double t, double ampl, double period) {
 
 	double DPI = 2*PI;
-	short value = 0;
+	int16_t value = 0;
 	int div = divs(t/DPI, DPI);
 
 	value = sawtooth_puls(t, ampl, period);
@@ -78,7 +78,7 @@ void print_samples(int *samples, int n) {
 // f(n) = rot(2, 12)^(n-49) * 440 Hz
 // A4 = 49 => f(A4) = 440 Hz
 
-void test(short (*tone_fn)(double, double, double)) {
+void test(int16_t (*tone_fn)(double, double, double)) {
 
 	double sample_rate = 81920;
 	double frequency = 440;
@@ -94,7 +94,7 @@ void test(short (*tone_fn)(double, double, double)) {
 
 }
 
-void assertEquals(short expected, short actual, double d) {
+void assertEquals(int16_t expected, int16_t actual, double d) {
 
 	double diff = expected - actual;
 	diff = (diff < 0 ? -diff : diff);
