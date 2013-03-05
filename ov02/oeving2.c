@@ -101,18 +101,18 @@ double t = 0;
 int i = 0;
 int LIMIT = 2000;
 #define SHORT_MAX 32768
-typedef int16_t short
 
-int16_t sine_puls(double t, double ampl, double period) {
+
+short sine_puls(double t, double ampl, double period) {
 	double value = sin(t*period) * ampl;
-	int16_t normalized = (int16_t)(value * SHORT_MAX);
+	short normalized = (short)(value * SHORT_MAX);
 	return normalized;
 }
 
 
 void abdac_isr(void) {
 	if (i == 0) {
-		int16_t sound_wave = sine_puls(t, 1, 1);
+		short sound_wave = sine_puls(t, 1, 1);
 		dac->SDR.channel0 = sound_wave;
 		dac->SDR.channel1 = sound_wave;
 
