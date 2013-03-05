@@ -111,7 +111,7 @@ void abdac_isr(void) {
 	short sound_wave = sine_puls(t, 1, 1);
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
-	t = (t >= 2*PI ? 0 : t + 0.1);
+	t = (t >= 2*PI ? 0 : t + PI/4);
 }
 
 //void play_tune()
