@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define SAMPLES 256
+#define SAMPLES 4096
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
@@ -17,14 +17,17 @@ volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 volatile avr32_pm_t *sm = &AVR32_PM;
 
 void generate_sine_table( void );
+void generate_square_table( void );
 
 int LED_VALUE;
 double period_multiplier = 1.0;
 
 short sine_table[SAMPLES];
+short square_table[SAMPLES];
 
 int main(int argc, char *argv[]) {
 	generate_sine_table();
+	generate_square_table();
 
 	init_hardware();
 
@@ -107,47 +110,57 @@ double t = 0;
 #define PI 3.14
 #define SHORT_MAX 32768
 
-short sine_pulse(double t, double ampl, double period) {
-	double value = sin(t*period) * ampl;
-	short normalized = (short)(value * (SHORT_MAX-1));
-	return normalized;
-}
-
-//
-//   ----    ----
-//
-//	 ----	 ----
-//
-short square_pulse(double t, double ampl, double period) {
-
-	if (t > PI) {
-		return (SHORT_MAX-1) * ampl;
-	} else {
-		return -SHORT_MAX *ampl;
-	}
-
-}
-
 void generate_sine_table( void ) {
 	int i;
 	for (i=0; i<SAMPLES; i++) {
 		double fac = (double)i/SAMPLES;
 		double x = fac * (2*PI);
-		double y = sin( x ) * 500;
+		double y = sin( x ) * 20000;
 		sine_table[i] = (short)y;
 	}
 }
 
+void generate_square_table( void ) {	
+	
+	int i; 
+	for (i=0; i<SAMPLES; i++) {
 
+		if (i < (SAMPLES / 2)) {
+			square_table[i] = 10000;
+		} else {
+			square_table[i] = -10000;
+		}
+
+	}
+
+}
+
+
+int steps[] = { 16, 18, 20, 21, 24, 27, 30, 32 };
+
+int length = 100000;
 int i = 0;
+
+int sample = 0;
+
+int step = 0;
 void abdac_isr(void) {
-	short sound_wave = sine_table[i];
+	short tone_one = square_table[sample];
+
+	short sound_wave = tone_one;
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
 
-	i+=1;
+	sample += steps[step];
 
-	if (i > SAMPLES) { i = 0; }
+	if (sample > SAMPLES) { 
+		sample = 0; 			
+	}
+
+	i++;
+	if (i > length) { i = 0; step++; }
+	if (step >= 8) { step = 0; }
+	
 }
 
 //void play_tune()
