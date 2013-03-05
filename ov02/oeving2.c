@@ -101,7 +101,7 @@ double t = 0;
 int i = 0;
 int LIMIT = 2000;
 #define SHORT_MAX 32768
-
+typedef int16_t short
 
 int16_t sine_puls(double t, double ampl, double period) {
 	double value = sin(t*period) * ampl;
