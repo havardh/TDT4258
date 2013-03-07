@@ -28,6 +28,5 @@ static void init_hardware (void);
 
 static void update_leds(void);
 static void abdac_isr(void);
-static char sine(int, int, int, int, int);
 
 #endif
