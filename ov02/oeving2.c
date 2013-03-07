@@ -24,19 +24,10 @@ double period_multiplier = 1.0;
 
 short sine_table[SAMPLES];
 short square_table[SAMPLES];
-void init_tune( void );
-
-
-typedef struct {
-	int pitch;
-	int duration;
-} note;
-
 
 int main(int argc, char *argv[]) {
 	generate_sine_table();
-	generate_square_table();	
-	init_tune();
+	generate_square_table();
 
 	init_hardware();
 
@@ -144,107 +135,32 @@ void generate_square_table( void ) {
 
 }
 
-#define C 16
-#define D 18
-#define E 20
-#define F 21
-#define G 24
-#define A 27
-#define B 30
 
-#define WHOLE  100000
-#define HALF    50000
-#define FORTH   25000
-#define EIGHT   12500
+int steps[] = { 16, 18, 20, 21, 24, 27, 30, 32 };
 
-static note tune[22];
-static note *n = &tune[0];
+int length = 100000;
+int i = 0;
 
-void init_tune() {
+int sample = 0;
 
-	tune[0].pitch = C;
-	tune[0].duration = FORTH;
-	tune[1].pitch = D;
-	tune[1].duration = FORTH;
-	tune[2].pitch = E;
-	tune[2].duration = FORTH;
-	tune[3].pitch = F;
-	tune[3].duration = FORTH;
-
-	tune[4].pitch = G;
-	tune[4].duration = HALF;
-	tune[5].pitch = G;
-	tune[5].duration = HALF;
-
-	tune[6].pitch = A;
-	tune[6].duration = FORTH;
-	tune[7].pitch = A;
-	tune[7].duration = FORTH;
-	tune[8].pitch = A;
-	tune[8].duration = FORTH;
-	tune[9].pitch = A;
-	tune[9].duration = FORTH;
-
-	tune[10].pitch = G;
-	tune[10].duration = WHOLE;
-
-	tune[11].pitch = F;
-	tune[11].duration = FORTH;
-	tune[12].pitch = F;
-	tune[12].duration = FORTH;
-	tune[13].pitch = F;
-	tune[13].duration = FORTH;
-	tune[14].pitch = F;
-	tune[14].duration = FORTH;
-
-	tune[15].pitch = E;
-	tune[15].duration = HALF;
-	tune[16].pitch = E;
-	tune[16].duration = HALF;
-
-	tune[17].pitch = D;
-	tune[17].duration = FORTH;
-	tune[18].pitch = D;
-	tune[18].duration = FORTH;
-	tune[19].pitch = D;
-	tune[19].duration = FORTH;
-	tune[20].pitch = D;
-	tune[20].duration = FORTH;
-
-	tune[21].pitch = C;
-	tune[21].duration = WHOLE;
-
-	n = tune;
-}
-
-static int i = 0;
-static int sample = 0;
-static int tone_number = 0;
+int step = 0;
 void abdac_isr(void) {
+	short tone_one = square_table[sample];
 
-	if (i > n->duration) { 
-		i = 0; 
-		tone_number++; 
-		if (tone_number >= 22) { tone_number = 0; }
-		n = &tune[tone_number];
-	}
-	i++;
-	short sound_wave;
-	if (i > n->duration * (7.0 / 8.0)) {
-		sound_wave = 0;
-	} else {
-		sound_wave = square_table[sample];
-	}
-	
+	short sound_wave = tone_one;
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
 
-	sample += n->pitch;
+	sample += steps[step];
 
-	if (sample >= SAMPLES) { 
-		sample = 0;
+	if (sample > SAMPLES) { 
+		sample = 0; 			
 	}
 
+	i++;
+	if (i > length) { i = 0; step++; }
+	if (step >= 8) { step = 0; }
+	
 }
 
 //void play_tune()
