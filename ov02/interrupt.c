@@ -35,10 +35,9 @@ __int_handler *button_isr(void) {
 static int i = 0;
 static int sample = 0;
 static int tone_number = 0;
-static struct note_t *tune;
 static struct note_t *n;
 
-void abdac_isr(void) {
+__int_handler *abdac_isr(void) {
 
 	if (i > 0 ) { //n->duration) {
 		i = 0;
@@ -63,4 +62,5 @@ void abdac_isr(void) {
 		sample = 0;
 	}
 
+	return 0;
 }

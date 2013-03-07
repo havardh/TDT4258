@@ -13,11 +13,13 @@
 #include <math.h>
 #include <stdint.h>
 
-static struct note_t *tune;
+struct note_t *tune;
+
+static void init_hardware(void);
 
 int main(int argc, char *argv[]) {
 	init_samples();
-	//init_tune(tune);
+	init_tune(tune);
 
 	init_hardware();
 
@@ -27,7 +29,7 @@ int main(int argc, char *argv[]) {
 }
 
 /* funksjon for å initialisere maskinvaren, må utvides */
-void init_hardware(void) {
+static void init_hardware(void) {
 	init_intc();
 	init_leds();
 	init_buttons();

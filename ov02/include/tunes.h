@@ -2,6 +2,7 @@
 #define TUNES_H
 
 #include "tone.h"
+#include <stdlib.h>
 
 typedef struct note_t {
 	int pitch;

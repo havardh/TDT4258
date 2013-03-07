@@ -14,9 +14,10 @@ extern volatile avr32_abdac_t *dac;
 extern int16_t sine_table[SAMPLES];
 extern int16_t square_table[SAMPLES];
 
+extern struct note_t *tune;
 
 __int_handler *button_isr(void);
-__int_handler *audio_isr( void );
+__int_handler *abdac_isr( void );
 
 #define SW0 0x1
 #define SW1 0x2

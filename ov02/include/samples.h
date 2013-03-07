@@ -12,5 +12,4 @@ void init_samples( void );
 void generate_square_table( void );
 void generate_sine_table ( void );
 
-
 #endif // SAMPLES_H

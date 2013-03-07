@@ -23,9 +23,6 @@
 
 /* prototyper */
 int main (int argc, char *argv[]);
-static void init_hardware (void);
-
-static void abdac_isr(void);
 
 void update_leds(void);
 

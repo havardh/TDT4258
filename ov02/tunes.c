@@ -3,7 +3,7 @@
 void init_tune (note_t *tune) {
 
 	tune = (struct note_t*)calloc(sizeof(note_t), 22);
-	/*
+
 	tune[0].pitch = C;
 	tune[0].duration = FORTH;
 	tune[1].pitch = D;
@@ -56,5 +56,4 @@ void init_tune (note_t *tune) {
 	tune[21].pitch = C;
 	tune[21].duration = WHOLE;
 
-	n = tune;*/
 }
