@@ -8,6 +8,7 @@
 #include "interrupt.h"
 #include <stdlib.h>
 #include <math.h>
+#include <stdint.h>
 
 #define SAMPLES 4096
 
@@ -22,8 +23,8 @@ void generate_square_table( void );
 int LED_VALUE;
 double period_multiplier = 1.0;
 
-short sine_table[SAMPLES];
-short square_table[SAMPLES];
+int16_t sine_table[SAMPLES];
+int16_t square_table[SAMPLES];
 void init_tune( void );
 
 
@@ -35,7 +36,7 @@ typedef struct {
 
 int main(int argc, char *argv[]) {
 	generate_sine_table();
-	generate_square_table();	
+	generate_square_table();
 	init_tune();
 
 	init_hardware();
@@ -125,13 +126,12 @@ void generate_sine_table( void ) {
 		double fac = (double)i/SAMPLES;
 		double x = fac * (2*PI);
 		double y = sin( x ) * 20000;
-		sine_table[i] = (short)y;
+		sine_table[i] = (int16_t)y;
 	}
 }
 
-void generate_square_table( void ) {	
-	
-	int i; 
+void generate_square_table( void ) {
+	int i;
 	for (i=0; i<SAMPLES; i++) {
 
 		if (i < (SAMPLES / 2)) {
@@ -139,9 +139,7 @@ void generate_square_table( void ) {
 		} else {
 			square_table[i] = -10000;
 		}
-
 	}
-
 }
 
 #define C 16
@@ -153,9 +151,9 @@ void generate_square_table( void ) {
 #define B 30
 
 #define WHOLE  100000
-#define HALF    50000
-#define FORTH   25000
-#define EIGHT   12500
+#define HALF	50000
+#define FORTH	25000
+#define EIGHT	12500
 
 static note tune[22];
 static note *n = &tune[0];
@@ -220,28 +218,29 @@ void init_tune() {
 static int i = 0;
 static int sample = 0;
 static int tone_number = 0;
+
 void abdac_isr(void) {
 
-	if (i > n->duration) { 
-		i = 0; 
-		tone_number++; 
+	if (i > n->duration) {
+		i = 0;
+		tone_number++;
 		if (tone_number >= 22) { tone_number = 0; }
 		n = &tune[tone_number];
 	}
 	i++;
-	short sound_wave;
+	int16_t sound_wave;
 	if (i > n->duration * (7.0 / 8.0)) {
 		sound_wave = 0;
 	} else {
 		sound_wave = square_table[sample];
 	}
-	
+
 	dac->SDR.channel0 = sound_wave;
 	dac->SDR.channel1 = sound_wave;
 
 	sample += n->pitch;
 
-	if (sample >= SAMPLES) { 
+	if (sample >= SAMPLES) {
 		sample = 0;
 	}
 
