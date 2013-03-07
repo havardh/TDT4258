@@ -17,6 +17,8 @@
 #define BUTTONS_INT_LEVEL 0
 
 #define ON     1
+#define SAMPLES 4096
+#define PI 3.14
 
 /* prototyper */
 int main (int argc, char *argv[]);

@@ -6,18 +6,16 @@
 
 #include "oeving2.h"
 #include "interrupt.h"
+#include "sinetable.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdint.h>
-
-#define SAMPLES 4096
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
 volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 volatile avr32_pm_t *sm = &AVR32_PM;
 
-void generate_sine_table( void );
 void generate_square_table( void );
 
 int LED_VALUE;
@@ -117,18 +115,7 @@ void init_audio(void) {
 // Bytte datastruktur
 
 double t = 0;
-#define PI 3.14
 #define SHORT_MAX 32768
-
-void generate_sine_table( void ) {
-	int i;
-	for (i=0; i<SAMPLES; i++) {
-		double fac = (double)i/SAMPLES;
-		double x = fac * (2*PI);
-		double y = sin( x ) * 20000;
-		sine_table[i] = (int16_t)y;
-	}
-}
 
 void generate_square_table( void ) {
 	int i;
