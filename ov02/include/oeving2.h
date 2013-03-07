@@ -28,7 +28,8 @@ static void init_leds(void);
 static void init_audio(void);
 static void init_hardware (void);
 
-static void update_leds(void);
 static void abdac_isr(void);
+
+void update_leds(void);
 
 #endif

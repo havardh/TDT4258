@@ -3,13 +3,10 @@
 
 #include <avr32/ap7000.h>
 #include <sys/interrupts.h>
+#include "oeving2.h"
 
-extern int LED_VALUE;
-extern double period_multiplier;
 extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
-
-//extern int LIMIT;
 
 __int_handler *button_isr(void);
 
