@@ -1,0 +1,79 @@
+/*****************************************************************************
+ *
+ * Øving 2 UCSysDes
+ *
+ *****************************************************************************/
+
+#include "oeving2.h"
+#include "button_isr.h"
+
+volatile avr32_pio_t *piob = &AVR32_PIOB;
+volatile avr32_pio_t *pioc = &AVR32_PIOC;
+
+<<<<<<< HEAD
+int main(int argc, char *argv[]) {
+	initHardware();
+=======
+int LED_VALUE;
+>>>>>>> branch 'master' of https://github.com/havardh/TDT4258.git
+
+	while (1)
+		;
+	return 0;
+}
+
+/* funksjon for å initialisere maskinvaren, må utvides */
+<<<<<<< HEAD
+void initHardware(void) {
+	initIntc();
+	initLeds();
+	initButtons();
+	initAudio();
+=======
+void initHardware (void) {
+  initIntc();
+  initLeds();
+  initButtons();
+  //initAudio();
+>>>>>>> branch 'master' of https://github.com/havardh/TDT4258.git
+}
+
+void initIntc(void) {
+	set_interrupts_base((void *) AVR32_INTC_ADDRESS);
+	init_interrupts();
+}
+
+void initButtons(void) {
+	register_interrupt(button_isr, AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32,
+			BUTTONS_INT_LEVEL);
+	/* (...) */
+}
+
+void initLeds(void) {
+<<<<<<< HEAD
+	pioc->per = 0xff; // Sets PIOC-PER to 0xFF, activates all PIOC pins
+	pioc->oer = 0xff; // Sets PIOC-OER to 0xFF, sets all PIOC pins to output
+	/* (...) */
+=======
+	volatile avr32piot *pio = &AVR32_PIOC;
+	pio->oer = 0xff; // Sets PIOC-OER to FF, activates output on all PIOC pins
+	
+  /* (...) */
+>>>>>>> branch 'master' of https://github.com/havardh/TDT4258.git
+}
+
+void initAudio(void) {
+	register_interrupt(abdac_isr, AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32,
+			ABDAC_INT_LEVEL);
+	/* (...) */
+}
+
+<<<<<<< HEAD
+void button_isr(void) {
+}
+=======
+
+>>>>>>> branch 'master' of https://github.com/havardh/TDT4258.git
+
+void abdac_isr(void) {
+}
