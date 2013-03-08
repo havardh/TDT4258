@@ -90,7 +90,7 @@ void init_audio(void) {
 double t = 0;
 
 int i = 0;
-int LIMIT = 2000;
+int LIMIT = 20;
 
 void abdac_isr(void) {
 	if (i == 0) {
