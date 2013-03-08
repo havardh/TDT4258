@@ -3,7 +3,6 @@
 #define PLAYBACK_MODE 2;
 
 static int mode = PIANO_MODE
-;
 
 __int_handler *button_isr(void) {
 	int i;
@@ -30,7 +29,7 @@ __int_handler *button_isr(void) {
 		if(mode == PIANO_MODE) {
 			set_leds(0x4);
 		} else {
-			set_leds(0xFB)
+			set_leds(0xFB);
 		}
 		break;
 	}
@@ -38,7 +37,7 @@ __int_handler *button_isr(void) {
 		if(mode == PIANO_MODE) {
 			set_leds(0x8);
 		} else {
-			set_leds(0xF7)
+			set_leds(0xF7);
 		}
 		break;
 	}
@@ -47,7 +46,7 @@ __int_handler *button_isr(void) {
 		if(mode == PIANO_MODE) {
 			set_leds(0x16);
 		} else {
-			set_leds(0xEF)
+			set_leds(0xEF);
 		}
 		break;
 	}
@@ -55,7 +54,7 @@ __int_handler *button_isr(void) {
 		if(mode == PIANO_MODE) {
 			set_leds(0x32);
 		} else {
-			set_leds(0xDF)
+			set_leds(0xDF);
 		}
 		break;
 	}
@@ -63,7 +62,7 @@ __int_handler *button_isr(void) {
 		if(mode == PIANO_MODE) {
 			set_leds(0x64);
 		} else {
-			set_leds(0xBF)
+			set_leds(0xBF);
 		}
 		break;
 	}
@@ -71,7 +70,7 @@ __int_handler *button_isr(void) {
 		if(mode == PIANO_MODE) {
 			set_leds(0x128);
 		} else {
-			set_leds(0x7F)
+			set_leds(0x7F);
 		}
 		break;
 	}
