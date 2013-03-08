@@ -10,13 +10,14 @@ static int tone = A4;
 
 
 __int_handler *button_isr(void) {
+  //Debouncing
 	int i;
-	/*for (i = 0; i < 0xFFFF; i++)
-		;*/
+	for (i = 0; i < 0xFFFF; i++)
+		;
 
-	int button_status = piob->isr;
-	int button_down = piob->pdsr;
-	switch (button_down & button_status) {
+	int button_interrupt = piob->isr;
+	int button_up = piob->pdsr;
+	switch (~button_up & button_interrupt) {
 	case SW0://Toggle Mode
 		mode = !mode;
 		set_leds(get_leds() ^ 0xFF);
