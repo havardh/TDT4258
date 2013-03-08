@@ -4,6 +4,8 @@
 
 static int mode = PIANO_MODE;
 static int playing = 1;
+static int tone = A4;
+static int sample = 0;
 
 #define A4 22
 
@@ -84,11 +86,9 @@ __int_handler *button_isr(void) {
 }
 
 void set_tone(int8_t pitch) {
-	tone = pitch
+	tone = pitch;
 }
 
-static int tone = A4;
-static int sample = 0;
 __int_handler *abdac_isr(void) {
 	int sound;
 
