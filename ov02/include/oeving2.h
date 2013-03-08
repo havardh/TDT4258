@@ -24,6 +24,6 @@
 /* prototyper */
 int main (int argc, char *argv[]);
 
-//void update_leds(void);
+void update_leds(void);
 
 #endif

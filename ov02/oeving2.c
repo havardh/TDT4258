@@ -7,8 +7,8 @@
 #include "oeving2.h"
 #include "interrupt.h"
 #include "gpio.h"
-//#include "tunes.h"
-//#include "samples.h"
+#include "tunes.h"
+#include "samples.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdint.h>
@@ -18,12 +18,12 @@ struct note_t *tune;
 static void init_hardware(void);
 
 int main(int argc, char *argv[]) {
-	//init_samples();
-	//init_tune(tune);
+	init_samples();
+	init_tune(tune);
 
 	init_hardware();
-	
-	set_leds(0x87);
+
+	set_leds(0x88);
 
 	while (1);
 
