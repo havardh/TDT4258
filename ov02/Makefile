@@ -9,7 +9,7 @@ AVR32PROGRAM = avr32program
 
 ####### RULES ##########################################################
 .PHONY : all
-all: git_pull $(TARGET)
+all: $(TARGET) #git_pull 
 
 oeving2.elf: oeving2.o interrupt.o gpio.o samples.o tunes.o
 	$(CC) $^ -o $@ $(LDFLAGS)

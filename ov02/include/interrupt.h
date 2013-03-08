@@ -5,7 +5,8 @@
 #include <sys/interrupts.h>
 #include <stdint.h>
 #include "oeving2.h"
-#include "samples.h"
+//#include "samples.h"
+#include "gpio.h"
 
 extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
