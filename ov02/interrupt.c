@@ -6,8 +6,8 @@ static int mode = PIANO_MODE;
 
 __int_handler *button_isr(void) {
 	int i;
-	for (i = 0; i < 0xFFFF; i++)
-		;
+	/*for (i = 0; i < 0xFFFF; i++)
+		;*/
 
 	int led_status = piob->isr;
 
@@ -79,6 +79,23 @@ __int_handler *button_isr(void) {
 
 	return 0;
 }
+
+static int sample = 0;
+__int_handler *abdac_isr(void) {
+
+	int16_t sound = square_table[sample];
+	dac->SDR.channel0 = sound;
+	dac->SDR.channel1 = sound;
+
+	sample += 22;
+
+	if (sample >= SAMPLES) {
+		sample = 0;
+	}
+
+	return 0;
+}
+
 
 /*
 static int i = 0;

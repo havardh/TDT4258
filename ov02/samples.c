@@ -1,5 +1,8 @@
 #include "samples.h"
 
+int16_t sine_table[SAMPLES];
+int16_t square_table[SAMPLES];
+
 void init_samples ( void ) {
 	generate_sine_table();
 	generate_square_table();

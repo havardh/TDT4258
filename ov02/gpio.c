@@ -1,9 +1,5 @@
 #include "gpio.h"
 
-volatile avr32_pio_t *piob = &AVR32_PIOB;
-volatile avr32_pio_t *pioc = &AVR32_PIOC;
-volatile avr32_abdac_t *dac = &AVR32_ABDAC;
-volatile avr32_pm_t *sm = &AVR32_PM;
 
 /* Initialize Hardware */
 
@@ -27,7 +23,7 @@ void init_leds(void) {
 	pioc->oer = 0xff; // Sets PIOC-OER to 0xFF, sets all PIOC pins to output
 	/* (...) */
 }
-/*
+
 void init_audio(void) {
 	// Register interrupt handler
 	register_interrupt((__int_handler)(abdac_isr),
@@ -42,7 +38,8 @@ void init_audio(void) {
 	piob->ASR.p21 = 1;
 
 	// Set the clock to use Oscillator (OSC0 and OSC1 is 20MHz and 12MHz)
-	avr32_pm_gcctrl_t *clock = &sm->gcctrl[6];
+	volatile avr32_pm_t *sm = &AVR32_PM;
+	volatile avr32_pm_gcctrl_t *clock = &sm->gcctrl[6];
 
 	clock->oscsel = 0; // OSC0 = 20MHz, gir 20 MHz / 256 = 81.920 kHz
 	clock->pllsel = 0;
@@ -56,7 +53,7 @@ void init_audio(void) {
 	// Turn on interrupts
 	dac->IER.tx_ready = ON;
 }
-*/
+
 
 /* Get and Set LEDs */
 

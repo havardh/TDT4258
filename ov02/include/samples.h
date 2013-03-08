@@ -5,8 +5,8 @@
 #include "oeving2.h"
 #include <math.h>
 
-int16_t sine_table[SAMPLES];
-int16_t square_table[SAMPLES];
+extern int16_t sine_table[SAMPLES];
+extern int16_t square_table[SAMPLES];
 
 void init_samples( void );
 void generate_square_table( void );
