@@ -1,5 +1,5 @@
 
-**** Build of configuration Default for project ov02 ****
+**** Build of configuration Build (GNU) for project ov02 ****
 
 make all 
 avr32-gcc -g -Wall -Iinclude  -c oeving2.c -o oeving2.o

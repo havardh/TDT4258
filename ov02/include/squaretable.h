@@ -1,0 +1,5 @@
+#ifndef SQUARETABLE_H
+#define SQUARETABLE_H
+
+
+#endif //SQUARETABLE_H
