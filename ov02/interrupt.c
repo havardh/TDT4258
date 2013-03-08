@@ -9,7 +9,7 @@ static int sample = 0;
 static int tone = A4;
 
 
-__int_handler *button_isr(void) {
+void button_isr(void) {
   //Debouncing
 	int i;
 	for (i = 0; i < 0xFFFF; i++)
@@ -26,6 +26,7 @@ __int_handler *button_isr(void) {
 	case SW1: {//H
 		if(mode == PIANO_MODE) {
 			set_leds(0x2);
+			set_tone(B);
 		} else {
 			set_leds(0xFD);
 		}
@@ -35,6 +36,7 @@ __int_handler *button_isr(void) {
 	case SW2: {//A
 		if(mode == PIANO_MODE) {
 			set_leds(0x4);
+			set_tone(A);
 		} else {
 			set_leds(0xFB);
 		}
@@ -43,6 +45,7 @@ __int_handler *button_isr(void) {
 	case SW3: {//G
 		if(mode == PIANO_MODE) {
 			set_leds(0x8);
+			set_tone(G);
 		} else {
 			set_leds(0xF7);
 		}
@@ -52,6 +55,7 @@ __int_handler *button_isr(void) {
 	case SW4: {//F
 		if(mode == PIANO_MODE) {
 			set_leds(0x10);
+			set_tone(F);
 		} else {
 			set_leds(0xEF);
 		}
@@ -60,6 +64,7 @@ __int_handler *button_isr(void) {
 	case SW5: {//E
 		if(mode == PIANO_MODE) {
 			set_leds(0x20);
+			set_tone(E);
 		} else {
 			set_leds(0xDF);
 		}
@@ -68,6 +73,7 @@ __int_handler *button_isr(void) {
 	case SW6: {//D
 		if(mode == PIANO_MODE) {
 			set_leds(0x40);
+			set_tone(D);
 		} else {
 			set_leds(0xBF);
 		}
@@ -76,6 +82,7 @@ __int_handler *button_isr(void) {
 	case SW7: {//C
 		if(mode == PIANO_MODE) {
 			set_leds(0x80);
+			set_tone(C);
 		} else {
 			set_leds(0x7F);
 		}
