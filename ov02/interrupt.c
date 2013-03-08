@@ -1,8 +1,8 @@
 #include "interrupt.h"
-#define PIANO_MODE 1;
-#define PLAYBACK_MODE 2;
+#define PIANO_MODE 1
+#define PLAYBACK_MODE 2
 
-static int mode = PIANO_MODE
+static int mode = PIANO_MODE;
 
 __int_handler *button_isr(void) {
 	int i;
