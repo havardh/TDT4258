@@ -23,6 +23,8 @@ int main(int argc, char *argv[]) {
 
 	init_hardware();
 
+	set_leds(0x88);
+
 	while (1);
 
 	return 0;
