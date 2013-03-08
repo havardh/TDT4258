@@ -8,10 +8,10 @@
 
 static uint8_t led_value;
 
-extern volatile avr32_pio_t *piob = &AVR32_PIOB;
-extern volatile avr32_pio_t *pioc = &AVR32_PIOC;
-extern volatile avr32_abdac_t *dac = &AVR32_ABDAC;
-extern volatile avr32_pm_t *sm = &AVR32_PM;
+extern volatile avr32_pio_t *piob;
+extern volatile avr32_pio_t *pioc;
+extern volatile avr32_abdac_t *dac;
+extern volatile avr32_pm_t *sm;
 
 // Init HW
 void init_intc( void );
