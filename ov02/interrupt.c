@@ -16,7 +16,7 @@ __int_handler *button_isr(void) {
 
 	int button_status = piob->isr;
 	int button_down = piob->pdsr;
-	switch (button_down) {
+	switch (button_down & button_status) {
 	case SW0://Toggle Mode
 		mode = !mode;
 		set_leds(get_leds() ^ 0xFF);
