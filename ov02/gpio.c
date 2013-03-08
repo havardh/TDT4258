@@ -27,7 +27,7 @@ void init_leds(void) {
 	pioc->per = 0xff; // Sets PIOC-PER to 0xFF, activates all PIOC pins
 	pioc->oer = 0xff; // Sets PIOC-OER to 0xFF, sets all PIOC pins to output
 }
-
+/*
 void init_audio(void) {
 	// Register interrupt handler
 	register_interrupt((__int_handler)(abdac_isr),
@@ -42,7 +42,7 @@ void init_audio(void) {
 	piob->ASR.p21 = 1;
 
 	// Set the clock to use Oscillator (OSC0 and OSC1 is 20MHz and 12MHz)
-	avr32_pm_gcctrl_t *clock = &sm->GCCTRL[6];
+	avr32_pm_gcctrl_t *clock = &sm->gcctrl[6];
 
 	clock->oscsel = 0; // OSC0 = 20MHz, gir 20 MHz / 256 = 81.920 kHz
 	clock->pllsel = 0;
@@ -56,7 +56,7 @@ void init_audio(void) {
 	// Turn on interrupts
 	dac->IER.tx_ready = ON;
 }
-
+*/
 
 /* Get and Set LEDs */
 

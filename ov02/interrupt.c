@@ -45,12 +45,17 @@ __int_handler *button_isr(void) {
 	return 0;
 }
 
+/*
 static int i = 0;
 static int sample = 0;
 static int tone_number = 0;
 static struct note_t *n;
+*/
+/*__int_handler *abdac_isr(void) {
 
-__int_handler *abdac_isr(void) {
+	dac->SDR.channel0 = 0;
+	dac->SDR.channel1 = 0;
+
 
 	if (i > 0 ) { //n->duration) {
 		i = 0;
@@ -76,4 +81,4 @@ __int_handler *abdac_isr(void) {
 	}
 
 	return 0;
-}
+}*/
