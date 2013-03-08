@@ -1,22 +1,33 @@
 #include "interrupt.h"
 
 __int_handler *button_isr(void) {
-	//TODO: DEBOUNCING
 
-	int button_status = piob->isr;
+	int i;
+	for (i=0; i<0xFFFF; i++);
 
-	switch(button_status) {
+	int led_status = piob->isr;
+
+	switch(led_status) {
 	case SW0:
+		set_leds(0x1);
 		break;
 
 	case SW1:
+		set_leds(0x2);
 		break;
 
-	case SW2:
+	case SW2: {
+		int leds = get_leds();
+		leds = leds << 1;
+		set_leds(leds);
 		break;
-
-	case SW3:
+		}
+	case SW3:{
+		int leds = get_leds();
+		leds = leds+1;
+		set_leds(leds);
 		break;
+		}
 
 	case SW4:
 		break;
