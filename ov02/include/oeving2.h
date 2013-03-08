@@ -25,8 +25,6 @@
 int main (int argc, char *argv[]);
 
 static void init_hardware(void);
-//static void init_intc(void);
-//static void init_audio(void);
 
 void update_leds(void);
 
