@@ -13,7 +13,8 @@ __int_handler *button_isr(void) {
 
 	switch (led_status) {
 	case SW0://Toggle Mode
-		set_leds(0x1);
+		mode = !mode;
+		set_leds(get_leds() ^ 0xFF);
 		break;
 
 	case SW1: {//H
@@ -44,7 +45,7 @@ __int_handler *button_isr(void) {
 
 	case SW4: {//F
 		if(mode == PIANO_MODE) {
-			set_leds(0x16);
+			set_leds(0x10);
 		} else {
 			set_leds(0xEF);
 		}
@@ -52,7 +53,7 @@ __int_handler *button_isr(void) {
 	}
 	case SW5: {//E
 		if(mode == PIANO_MODE) {
-			set_leds(0x32);
+			set_leds(0x20);
 		} else {
 			set_leds(0xDF);
 		}
@@ -60,7 +61,7 @@ __int_handler *button_isr(void) {
 	}
 	case SW6: {//D
 		if(mode == PIANO_MODE) {
-			set_leds(0x64);
+			set_leds(0x40);
 		} else {
 			set_leds(0xBF);
 		}
@@ -68,7 +69,7 @@ __int_handler *button_isr(void) {
 	}
 	case SW7: {//C
 		if(mode == PIANO_MODE) {
-			set_leds(0x128);
+			set_leds(0x80);
 		} else {
 			set_leds(0x7F);
 		}
