@@ -1,13 +1,13 @@
 #include "interrupt.h"
 #define PIANO_MODE 1
 #define PLAYBACK_MODE 2
+#define A4 22
 
 static int mode = PIANO_MODE;
 static int playing = 1;
 static int tone = A4;
 static int sample = 0;
 
-#define A4 22
 
 __int_handler *button_isr(void) {
 	int i;
