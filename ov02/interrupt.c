@@ -6,6 +6,7 @@
 static int mode = PIANO_MODE;
 static int playing = 1;
 static int sample = 0;
+static int tone = A4;
 
 
 __int_handler *button_isr(void) {
