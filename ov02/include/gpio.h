@@ -17,7 +17,7 @@ extern volatile avr32_pm_t *sm;
 void init_intc( void );
 void init_buttons( void );
 void init_leds( void );
-void init_audio( void );
+//void init_audio( void );
 
 // Get and Set LEDs
 uint8_t get_leds ( void );
