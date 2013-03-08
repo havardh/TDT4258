@@ -1,9 +1,11 @@
 #include "interrupt.h"
 
 __int_handler *button_isr(void) {
-	int led_status = piob->isr;
+	//TODO: DEBOUNCING
 
-	switch(led_status) {
+	int button_status = piob->isr;
+
+	switch(button_status) {
 	case SW0:
 		break;
 
