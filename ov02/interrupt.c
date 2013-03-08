@@ -1,11 +1,10 @@
 #include "interrupt.h"
+#include "tone.h"
 #define PIANO_MODE 1
 #define PLAYBACK_MODE 2
-#define A4 22
 
 static int mode = PIANO_MODE;
 static int playing = 1;
-static int tone = A4;
 static int sample = 0;
 
 
@@ -14,9 +13,9 @@ __int_handler *button_isr(void) {
 	/*for (i = 0; i < 0xFFFF; i++)
 		;*/
 
-	int led_status = piob->isr;
-
-	switch (led_status) {
+	int button_status = piob->isr;
+	int button_down = piob->pdsr;
+	switch (button_down) {
 	case SW0://Toggle Mode
 		mode = !mode;
 		set_leds(get_leds() ^ 0xFF);

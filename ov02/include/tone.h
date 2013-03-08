@@ -6,6 +6,8 @@
 #define A 27
 #define B 30
 
+#define A4 22
+
 #define WHOLE  100000
 #define HALF	50000
 #define FORTH	25000
