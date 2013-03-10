@@ -1,4 +1,4 @@
-CC=avr32-gcc
+CC=gcc #avr32-gcc
 CFLAGS=-g -Wall -Iinclude
 LDFLAGS=-g -Wall -pedantic -Llib -lavr32b-interrupts -lm
 TARGET=oeving2.elf
@@ -9,10 +9,16 @@ AVR32PROGRAM = avr32program
 
 ####### RULES ##########################################################
 .PHONY : all
-all: $(TARGET) #git_pull 
+all: $(TARGET) #git_pull
 
-oeving2.elf: oeving2.o interrupt.o gpio.o samples.o tunes.o
+oeving2.elf: oeving2.o interrupt.o gpio.o samples.o tunes.o playback.o
 	$(CC) $^ -o $@ $(LDFLAGS)
+
+playback_test.o: playback_test.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+playback.o: playback.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 samples.o: samples.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -31,6 +37,9 @@ oeving2.o: oeving2.c
 
 git_pull:
 	git pull origin master
+
+test: all playback_test.o
+	./test
 
 # upload to STK1000 (program flash)
 .PHONY : upload

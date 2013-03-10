@@ -4,12 +4,12 @@
 #define PLAYBACK_MODE 2
 
 static int mode = PIANO_MODE;
-static int playing = 1;
+int playing = 1;
 static int sample = 0;
 static int tone = A4;
 
 
-void button_isr(void) {
+__int_handler *button_isr(void) {
   //Debouncing
 	int i;
 	for (i = 0; i < 0xFFFF; i++)
@@ -97,26 +97,45 @@ void set_tone(int8_t pitch) {
 	tone = pitch;
 }
 
-__int_handler *abdac_isr(void) {
-	int sound;
-
+static int16_t get_piano_pitch() {
+	int16_t sound;
 	if (playing) {
 		sound = square_table[sample];
-
-
 		sample += tone;
-
 		if (sample >= SAMPLES) {
 			sample = 0;
 		}
 
-	} else { 
+	} else {
 		sound = 0;
 	}
+	return sound;
+}
 
+
+static void set_dac_sample(int16_t sound) {
 	dac->SDR.channel0 = sound;
 	dac->SDR.channel1 = sound;
-	
+}
+
+
+
+__int_handler *abdac_isr(void) {
+	int16_t sound;
+
+	switch (mode) {
+
+	case PIANO_MODE:
+		sound = get_piano_pitch();
+		break;
+
+	case PLAYBACK_MODE:
+		sound = get_playback_pitch();
+		break;
+	}
+
+	set_dac_sample(sound);
+
 	return 0;
 }
 
