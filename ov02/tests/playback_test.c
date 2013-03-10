@@ -39,7 +39,7 @@ void testShouldSwitchNoteWhenDone() {
 	struct note_t* note2 = note_new(1, 100, 90, 0);
 	note->next = note2;
 
-	int16_t sample = get_playback_pitch();
+	get_playback_pitch();
 	assertPtrEqual(note, note2);
 
 }

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "tests.h"
 #include "asserts.h"
 
@@ -8,16 +9,7 @@ extern int failureCount;
 #define TEST(name) printf(#name"\n"); \
 	name()
 
-int main( int argc, char *argv[] ) {
-
-
-	TEST(testShouldReturnZeroOnNoteIsNULL);
-
-	TEST(testShouldReturn10000OnNoteNotNULL);
-
-	TEST(testShouldReturnNullWhenSevenEightDone);
-
-	TEST(testShouldSwitchNoteWhenDone);
+void print_results(void) {
 
 	if (successCount == assertCount) {
 		printf("PASSED ");
@@ -25,6 +17,16 @@ int main( int argc, char *argv[] ) {
 		printf("FAILED ");
 	}
 	printf("(asserts: %d, success: %d, failures: %d)\n", assertCount, successCount, failureCount);
+}
 
+int main( int argc, char *argv[] ) {
+
+	// Playback
+	TEST(testShouldReturnZeroOnNoteIsNULL);
+	TEST(testShouldReturn10000OnNoteNotNULL);
+	TEST(testShouldReturnNullWhenSevenEightDone);
+	TEST(testShouldSwitchNoteWhenDone);
+
+	print_results();
 	return 0;
 }
