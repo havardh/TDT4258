@@ -21,7 +21,6 @@ volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 int main(int argc, char *argv[]) {
 	init_samples();
 	init_tune(tune);
-
 	init_hardware();
 
 	set_leds(0x88);
@@ -41,12 +40,6 @@ void init_hardware(void) {
 
 // button_isr
 // Bytte datastruktur
-
-// Sett klokke hastighet
-double t = 0;
-
-int i = 0;
-int LIMIT = 20;
 
 //void play_tune()
 

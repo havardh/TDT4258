@@ -1,11 +1,11 @@
-#include "tunes.h"
-#include "playback.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "asserts.h"
 #include "tests.h"
+
 #include "note.h"
+#include "playback.h"
 
 void testShouldReturnZeroOnNoteIsNULL() {
 
@@ -42,4 +42,32 @@ void testShouldSwitchNoteWhenDone() {
 	get_playback_pitch();
 	assertPtrEqual(note, note2);
 
+}
+
+void testShouldReturnZeroOnDone() {
+
+	note = note_new(1, 100, 110, 0);
+
+	int sample = get_playback_pitch();
+	assertIntEqual(0, sample);
+}
+
+void testShouldAge() {
+
+	note = note_new(1, 2, 0, 0);
+
+	get_playback_pitch();
+	get_playback_pitch();
+	int sample = get_playback_pitch();
+	assertIntEqual(0, sample);
+}
+
+void testShouldPlaySquare() {
+
+	note = note_new(SAMPLES / 2, 4, 0, 0);
+
+	assertIntEqual(get_playback_pitch(), 10000);
+	assertIntEqual(get_playback_pitch(), -10000);
+	assertIntEqual(get_playback_pitch(), 10000);
+	assertIntEqual(get_playback_pitch(), -10000);
 }

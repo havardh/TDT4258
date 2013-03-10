@@ -26,6 +26,9 @@ int main( int argc, char *argv[] ) {
 	TEST(testShouldReturn10000OnNoteNotNULL);
 	TEST(testShouldReturnNullWhenSevenEightDone);
 	TEST(testShouldSwitchNoteWhenDone);
+	TEST(testShouldReturnZeroOnDone);
+	TEST(testShouldAge);
+	TEST(testShouldPlaySquare);
 
 	print_results();
 	return 0;
