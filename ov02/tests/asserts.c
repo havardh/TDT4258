@@ -8,7 +8,7 @@ void assertIntEqual(int16_t expected, int16_t actual) {
 	assertCount++;
 	if (actual != expected) {
 		failureCount++;
-		printf("Expected %d to be %d\n", actual, expected);
+		printf("\e[1;31mExpected %d to be %d\e[0m\n", actual, expected);
 	} else {
 		successCount++;
 	}
@@ -21,7 +21,7 @@ void assertPtrEqual(void* expected, void* actual) {
 	assertCount++;
 	if (actual != expected) {
 		failureCount++;
-		printf("Expected %p to be %p\n", actual, expected);
+		printf("\e[1;31mExpected %p to be %p\e[0m\n", actual, expected);
 	} else {
 		successCount++;
 	}
