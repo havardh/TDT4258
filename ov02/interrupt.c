@@ -1,5 +1,7 @@
 #include "interrupt.h"
 #include "tone.h"
+#include "sounds.h"
+
 #define PIANO_MODE 1
 #define PLAYBACK_MODE 2
 
