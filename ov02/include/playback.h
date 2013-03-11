@@ -1,7 +1,6 @@
 #ifndef PLAYBACK_H
 #define PLAYBACK_H
 
-#include "tunes.h"
 #include "samples.h"
 #include <stdint.h>
 #include <stdlib.h>
