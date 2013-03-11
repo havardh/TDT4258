@@ -12,7 +12,7 @@ extern volatile avr32_pio_t *pioc;
 extern volatile avr32_abdac_t *dac;
 //extern volatile avr32_pm_t *sm;
 
-//extern int playing;
+extern int playing;
 extern int16_t sine_table[SAMPLES];
 extern int16_t square_table[SAMPLES];
 

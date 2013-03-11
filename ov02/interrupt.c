@@ -4,7 +4,7 @@
 #define PLAYBACK_MODE 2
 
 static int mode = PIANO_MODE;
-static int playing = 1;
+int playing = 1;
 static int sample = 0;
 static int tone = A4;
 
@@ -32,6 +32,7 @@ void button_isr(void) {
 			set_tone(B);
 		} else {
 			set_leds(0xFD);
+			sound1();
 		}
 		break;
 	}
