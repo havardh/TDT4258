@@ -24,4 +24,8 @@ void init_audio( void );
 uint8_t get_leds ( void );
 void set_leds ( uint8_t );
 
+// DAC
+void turn_on_abdac();
+void turn_off_abdac();
+
 #endif // GPIO_H
