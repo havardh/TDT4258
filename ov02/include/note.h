@@ -10,6 +10,6 @@ typedef struct note_t {
 	struct note_t *next;
 } note_t;
 
-note_t* note_new(int pitch, int duration, int progress, note_t* next);
+note_t* note_new(int pitch, int duration, note_t* next);
 
 #endif // NOTE_H

@@ -2,6 +2,7 @@
 #define PLAYBACK_H
 
 #include "samples.h"
+#include "note.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>

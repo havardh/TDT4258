@@ -79,13 +79,13 @@ void sound_scale ( void ) {
   note_t *t01 = note_new( D, FORTH, t02);
   note_t *t00 = note_new( C, FORTH, t01);
 
-  note_t *t06 = note_new( C, FORTH, NULL);
-  note_t *t05 = note_new( D, FORTH, t06);
-  note_t *t04 = note_new( E, FORTH, t05);
-  note_t *t03 = note_new( F, FORTH, t04);
-  note_t *t02 = note_new( G, FORTH, t03);
-  note_t *t01 = note_new( A, FORTH, t02);
-  note_t *t00 = note_new( B, FORTH, t01);
+  note_t *t16 = note_new( C, FORTH, NULL);
+  note_t *t15 = note_new( D, FORTH, t16);
+  note_t *t14 = note_new( E, FORTH, t15);
+  note_t *t13 = note_new( F, FORTH, t14);
+  note_t *t12 = note_new( G, FORTH, t13);
+  note_t *t11 = note_new( A, FORTH, t12);
+  note_t *t10 = note_new( B, FORTH, t11);
 
   set_track( 0, t00 );
   set_track( 1, t10 );
