@@ -49,9 +49,17 @@ void init_audio(void) {
 	//clock->div = 100;
 
 	// Turn on DAC
-	dac->CR.en = ON;
-	// Turn on interrupts
-	dac->IER.tx_ready = ON;
+        turn_on_abdac();
+}
+
+void turn_on_abdac() {
+  dac->CR.en = ON;
+  dac->IER.tx_ready = ON;
+}
+
+void turn_off_abdac() {
+  dac->CR.en = OFF;
+  dac->IER.tx_ready = OFF;
 }
 
 

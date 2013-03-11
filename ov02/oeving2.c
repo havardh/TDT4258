@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 	set_leds(0x88);
 
 	while (1) /* busy wait */
-          ;
+          __asm__("sleep 0");
 
 	return 0;
 }

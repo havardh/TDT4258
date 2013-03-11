@@ -4,7 +4,7 @@
 
 void sound1( void ) {
 
-  struct note_t* note8 = note_new(C, FORTH, NULL);
+  struct note_t* note8 = note_new(C1, FORTH, NULL);
   struct note_t* note7 = note_new(B, FORTH, note8);
   struct note_t* note6 = note_new(A, FORTH, note7);
   struct note_t* note5 = note_new(G, FORTH, note6);
