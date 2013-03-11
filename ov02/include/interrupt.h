@@ -12,13 +12,13 @@ extern volatile avr32_pio_t *pioc;
 extern volatile avr32_abdac_t *dac;
 //extern volatile avr32_pm_t *sm;
 
-extern int playing;
+//extern int playing;
 extern int16_t sine_table[SAMPLES];
 extern int16_t square_table[SAMPLES];
 
 //extern struct note_t *tune;
 
-__int_handler *button_isr(void);
+void button_isr(void);
 __int_handler *abdac_isr( void );
 
 #define SW0 0x1
