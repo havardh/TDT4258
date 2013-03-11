@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 void init_hardware(void) {
 	init_intc();
 	init_leds();
-	//init_audio();
+	init_audio();
 	init_buttons();
 }
 
