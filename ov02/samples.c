@@ -32,6 +32,8 @@ void generate_square_table( void ) {
 
 int16_t square_sample( int sample ) {
 
+        sample %= SAMPLES;
+
 	int16_t sound = 0;
 	if (sample < (SAMPLES / 2)) {
 		sound = 10000;

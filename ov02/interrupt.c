@@ -13,9 +13,10 @@ static uint8_t button_status;
 
 static int scale[7] = { B2, A2, G2, F2, E2, D2, C2 };
 static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
-void (*sounds[2])(void) = { 
+void (*sounds[3])(void) = { 
   sound1, 
-  lisa_sound};
+  lisa_sound,
+  portal_song};
 
 static int foo(int index) {
   if (index == SW1) return 0;
