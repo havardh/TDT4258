@@ -14,6 +14,19 @@ int8_t get_leds(void);
 void set_leds(int8_t);
 void set_tone(int8_t);
 
+static int scale[7] = { B, A, G, F, E, D, C };
+
+static int foo(int index) {
+  if (index == SW1) return 0;
+  else if (index == SW2) return 1;
+  else if (index == SW3) return 2;
+  else if (index == SW4) return 3;
+  else if (index == SW5) return 4;
+  else if (index == SW6) return 5;
+  else if (index == SW7) return 6;
+  else return -1;
+}
+
 void button_isr(void) {
   //Debouncing
 	int i;
@@ -25,7 +38,17 @@ void button_isr(void) {
         
         playing = button_down;
 
+        if (mode == PIANO_MODE) {
+          set_leds (button_down);
+          set_tone(scale[foo(button_down)]);
+        } else {
+          set_leds (~button_down);
+        }
+
         if (button_down) {
+          
+          set_leds(button_interrupt);
+
 	switch (button_interrupt) {
         case SW0: {//Toggle Mode
                 mode = !mode;
@@ -36,10 +59,8 @@ void button_isr(void) {
 	case SW1: {//H
 
 		if(mode == PIANO_MODE) {
-			set_leds(0x2);
-			set_tone(B);
+                  //set_tone(B);
 		} else {
-			set_leds(0xFD);
 			sound1();		
                 }
 		break;
@@ -47,20 +68,16 @@ void button_isr(void) {
 
 	case SW2: {//A
 		if(mode == PIANO_MODE) {
-			set_leds(0x4);
-			set_tone(A);
+                  //set_tone(A);
 		} else {
-			set_leds(0xFB);
                         silent();
 		}
 		break;
 	}
 	case SW3: {//G
 		if(mode == PIANO_MODE) {
-			set_leds(0x8);
-			set_tone(G);
+                  //set_tone(G);
 		} else {
-			set_leds(0xF7);
                         silent();
 		}
 		break;
@@ -68,40 +85,32 @@ void button_isr(void) {
 
 	case SW4: {//F
 		if(mode == PIANO_MODE) {
-			set_leds(0x10);
-			set_tone(F);
+                  //set_tone(F);
 		} else {
-			set_leds(0xEF);
                         silent();
 		}
 		break;
 	}
 	case SW5: {//E
 		if(mode == PIANO_MODE) {
-			set_leds(0x20);
-			set_tone(E);
+                  //set_tone(E);
 		} else {
-			set_leds(0xDF);
                         silent();
 		}
 		break;
 	}
 	case SW6: {//D
 		if(mode == PIANO_MODE) {
-			set_leds(0x40);
-			set_tone(D);
+                  //set_tone(D);
 		} else {
-			set_leds(0xBF);
                         silent();
 		}
 		break;
 	}
 	case SW7: {//C
 		if(mode == PIANO_MODE) {
-			set_leds(0x80);
-			set_tone(C);
+                  //set_tone(C);
 		} else {
-			set_leds(0x7F);
                         silent();
 		}
 		break;
@@ -157,44 +166,3 @@ __int_handler *abdac_isr(void) {
 
 	return 0;
 }
-
-
-/*
-static int i = 0;
-static int sample = 0;
-static int tone_number = 0;
-static struct note_t *n;
-*/
-/*__int_handler *abdac_isr(void) {
-
-	dac->SDR.channel0 = 0;
-	dac->SDR.channel1 = 0;
-
-
-	if (i > 0) { //n->duration) {
-		i = 0;
-		tone_number++;
-		if (tone_number >= 22) {
-			tone_number = 0;
-		}
-		//n = &tune[tone_number];
-	}
-	i++;
-	int16_t sound_wave;
-	if (i > 0) { // n->duration * (7.0 / 8.0)) {
-		sound_wave = 0;
-	} else {
-		sound_wave = square_table[sample];
-	}
-
-	dac->SDR.channel0 = sound_wave;
-	dac->SDR.channel1 = sound_wave;
-
-	sample += 0; // n->pitch;
-
-	if (sample >= SAMPLES) {
-		sample = 0;
-	}
-
-	return 0;
-}*/
