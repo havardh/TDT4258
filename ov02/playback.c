@@ -1,8 +1,8 @@
+#include "interrupt.h"
 #include "playback.h"
 
 static int samples[TRACKS] = {0, 0, 0, 0};
 struct note_t** notes;
-int playing = 0;
 
 void init_tracks() {
 	notes = (note_t**) calloc (sizeof(note_t**), TRACKS);

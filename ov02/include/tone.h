@@ -5,6 +5,7 @@
 #define G 24
 #define A 27
 #define B 30
+#define C1 32
 
 #define C2 32
 #define D2 36

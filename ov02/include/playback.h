@@ -9,7 +9,6 @@
 
 #define TRACKS 4
 
-extern int playing;
 extern struct note_t** notes;
 
 void init_tracks();
