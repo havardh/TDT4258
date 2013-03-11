@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdint.h>
+#include "playback.h"
 
 struct note_t *tune;
 volatile avr32_pio_t *piob = &AVR32_PIOB;
@@ -20,7 +21,8 @@ volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 
 int main(int argc, char *argv[]) {
 	init_samples();
-	init_tune(tune);
+        init_tracks();
+	//init_tune(tune);
 	init_hardware();
 
 	set_leds(0x88);

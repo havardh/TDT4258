@@ -12,6 +12,11 @@ void sound1( void ) {
   struct note_t* note2 = note_new(D, FORTH, 0, note3);
   struct note_t* note1 = note_new(C, FORTH, 0, note2);
   
-  set_track(0, NULL);
+  set_track(0, note1);
 }
 
+void silent( void ) {
+
+  set_track(0, NULL);
+
+}

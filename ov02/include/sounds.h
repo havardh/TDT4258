@@ -5,4 +5,6 @@
 
 void sound1( void );
 
+void silent( void );
+
 #endif // SOUNDS_H

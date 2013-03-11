@@ -2,8 +2,8 @@
 #include "tone.h"
 #include "sounds.h"
 
+#define PLAYBACK_MODE 0
 #define PIANO_MODE 1
-#define PLAYBACK_MODE 2
 
 static int mode = PIANO_MODE;
 int playing = 1;
@@ -20,22 +20,28 @@ void button_isr(void) {
 	for (i = 0; i < 0xFFFF; i++)
 		;
 
-	int button_interrupt = piob->isr;
-	int button_up = piob->pdsr;
-	switch (~button_up & button_interrupt) {
-	case SW0://Toggle Mode
-		mode = !mode;
-		set_leds(get_leds() ^ 0xFF);
-		break;
+	uint8_t button_interrupt = piob->isr;
+	uint8_t button_down = ~(uint8_t)piob->pdsr;
+        
+        playing = button_down;
+
+        if (button_down) {
+	switch (button_interrupt) {
+        case SW0: {//Toggle Mode
+                mode = !mode;
+                set_leds(get_leds() ^ 0xFF);
+                break;
+          }
 
 	case SW1: {//H
+
 		if(mode == PIANO_MODE) {
 			set_leds(0x2);
 			set_tone(B);
 		} else {
 			set_leds(0xFD);
-			sound1();
-		}
+			sound1();		
+                }
 		break;
 	}
 
@@ -45,6 +51,7 @@ void button_isr(void) {
 			set_tone(A);
 		} else {
 			set_leds(0xFB);
+                        silent();
 		}
 		break;
 	}
@@ -54,6 +61,7 @@ void button_isr(void) {
 			set_tone(G);
 		} else {
 			set_leds(0xF7);
+                        silent();
 		}
 		break;
 	}
@@ -64,6 +72,7 @@ void button_isr(void) {
 			set_tone(F);
 		} else {
 			set_leds(0xEF);
+                        silent();
 		}
 		break;
 	}
@@ -73,6 +82,7 @@ void button_isr(void) {
 			set_tone(E);
 		} else {
 			set_leds(0xDF);
+                        silent();
 		}
 		break;
 	}
@@ -82,6 +92,7 @@ void button_isr(void) {
 			set_tone(D);
 		} else {
 			set_leds(0xBF);
+                        silent();
 		}
 		break;
 	}
@@ -91,10 +102,12 @@ void button_isr(void) {
 			set_tone(C);
 		} else {
 			set_leds(0x7F);
+                        silent();
 		}
 		break;
 	}
 	}
+        }
 
 	return 0;
 }
