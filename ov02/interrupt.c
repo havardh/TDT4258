@@ -8,8 +8,12 @@ static int playing = 1;
 static int sample = 0;
 static int tone = A4;
 
+int8_t get_leds(void);
+void set_leds(int8_t);
+void set_tone(int8_t);
 
-void button_isr(void) {
+
+__int_handler *button_isr(void) {
   //Debouncing
 	int i;
 	for (i = 0; i < 0xFFFF; i++)

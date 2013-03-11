@@ -24,7 +24,7 @@
 /* prototyper */
 int main (int argc, char *argv[]);
 
-static void init_hardware(void);
+void init_hardware(void);
 
 void update_leds(void);
 
