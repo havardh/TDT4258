@@ -26,6 +26,7 @@ note_t* get_track(int track) {
 static int16_t get_track_pitch(int i) {
 	int16_t sound = 0;
 
+
 	// If note is done
 	if (notes[i] && notes[i]->progress >= notes[i]->duration) {
 		notes[i] = notes[i]->next; // Is NULL when tune is done

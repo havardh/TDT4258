@@ -17,6 +17,7 @@ void tracks_finalize();
 
 void set_track(int, note_t*);
 note_t* get_track(int);
+
 int16_t get_playback_pitch();
 
 #endif // PLAYBACK_H
