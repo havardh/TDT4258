@@ -11,17 +11,11 @@ int playing = 1;
 
 static uint8_t button_status;
 
-static int scale[7] = { B, A, G, F, E, D, C };
+static int scale[7] = { B2, A2, G2, F2, E2, D2, C2 };
 static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
-void (*sounds[7])(void) = { 
+void (*sounds[2])(void) = { 
   sound1, 
-  sound_scale, 
-  random_explosion, 
-  lisa_sound, 
-  silent, 
-  silent, 
-  silent 
-};
+  lisa_sound};
 
 static int foo(int index) {
   if (index == SW1) return 0;
