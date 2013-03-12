@@ -14,8 +14,6 @@ extern volatile avr32_abdac_t *dac;
 extern int playing;
 extern int16_t sine_table[SAMPLES];
 
-void set_sample_fn(void (*fn)(int));
-
 void button_isr(void);
 __int_handler *abdac_isr( void );
 

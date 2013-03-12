@@ -19,32 +19,68 @@ void dur_scale( void ) {
 
 void cromatic_scale( void ) {
   struct note_t* n13 = note_new(C4,  EIGHT, NULL);
+  n13->cutoff = 1;
   struct note_t* n12 = note_new(B3,  EIGHT, n13);
+  n12->cutoff = 1;
   struct note_t* n11 = note_new(A3_, EIGHT, n12);
+  n11->cutoff = 1;
   struct note_t* n10 = note_new(A3,  EIGHT, n11);
+  n10->cutoff = 1;
   struct note_t* n9  = note_new(G3_, EIGHT, n10);
+  n9->cutoff = 1;
   struct note_t* n8  = note_new(G3,  EIGHT,  n9);
+  n8->cutoff = 1;
   struct note_t* n7  = note_new(F3_, EIGHT,  n8);
+  n7->cutoff = 1;
   struct note_t* n6  = note_new(F3,  EIGHT,  n7);
+  n6->cutoff = 1;
   struct note_t* n5  = note_new(E3,  EIGHT,  n6);
+  n5->cutoff = 1;
   struct note_t* n4  = note_new(D3_, EIGHT,  n5);
+  n4->cutoff = 1;
   struct note_t* n3  = note_new(D3,  EIGHT,  n4);
+  n3->cutoff = 1;
   struct note_t* n2  = note_new(C3_, EIGHT,  n3);
+  n2->cutoff = 1;
   struct note_t* n1  = note_new(C3,  EIGHT,  n2);
+  n1->cutoff = 1;
 
   set_track(0, n1);
 }
 
 void gunshot1 ( void ) {
-  set_sample_fn(triangle_sample);
+  set_sample_fn(&triangle_sample);
 
-  
+  int pitch[13] = { C4, B3, A3_, A3, G3_, G3, F3_, F3, E3, D3_, D3, C3_, C3 };
+  set_track(0, even_tune(pitch, 13, SIXTEENTH, 1));
 }
 
 void gunshot2 ( void ) {
-  set_sample_fn(square_sample);
+  set_sample_fn(&square_sample);
+
+  int pitch0[4] = {5, 5, 5, 5};
+  set_track(0, even_tune(pitch0, 4, EIGHT, 1));
+  int pitch1[8] = {2, 6, 2, 5, 4, 2, 4, 2};
+  set_track(1, even_tune(pitch1, 8, SIXTEENTH, 0.5));
 }
 
+void gunshot3 (void ) {
+  set_sample_fn(&triangle_sample);
+
+  int pitch[13] = { C4, B3, A3_, A3, G3_, G3, F3_, F3, E3, D3_, D3, C3_, C3 };
+  set_track(0, even_tune(pitch, 13, SIXTEENTH, 1));
+}
+
+void gunshot4 (void ) {
+
+}
+
+void gunshot5 (void ) {
+
+}
+
+
+/*
 void lisa_sound ( void ) {
   note_t *s21 = note_new( C, WHOLE, NULL);
   
@@ -308,7 +344,7 @@ void portal_song ( void ) {
   note_t *t = note_new( A, FORTH, t);
   note_t *t = note_new( A, FORTH, t);
   // 24*/
-
+/*
   note_t *t129 = note_new( D5, EIGHT, NULL);
   note_t *t128 = note_new( F5_, EIGHT, t129);
   note_t *t127 = note_new( D5, EIGHT, t128);

@@ -10,17 +10,17 @@ static int mode = PIANO_MODE;
 int playing = 1;
 
 static uint8_t button_status;
-static void (*sample_fn)(int);
 
 static int scale[7] = { B2, A2, G2, F2, E2, D2, C2 };
 static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
-void (*sounds[3])(void) = {
+void (*sounds[6])(void) = {
 	dur_scale,
         cromatic_scale,
         gunshot1,
-        gunshot1,
-	lisa_sound,
-	portal_song};
+        gunshot2,
+        gunshot3,
+        gunshot4,
+        gunshot5};
 
 static int getIndexForButton(int button) {
 	switch(button) {
@@ -60,7 +60,7 @@ void button_isr(void) {
 
 	} else {
 		set_leds (~button_down);
-		if (index != -1) {
+		if (index != -1 && button_down) {
 			turn_on_abdac();
 			(*sounds[index])();
 		}
@@ -82,15 +82,10 @@ void button_isr(void) {
 			set_leds(get_leds() ^ 0xFF);
 		}
 	}
-	return 0;
-}
-
-void set_sample_fn(void (*fn)(int)) {
-	sample_fn = fn;
+	//return 0;
 }
 
 static int16_t get_piano_pitch() {
-	static int clock = 0;
 
 	int16_t sound = 0;
 	if (playing) {
