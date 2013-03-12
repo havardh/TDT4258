@@ -62,7 +62,7 @@ __int_handler *button_isr(void) {
 
 	}
 
-	//return 0;
+	return 0;
 }
 
 __int_handler *abdac_isr(void) {
