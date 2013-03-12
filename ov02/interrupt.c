@@ -82,7 +82,7 @@ void button_isr(void) {
 	return 0;
 }
 
-void set_sample_fn(void* (*fn)(int)) {
+void set_sample_fn(void (*fn)(int)) {
 	sample_fn = fn;
 }
 
