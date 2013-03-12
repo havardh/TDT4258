@@ -1,11 +1,9 @@
 #include "samples.h"
 
 int16_t sine_table[SAMPLES];
-int16_t square_table[SAMPLES];
 
 void init_samples ( void ) {
 	generate_sine_table();
-	generate_square_table();
 }
 
 void generate_sine_table( void ) {
@@ -18,21 +16,14 @@ void generate_sine_table( void ) {
 	}
 }
 
-void generate_square_table( void ) {
-	int i;
-	for (i=0; i<SAMPLES; i++) {
-
-		if (i < (SAMPLES / 2)) {
-			square_table[i] = 10000;
-		} else {
-			square_table[i] = -10000;
-		}
-	}
+int16_t sine_sample(int sample) {
+	sample %= SAMPLES;
+	return sine_table[sample];
 }
 
 int16_t square_sample( int sample ) {
 
-        sample %= SAMPLES;
+	sample %= SAMPLES;
 
 	int16_t sound = 0;
 	if (sample < (SAMPLES / 2)) {
@@ -41,4 +32,21 @@ int16_t square_sample( int sample ) {
 		sound = -10000;
 	}
 	return sound;
+}
+
+int16_t sawtooth_sample( int sample ) {
+	sample %= SAMPLES;
+
+	return sample * 3;
+}
+
+int16_t triangle_sample( int sample ) {
+	sample %= SAMPLES;
+
+	if (sample < (SAMPLES / 2)) {
+		return sample * 6;
+	} else {
+		return SAMPLES * 6 - (sample * 6);
+	}
+
 }

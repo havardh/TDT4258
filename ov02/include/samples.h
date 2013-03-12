@@ -12,9 +12,11 @@ extern int16_t sine_table[SAMPLES];
 extern int16_t square_table[SAMPLES];
 
 void init_samples( void );
-void generate_square_table( void );
 void generate_sine_table ( void );
 
+int16_t sine_sample (int);
 int16_t square_sample (int);
+int16_t sawtooth_sample (int);
+int16_t triangle_sample (int);
 
 #endif // SAMPLES_H

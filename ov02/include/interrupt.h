@@ -10,13 +10,12 @@
 extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
 extern volatile avr32_abdac_t *dac;
-//extern volatile avr32_pm_t *sm;
 
 extern int playing;
 extern int16_t sine_table[SAMPLES];
 extern int16_t square_table[SAMPLES];
 
-//extern struct note_t *tune;
+void set_sample_fn(void (*fn)(int);
 
 void button_isr(void);
 __int_handler *abdac_isr( void );
