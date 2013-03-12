@@ -15,7 +15,7 @@ extern uint8_t button_status;
 extern int playing;
 extern int16_t sine_table[SAMPLES];
 
-void button_isr(void);
+__int_handler * button_isr(void);
 __int_handler *abdac_isr( void );
 
 #define SW0 0x1

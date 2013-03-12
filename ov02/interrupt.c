@@ -36,7 +36,7 @@ static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt)
 
 /* Interrupt Handlers */
 
-void button_isr(void) {
+__int_handler *button_isr(void) {
 	debounce();
 
 	uint8_t button_interrupt = piob->isr;
