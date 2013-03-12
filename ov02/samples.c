@@ -52,5 +52,5 @@ int16_t triangle_sample(int sample) {
 }
 
 int16_t white_noise(int sample) {
-	return rand()*sample;
+  return (int16_t) rand();
 }
