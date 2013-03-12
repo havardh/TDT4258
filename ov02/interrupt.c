@@ -35,53 +35,86 @@ static int getIndexForButton(int button) {
 	return -1;
 }
 
-void button_isr(void) {
+static handle_mode_switch() {
+
+  mode = !mode;
+  
+  if (mode == PLAYBACK_MODE) {
+
+    set_leds(0xFF);
+    turn_off_abdac();
+
+  } else {
+
+    set_leds(0);
+
+
+  }
+
+}
+
+static void handle_piano_pressed(uint8_t button_down, uint8_t button_interrupt) {
+  set_leds (button_down);
+            
+  button_status = button_down;
+
+  if (button_down) {
+    turn_on_abdac();
+  }
+  
+  if (!(button_down & button_interrupt)) {
+    turn_off_abdac();
+  }
+
+}
+
+static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt) {
+  int index = getIndexForButton(button_interrupt);
+
+  set_leds (~button_down);
+
+
+  if (index != -1 && button_down) {
+
+    turn_on_abdac();
+    (*sounds[index])();
+
+  }
+}
+
+static debounce() {
 	//Debouncing
 	int i;
 	for (i = 0; i < 0xFFFF; i++)
 		;
+}
+
+void button_isr(void) {
+        debounce();
 
 	uint8_t button_interrupt = piob->isr;
 	uint8_t button_down = ~(uint8_t)piob->pdsr;
-	button_status = button_down;
 	playing = button_down;
 
-	int index = getIndexForButton(button_interrupt);
-	if (mode == PIANO_MODE) {
-		set_leds (button_down);
+        if ( button_interrupt == SW0 ) {
 
-		if (button_down) {
-			turn_on_abdac();
-		}
+          if (button_down) {
+            handle_mode_switch();
+          }
+          
+        } else {
+          if (mode == PIANO_MODE) {
 
-		if (!(button_down & button_interrupt)) {
-			turn_off_abdac();
-		}
+            handle_piano_pressed(button_down, button_interrupt);
 
-	} else {
-		set_leds (~button_down);
-		if (index != -1 && button_down) {
-			turn_on_abdac();
-			(*sounds[index])();
-		}
-	}
+          } else {
 
-	if (button_down) {
+            handle_sample_pressed(button_down, button_interrupt);
 
-		set_leds(button_interrupt);
+          }
+          
+        }
 
-		if (button_interrupt == SW0) {
-
-			mode = !mode;
-
-			if (mode == PLAYBACK_MODE) {
-				turn_off_abdac();
-			} else {
-				set_sample_fn(&triangle_sample);
-			}
-			set_leds(get_leds() ^ 0xFF);
-		}
-	}
 	//return 0;
 }
 
