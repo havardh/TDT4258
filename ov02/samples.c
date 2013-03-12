@@ -2,17 +2,17 @@
 
 int16_t sine_table[SAMPLES];
 
-void init_samples ( void ) {
+void init_samples(void) {
 	generate_sine_table();
 }
 
-void generate_sine_table( void ) {
+void generate_sine_table(void) {
 	int i;
-	for (i=0; i<SAMPLES; i++) {
-		double fac = (double)i/SAMPLES;
-		double x = fac * (2*PI);
-		double y = sin( x ) * 20000;
-		sine_table[i] = (int16_t)y;
+	for (i = 0; i < SAMPLES; i++) {
+		double fac = (double) i / SAMPLES;
+		double x = fac * (2 * PI);
+		double y = sin(x) * 20000;
+		sine_table[i] = (int16_t) y;
 	}
 }
 
@@ -21,7 +21,7 @@ int16_t sine_sample(int sample) {
 	return sine_table[sample];
 }
 
-int16_t square_sample( int sample ) {
+int16_t square_sample(int sample) {
 
 	sample %= SAMPLES;
 
@@ -34,13 +34,13 @@ int16_t square_sample( int sample ) {
 	return sound;
 }
 
-int16_t sawtooth_sample( int sample ) {
+int16_t sawtooth_sample(int sample) {
 	sample %= SAMPLES;
 
 	return sample * 3;
 }
 
-int16_t triangle_sample( int sample ) {
+int16_t triangle_sample(int sample) {
 	sample %= SAMPLES;
 
 	if (sample < (SAMPLES / 2)) {
@@ -51,6 +51,6 @@ int16_t triangle_sample( int sample ) {
 
 }
 
-int16_t explosion_sample( int sample ) {
-	return 0;
+int16_t white_noise(int sample) {
+	return rand()*sample;
 }

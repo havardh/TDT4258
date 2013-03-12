@@ -71,5 +71,5 @@
 #define FORTH			12500
 #define EIGHT			6250
 #define SIXTEENTH		3125
-#define SHORT_P                 2343
+#define SHORT_P			2343
 #define SHORT			1562

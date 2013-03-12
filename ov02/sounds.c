@@ -71,7 +71,7 @@ void explosion ( void ) {
 
 void ex1( void ) {
 
-	set_sample_fn(explosion_sample);
+	set_sample_fn(white_noise);
 
 	set_track(0, note_new(0, WHOLE, 0));
 
