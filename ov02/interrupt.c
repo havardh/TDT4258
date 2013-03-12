@@ -104,12 +104,6 @@ void button_isr(void) {
 	//return 0;
 }
 
-
-static void set_dac_sample(int16_t sound) {
-	dac->SDR.channel0 = sound;
-	dac->SDR.channel1 = sound;
-}
-
 __int_handler *abdac_isr(void) {
 	int16_t sound;
 
@@ -150,4 +144,3 @@ static int getIndexForButton(int button) {
 	}
 	return -1;
 }
-

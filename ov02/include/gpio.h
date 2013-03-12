@@ -25,7 +25,8 @@ uint8_t get_leds ( void );
 void set_leds ( uint8_t );
 
 // DAC
-void turn_on_abdac();
-void turn_off_abdac();
+void turn_on_abdac( void );
+void turn_off_abdac( void );
+void set_dac_sample( int16_t sound );
 
 #endif // GPIO_H

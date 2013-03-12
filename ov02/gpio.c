@@ -11,7 +11,7 @@ void init_intc(void) {
 
 void init_buttons(void) {
 	register_interrupt((__int_handler)(button_isr),
-		AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
+			   AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
 	piob->per = 0xff;
 	piob->ier = 0xff;
 	piob->puer = 0xff;
@@ -27,7 +27,7 @@ void init_leds(void) {
 void init_audio(void) {
 	// Register interrupt handler
 	register_interrupt((__int_handler)(abdac_isr),
-		AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
+			   AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
 
 	// Disable PIO
 	piob->PDR.p20 = 1;
@@ -45,23 +45,24 @@ void init_audio(void) {
 	clock->pllsel = 0;
 	clock->cen = ON;
 
-	//clock->diven = ON;
-	//clock->div = 100;
-
 	// Turn on DAC
-        turn_on_abdac();
+	turn_on_abdac();
 }
 
-void turn_on_abdac() {
-  dac->CR.en = ON;
-  dac->IER.tx_ready = ON;
+void turn_on_abdac( void ) {
+	dac->CR.en = ON;
+	dac->IER.tx_ready = ON;
 }
 
-void turn_off_abdac() {
-  dac->CR.en = OFF;
-  dac->IER.tx_ready = OFF;
+void turn_off_abdac( void ) {
+	dac->CR.en = OFF;
+	dac->IER.tx_ready = OFF;
 }
 
+void set_dac_sample(int16_t sound) {
+	dac->SDR.channel0 = sound;
+	dac->SDR.channel1 = sound;
+}
 
 /* Get and Set LEDs */
 
