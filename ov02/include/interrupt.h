@@ -6,19 +6,21 @@
 #include <stdint.h>
 #include "oeving2.h"
 #include "samples.h"
+#include "playback.h"
+#include "tone.h"
+#include "sounds.h"
+#include "gpio.h"
+#include "piano.h"
 
 extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
 extern volatile avr32_abdac_t *dac;
-//extern volatile avr32_pm_t *sm;
 
+extern uint8_t button_status;
 extern int playing;
 extern int16_t sine_table[SAMPLES];
-extern int16_t square_table[SAMPLES];
 
-//extern struct note_t *tune;
-
-void button_isr(void);
+__int_handler * button_isr(void);
 __int_handler *abdac_isr( void );
 
 #define SW0 0x1

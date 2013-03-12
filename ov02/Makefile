@@ -11,7 +11,7 @@ AVR32PROGRAM = avr32program
 .PHONY : all
 all: $(TARGET) #git_pull
 
-oeving2.elf: oeving2.o interrupt.o gpio.o samples.o tunes.o playback.o sounds.o note.o
+oeving2.elf: oeving2.o interrupt.o gpio.o samples.o playback.o sounds.o note.o piano.o
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 %.o: %.c
