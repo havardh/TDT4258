@@ -9,6 +9,7 @@
 
 void dur_scale( void );
 void cromatic_scale( void );
+full_scale ( void );
 
 void gunshot1( void );
 void explosion( void );
