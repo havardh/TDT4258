@@ -14,7 +14,7 @@ int playing = 1;
 
 // Holds the current button status
 // Used by piano in order to play multiple tones
-static uint8_t button_status;
+uint8_t button_status;
 
 // Different samples played in playback mode
 void (*sounds[7])(void) = {
@@ -28,7 +28,6 @@ void (*sounds[7])(void) = {
 
 // Prototypes
 static int getIndexForButton(int button);
-static int isDown(int button);
 static void debounce( void );
 
 static void handle_mode_switch();
@@ -152,8 +151,3 @@ static int getIndexForButton(int button) {
 	return -1;
 }
 
-
-static int isDown(int button) {
-	static uint8_t t[8] = { 2, 4, 8, 16, 32, 64, 128 };
-	return t[button] & button_status;
-}

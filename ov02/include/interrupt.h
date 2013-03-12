@@ -11,6 +11,7 @@ extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
 extern volatile avr32_abdac_t *dac;
 
+extern uint8_t button_status;
 extern int playing;
 extern int16_t sine_table[SAMPLES];
 

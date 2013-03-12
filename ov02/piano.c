@@ -1,7 +1,15 @@
+#include "piano.h"
 
 // Piano state and scale
 static int scale[7] = { B2, A2, G2, F2, E2, D2, C2 };
 static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
+
+
+static int isDown(int button) {
+	static uint8_t t[8] = { 2, 4, 8, 16, 32, 64, 128 };
+	return t[button] & button_status;
+}
+
 
 static int16_t get_tone_pitch(int i) {
 	int16_t sound = 0;
