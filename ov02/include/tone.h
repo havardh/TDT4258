@@ -10,6 +10,7 @@
 #define C1 32
 
 #define C2  32
+#define C2_ 34
 #define D2  36
 #define E2  40
 #define F2  42

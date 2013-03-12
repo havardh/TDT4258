@@ -1,7 +1,7 @@
 #include "interrupt.h"
 #include "playback.h"
 
-static int16_t (*sample_fn)(int);
+static int16_t (*sample_fn)(int) = square_sample;
 static int samples[TRACKS] = {0, 0, 0, 0};
 struct note_t** notes;
 
@@ -43,7 +43,7 @@ static int16_t get_track_pitch(int i) {
 	} else {
 		// If within 7/8 or the tone play it
 		if (notes[i]->progress <= (int16_t)(notes[i]->duration * notes[i]->cutoff)) {
-                  sound = sawtooth_sample(samples[i]);
+                  sound = (*sample_fn)(samples[i]);
 		}
 		notes[i]->progress++;
 		samples[i] += notes[i]->pitch;

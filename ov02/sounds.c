@@ -56,7 +56,7 @@ void gunshot1 ( void ) {
 }
 
 void explosion ( void ) {
-  //set_sample_fn(sawtooth_sample);
+  set_sample_fn(sawtooth_sample);
 
   int pitch0[4] = {5, 5, 5, 5};
   set_track(0, even_tune(pitch0, 4, EIGHT, 1));
@@ -101,6 +101,30 @@ void smb_death( void ) {
 
 void gunshot4 (void ) {
 
+}
+
+void toccata ( void ) {
+  int pitch_dur[32] = {
+    A4, EIGHT,
+    G4, EIGHT,
+    A4, HALF,
+    G4, SIXTEENTH,
+    F4, SIXTEENTH,
+    E4, SIXTEENTH,
+    D4, SIXTEENTH,
+    C4_, FORTH,
+    D4, FORTH,
+
+    A3, EIGHT,
+    G3, EIGHT,
+    A3, FORTH_P,
+    E3, EIGHT,
+    F3, EIGHT,
+    C2_, EIGHT,
+    D3, FORTH
+  };
+
+  set_track(0, variable_tune(pitch_dur, 16, 0.875));
 }
 
 

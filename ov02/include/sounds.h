@@ -21,6 +21,8 @@ void random_explosion ( void );
 void sound_scale ( void );
 void portal_song ( void );
 
+void toccata ( void );
+
 void silent( void );
 
 #endif // SOUNDS_H
