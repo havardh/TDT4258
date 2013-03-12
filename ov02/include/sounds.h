@@ -11,7 +11,6 @@ void cromatic_scale( void );
 void gunshot1( void );
 void explosion( void );
 void gunshot( void );
-void gunshot4( void );
 
 void smb_power_up(void);
 void smb_1up(void);
