@@ -34,46 +34,7 @@ static void handle_mode_switch();
 static void handle_piano_pressed(uint8_t button_down, uint8_t button_interrupt);
 static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt);
 
-static void handle_mode_switch() {
-
-	mode = !mode;
-	turn_off_abdac();
-
-	if (mode == PLAYBACK_MODE) {
-		set_leds(0xFF);
-	} else {
-		set_leds(0);
-	}
-
-}
-
-static void handle_piano_pressed(uint8_t button_down, uint8_t button_interrupt) {
-	set_leds (button_down);
-
-	button_status = button_down;
-
-	if (button_down) {
-		turn_on_abdac();
-	}
-
-	if (!(button_down & button_interrupt)) {
-		turn_off_abdac();
-	}
-
-}
-
-static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt) {
-	int index = getIndexForButton(button_interrupt);
-
-	set_leds (~button_down);
-
-	if (index != -1 && button_down) {
-
-		turn_on_abdac();
-		(*sounds[index])();
-
-	}
-}
+/* Interrupt Handlers */
 
 void button_isr(void) {
 	debounce();
@@ -121,6 +82,48 @@ __int_handler *abdac_isr(void) {
 	set_dac_sample(sound);
 
 	return 0;
+}
+
+/* Handle event functions */
+static void handle_mode_switch() {
+
+	mode = !mode;
+	turn_off_abdac();
+
+	if (mode == PLAYBACK_MODE) {
+		set_leds(0xFF);
+	} else {
+		set_leds(0);
+	}
+
+}
+
+static void handle_piano_pressed(uint8_t button_down, uint8_t button_interrupt) {
+	set_leds (button_down);
+
+	button_status = button_down;
+
+	if (button_down) {
+		turn_on_abdac();
+	}
+
+	if (!(button_down & button_interrupt)) {
+		turn_off_abdac();
+	}
+
+}
+
+static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt) {
+	int index = getIndexForButton(button_interrupt);
+
+	set_leds (~button_down);
+
+	if (index != -1 && button_down) {
+
+		turn_on_abdac();
+		(*sounds[index])();
+
+	}
 }
 
 /* Helper/util functions */
