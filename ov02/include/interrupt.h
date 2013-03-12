@@ -13,7 +13,6 @@ extern volatile avr32_abdac_t *dac;
 
 extern int playing;
 extern int16_t sine_table[SAMPLES];
-extern int16_t square_table[SAMPLES];
 
 void set_sample_fn(void (*fn)(int);
 

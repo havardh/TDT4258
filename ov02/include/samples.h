@@ -9,7 +9,6 @@
 #define SHORT_MAX 32768
 
 extern int16_t sine_table[SAMPLES];
-extern int16_t square_table[SAMPLES];
 
 void init_samples( void );
 void generate_sine_table ( void );

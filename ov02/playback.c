@@ -34,7 +34,7 @@ static int16_t get_track_pitch(int i) {
 
 	// Check if tune is done
 	if (notes[i] == NULL) {
-		playing = 0;
+
 	} else {
 		// If within 7/8 or the tone play it
 		if (notes[i]->progress <= (int16_t)(notes[i]->duration * (7.0 / 8.0))) {
@@ -42,11 +42,12 @@ static int16_t get_track_pitch(int i) {
 		}
 		notes[i]->progress++;
 		samples[i] += notes[i]->pitch;
+
+		if (samples[i] >= SAMPLES) {
+			samples[i] = 0;
+		}
 	}
 
-	if (samples[i] >= SAMPLES) {
-		samples[i] = 0;
-	}
 	return sound;
 }
 
