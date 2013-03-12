@@ -2,7 +2,7 @@
 #include "tone.h"
 #include "playback.h"
 
-void sound1( void ) {
+void dur_scale( void ) {
 
   struct note_t* note8 = note_new(C1, FORTH, NULL);
   struct note_t* note7 = note_new(B, FORTH, note8);
@@ -14,6 +14,35 @@ void sound1( void ) {
   struct note_t* note1 = note_new(C, FORTH, note2);
   
   set_track(0, note1);
+}
+
+
+void cromatic_scale( void ) {
+  struct note_t* n13 = note_new(C4,  EIGHT, NULL);
+  struct note_t* n12 = note_new(B3,  EIGHT, n13);
+  struct note_t* n11 = note_new(A3_, EIGHT, n12);
+  struct note_t* n10 = note_new(A3,  EIGHT, n11);
+  struct note_t* n9  = note_new(G3_, EIGHT, n10);
+  struct note_t* n8  = note_new(G3,  EIGHT,  n9);
+  struct note_t* n7  = note_new(F3_, EIGHT,  n8);
+  struct note_t* n6  = note_new(F3,  EIGHT,  n7);
+  struct note_t* n5  = note_new(E3,  EIGHT,  n6);
+  struct note_t* n4  = note_new(D3_, EIGHT,  n5);
+  struct note_t* n3  = note_new(D3,  EIGHT,  n4);
+  struct note_t* n2  = note_new(C3_, EIGHT,  n3);
+  struct note_t* n1  = note_new(C3,  EIGHT,  n2);
+
+  set_track(0, n1);
+}
+
+void gunshot1 ( void ) {
+  set_sample_fn(triangle_sample);
+
+  
+}
+
+void gunshot2 ( void ) {
+  set_smaple_fn(square_sample);
 }
 
 void lisa_sound ( void ) {

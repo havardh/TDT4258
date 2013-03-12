@@ -27,9 +27,9 @@ int16_t square_sample( int sample ) {
 
 	int16_t sound = 0;
 	if (sample < (SAMPLES / 2)) {
-		sound = 10000;
+		sound = 5000;
 	} else {
-		sound = -10000;
+		sound = -5000;
 	}
 	return sound;
 }

@@ -22,7 +22,6 @@
 #define D3 		72
 #define D3_		76
 #define E3 		80
-#define E3_		82
 #define F3 		84
 #define F3_		90
 #define G3 		96
@@ -62,12 +61,12 @@
 #define B5 		(240*2)
 #define B5_		(250*2)
 
-#define WHOLE			100000
-#define HALF_P			75000
-#define HALF			50000
-#define FORTH_P			37500
-#define FORTH			25000
-#define EIGHT			12500
-#define SIXTEENTH		6250
+#define WHOLE			50000
+#define HALF_P			37500
+#define HALF			25000
+#define FORTH_P			18750
+#define FORTH			12500
+#define EIGHT			6250
+#define SIXTEENTH		3125
 
-#define SHORT			3125
+#define SHORT			1562

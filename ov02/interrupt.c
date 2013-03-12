@@ -15,7 +15,8 @@ static void (*sample_fn)(int);
 static int scale[7] = { B2, A2, G2, F2, E2, D2, C2 };
 static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
 void (*sounds[3])(void) = {
-	sound1,
+	dur_scale,
+        cromatic_scale,
 	lisa_sound,
 	portal_song};
 
@@ -74,7 +75,7 @@ void button_isr(void) {
 			if (mode == PLAYBACK_MODE) {
 				turn_off_abdac();
 			} else {
-				set_sample_fn(&square_sample);
+				set_sample_fn(&triangle_sample);
 			}
 			set_leds(get_leds() ^ 0xFF);
 		}
