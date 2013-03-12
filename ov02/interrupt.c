@@ -20,7 +20,8 @@ void (*sounds[7])(void) = {
 	explosion,
 	gunshot,
 	smb_power_up,
-	smb_death};
+	full_scale //smb_death
+};
 
 // Prototypes
 static int getIndexForButton(int button);
