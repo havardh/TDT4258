@@ -2,6 +2,7 @@
 #include "tone.h"
 #include "sounds.h"
 #include "gpio.h"
+#include "piano.h"
 
 // Modes
 #define PLAYBACK_MODE 0
@@ -14,10 +15,6 @@ int playing = 1;
 // Holds the current button status
 // Used by piano in order to play multiple tones
 static uint8_t button_status;
-
-// Piano state and scale
-static int scale[7] = { B2, A2, G2, F2, E2, D2, C2 };
-static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
 
 // Different samples played in playback mode
 void (*sounds[7])(void) = {
@@ -38,20 +35,15 @@ static void handle_mode_switch();
 static void handle_piano_pressed(uint8_t button_down, uint8_t button_interrupt);
 static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt);
 
-
 static void handle_mode_switch() {
 
 	mode = !mode;
 	turn_off_abdac();
 
 	if (mode == PLAYBACK_MODE) {
-
 		set_leds(0xFF);
-
 	} else {
-
 		set_leds(0);
-
 	}
 
 }
@@ -75,7 +67,6 @@ static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt)
 	int index = getIndexForButton(button_interrupt);
 
 	set_leds (~button_down);
-
 
 	if (index != -1 && button_down) {
 
@@ -114,31 +105,6 @@ void button_isr(void) {
 	//return 0;
 }
 
-static int16_t get_tone_pitch(int i) {
-	int16_t sound = 0;
-	if ( isDown(i) ) {
-		sound = square_sample(samples[i]);
-		samples[i] += scale[i];
-		if (samples[i] >= SAMPLES) {
-			samples[i] = 0;
-		}
-	}
-	return sound;
-}
-
-static int16_t get_piano_pitch() {
-
-	int16_t sound = 0;
-	if (playing) {
-		int i;
-		for (i=0; i<7; i++) {
-			sound += get_tone_pitch(i);
-		}
-	} else {
-		sound = 0;
-	}
-	return sound;
-}
 
 static void set_dac_sample(int16_t sound) {
 	dac->SDR.channel0 = sound;
