@@ -18,16 +18,19 @@ volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
 volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 
+static void sleep( void ) {
+	__asm__("sleep 0");
+}
+
 int main(int argc, char *argv[]) {
 	init_samples();
-        init_tracks();
-	//init_tune(tune);
+	init_tracks();
 	init_hardware();
 
 	set_leds(0x88);
 
 	while (1) /* busy wait */
-          __asm__("sleep 0");
+		sleep();
 
 	return 0;
 }
