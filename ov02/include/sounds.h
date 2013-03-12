@@ -18,6 +18,7 @@ void smb_power_up(void);
 void smb_1up(void);
 void smb_death(void);
 
+void ex1( void );
 void lisa_sound ( void );
 void random_explosion ( void );
 void sound_scale ( void );

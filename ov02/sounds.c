@@ -64,6 +64,14 @@ void explosion ( void ) {
   set_track(2, note_new(1, HALF, 0));
 }
 
+void ex1( void ) {
+
+	set_sample_fn(explosion_sample);
+
+	set_track(0, note_new(0, WHOLE, 0));
+
+}
+
 void gunshot (void ) {
   //set_sample_fn(triangle_sample);
 

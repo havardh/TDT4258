@@ -14,7 +14,7 @@ uint8_t button_status;
 
 // Different samples played in playback mode
 void (*sounds[7])(void) = {
-	toccata,
+	ex1,
 	smb_1up,
 	gunshot1,
 	explosion,

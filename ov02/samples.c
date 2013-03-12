@@ -50,3 +50,7 @@ int16_t triangle_sample( int sample ) {
 	}
 
 }
+
+int16_t explosion_sample( int sample ) {
+	return 0;
+}
