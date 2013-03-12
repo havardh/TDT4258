@@ -5,13 +5,6 @@
  *****************************************************************************/
 
 #include "oeving2.h"
-#include "interrupt.h"
-#include "gpio.h"
-#include "samples.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdint.h>
-#include "playback.h"
 
 struct note_t *tune;
 volatile avr32_pio_t *piob = &AVR32_PIOB;

@@ -11,6 +11,13 @@
 
 #include <avr32/ap7000.h> /* inkludere Atmel-headerfil */
 #include <sys/interrupts.h>
+#include "interrupt.h"
+#include "gpio.h"
+#include "samples.h"
+#include <stdlib.h>
+#include <math.h>
+#include <stdint.h>
+#include "playback.h"
 
 
 /* legg andre "includes" her, sammen med "defines" og prototyper */

@@ -1,8 +1,4 @@
 #include "interrupt.h"
-#include "tone.h"
-#include "sounds.h"
-#include "gpio.h"
-#include "piano.h"
 
 // Modes
 #define PLAYBACK_MODE 0

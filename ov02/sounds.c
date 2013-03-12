@@ -1,6 +1,4 @@
 #include "sounds.h"
-#include "tone.h"
-#include "playback.h"
 
 void dur_scale( void ) {
 
@@ -12,7 +10,7 @@ void dur_scale( void ) {
   struct note_t* note3 = note_new(E, FORTH, note4);
   struct note_t* note2 = note_new(D, FORTH, note3);
   struct note_t* note1 = note_new(C, FORTH, note2);
-  
+
   set_track(0, note1);
 }
 
@@ -74,10 +72,10 @@ void gunshot (void ) {
 }
 
 void smb_power_up( void ) {
-  int pitch[15] = { G2,  B2, D3,  G3,  B3, 
-                    G2_, C3, D3_, G3_, C4,
-                    A2_, D3, F3, A3_, D4};
-  
+  int pitch[15] = { G2,	 B2, D3,  G3,  B3,
+		    G2_, C3, D3_, G3_, C4,
+		    A2_, D3, F3, A3_, D4};
+
   set_track(0, even_tune(pitch, 15, SHORT_P, 0.875));
 }
 // cdefgabc
@@ -131,35 +129,35 @@ void toccata ( void ) {
 /*
 void lisa_sound ( void ) {
   note_t *s21 = note_new( C, WHOLE, NULL);
-  
+
   note_t *s20 = note_new( D, FORTH, s21);
   note_t *s19 = note_new( D, FORTH, s20);
   note_t *s18 = note_new( D, FORTH, s19);
   note_t *s17 = note_new( D, FORTH, s18);
-  
+
   note_t *s16 = note_new( E, HALF, s17);
   note_t *s15 = note_new( E, HALF, s16);
-  
+
   note_t *s14 = note_new( F, FORTH, s15);
   note_t *s13 = note_new( F, FORTH, s14);
   note_t *s12 = note_new( F, FORTH, s13);
   note_t *s11 = note_new( F, FORTH, s12);
-  
+
   note_t *s10 = note_new( G, WHOLE, s11);
-  
+
   note_t *s09 = note_new( A, FORTH, s10);
   note_t *s08 = note_new( A, FORTH, s09);
   note_t *s07 = note_new( A, FORTH, s08);
   note_t *s06 = note_new( A, FORTH, s07);
-  
+
   note_t *s05 = note_new( G, HALF, s06);
   note_t *s04 = note_new( G, HALF, s05);
-  
+
   note_t *s03 = note_new( F, FORTH, s04);
   note_t *s02 = note_new( E, FORTH, s03);
   note_t *s01 = note_new( D, FORTH, s02);
   note_t *s00 = note_new( C, FORTH, s01);
-  
+
   set_track( 0, s00 );
 }
 

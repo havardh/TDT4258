@@ -4,6 +4,8 @@
 #include "note.h"
 #include "interrupt.h"
 #include "samples.h"
+#include "tone.h"
+#include "playback.h"
 
 void dur_scale( void );
 void cromatic_scale( void );

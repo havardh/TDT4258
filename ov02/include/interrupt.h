@@ -6,6 +6,11 @@
 #include <stdint.h>
 #include "oeving2.h"
 #include "samples.h"
+#include "playback.h"
+#include "tone.h"
+#include "sounds.h"
+#include "gpio.h"
+#include "piano.h"
 
 extern volatile avr32_pio_t *piob;
 extern volatile avr32_pio_t *pioc;
