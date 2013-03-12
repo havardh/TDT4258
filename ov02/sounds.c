@@ -71,10 +71,22 @@ void explosion ( void ) {
 
 void ex1( void ) {
 
-	set_sample_fn(white_noise);
+	set_sample_fn(triangle_sample);
+	//CDEFGAH
+	int pitch_dur[6] = {
+		H3, SIXTEENTH,
+		G3, SIXTEENTH,
+		A3, SIXTEENTH,
+		F3, SIXTEENTH,
+		G3, SIXTEENTH,
+		E3, SIXTEENTH,
+		F3, SIXTEENTH,
+		D3, SIXTEENTH,
+		E3, SIXTEENTH,
+		C3, SIXTEENTH
+	};
 
-	set_track(0, note_new(0, WHOLE, 0));
-
+	set_track(0, variable_tune(pitch_dur, 3, 0.875));
 }
 
 void gunshot (void ) {
