@@ -17,6 +17,6 @@ int16_t sine_sample (int);
 int16_t square_sample (int);
 int16_t sawtooth_sample (int);
 int16_t triangle_sample (int);
-int16_t explosion_sample(int);
+int16_t white_noise(int);
 
 #endif // SAMPLES_H
