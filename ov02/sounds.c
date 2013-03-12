@@ -42,7 +42,7 @@ void gunshot1 ( void ) {
 }
 
 void gunshot2 ( void ) {
-  set_smaple_fn(square_sample);
+  set_sample_fn(square_sample);
 }
 
 void lisa_sound ( void ) {

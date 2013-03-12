@@ -17,6 +17,8 @@ static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
 void (*sounds[3])(void) = {
 	dur_scale,
         cromatic_scale,
+        gunshot1,
+        gunshot1,
 	lisa_sound,
 	portal_song};
 
