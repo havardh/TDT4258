@@ -5,28 +5,25 @@
  *****************************************************************************/
 
 #include "oeving2.h"
-#include "interrupt.h"
-#include "gpio.h"
-#include "tunes.h"
-#include "samples.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdint.h>
 
 struct note_t *tune;
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 volatile avr32_pio_t *pioc = &AVR32_PIOC;
 volatile avr32_abdac_t *dac = &AVR32_ABDAC;
 
+static void sleep( void ) {
+	__asm__("sleep 0");
+}
+
 int main(int argc, char *argv[]) {
 	init_samples();
-	init_tune(tune);
+	init_tracks();
 	init_hardware();
 
 	set_leds(0x88);
 
 	while (1) /* busy wait */
-          ;
+		sleep();
 
 	return 0;
 }

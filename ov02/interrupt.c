@@ -1,130 +1,65 @@
 #include "interrupt.h"
-#include "tone.h"
-#include "sounds.h"
 
+// Modes
+#define PLAYBACK_MODE 0
 #define PIANO_MODE 1
-#define PLAYBACK_MODE 2
 
+// State variables
 static int mode = PIANO_MODE;
 int playing = 1;
-static int sample = 0;
-static int tone = A4;
 
-int8_t get_leds(void);
-void set_leds(int8_t);
-void set_tone(int8_t);
+// Holds the current button status
+// Used by piano in order to play multiple tones
+uint8_t button_status;
 
-void button_isr(void) {
-  //Debouncing
-	int i;
-	for (i = 0; i < 0xFFFF; i++)
-		;
+// Different samples played in playback mode
+void (*sounds[7])(void) = {
+	ex1,
+	smb_1up,
+	gunshot1,
+	explosion,
+	gunshot,
+	smb_power_up,
+	smb_death};
 
-	int button_interrupt = piob->isr;
-	int button_up = piob->pdsr;
-	switch (~button_up & button_interrupt) {
-	case SW0://Toggle Mode
-		mode = !mode;
-		set_leds(get_leds() ^ 0xFF);
-		break;
+// Prototypes
+static int getIndexForButton(int button);
+static void debounce( void );
 
-	case SW1: {//H
-		if(mode == PIANO_MODE) {
-			set_leds(0x2);
-			set_tone(B);
-		} else {
-			set_leds(0xFD);
-			sound1();
-		}
-		break;
-	}
+static void handle_mode_switch();
+static void handle_piano_pressed(uint8_t button_down, uint8_t button_interrupt);
+static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt);
 
-	case SW2: {//A
-		if(mode == PIANO_MODE) {
-			set_leds(0x4);
-			set_tone(A);
-		} else {
-			set_leds(0xFB);
-		}
-		break;
-	}
-	case SW3: {//G
-		if(mode == PIANO_MODE) {
-			set_leds(0x8);
-			set_tone(G);
-		} else {
-			set_leds(0xF7);
-		}
-		break;
-	}
+/* Interrupt Handlers */
 
-	case SW4: {//F
-		if(mode == PIANO_MODE) {
-			set_leds(0x10);
-			set_tone(F);
-		} else {
-			set_leds(0xEF);
+__int_handler *button_isr(void) {
+	debounce();
+
+	uint8_t button_interrupt = piob->isr;
+	uint8_t button_down = ~(uint8_t)piob->pdsr;
+	playing = button_down;
+
+	if ( button_interrupt == SW0 ) {
+
+		if (button_down) {
+			handle_mode_switch();
 		}
-		break;
-	}
-	case SW5: {//E
-		if(mode == PIANO_MODE) {
-			set_leds(0x20);
-			set_tone(E);
+
+	} else {
+		if (mode == PIANO_MODE) {
+
+			handle_piano_pressed(button_down, button_interrupt);
+
 		} else {
-			set_leds(0xDF);
+
+			handle_sample_pressed(button_down, button_interrupt);
+
 		}
-		break;
-	}
-	case SW6: {//D
-		if(mode == PIANO_MODE) {
-			set_leds(0x40);
-			set_tone(D);
-		} else {
-			set_leds(0xBF);
-		}
-		break;
-	}
-	case SW7: {//C
-		if(mode == PIANO_MODE) {
-			set_leds(0x80);
-			set_tone(C);
-		} else {
-			set_leds(0x7F);
-		}
-		break;
-	}
+
 	}
 
 	return 0;
 }
-
-void set_tone(int8_t pitch) {
-	tone = pitch;
-}
-
-static int16_t get_piano_pitch() {
-	int16_t sound;
-	if (playing) {
-		sound = square_table[sample];
-		sample += tone;
-		if (sample >= SAMPLES) {
-			sample = 0;
-		}
-
-	} else {
-		sound = 0;
-	}
-	return sound;
-}
-
-
-static void set_dac_sample(int16_t sound) {
-	dac->SDR.channel0 = sound;
-	dac->SDR.channel1 = sound;
-}
-
-
 
 __int_handler *abdac_isr(void) {
 	int16_t sound;
@@ -145,43 +80,66 @@ __int_handler *abdac_isr(void) {
 	return 0;
 }
 
+/* Handle event functions */
+static void handle_mode_switch() {
 
-/*
-static int i = 0;
-static int sample = 0;
-static int tone_number = 0;
-static struct note_t *n;
-*/
-/*__int_handler *abdac_isr(void) {
+	mode = !mode;
+	turn_off_abdac();
 
-	dac->SDR.channel0 = 0;
-	dac->SDR.channel1 = 0;
-
-
-	if (i > 0) { //n->duration) {
-		i = 0;
-		tone_number++;
-		if (tone_number >= 22) {
-			tone_number = 0;
-		}
-		//n = &tune[tone_number];
-	}
-	i++;
-	int16_t sound_wave;
-	if (i > 0) { // n->duration * (7.0 / 8.0)) {
-		sound_wave = 0;
+	if (mode == PLAYBACK_MODE) {
+		set_leds(0xFF);
 	} else {
-		sound_wave = square_table[sample];
+		set_leds(0);
 	}
 
-	dac->SDR.channel0 = sound_wave;
-	dac->SDR.channel1 = sound_wave;
+}
 
-	sample += 0; // n->pitch;
+static void handle_piano_pressed(uint8_t button_down, uint8_t button_interrupt) {
+	set_leds (button_down);
 
-	if (sample >= SAMPLES) {
-		sample = 0;
+	button_status = button_down;
+
+	if (button_down) {
+		turn_on_abdac();
 	}
 
-	return 0;
-}*/
+	if (!(button_down & button_interrupt)) {
+		turn_off_abdac();
+	}
+
+}
+
+static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt) {
+	int index = getIndexForButton(button_interrupt);
+
+	set_leds (~button_down);
+
+	if (index != -1 && button_down) {
+
+		turn_on_abdac();
+		(*sounds[index])();
+
+	}
+}
+
+/* Helper/util functions */
+
+static void debounce( void ) {
+	//Debouncing
+	int i;
+	for (i = 0; i < 0xFFFF; i++)
+		;
+}
+
+static int getIndexForButton(int button) {
+	switch(button) {
+	case SW1: return 0;
+	case SW2: return 1;
+	case SW3: return 2;
+	case SW4: return 3;
+	case SW5: return 4;
+	case SW6: return 5;
+	case SW7: return 6;
+	}
+	return -1;
+}
