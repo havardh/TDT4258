@@ -49,33 +49,57 @@ void cromatic_scale( void ) {
 }
 
 void gunshot1 ( void ) {
-  set_sample_fn(&triangle_sample);
+  //set_sample_fn(triangle_sample);
 
   int pitch[13] = { C4, B3, A3_, A3, G3_, G3, F3_, F3, E3, D3_, D3, C3_, C3 };
   set_track(0, even_tune(pitch, 13, SIXTEENTH, 1));
 }
 
-void gunshot2 ( void ) {
-  set_sample_fn(&square_sample);
+void explosion ( void ) {
+  //set_sample_fn(sawtooth_sample);
 
   int pitch0[4] = {5, 5, 5, 5};
   set_track(0, even_tune(pitch0, 4, EIGHT, 1));
   int pitch1[8] = {2, 6, 2, 5, 4, 2, 4, 2};
   set_track(1, even_tune(pitch1, 8, SIXTEENTH, 0.5));
+
+  set_track(2, note_new(1, HALF, 0));
 }
 
-void gunshot3 (void ) {
-  set_sample_fn(&triangle_sample);
+void gunshot (void ) {
+  //set_sample_fn(triangle_sample);
 
-  int pitch[13] = { C4, B3, A3_, A3, G3_, G3, F3_, F3, E3, D3_, D3, C3_, C3 };
-  set_track(0, even_tune(pitch, 13, SIXTEENTH, 1));
+  int pitch[25] = { C5, B4, A4_, A4, G4_, G4, F4_, F4, E4, D4_, D4, C4_, C4, B3, A3_, A3, G3_, G3, F3_, F3, E3, D3_, D3, C3_, C3 };
+  set_track(0, even_tune(pitch, 25, 350, 1));
+}
+
+void smb_power_up( void ) {
+  int pitch[15] = { G2,  B2, D3,  G3,  B3, 
+                    G2_, C3, D3_, G3_, C4,
+                    A2_, D3, F3, A3_, D4};
+  
+  set_track(0, even_tune(pitch, 15, SHORT_P, 0.875));
+}
+// cdefgabc
+void smb_1up( void ) {
+  int pitch[6] =  {
+    E3, G3, E4, C4, D4, G4
+  };
+
+  set_track(0, even_tune(pitch, 6, SIXTEENTH, 0.875));
+}
+
+void smb_death( void ) {
+  int pitch_dur[6] = {
+    C3, SIXTEENTH,
+    C3_, SIXTEENTH,
+    D3, EIGHT
+  };
+
+  set_track(0, variable_tune(pitch_dur, 3, 0.875));
 }
 
 void gunshot4 (void ) {
-
-}
-
-void gunshot5 (void ) {
 
 }
 

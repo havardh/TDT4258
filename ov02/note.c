@@ -22,3 +22,16 @@ note_t* even_tune(int pitch[], int n, int duration, double cutoff) {
 
   return next;
 }
+
+note_t* variable_tune(int pitch_dur[], int n, double cutoff) {
+
+  struct note_t* next = NULL;
+  int i;
+  for (i=n-1; i>=0; i--) {
+    struct note_t* n = note_new(pitch_dur[i*2], pitch_dur[i*2+1], next);
+    n->cutoff = cutoff;
+    next = n;
+  }
+
+  return next;
+}

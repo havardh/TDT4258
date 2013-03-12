@@ -9,13 +9,15 @@
 #define B 30
 #define C1 32
 
-#define C2 32
-#define D2 36
-#define E2 40
-#define F2 42
-#define G2 48
-#define A2 54
-#define B2 60
+#define C2  32
+#define D2  36
+#define E2  40
+#define F2  42
+#define G2  48
+#define G2_ 51
+#define A2  54
+#define A2_ 57
+#define B2  60
 
 #define C3 		64
 #define C3_		68
@@ -68,5 +70,5 @@
 #define FORTH			12500
 #define EIGHT			6250
 #define SIXTEENTH		3125
-
+#define SHORT_P                 2343
 #define SHORT			1562

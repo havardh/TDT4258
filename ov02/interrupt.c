@@ -13,14 +13,14 @@ static uint8_t button_status;
 
 static int scale[7] = { B2, A2, G2, F2, E2, D2, C2 };
 static int samples[7] = { 0, 0, 0, 0, 0, 0, 0 }; // peker inn i sample
-void (*sounds[6])(void) = {
+void (*sounds[7])(void) = {
 	dur_scale,
-        cromatic_scale,
+        smb_1up,
         gunshot1,
-        gunshot2,
-        gunshot3,
-        gunshot4,
-        gunshot5};
+        explosion,
+        gunshot,
+        smb_power_up,
+        smb_death};
 
 static int getIndexForButton(int button) {
 	switch(button) {

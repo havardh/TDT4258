@@ -9,11 +9,13 @@ void dur_scale( void );
 void cromatic_scale( void );
 
 void gunshot1( void );
-void gunshot2( void );
-void gunshot3( void );
+void explosion( void );
+void gunshot( void );
 void gunshot4( void );
-void gunshot5( void );
 
+void smb_power_up(void);
+void smb_1up(void);
+void smb_death(void);
 
 void lisa_sound ( void );
 void random_explosion ( void );
