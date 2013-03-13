@@ -7,7 +7,7 @@ typedef struct note_t {
 	int pitch;
 	int duration;
 	int progress;
-        double cutoff;
+	double cutoff;
 	struct note_t *next;
 } note_t;
 

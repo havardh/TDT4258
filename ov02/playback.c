@@ -11,9 +11,7 @@ void init_tracks() {
 }
 
 void tracks_finalize() {
-
 	free (notes);
-
 }
 
 void set_track(int track, note_t* n) {
@@ -31,7 +29,6 @@ void set_sample_fn(int16_t (*fn)(int)) {
 static int16_t get_track_pitch(int i) {
 	int16_t sound = 0;
 
-
 	// If note is done
 	if (notes[i] && notes[i]->progress >= notes[i]->duration) {
 		notes[i] = notes[i]->next; // Is NULL when tune is done
@@ -43,7 +40,7 @@ static int16_t get_track_pitch(int i) {
 	} else {
 		// If within 7/8 or the tone play it
 		if (notes[i]->progress <= (int16_t)(notes[i]->duration * notes[i]->cutoff)) {
-                  sound = (*sample_fn)(samples[i]);
+			sound = (*sample_fn)(samples[i]);
 		}
 		notes[i]->progress++;
 		samples[i] += notes[i]->pitch;
@@ -60,18 +57,18 @@ int16_t get_playback_pitch() {
 
 	int16_t sound = 0;
 	int i;
-        int notNULL = 0;
+    int notNULL = 0;
 
 	for (i=0; i<TRACKS; i++) {
 		sound += get_track_pitch(i);
-                if (notes[i] != NULL) {
-                  notNULL = 1;
-                }
+        if (notes[i] != NULL) {
+          notNULL = 1;
+        }
 	}
 
-        if (!notNULL) {
-          turn_off_abdac();
-        }
+    if (!notNULL) {
+      // turn_off_abdac();
+    } 
 
 	return sound;
 }

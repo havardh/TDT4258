@@ -5,7 +5,7 @@ note_t* note_new(int pitch, int duration, note_t* next) {
 	note->pitch = pitch;
 	note->duration = duration;
 	note->progress = 0;
-        note->cutoff = 0.875; // 7.0 / 8.0
+  note->cutoff = 0.875; // 7.0 / 8.0
 	note->next = next;
 	return note;
 }
