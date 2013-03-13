@@ -15,6 +15,7 @@ extern struct note_t** notes;
 void init_tracks();
 void tracks_finalize();
 
+void reset_tracks( void );
 void set_track(int, note_t*);
 note_t* get_track(int);
 void set_sample_fn(int16_t (*fn)(int));

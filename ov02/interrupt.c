@@ -118,6 +118,7 @@ static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt)
 	if (index != -1 && button_down) {
 
 		turn_on_abdac();
+		reset_tracks();
 		(*sounds[index])();
 
 	}
