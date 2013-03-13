@@ -2,7 +2,7 @@
 \subsection{Sound generation}
 To generate sound we used the internal ABDAC(Audio Bitstream Digital-to-Audio-Converter) on the AVR32 board. It takes a sequence of samples and converts it to an analog signal amplifies and outputs it.
 The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, and the 6th clock of the Power Manager to generate interrupts that processes the samples. The clock is set up with oscillator 0 as the source and no division of the frequency. This gives us a clock of 20 MHz and a sample rate of 20MHz / 256 = 81.920 kHz on the ABDAC\\
-\code{
+\begin{lstlisting}
 	// Register interrupt handler
 	register_interrupt((__int_handler)(abdac_isr),
 			   AVR32_ABDAC_IRQ / 32, AVR32_ABDAC_IRQ % 32, ABDAC_INT_LEVEL);
@@ -22,25 +22,24 @@ The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, an
 	clock->oscsel = 0;
 	clock->pllsel = 0;
 	clock->cen = ON;
-}
+\end{lstlisting}
 
 The ABDAC is turned of when it is not used, to save power and keep the output silent.\\
-\code{
+\begin{lstlisting}
 	dac->CR.en = OFF;
 	dac->IER.tx_ready = OFF;
-}
+\end{lstlisting}
 
 To send samples to the ABDAC, in the interrupt routine, each of the stereo-channels are written with the corresponding sample data. We have only used mono sounds in our implementation, so the channels are written with equal samples.\\
-\code{
+\begin{lstlisting}
 	dac->SDR.channel0 = sound;
 	dac->SDR.channel1 = sound;
-}
+\end{lstlisting}
 
 The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once, the soundwaves are accumulated before written to the channels.\\
-\code{
+\begin{lstlisting}
 		for (i=0; i<7; i++) {
 			sound += get_tone_pitch(i);
 		}
-}
+\end{lstlisting}
 This pretty much works the same way for playing multiple sounds at once in the playback mode, but the playback mode also allows accumulating sounds with different base waveforms.\\
-

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  12 MAR 2013 16:07
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 MAR 2013 10:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -293,6 +293,62 @@ Package: moredefs 2001/08/31 v1.8 more defining commands (Frankenstein's brain)
 \c@IncludeDepth=\count95
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/frankenstein/tag.sto)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count96
+))
+\Gin@req@height=\dimen107
+\Gin@req@width=\dimen108
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip43
+\subfigcapskip=\skip44
+\subfigcaptopadj=\dimen109
+\subfigbottomskip=\skip45
+\subfigcapmargin=\dimen110
+\subfiglabelskip=\skip46
+\c@subfigure=\count97
+\c@lofdepth=\count98
+\c@subtable=\count99
+\c@lotdepth=\count100
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2011/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip47
+\subfig@bottom=\skip48
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
@@ -302,35 +358,97 @@ File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-\c@lstlisting=\count96
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 39.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 39.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 39.
- [1
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+\c@lstlisting=\count101
 
-{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./abst
-ract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--42
+(/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count102
+\scratchdimen=\dimen111
+\scratchbox=\box28
+\nofMPsegments=\count103
+\nofMParguments=\count104
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count105
+\MPscratchDim=\dimen112
+\MPnumerator=\count106
+\makeMPintoPDFobject=\count107
+\everyMPtoPDFconversion=\toks22
+) (/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Managing graphics extensions (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
+))
+(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 47.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 47.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 47.
+
+[1
+
+{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./abstract.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 2--50
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--42
+Underfull \hbox (badness 10000) in paragraph at lines 2--50
 
  []
 
@@ -343,39 +461,144 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--42
  [2
 
 ] (./introduction.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--44
+Underfull \hbox (badness 10000) in paragraph at lines 2--52
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--52
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--52
 
  []
 
 [3
 
-]
-No file overview.tex.
-No file solution.tex.
+] (./overview.tex <mode.png, id=19, 365.365pt x 265.99374pt>
+File: mode.png Graphic file (type png)
+ <use mode.png>
+Package pdftex.def Info: mode.png used on input line 11.
+(pdftex.def)             Requested size: 150.56305pt x 109.61418pt.
+
+<note_t.png, id=21, 224.84pt x 300.12125pt>
+File: note_t.png Graphic file (type png)
+ <use note_t.png>
+Package pdftex.def Info: note_t.png used on input line 23.
+(pdftex.def)             Requested size: 80.3003pt x 107.1872pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 31.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 31.
+ [4
+
+
+ <./mode.png> <./note_t.png>] <tracks.png, id=28, 877.2775pt x 291.0875pt>
+File: tracks.png Graphic file (type png)
+ <use tracks.png>
+Package pdftex.def Info: tracks.png used on input line 40.
+(pdftex.def)             Requested size: 301.1261pt x 99.9145pt.
+
+<sine.png, id=29, 306.14375pt x 174.6525pt>
+File: sine.png Graphic file (type png)
+ <use sine.png>
+Package pdftex.def Info: sine.png used on input line 60.
+(pdftex.def)             Requested size: 150.56305pt x 85.89493pt.
+
+<square.png, id=30, 310.15875pt x 185.69376pt>
+File: square.png Graphic file (type png)
+ <use square.png>
+Package pdftex.def Info: square.png used on input line 61.
+(pdftex.def)             Requested size: 150.56305pt x 90.14069pt.
+
+<sawtooth.png, id=31, 308.15125pt x 193.72375pt>
+File: sawtooth.png Graphic file (type png)
+ <use sawtooth.png>
+Package pdftex.def Info: sawtooth.png used on input line 62.
+(pdftex.def)             Requested size: 150.56305pt x 94.65646pt.
+
+<triangle.png, id=32, 279.0425pt x 179.67125pt>
+File: triangle.png Graphic file (type png)
+ <use triangle.png>
+Package pdftex.def Info: triangle.png used on input line 63.
+(pdftex.def)             Requested size: 150.56305pt x 96.94699pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [5 <./tracks.png>] [6 <./sine.png> <./square.png> <./sawtooth.png> <./triangl
+e.png>] (./solution.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 11.
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 11.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 19.
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 19.
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
+
+ []
+
+[7
+
+
+]) [8]
 No file extra.tex.
 No file result.tex.
-No file discussion.tex.
-No file conclusion.tex.
+(./discussion.tex) (./conclusion.tex)
 No file references.tex.
-(./report.aux) ) 
+[9
+
+
+
+] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2064 strings out of 493633
- 27578 string characters out of 3143378
- 109089 words of memory out of 3000000
- 5375 multiletter control sequences out of 15000+200000
- 7588 words of font info for 27 fonts, out of 3000000 for 9000
+ 3934 strings out of 493633
+ 53155 string characters out of 3143378
+ 190817 words of memory out of 3000000
+ 7154 multiletter control sequences out of 15000+200000
+ 8241 words of font info for 29 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 26i,7n,49p,174b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
+ 38i,8n,49p,466b,1346s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r17.pfb>
-Output written on report.pdf (4 pages, 64801 bytes).
+r17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5
+.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
+/usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
+local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on report.pdf (10 pages, 192894 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

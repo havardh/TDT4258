@@ -1,2 +1,15 @@
 \contentsline {section}{\numberline {1}Abstract}{1}
 \contentsline {section}{\numberline {2}Introduction}{3}
+\contentsline {section}{\numberline {3}Overview of the Solution}{4}
+\contentsline {subsection}{\numberline {3.1}States}{4}
+\contentsline {subsubsection}{\numberline {3.1.1}Modes}{4}
+\contentsline {subsection}{\numberline {3.2}Datastructures}{4}
+\contentsline {subsubsection}{\numberline {3.2.1}Note structure}{4}
+\contentsline {subsubsection}{\numberline {3.2.2}Sound Tracks}{5}
+\contentsline {subsubsection}{\numberline {3.2.3}Sound Samples}{5}
+\contentsline {subsubsection}{\numberline {3.2.4}Sine Table}{5}
+\contentsline {subsection}{\numberline {3.3}Waves}{5}
+\contentsline {section}{\numberline {4}Solution}{7}
+\contentsline {subsection}{\numberline {4.1}Sound generation}{7}
+\contentsline {section}{\numberline {5}Discussion}{9}
+\contentsline {section}{\numberline {6}Conclusion}{9}
