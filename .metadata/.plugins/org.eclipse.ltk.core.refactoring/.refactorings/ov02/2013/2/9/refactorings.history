@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;ov02/include/gpio&apos; to &apos;gpio.h&apos;" description="Rename resource &apos;gpio&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="include/gpio" name="gpio.h" stamp="1362048880321" updateReferences="true"/>
-</session>
