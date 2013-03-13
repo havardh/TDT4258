@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 MAR 2013 10:15
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 MAR 2013 12:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -454,7 +454,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--50
 
 [1
 
-] (./report.toc)
+] (./report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+)
 \tf@toc=\write3
 \openout3 = `report.toc'.
 
@@ -477,58 +482,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--52
 
 [3
 
-] (./overview.tex <mode.png, id=19, 365.365pt x 265.99374pt>
+] (./overview.tex <mode.png, id=20, 365.365pt x 265.99374pt>
 File: mode.png Graphic file (type png)
  <use mode.png>
 Package pdftex.def Info: mode.png used on input line 11.
 (pdftex.def)             Requested size: 150.56305pt x 109.61418pt.
 
-<note_t.png, id=21, 224.84pt x 300.12125pt>
-File: note_t.png Graphic file (type png)
- <use note_t.png>
-Package pdftex.def Info: note_t.png used on input line 23.
-(pdftex.def)             Requested size: 80.3003pt x 107.1872pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 31.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 31.
+<button_isr.png, id=22, 1134.2375pt x 337.26pt>
+File: button_isr.png Graphic file (type png)
+ <use button_isr.png>
+Package pdftex.def Info: button_isr.png used on input line 25.
+(pdftex.def)             Requested size: 401.50146pt x 119.38591pt.
  [4
 
 
- <./mode.png> <./note_t.png>] <tracks.png, id=28, 877.2775pt x 291.0875pt>
+ <./mode.png> <./button_isr.png>] <abdac_isr.png, id=28, 822.07124pt x 287.0725
+pt>
+File: abdac_isr.png Graphic file (type png)
+
+<use abdac_isr.png>
+Package pdftex.def Info: abdac_isr.png used on input line 34.
+(pdftex.def)             Requested size: 401.50146pt x 140.2068pt.
+ <note_t.png, id=29, 224.84pt x 300.12125pt>
+File: note_t.png Graphic file (type png)
+
+<use note_t.png>
+Package pdftex.def Info: note_t.png used on input line 47.
+(pdftex.def)             Requested size: 80.3003pt x 107.1872pt.
+ [5 <./abdac_isr.png> <./note_t.png>]
+<tracks.png, id=35, 877.2775pt x 291.0875pt>
 File: tracks.png Graphic file (type png)
  <use tracks.png>
-Package pdftex.def Info: tracks.png used on input line 40.
+Package pdftex.def Info: tracks.png used on input line 64.
 (pdftex.def)             Requested size: 301.1261pt x 99.9145pt.
 
-<sine.png, id=29, 306.14375pt x 174.6525pt>
+<sine.png, id=36, 306.14375pt x 174.6525pt>
 File: sine.png Graphic file (type png)
  <use sine.png>
-Package pdftex.def Info: sine.png used on input line 60.
+Package pdftex.def Info: sine.png used on input line 84.
 (pdftex.def)             Requested size: 150.56305pt x 85.89493pt.
 
-<square.png, id=30, 310.15875pt x 185.69376pt>
+<square.png, id=37, 310.15875pt x 185.69376pt>
 File: square.png Graphic file (type png)
  <use square.png>
-Package pdftex.def Info: square.png used on input line 61.
+Package pdftex.def Info: square.png used on input line 85.
 (pdftex.def)             Requested size: 150.56305pt x 90.14069pt.
 
-<sawtooth.png, id=31, 308.15125pt x 193.72375pt>
+<sawtooth.png, id=38, 308.15125pt x 193.72375pt>
 File: sawtooth.png Graphic file (type png)
  <use sawtooth.png>
-Package pdftex.def Info: sawtooth.png used on input line 62.
+Package pdftex.def Info: sawtooth.png used on input line 86.
 (pdftex.def)             Requested size: 150.56305pt x 94.65646pt.
 
-<triangle.png, id=32, 279.0425pt x 179.67125pt>
+<triangle.png, id=39, 279.0425pt x 179.67125pt>
 File: triangle.png Graphic file (type png)
  <use triangle.png>
-Package pdftex.def Info: triangle.png used on input line 63.
+Package pdftex.def Info: triangle.png used on input line 87.
 (pdftex.def)             Requested size: 150.56305pt x 96.94699pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [5 <./tracks.png>] [6 <./sine.png> <./square.png> <./sawtooth.png> <./triangl
+) [6 <./tracks.png>] [7 <./sine.png> <./square.png> <./sawtooth.png> <./triangl
 e.png>] (./solution.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
@@ -562,24 +577,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
-[7
+[8
 
 
-]) [8]
+]) [9]
 No file extra.tex.
 No file result.tex.
 (./discussion.tex) (./conclusion.tex)
 No file references.tex.
-[9
+[10
 
 
 
 ] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 3934 strings out of 493633
- 53155 string characters out of 3143378
+ 3960 strings out of 493633
+ 53590 string characters out of 3143378
  190817 words of memory out of 3000000
- 7154 multiletter control sequences out of 15000+200000
+ 7178 multiletter control sequences out of 15000+200000
  8241 words of font info for 29 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  38i,8n,49p,466b,1346s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -595,10 +610,10 @@ b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
 /usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
 r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
 local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on report.pdf (10 pages, 192894 bytes).
+Output written on report.pdf (11 pages, 245021 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
