@@ -18,6 +18,7 @@ void gunshot1( void );
 void explosion( void );
 
 void smb_starman_theme ( void );
+void smb_underworld_theme ( void );
 void smb_power_up(void);
 void smb_1up(void);
 void smb_death(void);
