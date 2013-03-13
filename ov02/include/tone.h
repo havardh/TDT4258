@@ -1,3 +1,5 @@
+// Each value in the is defined as a macro
+
 #define PAUSE 				0
 
 #define C 					16
@@ -59,16 +61,14 @@
 #define A5_					456
 #define B5 					480
 
+// Macros for the length of a note
 #define WHOLE				41600
-#define HALF_P				24000
+#define HALF_P				31200
 #define HALF				20800
-#define FORTH_P				12000
+#define FORTH_P				15600
 #define FORTH				10400
 #define EIGHT				5200
 #define SIXTEENTH			2600
-
-#define SHORT_P				1500
-#define SHORT				1000
 #define EIGHT_TRIOL			3467
 #define FORTH_TRIOL			6933
 
