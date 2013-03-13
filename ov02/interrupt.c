@@ -17,7 +17,7 @@ void (*sounds[7])(void) = {
 	ex1,
 	smb_1up,
 	gunshot1,
-	explosion,
+	dur_scale,
 	gunshot,
 	smb_death,
 	smb_starman_theme
