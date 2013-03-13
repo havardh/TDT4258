@@ -128,7 +128,7 @@ static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt)
 
 static void debounce( void ) {
 	//Debouncing
-	int i;
+	volatile int i;
 	for (i = 0; i < 0xFFFF; i++)
 		;
 }

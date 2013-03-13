@@ -316,7 +316,7 @@ static void init_smb_power_up_start( void ) {
 		A2_, D3, F3, A3_, D4
 	};
 
-	smb_power_up_start = even_tune(pitch, 15, SHORT_P, 0.875);
+	smb_power_up_start = even_tune(pitch, 15, SIXTEENTH, 0.875);
 
 }
 
