@@ -13,6 +13,13 @@ void tracks_finalize() {
 	free (tracks);
 }
 
+void reset_tracks( void ) {
+	int i;
+	for (i=0; i<TRACKS; i++) {
+		set_track(i, 0);
+	}
+}
+
 void set_track(int track, note_t* n) {
 	tracks[track] = n;
 }
