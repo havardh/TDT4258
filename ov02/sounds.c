@@ -31,6 +31,17 @@ static struct note_t *ex1_startT1;
 
 void init_sounds( void ) {
 	init_dur_scale();
+	init_dur_scale();
+	init_cromatic_scale();
+	init_full_scale();
+	init_gunshot();
+	init_gunshot1();
+	init_explosion();
+	init_smb_starman_theme();
+	init_smb_power_up_start();
+	init_smb_1up_start();
+	init_smb_death_start();
+	init_ex1();
 }
 
 static void init_dur_scale( void ) {
@@ -212,7 +223,6 @@ static void init_smb_starman_theme( void ) {
 	smb_starman_theme_startT0 = variable_tune(pitch_high, 78, 0.875);
 	smb_starman_theme_startT1 = variable_tune(pitch_middle, 78, 0.875);
 	smb_starman_theme_startT2 = variable_tune(pitch_low, 57, 0.875);
-
 }
 
 void smb_starman_theme ( void ) {
@@ -222,6 +232,43 @@ void smb_starman_theme ( void ) {
 	set_track(1, smb_starman_theme_startT1);
 	set_track(2, smb_starman_theme_startT2);
 }
+/*
+void smb_underworld_theme ( void ) {
+	set_sample_fn ( square_sample );
+
+	int pitch_high[108] = {
+		C3, EIGHT, C4, EIGHT, A2, EIGHT, A3, EIGHT,
+		A2_, EIGHT, A3_, EIGHT, PAUSE, FORTH, //evt B2, B3
+		PAUSE, HALF,
+		
+		C3, EIGHT, C4, EIGHT, A2, EIGHT, A3, EIGHT,
+		A2_, EIGHT, A3_, EIGHT, PAUSE, FORTH,
+		PAUSE, HALF,
+
+		F2, EIGHT, F3, EIGHT, D2, EIGHT, D3, EIGHT,
+		D2_, EIGHT, D3_, EIGHT, PAUSE, FORTH,
+		PAUSE, HALF,
+
+		F2, EIGHT, F3, EIGHT, D2, EIGHT, D3, EIGHT,
+		D2_, EIGHT, D3_, EIGHT, PAUSE, FORTH,
+		PAUSE, HALF,
+
+		PAUSE, FORTH, D3_, EIGHT_TRIOL, D3, EIGHT_TRIOL, C3_, EIGHT_TRIOL,
+		C3, FORTH, D3_, FORTH,
+		D3, FORTH, G2_, FORTH,
+
+		G2, FORTH, C3_, FORTH,
+		C3, EIGHT_TRIOL, F3_, EIGHT_TRIOL, F3, EIGHT_TRIOL, E3, EIGHT_TRIOL, A3_, EIGHT_TRIOL, A3, EIGHT_TRIOL,
+		G_3, FORTH_TRIOL, D3_, FORTH_TRIOL, B2, FORTH_TRIOL,
+
+		A2_, FORTH_TRIOL, A2, FORTH_TRIOL, G2_, FORTH_TRIOL,
+		PAUSE, HALF
+	};
+
+	int pitch_low[108] = {
+
+	};
+}*/
 
 static void init_smb_power_up_start( void ) {
 	int pitch[15] = {

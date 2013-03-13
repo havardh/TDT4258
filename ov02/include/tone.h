@@ -66,5 +66,9 @@
 #define FORTH				8000
 #define EIGHT				4000
 #define SIXTEENTH			2000
+
 #define SHORT_P				1500
 #define SHORT				1000
+#define EIGHT_TRIOL			2667
+#define FORTH_TRIOL			5333
+
