@@ -19,8 +19,8 @@ void (*sounds[7])(void) = {
 	gunshot1,
 	explosion,
 	gunshot,
-	smb_power_up,
-	full_scale //smb_death
+	smb_death,
+	smb_starman_theme
 };
 
 // Prototypes
