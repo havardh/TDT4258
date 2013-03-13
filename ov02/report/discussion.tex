@@ -5,7 +5,7 @@ knowledge of music- and wave-theory quite favorable, but the recitation slides a
 good summary and reinstatements of the theory.
 
 \subsection{Deadline}
-Deadline are the time restriction on the interrupt routine. The ABDAC interrupts with a frequency of 81.920 kHz.
+Deadlines are the time restriction on the interrupt routine. The ABDAC interrupts with a frequency of 81.920 kHz.
 If it does not get a new sample in SDR before 256 cycles then we have missed a deadline. When we compile with
 different optimizations flags on gcc (-O0, -O1, -O2, and -O3) we get slightly different sounds and speeds of the
 audio samples. This indicates that our interrupt routine is to long and that we are missing some deadlines.

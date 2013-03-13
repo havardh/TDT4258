@@ -43,3 +43,14 @@ The waveforms that are used as base for the samples are sine, triangle, sawtooth
 		}
 \end{lstlisting}
 This pretty much works the same way for playing multiple sounds at once in the playback mode, but the playback mode also allows accumulating sounds with different base waveforms.\\
+
+\subsection{Setting the frequency}
+The abdac\_isr function is, as discussed, called with a frequency of 81.910 kHz. This gives us the sample frequency $ f_s $. To
+get a tone frequency, $f_t$ of 440Hz which is the tone A\footnote{440 Hz is called Concert pitch, (``A'' one common tongue) the tone used to tune an ensamble of instruments.},
+we have to produce a wave form with this frequency from $f_s$. We generated a sine table with $SAMPLES = 4096$, meaning we
+generate 4096 values with even distance from $sin(0)$ to $sin(2\pi)$.\\
+\\
+If we play the 4096 samples one by one in a loop the $f_t = f_s / SAMPLES = 20Hz$. To set a $f_t$ of choice the following formula
+is used:
+$$f_t = f_s / (SAMPLES / pitch\_modificator) $$
+Calculating this for $f_t = 440 Hz$ gives $pitch\_modificatior \approx 22$.

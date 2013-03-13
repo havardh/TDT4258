@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 MAR 2013 15:33
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 MAR 2013 19:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -577,10 +577,255 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--40
 [8
 
 
-]) [9]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--55
+
+ []
+
+) [9]
 No file extra.tex.
 (./result.tex
-Overfull \hbox (445.27913pt too wide) in paragraph at lines 4--81
+Overfull \hbox (4.00743pt too wide) in paragraph at lines 6--6
+[]\OT1/cmr/m/n/10 Number| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]\OT1/cmr/m/n/10 Startup
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\OT1/cmr/m/n/10 com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]\OT1/cmr/m/n/10 Piano
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 de-fault
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+[]\OT1/cmr/m/n/10 Release
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+\OT1/cmr/m/n/10 pi-ano
+ []
+
+
+Underfull \hbox (badness 7099) in paragraph at lines 28--28
+[]\OT1/cmr/m/n/10 SW7 down,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]\OT1/cmr/m/n/10 LED7 off
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+\OT1/cmr/m/n/10 and tone
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Overfull \hbox (3.571pt too wide) in paragraph at lines 34--34
+[]\OT1/cmr/m/n/10 Functional
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[]\OT1/cmr/m/n/10 Dur-scale
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]\OT1/cmr/m/n/10 Polytone
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--43
+\OT1/cmr/m/n/10 SW7 and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]\OT1/cmr/m/n/10 Base tone
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+\OT1/cmr/m/n/10 and ma-jor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
+\OT1/cmr/m/n/10 modes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+[]\OT1/cmr/m/n/10 All LEDS
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+\OT1/cmr/m/n/10 off, pi-ano
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+[]\OT1/cmr/m/n/10 Sample
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+\OT1/cmr/m/n/10 7 starts
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
+[]\OT1/cmr/m/n/10 Play
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
+\OT1/cmr/m/n/10 an-other
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 71--71
+[]\OT1/cmr/m/n/10 While Play-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+[]\OT1/cmr/m/n/10 Sample 7
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+\OT1/cmr/m/n/10 stops play-
+ []
+
+
+Underfull \hbox (badness 4479) in paragraph at lines 73--73
+\OT1/cmr/m/n/10 ing, sam-ple
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+[]\OT1/cmr/m/n/10 Switching
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+\OT1/cmr/m/n/10 modes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+\OT1/cmr/m/n/10 stops
+ []
+
+
+Overfull \hbox (6.28911pt too wide) in paragraph at lines 78--78
+[]\OT1/cmr/m/n/10 Playbackmode
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--80
+[]\OT1/cmr/m/n/10 Sample
+ []
+
+
+Underfull \hbox (badness 1259) in paragraph at lines 80--80
+\OT1/cmr/m/n/10 stops, mode
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Overfull \hbox (28.59933pt too wide) in paragraph at lines 4--85
 [][] 
  []
 
@@ -600,27 +845,30 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 3935 strings out of 493633
- 53229 string characters out of 3143378
+ 3936 strings out of 493633
+ 53235 string characters out of 3143378
  190817 words of memory out of 3000000
- 7157 multiletter control sequences out of 15000+200000
+ 7158 multiletter control sequences out of 15000+200000
  7327 words of font info for 26 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,8n,49p,466b,1346s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,10n,49p,466b,1346s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
-usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/l
-ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loca
-l/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/t
-exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texl
-ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
-e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on report.pdf (11 pages, 221618 bytes).
+</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/loca
+l/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
+exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
+ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
+/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
+11/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on report.pdf (11 pages, 251177 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 107 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
