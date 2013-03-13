@@ -7,6 +7,8 @@
 #include "tone.h"
 #include "playback.h"
 
+void init_sounds( void );
+
 void dur_scale( void );
 void cromatic_scale( void );
 void full_scale ( void );

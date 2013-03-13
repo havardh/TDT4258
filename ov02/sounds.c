@@ -1,7 +1,14 @@
 #include "sounds.h"
 
-void dur_scale( void ) {
-	set_sample_fn(square_sample);
+static void init_dur_scale( void );
+
+static note_t *dur_scale_start;
+
+void init_sounds( void ) {
+	init_dur_scale();
+}
+
+static void init_dur_scale( void ) {
 
 	struct note_t* note8 = note_new(C2, FORTH, NULL);
 	struct note_t* note7 = note_new(B, FORTH, note8);
@@ -10,9 +17,13 @@ void dur_scale( void ) {
 	struct note_t* note4 = note_new(F, FORTH, note5);
 	struct note_t* note3 = note_new(E, FORTH, note4);
 	struct note_t* note2 = note_new(D, FORTH, note3);
-	struct note_t* note1 = note_new(C, FORTH, note2);
+	dur_scale_start = note_new(C, FORTH, note2);
 
-	set_track(0, note1);
+}
+
+void dur_scale( void ) {
+	set_sample_fn(square_sample);
+	set_track(0, dur_scale_start);
 }
 
 void cromatic_scale( void ) {
@@ -51,24 +62,24 @@ void cromatic_scale( void ) {
 void full_scale ( void ) {
   set_sample_fn(square_sample);
 
-  int pitch[51] =  { 
-	C2, C2_, D2, D2_, E2, F2, G2, G2_, A2, 
-	A2_, B2, C3_, D3, D3_, E3, F3, F3_, G3, 
-	G3_, A3, A3_, B3, C4_, D4, D4_, E4, F4, 
+  int pitch[51] =  {
+	C2, C2_, D2, D2_, E2, F2, G2, G2_, A2,
+	A2_, B2, C3_, D3, D3_, E3, F3, F3_, G3,
+	G3_, A3, A3_, B3, C4_, D4, D4_, E4, F4,
 	F4_, G4, G4_, A4, A4_, B4
 	/*C5, C5_, D5, D5_, E5, F5, F5_, G5, G5_, A5, A5_, B5*/
   };
- 
+
   set_track(0, even_tune(pitch, 51, EIGHT, 0.875));
 }
 
 void gunshot (void ) {
   set_sample_fn(triangle_sample);
 
-  int pitch[25] = { 
-	C5, B4, A4_, A4, G4_, G4, F4_, F4, E4, 
-	D4_, D4, C4_, C4, B3, A3_, A3, G3_, 
-	G3, F3_, F3, E3, D3_, D3, C3_, C3 
+  int pitch[25] = {
+	C5, B4, A4_, A4, G4_, G4, F4_, F4, E4,
+	D4_, D4, C4_, C4, B3, A3_, A3, G3_,
+	G3, F3_, F3, E3, D3_, D3, C3_, C3
   };
   set_track(0, even_tune(pitch, 25, 350, 1));
 }
@@ -94,30 +105,30 @@ void explosion ( void ) {
 void smb_starman_theme ( void ) {
   set_sample_fn ( square_sample );
 
-  int pitch_high[156] = { 
+  int pitch_high[156] = {
 	PAUSE, EIGHT,
-	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH, 
+	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH,
 	PAUSE, SIXTEENTH,C4, EIGHT,PAUSE, SIXTEENTH,C4, SIXTEENTH,PAUSE, SIXTEENTH,C4, EIGHT,
 	B3, EIGHT,B3, EIGHT,B3, EIGHT,PAUSE, SIXTEENTH,B3, SIXTEENTH,
 	PAUSE, SIXTEENTH, B3, EIGHT,PAUSE, SIXTEENTH,B3, SIXTEENTH,PAUSE, SIXTEENTH,B3, EIGHT,
 
-	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH, 
+	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH,
 	PAUSE, SIXTEENTH,C4, EIGHT,PAUSE, SIXTEENTH,C4, SIXTEENTH,PAUSE, SIXTEENTH,C4, EIGHT,
 	B3, EIGHT,B3, EIGHT,B3, EIGHT,PAUSE, SIXTEENTH,B3, SIXTEENTH,
 	PAUSE, SIXTEENTH, B3, EIGHT,PAUSE, SIXTEENTH,B3, SIXTEENTH,PAUSE, SIXTEENTH,B3, EIGHT,
 
-	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH, 
+	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH,
 	PAUSE, SIXTEENTH,C4, EIGHT,PAUSE, SIXTEENTH,C4, SIXTEENTH,PAUSE, SIXTEENTH,C4, EIGHT,
 	B3, EIGHT,B3, EIGHT,B3, EIGHT,PAUSE, SIXTEENTH,B3, SIXTEENTH,
 	PAUSE, SIXTEENTH, B3, EIGHT,PAUSE, SIXTEENTH,B3, SIXTEENTH,PAUSE, SIXTEENTH,B3, EIGHT,
 
-	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH, 
+	C4, EIGHT, C4, EIGHT, C4, EIGHT, PAUSE, SIXTEENTH, C4, SIXTEENTH,
 	PAUSE, SIXTEENTH,C4, EIGHT,PAUSE, SIXTEENTH,C4, SIXTEENTH,PAUSE, SIXTEENTH,C4, EIGHT
   };
 
   int pitch_middle[156] = {
 	PAUSE, EIGHT,
-	F3, EIGHT, F3, EIGHT, F3, EIGHT, D3, SIXTEENTH, F3, SIXTEENTH, 
+	F3, EIGHT, F3, EIGHT, F3, EIGHT, D3, SIXTEENTH, F3, SIXTEENTH,
 	PAUSE, SIXTEENTH,F3, EIGHT,D3, SIXTEENTH,F3, SIXTEENTH,D3, SIXTEENTH,F3, EIGHT,
 	E3, EIGHT,E3, EIGHT,E3, EIGHT,C3, SIXTEENTH,E3, SIXTEENTH,
 	PAUSE, SIXTEENTH, E3, EIGHT,C3, SIXTEENTH,E3, SIXTEENTH,C3, SIXTEENTH,E3, EIGHT,
@@ -126,7 +137,7 @@ void smb_starman_theme ( void ) {
 	PAUSE, SIXTEENTH,F3, EIGHT,D3, SIXTEENTH,F3, SIXTEENTH,D3, SIXTEENTH,F3, EIGHT,
 	E3, EIGHT,E3, EIGHT,E3, EIGHT,C3, SIXTEENTH,E3, SIXTEENTH,
 	PAUSE, SIXTEENTH, E3, EIGHT,C3, SIXTEENTH,E3, SIXTEENTH,C3, SIXTEENTH,E3, EIGHT,
-	
+
 	F3, EIGHT,F3, EIGHT,F3, EIGHT,D3, SIXTEENTH,F3, SIXTEENTH,
 	PAUSE, SIXTEENTH,F3, EIGHT,D3, SIXTEENTH,F3, SIXTEENTH,D3, SIXTEENTH,F3, EIGHT,
 	E3, EIGHT,E3, EIGHT,E3, EIGHT,C3, SIXTEENTH,E3, SIXTEENTH,
@@ -166,7 +177,7 @@ void smb_power_up( void ) {
 
 	set_sample_fn(square_sample);
 
-	int pitch[15] = { 
+	int pitch[15] = {
 	G2,  B2, D3,  G3,  B3,
 	G2_, C3, D3_, G3_, C4,
 		A2_, D3, F3, A3_, D4
@@ -179,7 +190,7 @@ void smb_1up( void ) {
 
 	set_sample_fn(square_sample);
 
-	int pitch[6] =  {
+	int pitch[6] =	{
 		E3, G3, E4, C4, D4, G4
 	};
 
