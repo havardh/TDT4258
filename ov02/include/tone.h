@@ -59,16 +59,16 @@
 #define A5_					456
 #define B5 					480
 
-#define WHOLE				32000
+#define WHOLE				41600
 #define HALF_P				24000
-#define HALF				16000
+#define HALF				20800
 #define FORTH_P				12000
-#define FORTH				8000
-#define EIGHT				4000
-#define SIXTEENTH			2000
+#define FORTH				10400
+#define EIGHT				5200
+#define SIXTEENTH			2600
 
 #define SHORT_P				1500
 #define SHORT				1000
-#define EIGHT_TRIOL			2667
-#define FORTH_TRIOL			5333
+#define EIGHT_TRIOL			3467
+#define FORTH_TRIOL			6933
 
