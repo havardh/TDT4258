@@ -14,5 +14,7 @@
 \contentsline {subsection}{\numberline {3.4}Waves}{6}
 \contentsline {section}{\numberline {4}Solution}{8}
 \contentsline {subsection}{\numberline {4.1}Sound generation}{8}
-\contentsline {section}{\numberline {5}Discussion}{10}
-\contentsline {section}{\numberline {6}Conclusion}{10}
+\contentsline {section}{\numberline {5}Test Report}{10}
+\contentsline {section}{\numberline {6}Discussion}{11}
+\contentsline {subsection}{\numberline {6.1}Deadline}{11}
+\contentsline {section}{\numberline {7}Conclusion}{11}
