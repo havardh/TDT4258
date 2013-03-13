@@ -17,7 +17,6 @@ void set_track(int track, note_t* n) {
 	tracks[track] = n;
 }
 
-/*
 note_t* get_track(int track) {
 	return tracks[track];
 }
@@ -25,7 +24,6 @@ note_t* get_track(int track) {
 void set_sample_fn(int16_t (*fn)(int)) {
 	sample_fn = fn;
 }
-*/
 
 static int16_t get_track_pitch(int i) {
 	static int samples[TRACKS] = {0, 0, 0, 0};
@@ -65,7 +63,7 @@ int16_t get_playback_pitch() {
 
 	for (i=0; i<TRACKS; i++) {
 		sound += get_track_pitch(i);
-		if (notes[i] != NULL) {
+		if (tracks[i] != NULL) {
 			notNULL = 1;
 		}
 	}

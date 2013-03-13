@@ -2,7 +2,7 @@
 
 static void init_dur_scale( void );
 
-static note_t *dur_scale_start;
+static struct note_t *dur_scale_start;
 
 void init_sounds( void ) {
 	init_dur_scale();
