@@ -1,6 +1,6 @@
 \section{Solution}
 \subsection{Sound generation}
-To generate sound we used the internal ABDAC(Audio Bitstream Digital-to-Audio-Converter) on the AVR32 board. It takes a sequence of samples and converts it into an analog signal, amplifies and outputs it.
+To generate sound we used the internal ABDAC (Audio Bitstream Digital-to-Audio-Converter) on the AVR32 board. It takes a sequence of samples and converts it into an analog signal, amplifies and outputs it.
 The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, and the 6th clock of the Power Manager to generate interrupts that processes the samples. The clock is set up with oscillator 0 as the source and no division of the frequency. This gives us a clock of 20 MHz and a sample rate of 20MHz / 256 = 81.920 kHz on the ABDAC\\
 \begin{lstlisting}
 	// Register interrupt handler
@@ -23,19 +23,16 @@ The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, an
 	clock->pllsel = 0;
 	clock->cen = ON;
 \end{lstlisting}
-
 The ABDAC is turned of when it is not used, to save power and keep the output silent.\\
 \begin{lstlisting}
 	dac->CR.en = OFF;
 	dac->IER.tx_ready = OFF;
 \end{lstlisting}
-
 To send samples to the ABDAC, in the interrupt routine, each of the stereo-channels are written with the corresponding sample data. We have only used mono sounds in our implementation, so the channels are written with equal samples.\\
 \begin{lstlisting}
 	dac->SDR.channel0 = sound;
 	dac->SDR.channel1 = sound;
 \end{lstlisting}
-
 The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once, the soundwaves are accumulated before written to the channels.\\
 \begin{lstlisting}
 		for (i=0; i<7; i++) {
@@ -57,12 +54,12 @@ Calculating this for $f_t = 440 Hz$ gives $pitch\_modificatior \approx 22$.
 
 \subsection{Making songs and tracks}
 A song is created in a similar way to ordinary music.
-Given the structure of a music sheet, consisting of several notes with associated properties and
-different tracks like bass and main melody, we are then able to play the same song when 
-it is written in our format. \\
+Given the structure of a music sheet, consisting of several notes with associated 
+properties and different tracks like bass and main melody,
+we are then able to play the same song when it is written in our format. \\
 \\
 All the songs and predefined music tracks is defined in the \textbf{sounds.c} file.
-This sections describes how to create the
+The following sections sections describes how to create the
 Starman Theme Song\cite{smb-starman-theme} from Super Mario Brothers, but the process is the same 
 for every song.\\
 \\
@@ -98,8 +95,8 @@ the number of notes in the song and value for the \textit{cutoff}, respectively.
 \end{lstlisting}
 \subsubsection{Playing the song}
 When the interrupt routine wants to play the track, the \textbf{smb\_starman\_theme} function 
-is called. All it does is set the type of sample wave for the ABDAC and set the different tracks
-in the playback module.
+is called. All it does is set the type of sample wave for the ABDAC and set the 
+different tracks in the playback module.
 \begin{lstlisting}
 	void smb_starman_theme ( void ) {
 		set_sample_fn ( square_sample );
@@ -109,3 +106,14 @@ in the playback module.
 		set_track ( 2, smb_starman_theme_startT2 );
 	}
 \end{lstlisting}
+\begin{figure}[h]
+	\centerline{{\includegraphics[width=480px]{tracks_example.png}}}
+	\caption{Example of what the tracks array in playback.c may look like}
+	\label{tracks-example}
+\end{figure}
+During execution of the song, the \textbf{tracks} array in \textbf{playback.c} 
+will look something like Figure[\ref{tracks-example}].
+Whenever the progress of a note\_t struct exceeds the duration of the note, 
+the \textbf{get\_track\_pitch} function will handle the switch 
+to the next note in the respective track. While one
+track switches a note, the other tracks may stay on the same.
