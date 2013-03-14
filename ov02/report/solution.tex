@@ -33,14 +33,68 @@ To send samples to the ABDAC, in the interrupt routine, each of the stereo-chann
 	dac->SDR.channel0 = sound;
 	dac->SDR.channel1 = sound;
 \end{lstlisting}
-The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once, the soundwaves are accumulated before written to the channels.\\
+The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once all tones are accumulated to the sample before written to the channels.\\
 \begin{lstlisting}
-		for (i=0; i<7; i++) {
-			sound += get_tone_pitch(i);
-		}
+for (i=0; i<7; i++) {
+	sound += get_tone_pitch(i);
+}
 \end{lstlisting}
-This pretty much works the same way for playing multiple sounds at once in the playback mode, but the playback mode also allows accumulating sounds with different base waveforms.\\
+The get_tone_pitch() function loops through all piano key buttons and adds the corresponding tone for the buttons that are pressed.\\
+\begin{lstlisting}
+static int16_t get_tone_pitch(int i) {
+	int16_t sound = 0;
+	if ( isDown(i) ) {
+		sound = square_sample(samples[i]);
+		samples[i] += scale[i];
+		if (samples[i] >= SAMPLES) {
+			samples[i] = 0;
+		}
+	}
+	return sound;
+}
+\end{lstlisting}
+For playing multiple sounds at once in the playback mode, all the tracks are looped and accumulated in the sample.\\
+\begin{lstlisting}
+for (i=0; i<TRACKS; i++) {
+	sound += get_track_pitch(i);
+	if (tracks[i] != NULL) {
+		notNULL = 1;
+	}
+}
+\end{lstlisting}
+The get_track_pitch function plays a note for a given duration, the progress is stored in the progress variable. The notes are linked together in a linked list, when the progress of a note is complete (eq. equals the duration) the next note in the list is loaded. When the end of the list is reached (eq. next = NULL) the whole track is done. To prevent the notes from sounding like one long note, the cutoff adds a little pause between each one.
+\begin{lstlisting}
+static int16_t get_track_pitch(int i) {
+	static int samples[TRACKS] = {0, 0, 0, 0};
 
+	int16_t sound = 0;
+
+	// If note is done
+	if (tracks[i] && tracks[i]->progress >= tracks[i]->duration) {
+		tracks[i]->progress = 0;
+		tracks[i] = tracks[i]->next; // Is NULL when tune is done
+	}
+
+	// Check if tune is done
+	if (tracks[i] == NULL) {
+
+	} else {
+
+		if (tracks[i]->progress <= (int16_t)(tracks[i]->duration * tracks[i]->cutoff) ) {
+			sound = (*sample_fn)(samples[i]);
+		}
+
+		tracks[i]->progress++;
+		samples[i] += tracks[i]->pitch;
+
+		if (samples[i] >= SAMPLES) {
+			samples[i] = 0;
+		}
+	}
+
+	return sound;
+}
+\end{lstlisting}
 \subsection{Setting the frequency}
 The \textbf{abdac\_isr} function is, as discussed, called with a frequency of 81.910 kHz. This gives us the sample frequency $ f_s $. To
 get a tone frequency, $f_t$ of 440Hz which is the tone A\footnote{440 Hz is called Concert pitch, (``A'' one common tongue) the tone used to tune an ensamble of instruments.},
