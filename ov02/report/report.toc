@@ -15,7 +15,10 @@
 \contentsline {section}{\numberline {4}Solution}{8}
 \contentsline {subsection}{\numberline {4.1}Sound generation}{8}
 \contentsline {subsection}{\numberline {4.2}Setting the frequency}{9}
-\contentsline {section}{\numberline {5}Test Report}{10}
-\contentsline {section}{\numberline {6}Discussion}{11}
-\contentsline {subsection}{\numberline {6.1}Deadline}{11}
-\contentsline {section}{\numberline {7}Conclusion}{11}
+\contentsline {subsection}{\numberline {4.3}Making songs and tracks}{9}
+\contentsline {subsubsection}{\numberline {4.3.1}Initializing the song}{10}
+\contentsline {subsubsection}{\numberline {4.3.2}Playing the song}{10}
+\contentsline {section}{\numberline {5}Test Report}{11}
+\contentsline {section}{\numberline {6}Discussion}{12}
+\contentsline {subsection}{\numberline {6.1}Deadline}{12}
+\contentsline {section}{\numberline {7}Conclusion}{12}

@@ -4,8 +4,9 @@
 
 \subsubsection{Modes}
 
-The program has two main modes. These are Piano and Playback. To switch between state the \textbf{SW0} is
-pressed.
+The program has two main modes. These are Piano and Playback.
+\textbf{SW0} is pressed to switch between the different states.
+%To switch between state the \textbf{SW0} is pressed.
 
 \begin{figure}[h]
   \centerline{\includegraphics[width=150px]{mode.png}}
@@ -57,8 +58,8 @@ tone and 1.0 is \textit{glissando}\footnote{When tones glides into each other}. 
 for ordinary notes.
 
 \subsubsection{Sound Tracks}
-The \textbf{playback.c} file contains a array, \textit{tracks}, of constant size 4. This array has pointers to
-the current point of each track, it is updated by the \textbf{get\_track\_pich} function. A track is a linked list of notes. The list is NULL terminated.
+The \textbf{playback.c} file contains an array, \textit{tracks}, of constant size 4. This array has pointers to
+the current point of each track, it is updated by the \textbf{get\_track\_pitch} function. A track is a linked list of notes. The list is NULL terminated.
 As there are 4 tracks, a sound sample can play four tones at a time.
 \begin{figure}[h]
   \centerline{\includegraphics[width=300px]{tracks.png}}
@@ -66,13 +67,14 @@ As there are 4 tracks, a sound sample can play four tones at a time.
 \end{figure}
 
 \subsubsection{Sound Samples}
-The 7 different soundsamples are contained within a array of function pointers inside the interrupt.c file.
+The 7 different soundsamples are contained within an array of function pointers inside 
+the \textbf{interrupt.c} file.
 Each function initilizes the tracks array by using the \textbf{set\_track} function.
 
 \subsubsection{Sine Table}
 As the abdac interrupt routine is on a deadline, it has to conserve it's computing. Computing a \textbf{sin}
-function on every interrupt is wastefull and to timeconsuming. To make this a constant operation at runtime
-a sine table is computed on startup and stored in the \textbf{sine\_table} in the \textbf{samples.c} file.
+function on every interrupt is wastefull and time-consuming. To make this a constant operation at runtime
+a sine table is computed on startup and stored in the \textbf{sine\_table} array in the \textbf{samples.c} file.
 
 \subsection{Waves}
 
