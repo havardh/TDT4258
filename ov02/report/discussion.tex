@@ -1,14 +1,21 @@
 \section{Discussion}
-This assignment was easier getting started with, because we knew the tools,  and the programming language.
-Off course handling I/O devices without an Operating System was a new experience. We found having a little
-knowledge of music- and wave-theory quite favorable, but the recitation slides and the compendium worked as
+This assignment was easier getting started with, because we knew the tools,  
+and the programming language.
+Of course handling I/O devices without an Operating System was a new 
+experience. We found that having a some
+knowledge of music- and wave-theory quite favorable, but the recitation 
+slides and the compendium worked as
 good summary and reinstatements of the theory.
 
 \subsection{Deadline}
-Deadlines are the time restriction on the interrupt routine. The ABDAC interrupts with a frequency of 81.920 kHz.
-If it does not get a new sample in SDR before 256 cycles then we have missed a deadline. When we compile with
-different optimizations flags on gcc (-O0, -O1, -O2, and -O3) we get slightly different sounds and speeds of the
-audio samples. This indicates that our interrupt routine is to long and that we are missing some deadlines.
+Deadlines are the time restriction on the interrupt routine. The ABDAC interrupts 
+with a frequency of 81.920 kHz.
+If it does not get a new sample in SDR before 256 cycles then we have missed a 
+deadline. When we compile with
+different optimizations flags on gcc (-O0, -O1, -O2, and -O3) we get slightly 
+different sounds and speeds of the
+audio samples. This indicates that our interrupt routine is to long and that 
+we are missing some deadlines.
 We found that -O1 gave us the best result.
 
 \subsection{ABDAC interrupt routine and Sample format}

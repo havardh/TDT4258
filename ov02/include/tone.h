@@ -1,4 +1,4 @@
-// Each value in the is defined as a macro
+// Each tone is defined as a macro
 
 #define PAUSE 				0
 
@@ -61,7 +61,7 @@
 #define A5_					456
 #define B5 					480
 
-// Macros for the length of a note
+// Macros for the duration of a tone
 #define WHOLE				41600
 #define HALF_P				31200
 #define HALF				20800
