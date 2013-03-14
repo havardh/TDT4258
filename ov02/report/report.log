@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 MAR 2013 19:38
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 MAR 2013 11:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -355,7 +355,7 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 (/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 )
-No file report.aux.
+(./report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
@@ -371,6 +371,7 @@ LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
 \c@lstlisting=\count101
+
 (/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count102
@@ -431,53 +432,63 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 45.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 45.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 45.
+
+[1
+
+{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (./abstract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--46
+Underfull \hbox (badness 10000) in paragraph at lines 2--48
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--46
+Underfull \hbox (badness 10000) in paragraph at lines 2--48
 
  []
 
 [1
 
-
-{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-No file report.toc.
+] (./report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+)
 \tf@toc=\write3
 \openout3 = `report.toc'.
 
-[2
+ [2
 
 ] (./introduction.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--48
+Underfull \hbox (badness 10000) in paragraph at lines 2--50
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--48
+Underfull \hbox (badness 10000) in paragraph at lines 2--50
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--48
+Underfull \hbox (badness 10000) in paragraph at lines 2--50
 
  []
 
 [3
 
-] (./overview.tex <mode.png, id=14, 365.365pt x 265.99374pt>
+] (./overview.tex <mode.png, id=20, 365.365pt x 265.99374pt>
 File: mode.png Graphic file (type png)
  <use mode.png>
 Package pdftex.def Info: mode.png used on input line 11.
 (pdftex.def)             Requested size: 150.56305pt x 109.61418pt.
 
-
-LaTeX Warning: Reference `modestates' on page 4 undefined on input line 21.
-
-<button_isr.png, id=16, 1134.2375pt x 337.26pt>
+<button_isr.png, id=22, 1134.2375pt x 337.26pt>
 File: button_isr.png Graphic file (type png)
  <use button_isr.png>
 Package pdftex.def Info: button_isr.png used on input line 25.
@@ -485,53 +496,45 @@ Package pdftex.def Info: button_isr.png used on input line 25.
  [4
 
 
- <./mode.png> <./button_isr.png>] <abdac_isr.png, id=23, 822.07124pt x 287.0725
+ <./mode.png> <./button_isr.png>] <abdac_isr.png, id=28, 822.07124pt x 287.0725
 pt>
 File: abdac_isr.png Graphic file (type png)
 
 <use abdac_isr.png>
 Package pdftex.def Info: abdac_isr.png used on input line 34.
 (pdftex.def)             Requested size: 401.50146pt x 140.2068pt.
- <note_t.png, id=24, 224.84pt x 300.12125pt>
+ <note_t.png, id=29, 224.84pt x 300.12125pt>
 File: note_t.png Graphic file (type png)
 
 <use note_t.png>
 Package pdftex.def Info: note_t.png used on input line 47.
 (pdftex.def)             Requested size: 80.3003pt x 107.1872pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 55.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 55.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 55.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 55.
  [5 <./abdac_isr.png> <./note_t.png>]
-<tracks.png, id=30, 877.2775pt x 291.0875pt>
+<tracks.png, id=35, 877.2775pt x 291.0875pt>
 File: tracks.png Graphic file (type png)
  <use tracks.png>
 Package pdftex.def Info: tracks.png used on input line 64.
 (pdftex.def)             Requested size: 301.1261pt x 99.9145pt.
 
-<sine.png, id=31, 306.14375pt x 174.6525pt>
+<sine.png, id=36, 306.14375pt x 174.6525pt>
 File: sine.png Graphic file (type png)
  <use sine.png>
 Package pdftex.def Info: sine.png used on input line 84.
 (pdftex.def)             Requested size: 150.56305pt x 85.89493pt.
 
-<square.png, id=32, 310.15875pt x 185.69376pt>
+<square.png, id=37, 310.15875pt x 185.69376pt>
 File: square.png Graphic file (type png)
  <use square.png>
 Package pdftex.def Info: square.png used on input line 85.
 (pdftex.def)             Requested size: 150.56305pt x 90.14069pt.
 
-<sawtooth.png, id=33, 308.15125pt x 193.72375pt>
+<sawtooth.png, id=38, 308.15125pt x 193.72375pt>
 File: sawtooth.png Graphic file (type png)
  <use sawtooth.png>
 Package pdftex.def Info: sawtooth.png used on input line 86.
 (pdftex.def)             Requested size: 150.56305pt x 94.65646pt.
 
-<triangle.png, id=34, 279.0425pt x 179.67125pt>
+<triangle.png, id=39, 279.0425pt x 179.67125pt>
 File: triangle.png Graphic file (type png)
  <use triangle.png>
 Package pdftex.def Info: triangle.png used on input line 87.
@@ -833,42 +836,42 @@ Overfull \hbox (28.59933pt too wide) in paragraph at lines 4--85
 
 
 ] (./discussion.tex) (./conclusion.tex)
-No file references.tex.
+Underfull \hbox (badness 10000) in paragraph at lines 2--56
+
+ []
+
 [11
 
-] (./report.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+]
+No file references.tex.
+[12] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 3936 strings out of 493633
- 53235 string characters out of 3143378
+ 3974 strings out of 493633
+ 53741 string characters out of 3143378
  190817 words of memory out of 3000000
- 7158 multiletter control sequences out of 15000+200000
- 7327 words of font info for 26 fonts, out of 3000000 for 9000
+ 7190 multiletter control sequences out of 15000+200000
+ 8241 words of font info for 29 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,10n,49p,466b,1346s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
-/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/loca
-l/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
-exlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
-ive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
-/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
-11/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on report.pdf (11 pages, 251177 bytes).
+ 38i,10n,49p,381b,1346s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2011/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5
+.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
+/usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/l
+ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on report.pdf (13 pages, 281006 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
+ 122 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
