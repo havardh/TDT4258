@@ -1,0 +1,7 @@
+\section{Method}
+Most of the code was developed in the with the avr32-gcc compiler and tested on the board. The avr32-gdb debugger was
+used to remove bugs, expecialy with the state transitions in the interrupt routines.\\
+\\
+Some code, perticulary the playback module, \textbf{playback.c} was developed on the (darwin) gcc compiler in a Test-Driven manner\footnote{A feather-weight test frame was developed for this purpose see \textbf{tests/*}}.
+This method provides rapid feed back and is more efficient than the ``deploy-manual test''-cycle, which is quite slow for embedded systems.
+The method might also force a better design, but is time consuming to learn for such a small project.

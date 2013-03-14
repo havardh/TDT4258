@@ -50,7 +50,10 @@ generate 4096 values with even distance from $sin(0)$ to $sin(2\pi)$.\\
 If we play the 4096 samples one by one in a loop the $f_t = f_s / SAMPLES = 20Hz$. To set a $f_t$ of choice the following formula
 is used:
 $$f_t = f_s / (SAMPLES / pitch\_modificator) $$
-Calculating this for $f_t = 440 Hz$ gives $pitch\_modificatior \approx 22$.
+Calculating this for $f_t = 440 Hz$ gives $pitch\_modificatior \approx 22$. \\
+This value was computed after the implementation was done. The implemented valus differs from this slightly\footnote{A is 27} as
+it was chosen by trial and error. As correct pitch was not critical the code has not been updated.
+
 
 \subsection{Making songs and tracks}
 A song is created in a similar way to ordinary music.
@@ -116,4 +119,8 @@ will look something like Figure[\ref{tracks-example}].
 Whenever the progress of a note\_t struct exceeds the duration of the note,
 the \textbf{get\_track\_pitch} function will handle the switch
 to the next note in the respective track. While one
-track switches a note, the other tracks may stay on the same.
+track switches a note, the other tracks may stay on the same. \\
+\\
+When all the tracks have reached the end of the linked list we tried to implement a
+stop action to turn of the ABDAC (as is done between notes in the piano). This implementation
+did not work. But we recognize this is a vital part of a energy efficient system.
