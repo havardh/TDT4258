@@ -67,7 +67,7 @@ As there are 4 tracks, a sound sample can play four tones at a time.
 \end{figure}
 
 \subsubsection{Sound Samples}
-The 7 different soundsamples are contained within an array of function pointers inside 
+The 7 different soundsamples are contained within an array of function pointers inside
 the \textbf{interrupt.c} file.
 Each function initilizes the tracks array by using the \textbf{set\_track} function.
 
@@ -76,6 +76,7 @@ As the abdac interrupt routine is on a deadline, it has to conserve it's computi
 function on every interrupt is wastefull and time-consuming. To make this a constant operation at runtime
 a sine table is computed on startup and stored in the \textbf{sine\_table} array in the \textbf{samples.c} file.
 
+\newpage
 \subsection{Waves}
 
 To make sound waves we need some functions producing wave signals. The following waves are implemented

@@ -1,9 +1,9 @@
 \section{Solution}
-The following sections will describe the different parts of how we implemented the 
+The following sections will describe the different parts of how we implemented the
 different parts of the assignment.
 \subsection{Button interrupts}
-The \textbf{interrupt.c} file has two functions that is called when an interrupt occurs; 
-the \textbf{button\_isr} function is called whenever a button is pressed, and 
+The \textbf{interrupt.c} file has two public functions that is called when an interrupt occurs;
+the \textbf{button\_isr} function is called whenever a button is pressed, and
 the \textbf{abdac\_isr} function is called regularely at the frequency of the assigned clock.\\
 \\
 The following code enables interrupts when the buttons is pressed, the first parameter to
@@ -18,7 +18,7 @@ void init_buttons(void) {
 }
 \end{lstlisting}
 The button\_isr function reads from the \textit{isr} register in order to find out what button
-is pressed. If SW0 is pressed it switches mode, as described in the previous section, 
+is pressed. If SW0 is pressed it switches mode, as described in the previous section,
 otherwise it calls a handler function based on if the mode is PIANO\_MODE or PLAYBACK\_MODE.
 \begin{lstlisting}
 __int_handler *button_isr(void) {
@@ -41,18 +41,18 @@ __int_handler *button_isr(void) {
 	return 0;
 }
 \end{lstlisting}
-The two handler function \textbf{handle\_piano\_pressed} and \textbf{handle\_sample\_pressed} 
+The two handler function \textbf{handle\_piano\_pressed} and \textbf{handle\_sample\_pressed}
 pretty much do the same thing; find out what button is pressed and
 wake up the abdac if it is sleeping. The handle\_sample\_pressed also resets the currently
 playing track (if any) and loads a new track based on the button that was pressed.
 
 \subsection{Sound generation}
-To generate sound we used the internal ABDAC (Audio Bitstream Digital-to-Audio-Converter) 
-on the AVR32 board. It takes a sequence of samples and converts it into an analog 
+To generate sound we used the internal ABDAC (Audio Bitstream Digital-to-Audio-Converter)
+on the AVR32 board. It takes a sequence of samples and converts it into an analog
 signal, amplifies and outputs it.
-The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, and the 
-6th clock of the Power Manager to generate interrupts that processes the samples. 
-The clock is set up with oscillator 0 as the source and no division of the frequency. 
+The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, and the
+6th clock of the Power Manager to generate interrupts that processes the samples.
+The clock is set up with oscillator 0 as the source and no division of the frequency.
 This gives us a clock of 20 MHz and a sample rate of 20MHz / 256 = 81.920 kHz on the ABDAC\\
 \begin{lstlisting}
 	// Register interrupt handler
@@ -86,7 +86,7 @@ To send samples to the ABDAC, in the interrupt routine, each of the stereo-chann
 	dac->SDR.channel1 = sound;
 \end{lstlisting}
 \subsubsection{Piano mode}
-The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once all tones are accumulated to the sample before written to the channels.\\
+The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in \textbf{samples.c} as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once all tones are accumulated to the sample before written to the channels.\\
 \begin{lstlisting}
 for (i=0; i<7; i++) {
 	sound += get_tone_pitch(i);
@@ -187,7 +187,7 @@ Each track has a associated pointer, this allowes us the calculate each track on
 \begin{lstlisting}
 	static struct note_t *smb_starman_theme_startT0;
 \end{lstlisting}
-A track is created with the helper function \textbf{variable\_tune} in the \textbf{notesc.c} file.
+A track is created with the helper function \textbf{variable\_tune} in the \textbf{notes.c} file.
 It is passed a number of parameters, the most important one being an array containing pairs
 of \textit{tones} and \textit{durations} defined in \textbf{tones.h}. This is a part of the array
 representing the bass in the song:
@@ -220,7 +220,7 @@ different tracks in the playback module.
 \end{lstlisting}
 \begin{figure}[h]
 	\centerline{{\includegraphics[width=480px]{tracks_example02.png}}}
-	\caption{Example of what the tracks array in playback.c may look like}
+	\caption{Example of what the tracks array in \textbf{playback.c} may look like}
 	\label{tracks-example}
 \end{figure}
 During execution of the song, the \textbf{tracks} array in \textbf{playback.c}
