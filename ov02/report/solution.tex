@@ -33,13 +33,14 @@ To send samples to the ABDAC, in the interrupt routine, each of the stereo-chann
 	dac->SDR.channel0 = sound;
 	dac->SDR.channel1 = sound;
 \end{lstlisting}
+\subsubsection{Piano mode}
 The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once all tones are accumulated to the sample before written to the channels.\\
 \begin{lstlisting}
 for (i=0; i<7; i++) {
 	sound += get_tone_pitch(i);
 }
 \end{lstlisting}
-The get_tone_pitch() function loops through all piano key buttons and adds the corresponding tone for the buttons that are pressed.\\
+The get\_tone\_pitch() function loops through all piano key buttons and adds the corresponding tone for the buttons that are pressed.\\
 \begin{lstlisting}
 static int16_t get_tone_pitch(int i) {
 	int16_t sound = 0;
@@ -53,6 +54,8 @@ static int16_t get_tone_pitch(int i) {
 	return sound;
 }
 \end{lstlisting}
+
+\subsubsection{Playback mode}
 For playing multiple sounds at once in the playback mode, all the tracks are looped and accumulated in the sample.\\
 \begin{lstlisting}
 for (i=0; i<TRACKS; i++) {
@@ -62,7 +65,7 @@ for (i=0; i<TRACKS; i++) {
 	}
 }
 \end{lstlisting}
-The get_track_pitch function plays a note for a given duration, the progress is stored in the progress variable. The notes are linked together in a linked list, when the progress of a note is complete (eq. equals the duration) the next note in the list is loaded. When the end of the list is reached (eq. next = NULL) the whole track is done. To prevent the notes from sounding like one long note, the cutoff adds a little pause between each one.
+The get\_track\_pitch function plays a note for a given duration, the progress is stored in the progress variable. The notes are linked together in a linked list, when the progress of a note is complete (eq. equals the duration) the next note in the list is loaded. When the end of the list is reached (eq. next = NULL) the whole track is done. To prevent the notes from sounding like one long note, the cutoff adds a little pause between each one.
 \begin{lstlisting}
 static int16_t get_track_pitch(int i) {
 	static int samples[TRACKS] = {0, 0, 0, 0};
