@@ -54,6 +54,7 @@ The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, an
 6th clock of the Power Manager to generate interrupts that processes the samples.
 The clock is set up with oscillator 0 as the source and no division of the frequency.
 This gives us a clock of 20 MHz and a sample rate of 20MHz / 256 = 81.920 kHz on the ABDAC\\
+Details about these settings was found in the documentation\cite{avr32-stk1000}.
 \begin{lstlisting}
 	// Register interrupt handler
 	register_interrupt((__int_handler)(abdac_isr),
