@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.12)  15 MAR 2013 09:24
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.12)  15 MAR 2013 09:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -444,7 +444,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--54
 
 [3
 
-] (./report.toc)
+] (./report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+)
 \tf@toc=\write3
 \openout3 = `report.toc'.
 
@@ -467,13 +472,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--56
 
 [5
 
-] (./overview.tex <mode.png, id=25, 365.365pt x 265.99374pt>
+] (./overview.tex <mode.png, id=26, 365.365pt x 265.99374pt>
 File: mode.png Graphic file (type png)
  <use mode.png>
 Package pdftex.def Info: mode.png used on input line 12.
 (pdftex.def)             Requested size: 150.56305pt x 109.61418pt.
 
-<button_isr.png, id=27, 1134.2375pt x 337.26pt>
+<button_isr.png, id=28, 1134.2375pt x 337.26pt>
 File: button_isr.png Graphic file (type png)
  <use button_isr.png>
 Package pdftex.def Info: button_isr.png used on input line 26.
@@ -494,10 +499,6 @@ File: note_t.png Graphic file (type png)
 <use note_t.png>
 Package pdftex.def Info: note_t.png used on input line 48.
 (pdftex.def)             Requested size: 80.3003pt x 107.1872pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 56.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 56.
  [7 <./abdac_isr.png> <./note_t.png>]
 <tracks.png, id=42, 877.2775pt x 291.0875pt>
 File: tracks.png Graphic file (type png)
@@ -601,10 +602,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--158
  []
 
 
-LaTeX Warning: Citation `smb-starman-theme' on page 13 undefined on input line 
-169.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 162--177
 
  []
@@ -633,10 +630,6 @@ Package pdftex.def Info: tracks_example02.png used on input line 216.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: Reference `tracks-example' on page 14 undefined on input line 22
-1.
 
 ) [14] [15 <./tracks_example02.png>]
 No file extra.tex.
@@ -890,37 +883,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--62
 
 [17
 
-] (./references.tex) [18] (./report.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./references.tex) [18] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 4113 strings out of 495059
- 55378 string characters out of 3182030
- 229037 words of memory out of 3000000
- 7209 multiletter control sequences out of 15000+200000
+ 4123 strings out of 495059
+ 55541 string characters out of 3182030
+ 230037 words of memory out of 3000000
+ 7219 multiletter control sequences out of 15000+200000
  8241 words of font info for 29 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,10n,49p,502b,1607s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on report.pdf (19 pages, 322749 bytes).
+</usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti10.pfb>
+Output written on report.pdf (19 pages, 324472 bytes).
 PDF statistics:
  143 PDF objects out of 1000 (max. 8388607)
  90 compressed objects within 1 object stream
