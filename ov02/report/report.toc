@@ -13,12 +13,13 @@
 \contentsline {subsubsection}{\numberline {3.3.4}Sine Table}{6}
 \contentsline {subsection}{\numberline {3.4}Waves}{6}
 \contentsline {section}{\numberline {4}Solution}{8}
-\contentsline {subsection}{\numberline {4.1}Sound generation}{8}
-\contentsline {subsection}{\numberline {4.2}Setting the frequency}{9}
-\contentsline {subsection}{\numberline {4.3}Making songs and tracks}{9}
-\contentsline {subsubsection}{\numberline {4.3.1}Initializing the song}{10}
-\contentsline {subsubsection}{\numberline {4.3.2}Playing the song}{10}
-\contentsline {section}{\numberline {5}Test Report}{12}
-\contentsline {section}{\numberline {6}Discussion}{13}
-\contentsline {subsection}{\numberline {6.1}Deadline}{13}
-\contentsline {section}{\numberline {7}Conclusion}{13}
+\contentsline {subsection}{\numberline {4.1}Button interrupts}{8}
+\contentsline {subsection}{\numberline {4.2}Sound generation}{9}
+\contentsline {subsection}{\numberline {4.3}Setting the frequency}{10}
+\contentsline {subsection}{\numberline {4.4}Making songs and tracks}{10}
+\contentsline {subsubsection}{\numberline {4.4.1}Initializing the song}{10}
+\contentsline {subsubsection}{\numberline {4.4.2}Playing the song}{11}
+\contentsline {section}{\numberline {5}Test Report}{13}
+\contentsline {section}{\numberline {6}Discussion}{14}
+\contentsline {subsection}{\numberline {6.1}Deadline}{14}
+\contentsline {section}{\numberline {7}Conclusion}{14}

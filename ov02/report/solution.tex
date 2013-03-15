@@ -1,7 +1,59 @@
 \section{Solution}
+The following sections will describe the different parts of how we implemented the 
+different parts of the assignment.
+\subsection{Button interrupts}
+The \textbf{interrupt.c} file has two functions that is called when an interrupt occurs; 
+the \textbf{button\_isr} function is called whenever a button is pressed, and 
+the \textbf{abdac\_isr} function is called regularely at the frequency of the assigned clock.\\
+\\
+The following code enables interrupts when the buttons is pressed, the first parameter to
+the \textbf{register\_interrupt} is the interrupt routine. \\
+\begin{lstlisting}
+void init_buttons(void) {
+	register_interrupt((__int_handler)(button_isr),
+			   AVR32_PIOB_IRQ / 32, AVR32_PIOB_IRQ % 32, BUTTONS_INT_LEVEL);
+	piob->per = 0xff;
+	piob->ier = 0xff;
+	piob->puer = 0xff;
+}
+\end{lstlisting}
+The button\_isr function reads from the \textit{isr} register in order to find out what button
+is pressed. If SW0 is pressed it switches mode, as described in the previous section, 
+otherwise it calls a handler function based on if the mode is PIANO\_MODE or PLAYBACK\_MODE.
+\begin{lstlisting}
+__int_handler *button_isr(void) {
+	debounce();
+
+	uint8_t button_interrupt = piob->isr;
+	uint8_t button_down = ~(uint8_t)piob->pdsr;
+	playing = button_down;
+
+	if ( button_interrupt == SW0 ) {
+		if (button_down)
+			handle_mode_switch();
+	} else {
+		if (mode == PIANO_MODE)
+			handle_piano_pressed(button_down, button_interrupt);
+		else
+			handle_sample_pressed(button_down, button_interrupt);
+	}
+
+	return 0;
+}
+\end{lstlisting}
+The two handler function \textbf{handle\_piano\_pressed} and \textbf{handle\_sample\_pressed} 
+pretty much do the same thing; find out what button is pressed and
+wake up the abdac if it is sleeping. The handle\_sample\_pressed also resets the currently
+playing track (if any) and loads a new track based on the button that was pressed.
+
 \subsection{Sound generation}
-To generate sound we used the internal ABDAC (Audio Bitstream Digital-to-Audio-Converter) on the AVR32 board. It takes a sequence of samples and converts it into an analog signal, amplifies and outputs it.
-The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, and the 6th clock of the Power Manager to generate interrupts that processes the samples. The clock is set up with oscillator 0 as the source and no division of the frequency. This gives us a clock of 20 MHz and a sample rate of 20MHz / 256 = 81.920 kHz on the ABDAC\\
+To generate sound we used the internal ABDAC (Audio Bitstream Digital-to-Audio-Converter) 
+on the AVR32 board. It takes a sequence of samples and converts it into an analog 
+signal, amplifies and outputs it.
+The ABDAC uses 2 of the pins on the PIO port B to send signals to the output, and the 
+6th clock of the Power Manager to generate interrupts that processes the samples. 
+The clock is set up with oscillator 0 as the source and no division of the frequency. 
+This gives us a clock of 20 MHz and a sample rate of 20MHz / 256 = 81.920 kHz on the ABDAC\\
 \begin{lstlisting}
 	// Register interrupt handler
 	register_interrupt((__int_handler)(abdac_isr),
@@ -107,7 +159,7 @@ different tracks in the playback module.
 	}
 \end{lstlisting}
 \begin{figure}[h]
-	\centerline{{\includegraphics[width=480px]{tracks_example.png}}}
+	\centerline{{\includegraphics[width=480px]{tracks_example02.png}}}
 	\caption{Example of what the tracks array in playback.c may look like}
 	\label{tracks-example}
 \end{figure}
