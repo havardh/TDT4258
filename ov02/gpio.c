@@ -15,13 +15,11 @@ void init_buttons(void) {
 	piob->per = 0xff;
 	piob->ier = 0xff;
 	piob->puer = 0xff;
-
 }
 
 void init_leds(void) {
 	pioc->per = 0xff; // Sets PIOC-PER to 0xFF, activates all PIOC pins
 	pioc->oer = 0xff; // Sets PIOC-OER to 0xFF, sets all PIOC pins to output
-	/* (...) */
 }
 
 void init_audio(void) {

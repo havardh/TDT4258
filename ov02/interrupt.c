@@ -41,22 +41,13 @@ __int_handler *button_isr(void) {
 	playing = button_down;
 
 	if ( button_interrupt == SW0 ) {
-
-		if (button_down) {
+		if (button_down)
 			handle_mode_switch();
-		}
-
 	} else {
-		if (mode == PIANO_MODE) {
-
+		if (mode == PIANO_MODE)
 			handle_piano_pressed(button_down, button_interrupt);
-
-		} else {
-
+		else
 			handle_sample_pressed(button_down, button_interrupt);
-
-		}
-
 	}
 
 	return 0;
