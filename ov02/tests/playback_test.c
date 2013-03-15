@@ -40,15 +40,18 @@ void testShouldReturnZeroOnNoteIsNULL() {
 
 void testShouldReturn10000OnNoteNotNULL() {
 
-	set_track(0, note_new(1, 100, 0, 0));
+	set_track(0, note_new(1, 100, 0));
 	int16_t sample = get_playback_pitch();
-	assertIntEqual(10000, sample);
+	assertIntEqual(5000, sample);
 
 }
 
 void testShouldReturnNullWhenSevenEightDone() {
 
-	set_track(0, note_new(1, 100, 90, 0));
+	struct note_t* n= note_new(1, 100, 0);
+	set_track(0, n);
+	n->progress = 90;
+
 
 	int16_t sample = get_playback_pitch();
 	assertIntEqual(0, sample);
@@ -57,8 +60,10 @@ void testShouldReturnNullWhenSevenEightDone() {
 
 void testShouldSwitchNoteWhenDone() {
 
-	struct note_t* note = note_new(1, 100, 110, 0);
-	struct note_t* note2 = note_new(1, 100, 90, 0);
+	struct note_t* note = note_new(1, 100, 0);
+	note->progress = 110;
+	struct note_t* note2 = note_new(1, 100, 0);
+	note2->progress = 90;
 	note->next = note2;
 	set_track(0, note);
 
@@ -69,7 +74,9 @@ void testShouldSwitchNoteWhenDone() {
 
 void testShouldReturnZeroOnDone() {
 
-	set_track(0, note_new(1, 100, 110, 0));
+	struct note_t *n = note_new(1, 100, 0);
+	n->progress = 110;
+	set_track(0, n);
 
 	int sample = get_playback_pitch();
 	assertIntEqual(0, sample);
@@ -77,7 +84,8 @@ void testShouldReturnZeroOnDone() {
 
 void testShouldAge() {
 
-	set_track(0, note_new(1, 2, 0, 0));
+	struct note_t *n  = note_new(1, 2, 0);
+	set_track(0, n);
 
 	get_playback_pitch();
 	get_playback_pitch();
@@ -87,52 +95,52 @@ void testShouldAge() {
 
 void testShouldPlaySquare() {
 
-	set_track(0, note_new(SAMPLES / 2, 4, 0, 0));
+	set_track(0, note_new(SAMPLES / 2, 4, 0));
 
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
 }
 
 void testFourthShouldBeLessFrequent() {
 
-	set_track(0, note_new(SAMPLES / 4, 4, 0, 0));
+	set_track(0, note_new(SAMPLES / 4, 4, 0));
 
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
 
 }
 
 void testEightShouldBeLesserFrequent() {
 
-	set_track(0, note_new(SAMPLES / 8, 8, 0, 0));
+	set_track(0, note_new(SAMPLES / 8, 8, 0));
 
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
-	assertIntEqual(-10000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
+	assertIntEqual(-5000, get_playback_pitch());
 
 
 }
 
 void testShouldPlayTwoSimultainiousTones() {
-	set_track(0, note_new(SAMPLES / 2, 8, 0, 0));
-	set_track(1, note_new(SAMPLES / 4, 8, 0, 0));
+	set_track(0, note_new(SAMPLES / 2, 8, 0));
+	set_track(1, note_new(SAMPLES / 4, 8, 0));
 
-	assertIntEqual(20000, get_playback_pitch());
+	assertIntEqual(10000, get_playback_pitch());
 	assertIntEqual(0, get_playback_pitch());
 	assertIntEqual(0, get_playback_pitch());
-	assertIntEqual(-20000, get_playback_pitch());
+	assertIntEqual(-10000, get_playback_pitch());
 
-	assertIntEqual(20000, get_playback_pitch());
+	assertIntEqual(10000, get_playback_pitch());
 	assertIntEqual(0, get_playback_pitch());
 	assertIntEqual(0, get_playback_pitch());
-	assertIntEqual(-20000, get_playback_pitch());
+	assertIntEqual(-10000, get_playback_pitch());
 }

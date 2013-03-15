@@ -85,14 +85,68 @@ To send samples to the ABDAC, in the interrupt routine, each of the stereo-chann
 	dac->SDR.channel0 = sound;
 	dac->SDR.channel1 = sound;
 \end{lstlisting}
-The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once, the soundwaves are accumulated before written to the channels.\\
+The waveforms that are used as base for the samples are sine, triangle, sawtooth, square and white noise. They are implemented in samples.c as mathematical functions of a counter that ticks for a constant length. To make it possible to play multiple tones at once all tones are accumulated to the sample before written to the channels.\\
 \begin{lstlisting}
-		for (i=0; i<7; i++) {
-			sound += get_tone_pitch(i);
-		}
+for (i=0; i<7; i++) {
+	sound += get_tone_pitch(i);
+}
 \end{lstlisting}
-This pretty much works the same way for playing multiple sounds at once in the playback mode, but the playback mode also allows accumulating sounds with different base waveforms.\\
+The get\_tone\_pitch() function loops through all piano key buttons and adds the corresponding tone for the buttons that are pressed.\\
+\begin{lstlisting}
+static int16_t get_tone_pitch(int i) {
+	int16_t sound = 0;
+	if ( isDown(i) ) {
+		sound = square_sample(samples[i]);
+		samples[i] += scale[i];
+		if (samples[i] >= SAMPLES) {
+			samples[i] = 0;
+		}
+	}
+	return sound;
+}
+\end{lstlisting}
+For playing multiple sounds at once in the playback mode, all the tracks are looped and accumulated in the sample.\\
+\begin{lstlisting}
+for (i=0; i<TRACKS; i++) {
+	sound += get_track_pitch(i);
+	if (tracks[i] != NULL) {
+		notNULL = 1;
+	}
+}
+\end{lstlisting}
+The get\_track\_pitch function plays a note for a given duration, the progress is stored in the progress variable. The notes are linked together in a linked list, when the progress of a note is complete (eq. equals the duration) the next note in the list is loaded. When the end of the list is reached (eq. next = NULL) the whole track is done. To prevent the notes from sounding like one long note, the cutoff adds a little pause between each one.
+\begin{lstlisting}
+static int16_t get_track_pitch(int i) {
+	static int samples[TRACKS] = {0, 0, 0, 0};
 
+	int16_t sound = 0;
+
+	// If note is done
+	if (tracks[i] && tracks[i]->progress >= tracks[i]->duration) {
+		tracks[i]->progress = 0;
+		tracks[i] = tracks[i]->next; // Is NULL when tune is done
+	}
+
+	// Check if tune is done
+	if (tracks[i] == NULL) {
+
+	} else {
+
+		if (tracks[i]->progress <= (int16_t)(tracks[i]->duration * tracks[i]->cutoff) ) {
+			sound = (*sample_fn)(samples[i]);
+		}
+
+		tracks[i]->progress++;
+		samples[i] += tracks[i]->pitch;
+
+		if (samples[i] >= SAMPLES) {
+			samples[i] = 0;
+		}
+	}
+
+	return sound;
+}
+\end{lstlisting}
 \subsection{Setting the frequency}
 The \textbf{abdac\_isr} function is, as discussed, called with a frequency of 81.910 kHz. This gives us the sample frequency $ f_s $. To
 get a tone frequency, $f_t$ of 440Hz which is the tone A\footnote{440 Hz is called Concert pitch, (``A'' one common tongue) the tone used to tune an ensamble of instruments.},
@@ -106,24 +160,24 @@ Calculating this for $f_t = 440 Hz$ gives $pitch\_modificatior \approx 22$.
 
 \subsection{Making songs and tracks}
 A song is created in a similar way to ordinary music.
-Given the structure of a music sheet, consisting of several notes with associated 
+Given the structure of a music sheet, consisting of several notes with associated
 properties and different tracks like bass and main melody,
 we are then able to play the same song when it is written in our format. \\
 \\
 All the songs and predefined music tracks is defined in the \textbf{sounds.c} file.
 The following sections sections describes how to create the
-Starman Theme Song\cite{smb-starman-theme} from Super Mario Brothers, but the process is the same 
+Starman Theme Song\cite{smb-starman-theme} from Super Mario Brothers, but the process is the same
 for every song.\\
 \\
-The song has two associated functions; \textbf{init\_smb\_starman\_theme} used to initialize 
-the song, calculating the different tacks and each note in the song, 
+The song has two associated functions; \textbf{init\_smb\_starman\_theme} used to initialize
+the song, calculating the different tacks and each note in the song,
 and \textbf{smb\_starman\_theme} used by the interrupt-routine to set the playing track
 to Starman Theme.\\
 \\
 \subsubsection{Initializing the song}
-The Starman Theme consists of three tracks, two tracks as the main theme and one bass track. 
+The Starman Theme consists of three tracks, two tracks as the main theme and one bass track.
 Each track has a associated pointer, this allowes us the calculate each track only
-\textit{one} time. 
+\textit{one} time.
 \begin{lstlisting}
 	static struct note_t *smb_starman_theme_startT0;
 \end{lstlisting}
@@ -140,14 +194,14 @@ representing the bass in the song:
 	};
 \end{lstlisting}
 The \textbf{variable\_tune} function is then called with the pitch-array, an integer representing
-the number of notes in the song and value for the \textit{cutoff}, respectively. It returns a pointer to the linked list of notes, which is assigned to the respective track pointer in 
+the number of notes in the song and value for the \textit{cutoff}, respectively. It returns a pointer to the linked list of notes, which is assigned to the respective track pointer in
 \textbf{sounds.c}.
 \begin{lstlisting}
 	smb_starman_theme_startT2 = variable_tune(pitch_low, 57, 0.875);
 \end{lstlisting}
 \subsubsection{Playing the song}
-When the interrupt routine wants to play the track, the \textbf{smb\_starman\_theme} function 
-is called. All it does is set the type of sample wave for the ABDAC and set the 
+When the interrupt routine wants to play the track, the \textbf{smb\_starman\_theme} function
+is called. All it does is set the type of sample wave for the ABDAC and set the
 different tracks in the playback module.
 \begin{lstlisting}
 	void smb_starman_theme ( void ) {
@@ -163,9 +217,9 @@ different tracks in the playback module.
 	\caption{Example of what the tracks array in playback.c may look like}
 	\label{tracks-example}
 \end{figure}
-During execution of the song, the \textbf{tracks} array in \textbf{playback.c} 
+During execution of the song, the \textbf{tracks} array in \textbf{playback.c}
 will look something like Figure[\ref{tracks-example}].
-Whenever the progress of a note\_t struct exceeds the duration of the note, 
-the \textbf{get\_track\_pitch} function will handle the switch 
+Whenever the progress of a note\_t struct exceeds the duration of the note,
+the \textbf{get\_track\_pitch} function will handle the switch
 to the next note in the respective track. While one
 track switches a note, the other tracks may stay on the same.

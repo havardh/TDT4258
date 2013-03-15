@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.12)  15 MAR 2013 09:20
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.12)  15 MAR 2013 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -432,99 +432,98 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./abstract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--50
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [2] (./abstract.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 2--54
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--50
-
- []
-
-[1
-
-] (./report.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 4.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 4.
-)
-\tf@toc=\write3
-\openout3 = `report.toc'.
-
- [2
-
-] (./introduction.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--52
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--52
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--52
+Underfull \hbox (badness 10000) in paragraph at lines 2--54
 
  []
 
 [3
 
-] (./overview.tex <mode.png, id=20, 365.365pt x 265.99374pt>
+] (./report.toc)
+\tf@toc=\write3
+\openout3 = `report.toc'.
+
+ [4
+
+] (./introduction.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 2--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--56
+
+ []
+
+[5
+
+] (./overview.tex <mode.png, id=25, 365.365pt x 265.99374pt>
 File: mode.png Graphic file (type png)
  <use mode.png>
 Package pdftex.def Info: mode.png used on input line 12.
 (pdftex.def)             Requested size: 150.56305pt x 109.61418pt.
 
-<button_isr.png, id=22, 1134.2375pt x 337.26pt>
+<button_isr.png, id=27, 1134.2375pt x 337.26pt>
 File: button_isr.png Graphic file (type png)
  <use button_isr.png>
 Package pdftex.def Info: button_isr.png used on input line 26.
 (pdftex.def)             Requested size: 401.50146pt x 119.38591pt.
- [4
+ [6
 
 
- <./mode.png> <./button_isr.png>] <abdac_isr.png, id=28, 822.07124pt x 287.0725
+ <./mode.png> <./button_isr.png>] <abdac_isr.png, id=35, 822.07124pt x 287.0725
 pt>
 File: abdac_isr.png Graphic file (type png)
 
 <use abdac_isr.png>
 Package pdftex.def Info: abdac_isr.png used on input line 35.
 (pdftex.def)             Requested size: 401.50146pt x 140.2068pt.
- <note_t.png, id=29, 224.84pt x 300.12125pt>
+ <note_t.png, id=36, 224.84pt x 300.12125pt>
 File: note_t.png Graphic file (type png)
 
 <use note_t.png>
 Package pdftex.def Info: note_t.png used on input line 48.
 (pdftex.def)             Requested size: 80.3003pt x 107.1872pt.
- [5 <./abdac_isr.png> <./note_t.png>]
-<tracks.png, id=35, 877.2775pt x 291.0875pt>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 56.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 56.
+ [7 <./abdac_isr.png> <./note_t.png>]
+<tracks.png, id=42, 877.2775pt x 291.0875pt>
 File: tracks.png Graphic file (type png)
  <use tracks.png>
 Package pdftex.def Info: tracks.png used on input line 65.
 (pdftex.def)             Requested size: 301.1261pt x 99.9145pt.
 
-<sine.png, id=36, 306.14375pt x 174.6525pt>
+<sine.png, id=43, 306.14375pt x 174.6525pt>
 File: sine.png Graphic file (type png)
  <use sine.png>
 Package pdftex.def Info: sine.png used on input line 86.
 (pdftex.def)             Requested size: 150.56305pt x 85.89493pt.
 
-<square.png, id=37, 310.15875pt x 185.69376pt>
+<square.png, id=44, 310.15875pt x 185.69376pt>
 File: square.png Graphic file (type png)
  <use square.png>
 Package pdftex.def Info: square.png used on input line 87.
 (pdftex.def)             Requested size: 150.56305pt x 90.14069pt.
 
-<sawtooth.png, id=38, 308.15125pt x 193.72375pt>
+<sawtooth.png, id=45, 308.15125pt x 193.72375pt>
 File: sawtooth.png Graphic file (type png)
  <use sawtooth.png>
 Package pdftex.def Info: sawtooth.png used on input line 88.
 (pdftex.def)             Requested size: 150.56305pt x 94.65646pt.
 
-<triangle.png, id=39, 279.0425pt x 179.67125pt>
+<triangle.png, id=46, 279.0425pt x 179.67125pt>
 File: triangle.png Graphic file (type png)
  <use triangle.png>
 Package pdftex.def Info: triangle.png used on input line 89.
@@ -533,7 +532,7 @@ Package pdftex.def Info: triangle.png used on input line 89.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [6 <./tracks.png>] [7 <./sine.png> <./square.png> <./sawtooth.png> <./triangl
+) [8 <./tracks.png>] [9 <./sine.png> <./square.png> <./sawtooth.png> <./triangl
 e.png>] (./solution.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--11
 
@@ -568,7 +567,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--57
 
  []
 
-[8
+[10
 
 
 ]
@@ -586,47 +585,60 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
-[9]
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 94--95
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--104
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 151--158
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--123
+LaTeX Warning: Citation `smb-starman-theme' on page 13 undefined on input line 
+169.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--123
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--123
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--123
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
 
  []
 
-[10] <tracks_example02.png, id=67, 820.06375pt x 474.77374pt>
+[13] <tracks_example02.png, id=77, 820.06375pt x 474.77374pt>
 File: tracks_example02.png Graphic file (type png)
 
 <use tracks_example02.png>
-Package pdftex.def Info: tracks_example02.png used on input line 162.
+Package pdftex.def Info: tracks_example02.png used on input line 216.
 (pdftex.def)             Requested size: 481.80176pt x 278.94772pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [11] [12 <./tracks_example02.png>]
+
+LaTeX Warning: Reference `tracks-example' on page 14 undefined on input line 22
+1.
+
+) [14] [15 <./tracks_example02.png>]
 No file extra.tex.
 (./result.tex
 Overfull \hbox (4.00743pt too wide) in paragraph at lines 6--6
@@ -868,39 +880,50 @@ Overfull \hbox (28.59933pt too wide) in paragraph at lines 4--85
 [][] 
  []
 
-) [13
+) [16
 
 
-] (./discussion.tex) (./conclusion.tex) (./references.tex) [14
+] (./discussion.tex) (./conclusion.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 2--62
 
-]
-(./report.aux) ) 
+ []
+
+[17
+
+] (./references.tex) [18] (./report.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4088 strings out of 495059
- 55138 string characters out of 3182030
- 190037 words of memory out of 3000000
- 7184 multiletter control sequences out of 15000+200000
+ 4113 strings out of 495059
+ 55378 string characters out of 3182030
+ 229037 words of memory out of 3000000
+ 7209 multiletter control sequences out of 15000+200000
  8241 words of font info for 29 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,10n,49p,466b,1343s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on report.pdf (15 pages, 316112 bytes).
+ 38i,10n,49p,502b,1607s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on report.pdf (19 pages, 322749 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 143 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

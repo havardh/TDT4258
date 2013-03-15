@@ -1,25 +1,26 @@
-\contentsline {section}{\numberline {1}Abstract}{1}
-\contentsline {section}{\numberline {2}Introduction}{3}
-\contentsline {section}{\numberline {3}Overview of the Solution}{4}
-\contentsline {subsection}{\numberline {3.1}States}{4}
-\contentsline {subsubsection}{\numberline {3.1.1}Modes}{4}
-\contentsline {subsection}{\numberline {3.2}Interrupt Routines}{4}
-\contentsline {subsubsection}{\numberline {3.2.1}Button Interrupt Routine}{4}
-\contentsline {subsubsection}{\numberline {3.2.2}ABDAC Interrupt Routine}{5}
-\contentsline {subsection}{\numberline {3.3}Datastructures}{5}
-\contentsline {subsubsection}{\numberline {3.3.1}Note structure}{5}
-\contentsline {subsubsection}{\numberline {3.3.2}Sound Tracks}{6}
-\contentsline {subsubsection}{\numberline {3.3.3}Sound Samples}{6}
-\contentsline {subsubsection}{\numberline {3.3.4}Sine Table}{6}
-\contentsline {subsection}{\numberline {3.4}Waves}{6}
-\contentsline {section}{\numberline {4}Solution}{8}
-\contentsline {subsection}{\numberline {4.1}Button interrupts}{8}
-\contentsline {subsection}{\numberline {4.2}Sound generation}{9}
-\contentsline {subsection}{\numberline {4.3}Setting the frequency}{10}
-\contentsline {subsection}{\numberline {4.4}Making songs and tracks}{10}
-\contentsline {subsubsection}{\numberline {4.4.1}Initializing the song}{10}
-\contentsline {subsubsection}{\numberline {4.4.2}Playing the song}{11}
-\contentsline {section}{\numberline {5}Test Report}{13}
-\contentsline {section}{\numberline {6}Discussion}{14}
-\contentsline {subsection}{\numberline {6.1}Deadline}{14}
-\contentsline {section}{\numberline {7}Conclusion}{14}
+\contentsline {section}{\numberline {1}Abstract}{3}
+\contentsline {section}{\numberline {2}Introduction}{5}
+\contentsline {section}{\numberline {3}Overview of the Solution}{6}
+\contentsline {subsection}{\numberline {3.1}States}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}Modes}{6}
+\contentsline {subsection}{\numberline {3.2}Interrupt Routines}{6}
+\contentsline {subsubsection}{\numberline {3.2.1}Button Interrupt Routine}{6}
+\contentsline {subsubsection}{\numberline {3.2.2}ABDAC Interrupt Routine}{7}
+\contentsline {subsection}{\numberline {3.3}Datastructures}{7}
+\contentsline {subsubsection}{\numberline {3.3.1}Note structure}{7}
+\contentsline {subsubsection}{\numberline {3.3.2}Sound Tracks}{8}
+\contentsline {subsubsection}{\numberline {3.3.3}Sound Samples}{8}
+\contentsline {subsubsection}{\numberline {3.3.4}Sine Table}{8}
+\contentsline {subsection}{\numberline {3.4}Waves}{8}
+\contentsline {section}{\numberline {4}Solution}{10}
+\contentsline {subsection}{\numberline {4.1}Button interrupts}{10}
+\contentsline {subsection}{\numberline {4.2}Sound generation}{11}
+\contentsline {subsection}{\numberline {4.3}Setting the frequency}{13}
+\contentsline {subsection}{\numberline {4.4}Making songs and tracks}{13}
+\contentsline {subsubsection}{\numberline {4.4.1}Initializing the song}{14}
+\contentsline {subsubsection}{\numberline {4.4.2}Playing the song}{14}
+\contentsline {section}{\numberline {5}Test Report}{16}
+\contentsline {section}{\numberline {6}Discussion}{17}
+\contentsline {subsection}{\numberline {6.1}Deadline}{17}
+\contentsline {subsection}{\numberline {6.2}ABDAC interrupt routine and Sample format}{17}
+\contentsline {section}{\numberline {7}Conclusion}{17}
