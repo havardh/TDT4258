@@ -17,10 +17,10 @@ void (*sounds[7])(void) = {
 	ex1,
 	smb_1up,
 	gunshot1,
-	explosion,
+	smb_underworld_theme,
 	gunshot,
-	smb_power_up,
-	full_scale //smb_death
+	smb_death,
+	smb_starman_theme
 };
 
 // Prototypes
@@ -41,22 +41,13 @@ __int_handler *button_isr(void) {
 	playing = button_down;
 
 	if ( button_interrupt == SW0 ) {
-
-		if (button_down) {
+		if (button_down)
 			handle_mode_switch();
-		}
-
 	} else {
-		if (mode == PIANO_MODE) {
-
+		if (mode == PIANO_MODE)
 			handle_piano_pressed(button_down, button_interrupt);
-
-		} else {
-
+		else
 			handle_sample_pressed(button_down, button_interrupt);
-
-		}
-
 	}
 
 	return 0;
@@ -118,6 +109,7 @@ static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt)
 	if (index != -1 && button_down) {
 
 		turn_on_abdac();
+		reset_tracks();
 		(*sounds[index])();
 
 	}
@@ -127,7 +119,7 @@ static void handle_sample_pressed(uint8_t button_down, uint8_t button_interrupt)
 
 static void debounce( void ) {
 	//Debouncing
-	int i;
+	volatile int i;
 	for (i = 0; i < 0xFFFF; i++)
 		;
 }

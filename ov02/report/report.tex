@@ -3,14 +3,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{newclude}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{color}
 
-\title{TDT4258 Assignment 2 Group 1}
-\author{Sondre Lefsaker \and André Philipp \and Håvard Wormdal Høiby}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{				% must add \usepackage{listings}
   language=C,			% the language of the code
-%  columns=flexible,
-%  keepspaces=true,
   basicstyle=\footnotesize,	% the size of the fonts that are used for the code
   numbers=left,			% where to put the line-numbers
   numberstyle=\tiny\color{gray},	% the style that is used for the line-numbers
@@ -34,6 +36,13 @@
   morekeywords={*,...}		% if you want to add more keywords to the set
 }
 
+\title{}
+
+
+\title{TDT4258 Assignment 2 - Group 1}
+\author{Sondre Lefsaker
+  \and André Philipp
+  \and Håvard Wormdal Høiby}
 
 \begin{document}
 \maketitle
@@ -42,10 +51,11 @@
 \tableofcontents
 \include{introduction}
 \include{overview}
-\include{solution}
-\include*{extra}
-\include{result}
-\include*{discussion}
-\include*{conclusion}
+\include{method}
+\include{solution} %button - sondre, audio -andy + explotion
+\include*{extra}%andy
+\include{result}%testplan - sondre
+\include*{discussion}%andy
+\include*{conclusion}%andy
 \include*{references}
 \end{document}

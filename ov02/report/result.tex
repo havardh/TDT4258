@@ -1,0 +1,86 @@
+\section{Test Report}
+\begin{table}[h]
+  %\centering
+  \begin{tabular}{|p{1.1cm}|p{1.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+    \hline
+    Number&
+    TestCase&
+    Prerequisites&
+    Input&
+    Expected&
+    Result\\
+    \hline
+    1& Startup completed&
+    make upload the program, press reset&
+    &
+    leds 7 and 3 should be on&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    2&
+    Piano default mode&
+    Startup completed&
+    Button SW7 pressed&
+    LED7 on and tone playing while button is down&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    3&
+    Release piano note&
+    SW7 down, piano mode&
+    Button SW7 released&
+    LED7 off and tone stops playing&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    4&
+    Functional piano&
+    Startup completed&
+    Press button SW7-SW1&
+    Dur-scale played&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    5&
+    Polytone piano&
+    Startup completed&
+    Press button SW7 and SW5&
+    Base tone and major 3th playing&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+
+    \hline
+    6&
+    Switch modes&
+    Startup completed&
+    Press button SW0&
+    All LEDS on&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    7&
+    Switch modes back&
+    Switch modes&
+    Press button SW0&
+    All LEDS off, piano active&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    8&
+    Play sample&
+    Switch modes&
+    Press button SW7&
+    Sample 7 starts playing&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    9&
+    Play another sample&
+    While Playing a sample (sample 7)&
+    Press button SW6&
+    Sample 7 stops playing, sample 6 starts&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+    10&
+    Switching modes stops sample&
+    Playbackmode on, sample is playing&
+    Press button SW0&
+    Sample stops, mode is piano&
+    \textcolor{dkgreen}{Passed} 13.03.2012\\
+    \hline
+
+  \end{tabular}
+  \caption{Test Report}
+\end{table}

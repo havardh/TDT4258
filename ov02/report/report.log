@@ -1,24 +1,15 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  12 MAR 2013 16:07
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.12)  15 MAR 2013 09:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **report.tex
 (./report.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
- icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
-iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
- lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
-ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
-ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
-.
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/article.cls
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/size10.clo
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -33,19 +24,19 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/utf8.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/t1enc.dfu
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -195,7 +186,7 @@ File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ot1enc.dfu
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -226,7 +217,7 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/base/omsenc.dfu
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -250,8 +241,8 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/latex/listings/listings.sty
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks16
 )
@@ -268,22 +259,22 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \lst@lineno=\count92
 \lst@maxwidth=\dimen106
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstmisc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 \c@lstnumber=\count93
 \lst@skipnumbers=\count94
 \lst@framebox=\box27
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/listings/listings.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/frankenstein/newclude.sty
+(/usr/share/texlive/texmf-dist/tex/latex/frankenstein/newclude.sty
 Package: newclude 1999/11/02 v2 A new system for including files (Frankenstein'
 s backbone)
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/frankenstein/moredefs.sty
+(/usr/share/texlive/texmf-dist/tex/latex/frankenstein/moredefs.sty
 Package: moredefs 2001/08/31 v1.8 more defining commands (Frankenstein's brain)
 
 \sc@toks@a=\toks18
@@ -292,90 +283,634 @@ Package: moredefs 2001/08/31 v1.8 more defining commands (Frankenstein's brain)
 \nc@toks@a=\toks20
 \c@IncludeDepth=\count95
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/frankenstein/tag.sto)
-(/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstlang1.sty
+(/usr/share/texlive/texmf-dist/tex/latex/frankenstein/tag.sto)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count96
+))
+\Gin@req@height=\dimen107
+\Gin@req@width=\dimen108
+)
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip43
+\subfigcapskip=\skip44
+\subfigcaptopadj=\dimen109
+\subfigbottomskip=\skip45
+\subfigcapmargin=\dimen110
+\subfiglabelskip=\skip46
+\c@subfigure=\count97
+\c@lofdepth=\count98
+\c@subtable=\count99
+\c@lotdepth=\count100
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip47
+\subfig@bottom=\skip48
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-(/usr/local/texlive/2011/texmf-dist/tex/latex/listings/lstmisc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-)
-(./report.aux)
+) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-\c@lstlisting=\count96
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+\c@lstlisting=\count101
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count102
+\scratchdimen=\dimen111
+\scratchbox=\box28
+\nofMPsegments=\count103
+\nofMParguments=\count104
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count105
+\MPscratchDim=\dimen112
+\MPnumerator=\count106
+\makeMPintoPDFobject=\count107
+\everyMPtoPDFconversion=\toks22
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 39.
+(Font)              <12> on input line 48.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 39.
+(Font)              <8> on input line 48.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 39.
- [1
-
-{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./abst
-ract.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--42
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--42
-
- []
+(Font)              <6> on input line 48.
 
 [1
 
-] (./report.toc)
-\tf@toc=\write3
-\openout3 = `report.toc'.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [2] (./abstract.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 2--54
 
- [2
+ []
 
-] (./introduction.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 2--44
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--54
 
  []
 
 [3
 
+] (./report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+)
+\tf@toc=\write3
+\openout3 = `report.toc'.
+
+ [4
+
+] (./introduction.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 2--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--56
+
+ []
+
+[5
+
+] (./overview.tex <mode.png, id=26, 365.365pt x 265.99374pt>
+File: mode.png Graphic file (type png)
+ <use mode.png>
+Package pdftex.def Info: mode.png used on input line 12.
+(pdftex.def)             Requested size: 150.56305pt x 109.61418pt.
+
+<button_isr.png, id=28, 1134.2375pt x 337.26pt>
+File: button_isr.png Graphic file (type png)
+ <use button_isr.png>
+Package pdftex.def Info: button_isr.png used on input line 26.
+(pdftex.def)             Requested size: 401.50146pt x 119.38591pt.
+ [6
+
+
+ <./mode.png> <./button_isr.png>] <abdac_isr.png, id=35, 822.07124pt x 287.0725
+pt>
+File: abdac_isr.png Graphic file (type png)
+
+<use abdac_isr.png>
+Package pdftex.def Info: abdac_isr.png used on input line 35.
+(pdftex.def)             Requested size: 401.50146pt x 140.2068pt.
+ <note_t.png, id=36, 224.84pt x 300.12125pt>
+File: note_t.png Graphic file (type png)
+
+<use note_t.png>
+Package pdftex.def Info: note_t.png used on input line 48.
+(pdftex.def)             Requested size: 80.3003pt x 107.1872pt.
+ [7 <./abdac_isr.png> <./note_t.png>]
+<tracks.png, id=42, 877.2775pt x 291.0875pt>
+File: tracks.png Graphic file (type png)
+ <use tracks.png>
+Package pdftex.def Info: tracks.png used on input line 65.
+(pdftex.def)             Requested size: 301.1261pt x 99.9145pt.
+
+<sine.png, id=43, 306.14375pt x 174.6525pt>
+File: sine.png Graphic file (type png)
+ <use sine.png>
+Package pdftex.def Info: sine.png used on input line 86.
+(pdftex.def)             Requested size: 150.56305pt x 85.89493pt.
+
+<square.png, id=44, 310.15875pt x 185.69376pt>
+File: square.png Graphic file (type png)
+ <use square.png>
+Package pdftex.def Info: square.png used on input line 87.
+(pdftex.def)             Requested size: 150.56305pt x 90.14069pt.
+
+<sawtooth.png, id=45, 308.15125pt x 193.72375pt>
+File: sawtooth.png Graphic file (type png)
+ <use sawtooth.png>
+Package pdftex.def Info: sawtooth.png used on input line 88.
+(pdftex.def)             Requested size: 150.56305pt x 94.65646pt.
+
+<triangle.png, id=46, 279.0425pt x 179.67125pt>
+File: triangle.png Graphic file (type png)
+ <use triangle.png>
+Package pdftex.def Info: triangle.png used on input line 89.
+(pdftex.def)             Requested size: 150.56305pt x 96.94699pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [8 <./tracks.png>] [9 <./sine.png> <./square.png> <./sawtooth.png> <./triangl
+e.png>] (./solution.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--11
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 12.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 15.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 15.
+
+Overfull \hbox (4.99643pt too wide) in paragraph at lines 44--48
+\OT1/cmr/m/n/10 The two han-dler func-tion \OT1/cmr/bx/n/10 han-dle[]piano[]pre
+ssed \OT1/cmr/m/n/10 and \OT1/cmr/bx/n/10 han-dle[]sample[]pressed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--57
+
+ []
+
+[10
+
+
 ]
-No file overview.tex.
-No file solution.tex.
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 151--158
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--177
+
+ []
+
+[13] <tracks_example02.png, id=77, 820.06375pt x 474.77374pt>
+File: tracks_example02.png Graphic file (type png)
+
+<use tracks_example02.png>
+Package pdftex.def Info: tracks_example02.png used on input line 216.
+(pdftex.def)             Requested size: 481.80176pt x 278.94772pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [14] [15 <./tracks_example02.png>]
 No file extra.tex.
-No file result.tex.
-No file discussion.tex.
-No file conclusion.tex.
-No file references.tex.
-(./report.aux) ) 
+(./result.tex
+Overfull \hbox (4.00743pt too wide) in paragraph at lines 6--6
+[]\OT1/cmr/m/n/10 Number| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]\OT1/cmr/m/n/10 Startup
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\OT1/cmr/m/n/10 com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]\OT1/cmr/m/n/10 Piano
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+\OT1/cmr/m/n/10 de-fault
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+[]\OT1/cmr/m/n/10 Release
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+\OT1/cmr/m/n/10 pi-ano
+ []
+
+
+Underfull \hbox (badness 7099) in paragraph at lines 28--28
+[]\OT1/cmr/m/n/10 SW7 down,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]\OT1/cmr/m/n/10 LED7 off
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+\OT1/cmr/m/n/10 and tone
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Overfull \hbox (3.571pt too wide) in paragraph at lines 34--34
+[]\OT1/cmr/m/n/10 Functional
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[]\OT1/cmr/m/n/10 Dur-scale
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]\OT1/cmr/m/n/10 Polytone
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--43
+\OT1/cmr/m/n/10 SW7 and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]\OT1/cmr/m/n/10 Base tone
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+\OT1/cmr/m/n/10 and ma-jor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
+\OT1/cmr/m/n/10 modes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+[]\OT1/cmr/m/n/10 All LEDS
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+\OT1/cmr/m/n/10 off, pi-ano
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
+[]\OT1/cmr/m/n/10 Switch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+[]\OT1/cmr/m/n/10 Sample
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+\OT1/cmr/m/n/10 7 starts
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
+[]\OT1/cmr/m/n/10 Play
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
+\OT1/cmr/m/n/10 an-other
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 71--71
+[]\OT1/cmr/m/n/10 While Play-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+[]\OT1/cmr/m/n/10 Sample 7
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+\OT1/cmr/m/n/10 stops play-
+ []
+
+
+Underfull \hbox (badness 4479) in paragraph at lines 73--73
+\OT1/cmr/m/n/10 ing, sam-ple
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+[]\OT1/cmr/m/n/10 Switching
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+\OT1/cmr/m/n/10 modes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+\OT1/cmr/m/n/10 stops
+ []
+
+
+Overfull \hbox (6.28911pt too wide) in paragraph at lines 78--78
+[]\OT1/cmr/m/n/10 Playbackmode
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--80
+[]\OT1/cmr/m/n/10 Sample
+ []
+
+
+Underfull \hbox (badness 1259) in paragraph at lines 80--80
+\OT1/cmr/m/n/10 stops, mode
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
+[][]\OT1/cmr/m/n/10 Passed[]
+ []
+
+
+Overfull \hbox (28.59933pt too wide) in paragraph at lines 4--85
+[][] 
+ []
+
+) [16
+
+
+] (./discussion.tex) (./conclusion.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 2--62
+
+ []
+
+[17
+
+] (./references.tex) [18] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2064 strings out of 493633
- 27578 string characters out of 3143378
- 109089 words of memory out of 3000000
- 5375 multiletter control sequences out of 15000+200000
- 7588 words of font info for 27 fonts, out of 3000000 for 9000
- 831 hyphenation exceptions out of 8191
- 26i,7n,49p,174b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r17.pfb>
-Output written on report.pdf (4 pages, 64801 bytes).
+ 4123 strings out of 495059
+ 55541 string characters out of 3182030
+ 230037 words of memory out of 3000000
+ 7219 multiletter control sequences out of 15000+200000
+ 8241 words of font info for 29 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 38i,10n,49p,502b,1607s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti10.pfb>
+Output written on report.pdf (19 pages, 324472 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 143 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

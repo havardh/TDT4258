@@ -1,11 +1,15 @@
 \section{Introduction}
-The second assignment introduces us to a new hardware device, the ABDAC. We also utilize the
+The second assignment introduces us to a new hardware device, the ABDAC. We also utilize
 the buttons and LEDs used in assignment one. This gives an introduction to programming with
 audio devices and how to produce audio digitally.\\
 \\
 To the development environment from assignment one we add the GCC C-compiler.\\
 \\
-The gist of this assignment is to produce different sounds the different buttons are pressed.
-The program should be implemented in the C programming language without the support of a
-Operation System. We implemented two modes in the program. The first mode is a 7-note piano.\\
+The gist of this assignment is to produce different sounds when the buttons on the board are pressed.
+The program should be implemented in the C programming language without the support of an
+Operation System. We implemented two modes. The first mode is a 7-note piano. The second is a
+playback function which plays a different predefined sample for each button. The button SW0
+is used to toggle between the two modes.\\
 \\
+In order to make the program energy efficient the CPU is set to sleep and the DAC is shut 
+down while nothing is playing. %a tone is not playing.

@@ -1,0 +1,43 @@
+\section{Discussion}
+This assignment was easier getting started with, because we knew the tools,  
+and the programming language.
+Of course handling I/O devices without an Operating System was a new 
+experience. We found that having a some
+knowledge of music- and wave-theory quite favorable, but the recitation 
+slides and the compendium worked as
+good summary and reinstatements of the theory.
+
+\subsection{Deadline}
+Deadlines are the time restriction on the interrupt routine. The ABDAC interrupts 
+with a frequency of 81.920 kHz.
+If it does not get a new sample in SDR before 256 cycles then we have missed a 
+deadline. When we compile with
+different optimizations flags on gcc (-O0, -O1, -O2, and -O3) we get slightly 
+different sounds and speeds of the
+audio samples. This indicates that our interrupt routine is to long and that 
+we are missing some deadlines.
+We found that -O1 gave us the best result.
+
+\subsection{ABDAC interrupt routine and Sample format}
+We choose to save the sound samples as linked lists. This gave us compact storage, flexible notation (tracks are not
+synchronous), and little overhead at startup. But it means that the interrupt routine has a lot of work to do when it
+plays a sample. If we had stored the sound samples as an array of the actual samples to be played (which could be built
+on startup or even precompiled off target), the interrupt routine could be simplified to:
+
+\begin{lstlisting}
+// Predefined
+#define N 100000
+static int16_t samples[N] = { ... };
+
+__int_handler *abdac_isr( void ) {
+    static i = 0;
+    if ( i < N ) {
+      return samples[i];
+      i += 1;
+    } else {
+      return 0; // silence
+    }
+}
+\end{lstlisting}
+This would have been an simpler design and would have enabled us to easier support sound samples from know formats
+as wav and midi. This would also have helped on meating the deadlines.
