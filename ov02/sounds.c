@@ -53,14 +53,14 @@ void cromatic_scale( void ) {
 void full_scale ( void ) {
   set_sample_fn(square_sample);
 
-  int pitch[51] =  { C2, C2_, D2, E2, F2, G2, G2_, A2, 
+  int pitch[51] =  { /*C2, C2_, D2, E2, F2, G2, G2_, A2, 
     A2_, B2, C3, C3_, D3, D3_, E3, F3, F3_, G3, G3_, 
-    A3, A3_, B3, B3_, C4, C4_, D4, D4_, E4, E4_, F4, 
+    A3, A3_, B3, B3_,*/ C4, C4_, D4, D4_, E4, E4_, F4, 
     F4_, G4, G4_, A4, A4_, B4, B4_, C5, C5_, D5, D5_, 
     E5, E5_, F5, F5_, G5, G5_, A5, A5_, B5, B5_
   };
 
-  set_track(0, even_tune(pitch, 51, SIXTEENTH, 0.875));
+  set_track(0, even_tune(pitch, 51, EIGHT, 0.875));
 }
 
 void gunshot1 ( void ) {
