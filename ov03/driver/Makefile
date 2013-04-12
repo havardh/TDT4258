@@ -18,9 +18,6 @@ KERNELDIR := ../linux/
 default:
 	$(MAKE) -C $(KERNELDIR) M=$$PWD modules
 
-upload
-	scp $(MODULE).ko avr32@129.241.103.249:~/project
-
 endif
 
 .PHONY : clean
