@@ -6,7 +6,7 @@ TARGET=oeving2.elf
 
 # Command to upload program to flash
 AVR32PROGRAM = avr32program
-
+#-I/usr/src/linux-headers-3.2.0-30/include
 ####### RULES ##########################################################
 .PHONY : all
 all:
