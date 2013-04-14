@@ -9,27 +9,9 @@ AVR32PROGRAM = avr32program
 
 ####### RULES ##########################################################
 .PHONY : all
-all: $(TARGET) #git_pull
-
-oeving2.elf: src/cancas.c src/shape.c
-	$(CC) $^ -o $@ $(LDFLAGS)
-
-src/%.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-git_pull:
-	git pull origin master
-
-test: all playback_test.o
-	./test
-
-# upload to STK1000 (program flash)
-.PHONY : upload
-upload : $(TARGET)
-	$(AVR32PROGRAM) halt
-	sleep 3
-	$(AVR32PROGRAM) program -e -f0,8Mb $<
+all:
+	gcc -g --std=c99 src/line.c src/canvas.c src/shape.c src/main.c src/screen.c -Iinclude -o bin/canvas_test
 
 .PHONY : clean
 clean :
-	rm -rf *.o *.elf *.*~
+	rm -rf bin/*.o bin/*.elf bin/*.*~
