@@ -10,16 +10,22 @@ Canvas CanvasNew(Screen *screen) {
 	return canvas;
 }
 
-void CanvasAdd(Canvas *canvas, Shape *shape) {
+void CanvasAdd(Canvas *canvas, void *shape) {
 	canvas->shapes[canvas->top++] = shape;
 }
 
-void CanvasRemove(Canvas *canvas, Shape *shape) {}
+void CanvasRemove(Canvas *canvas, int i) {}
 
 void CanvasPaint (Canvas *canvas) {
 
 	for (int i=0; i<canvas->top; i++) {
-		(*canvas->shapes[i]->paint)( canvas->shapes[i], canvas->screen );
+		Shape *shape = (Shape*)canvas->shapes[i];
+		while (shape->parent != NULL) {
+			shape = (Shape*)shape->parent;
+		}
+
+
+		(*((Shape*)shape)->paint)( canvas->shapes[i], canvas->screen );
 	}
 
 }

@@ -13,8 +13,8 @@ typedef struct {
 } Canvas;
 
 Canvas CanvasNew(Screen*);
-void CanvasAdd(Canvas*, Shape*);
-void CanvasRemove(Canvas*, Shape*);
+void CanvasAdd(Canvas*, void*);
+void CanvasRemove(Canvas*, int);
 
 void CanvasPaint(Canvas*);
 

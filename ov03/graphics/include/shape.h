@@ -4,6 +4,7 @@
 #include "screen.h"
 
 typedef struct {
+	void *parent;
 	void (*paint) ( void*, Screen* );
 	int x;
 	int y;
@@ -11,6 +12,5 @@ typedef struct {
 } Shape;
 
 Shape ShapeNew (int x, int y);
-void paint ( void*, Screen* );
 
 #endif // SHAPE_H
