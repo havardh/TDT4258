@@ -1,4 +1,4 @@
-CC=avr32-gcc
+CC=avr32-linux-gcc
 CFLAGS=-g -Wall -Iinclude -O1
 LDFLAGS=-g -Wall -pedantic -Llib -lavr32b-interrupts -lm
 TARGET=oeving2.elf
