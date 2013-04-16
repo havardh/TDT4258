@@ -1,4 +1,8 @@
 .DS_Store
 .project
 .cproject
+<<<<<<< HEAD
 .metadata
+=======
+.metadata
+>>>>>>> merge
