@@ -10,7 +10,7 @@ AVR32PROGRAM = avr32program
 ####### RULES ##########################################################
 .PHONY : all
 all:
-	gcc -g --std=c99 src/line.c src/canvas.c src/shape.c src/main.c src/screen.c -Iinclude -o bin/canvas_test
+	$(CC) -g --std=c99 src/line.c src/canvas.c src/shape.c src/main.c src/screen.c -Iinclude -I../linux -o bin/canvas_test
 
 .PHONY : clean
 clean :
