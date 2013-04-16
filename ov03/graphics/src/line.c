@@ -8,13 +8,18 @@ static void paint ( void *shape, Screen *screen) {
 	int dx = line->dx;
 	int dy = line->dy;
 
-	for (int y=10; y<100; y++) {
-		for (int x=10; x<100; x++) {
+	for (int i=0; i<screen->width; i++) {
+		screen->frame_buffer[i + 30 * screen->height] = 4160749567;
+	}
+
+	/*
+	for (int y=0; y<screen->height; y++) {
+		for (int x=0; x<screen->width; x++) {
 			int i = y * screen->height + x;
 			screen->frame_buffer[i] = 0;
 		}
 	}
-	printf ("line (%d, %d) - (%d, %d)\n", x, y, dx, dy);
+	*/
 }
 
 Line LineNew (int x, int y, int dx, int dy) {
