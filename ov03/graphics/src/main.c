@@ -2,9 +2,9 @@
 #include "shape.h"
 #include "canvas.h"
 #include "line.h"
+#include "image.h"
 
-int main(void) {
-
+void canvas() {
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew(&screen);
 
@@ -23,6 +23,18 @@ int main(void) {
 	exit(0);
 
 	ScreenDestroy(&screen);
+
+}
+
+void image() {
+
+	Image image = ImageNew("./data/picture.bmp");
+
+}
+
+int main(void) {
+
+	image();
 
 	return 0;
 }
