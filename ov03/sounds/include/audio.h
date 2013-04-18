@@ -1,5 +1,5 @@
-#ifndef SOUNDS_H
-#define SOUNDS_H
+#ifndef AUDIO_H
+#define AUDIO_H
 
 #include <stdint.h>
 #include <stddef.h>
@@ -15,11 +15,11 @@ typedef struct {
 
 	int _fd;
 
-} Sounds;
+} Audio;
 
-Sounds SoundNew( void );
-void SoundDestroy( Sounds* );
+Audio AudioNew( void );
+void AudioDestroy( Audio* );
 
-void Play( Sounds*, Sample* );
+void Play( Audio*, Sample* );
 
-#endif // SOUNDS_H
+#endif // AUDIO_H

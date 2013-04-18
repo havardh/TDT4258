@@ -2,10 +2,10 @@
 
 int main( void ) {
 
-	Sounds sound = SoundNew();
+	Audio audio = AudioNew();
 
-	Play( &sound, NULL );
+	Play( &audio, NULL );
 
-	SoundDestroy( &sound );
+	AudioDestroy( &audio );
 	return 0;
 }

@@ -4,7 +4,7 @@
 #define BITPERSAMPLE 8
 #define BUF_SIZE 1024
 
-Sounds SoundNew ( void ) {
+Audio AudioNew ( void ) {
 
 	char* test_file = "/home/avr32/project/sounds/test";
 	char* dsp = "/dev/dsp";
@@ -20,31 +20,29 @@ Sounds SoundNew ( void ) {
 	int dsp_rate = DSP_RATE;
 	ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
 
-	Sounds sound = {
+	Audio audio = {
 		._fd = fd
 	};
 
-	return sound;
+	return audio;
 
 }
 
-void SoundDestroy (Sounds *sound) {
-	close( sound->_fd );
+void AudioDestroy (Audio *audio) {
+	close( audio->_fd );
 }
 
-void Play( Sounds *sound, Sample *sample ) {
+void Play( Audio *audio, Sample *sample ) {
 
-
-
-	printf("Writing to %d\n", sound->_fd);
+	printf("Writing to %d\n", audio->_fd);
 	unsigned char buffer[BUF_SIZE];
 	for (int i=0; i<BUF_SIZE; i++) {
 		buffer[i] = rand();
 	}
 	for (int i=0; i<10000; i++) {
-		write( sound->_fd, &buffer, BUF_SIZE );
+		write( audio->_fd, &buffer, BUF_SIZE );
 	}
 	buffer[0] = EOF;
-	write( sound->_fd, &buffer, 1 );
+	write( audio->_fd, &buffer, 1 );
 
 }
