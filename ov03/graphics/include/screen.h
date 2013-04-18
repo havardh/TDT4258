@@ -18,6 +18,6 @@ typedef struct {
 
 Screen ScreenNew( int width, int height );
 void ScreenDestroy( Screen* );
-void DrawPixel( Screen*, int, int, Pixel*);
+void ScreenDrawPixel( Screen*, int, int, Pixel*);
 
 #endif // SCREEN_H
