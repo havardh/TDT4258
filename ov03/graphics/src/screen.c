@@ -23,3 +23,11 @@ Screen ScreenNew (int width, int height) {
 void ScreenDestroy ( Screen *screen ) {
 	close( screen->_fd );
 }
+
+void ScreenDrawPixel( Screen *screen, int x, int y, Pixel *pixel ) {
+	if (x >= 0 && x < screen->width	 && y >= 0 && y < screen->height) {
+		int coordinate = y * screen->width * 3 + x * 3;
+		*((Pixel*)&screen->frame_buffer[coordinate]) = *pixel;
+	}
+
+}
