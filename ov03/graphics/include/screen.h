@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <stdio.h>
 #include "pixel.h"
 
 typedef struct {

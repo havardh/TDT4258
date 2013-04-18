@@ -1,8 +1,4 @@
 #include "screen.h"
-#include <fcntl.h>
-#include <sys/mman.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 static uint16_t* mmap_frame_buffer ( Screen *screen ) {
 

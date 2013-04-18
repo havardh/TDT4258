@@ -10,7 +10,7 @@ int main(void) {
 	Canvas canvas = CanvasNew(&screen);
 
 	Rectangle r1 = RectangleNew( 40, 40, 100, 30 );
-	Rectangle r2 = RectangleNew( 30, 30, 20, 200 );
+	Rectangle r2 = RectangleNew( 30, 3al0, 20, 200 );
 	CanvasAdd( &canvas, &r1 );
 	CanvasAdd( &canvas, &r2 );
 
