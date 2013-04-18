@@ -12,7 +12,7 @@ int main(void) {
 	//Shape s2 = ShapeNew(2, 50);
 	//Shape s3 = ShapeNew(100, 10);
 
-	Line l1 = LineNew(10, 10, 100, 100);
+	Line l1 = LineNew(20, 40, 150, 150);
 
 	//CanvasAdd(&canvas, &s1);
 	//CanvasAdd(&canvas, &s2);

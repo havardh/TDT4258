@@ -7,8 +7,8 @@
 static uint16_t* mmap_frame_buffer ( Screen *screen ) {
 
 	int fd = screen->_fd = open( "/dev/fb0", O_RDWR | O_CREAT | O_TRUNC );
-	int screen_size = screen->width * screen->height;
-	screen->frame_buffer =	(uint16_t*)mmap( 0, screen_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0 );
+	int screen_size = 24 / 8 * 240 * 320;
+	screen->frame_buffer =	(uint8_t*)mmap( 0, screen_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0 );
 
 }
 

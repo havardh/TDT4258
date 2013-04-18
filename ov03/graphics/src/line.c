@@ -7,12 +7,14 @@ static void paint ( void *shape, Screen *screen) {
 	int y = ((Shape*)line->parent)->y;
 	int dx = line->dx;
 	int dy = line->dy;
+       
+        for (int i = x; i < x + dx; i++) {
+          int j = y + dy * (i - x) / dx;
+          int coordinate = j * screen->width * 3 + i;
+          screen->frame_buffer[coordinate] = 0;
+        }
 
-	for (int i=0; i<screen->width; i++) {
-		screen->frame_buffer[i + 30 * screen->height] = 4160749567;
-	}
-
-	/*
+        /*
 	for (int y=0; y<screen->height; y++) {
 		for (int x=0; x<screen->width; x++) {
 			int i = y * screen->height + x;

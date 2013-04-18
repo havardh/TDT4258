@@ -20,10 +20,10 @@ void CanvasPaint (Canvas *canvas) {
 
 	Screen *screen = canvas->screen;
 
-	for (int y=0; y<screen->height; y++) {
-		for (int x=0; x<screen->width; x++) {
-			int i = y * screen->height + x;
-			screen->frame_buffer[i] = 0;
+	for (int y=0; y<240; y++) {
+		for (int x=0; x<320 * 3; x++) {
+			int i = y * screen->width * 3 + x;
+			screen->frame_buffer[i] = 255;
 		}
 	}
 
