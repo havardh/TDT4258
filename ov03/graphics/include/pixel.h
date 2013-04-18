@@ -4,12 +4,11 @@
 #include <stdint.h>
 
 typedef struct {
-	unsigned int32_t blue : 8;
-	unsigned int32_t green : 8;
-	unsigned int32_t red : 8;
-	unsigned int32_t NA : 8;
+	uint8_t blue;
+	uint8_t green;
+	uint8_t red;
 } Pixel;
 
-Pixel PixelNew(int8_t, int8_t, int8_t);
+Pixel PixelNew(uint8_t, uint8_t, uint8_t);
 
 #endif // PIXEL_H

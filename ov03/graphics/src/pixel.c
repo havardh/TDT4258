@@ -1,6 +1,6 @@
 #include "pixel.h"
 
-Pixel PixelNew(int8_t r, int8_t g, int8_t b) {
+Pixel PixelNew(uint8_t r, uint8_t g, uint8_t b) {
 
 	Pixel pixel;
 	pixel.red = r;

@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include "pixel.h"
 
 typedef struct {
 	int _fd;
@@ -14,5 +15,6 @@ typedef struct {
 
 Screen ScreenNew( int width, int height );
 void ScreenDestroy( Screen* );
+void DrawPixel( Screen*, int, int, Pixel*);
 
 #endif // SCREEN_H

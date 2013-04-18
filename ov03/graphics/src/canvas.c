@@ -11,6 +11,7 @@ Canvas CanvasNew(Screen *screen) {
 }
 
 void CanvasAdd(Canvas *canvas, void *shape) {
+	printf("%s\n", "Adding a shape");
 	canvas->shapes[canvas->top++] = shape;
 }
 
@@ -30,9 +31,6 @@ void CanvasPaint (Canvas *canvas) {
 
 	for (int i=0; i<canvas->top; i++) {
 		Shape *shape = (Shape*)canvas->shapes[i];
-		while (shape->parent != NULL) {
-			shape = (Shape*)shape->parent;
-		}
 
 		(*((Shape*)shape)->paint)( canvas->shapes[i], screen );
 	}
