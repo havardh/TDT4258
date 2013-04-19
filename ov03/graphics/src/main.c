@@ -26,7 +26,7 @@ void image() {
   Screen screen = ScreenNew(320, 240);
   Canvas canvas = CanvasNew( &screen );
 
-  Image image = ImageNew("./data/picture.bmp");
+  Image image = ImageNew("./data/blackwhite.bmp");
 
   CanvasAdd( &canvas, &image );
   CanvasPaint( &canvas );

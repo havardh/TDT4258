@@ -14,9 +14,9 @@ static inline unsigned short __builtin_bswap16(unsigned short a)
 
 static void fix_endian( BMPHeader *header ) {
 
-  //    header->signature = __builtin_bswap16(header->signature);
-  //    header->size	  = __builtin_bswap32(header->size);
-  //    header->reserved1 = __builtin_bswap16(header->reserved1);
+  //	header->signature = __builtin_bswap16(header->signature);
+  //	header->size	  = __builtin_bswap32(header->size);
+  //	header->reserved1 = __builtin_bswap16(header->reserved1);
   //	header->reserved2 = __builtin_bswap16(header->reserved2);
   //	header->offset	  = __builtin_bswap32(header->reserved2);
 
@@ -66,16 +66,16 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 	int fd = open( filename, O_RDWR );
 
 	BMPHeader bmp_header = ReadBMPHeader( fd );
-	//printf("Size: %d, Offset: %d\n", bmp_header.size, bmp_header.offset);
+	printf("Size: %d, Offset: %d\n", bmp_header.size, bmp_header.offset);
 	DIBHeader dib_header = ReadDIBHeader( fd );
-	//printf("Width: %d, Height: %d\n", dib_header.width, dib_header.height);
+	printf("Width: %d, Height: %d\n", dib_header.width, dib_header.height);
 
 	uint8_t buffer[BUFFER_SIZE];
 
 	//Size: 230522, Offset: 122
 	//Width: 320, Height: 240
 	int offset = 122;//bmp_header.offset;
-	int size = 230522;//bmp_header.size;
+	int size = 244922;//bmp_header.size;
 	int width = 320;//dib_header.width;
 	int height = 240;//dib_header.height;
 
@@ -107,13 +107,13 @@ static void paint ( void *shape, Screen *screen ) {
 
 	int width = image->width;
 	int height = image->height;
-        
 
-        for (int y=0; y < height; y++) {
-          for (int x=0; x < width; x++) {
-            ScreenDrawPixel( screen, x, y, &image->pixels[y*width + x]);
-          }
-        }
+
+	for (int y=0; y < height; y++) {
+	  for (int x=0; x < width; x++) {
+	    ScreenDrawPixel( screen, x, y, &image->pixels[y*width + x]);
+	  }
+	}
 
 }
 
