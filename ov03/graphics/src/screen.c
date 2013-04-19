@@ -36,7 +36,7 @@ void ScreenFlush( Screen *screen ) {
 	int size = screen->width * screen->height * 3;
 	uint8_t *p = screen->internal_buffer;
 	for (int i=0; i<240*320*3; i++) {
-		//printf("%d ", p[i]);
-		//screen->_frame_buffer[i] = p[i];
+		printf("%d ", p[i]);
+		screen->_frame_buffer[i] = p[i];
 	}
 }

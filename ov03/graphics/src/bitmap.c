@@ -60,14 +60,11 @@ static void flip ( uint8_t *data, int width, int height ) {
 
 static void ReadBMP ( char* filename, Bitmap* bmp ) {
 
+        printf("Reading: %s\n", filename);
 
 	int fd = open( filename, O_RDWR );
-
 	BMPHeader bmp_header = ReadBMPHeader( fd );
-	printf("Size: %d, Offset: %d\n", bmp_header.size, bmp_header.offset);
-	DIBHeader dib_header = ReadDIBHeader( fd );
-	printf("Width: %d, Height: %d\n", dib_header.width, dib_header.height);
-
+	DIBHeader dib_header = ReadDIBHeader( fd );       
 	uint8_t buffer[BUFFER_SIZE];
 
 	// Size: 230522, Offset: 122
@@ -85,6 +82,9 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 	int width = 340;
 	int height = 240;
 
+	printf("Size: %d, Offset: %d\n", size, offset);
+        printf("Width: %d, Height: %d\n", width, height);
+
 	// Read pixels
 	lseek( fd, offset, SEEK_SET);
 	uint8_t *data = malloc(size);
@@ -94,9 +94,10 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 		read( fd, buffer, BUFFER_SIZE );
 
 		for (int i=0; i<BUFFER_SIZE; i++) {
-			//printf("%d ", buffer[i]);
+			printf("%d ", buffer[i]);
 			(*ptr++) = buffer[i];
 		}
+                exit(0);
 		//printf("\n");
 
 	}
@@ -161,7 +162,7 @@ static void paint ( void *shape, Screen *screen ) {
 		for (int x=0; x < width; x++) {
 			Pixel *p = &image->pixels[y*width + x];
 			ScreenDrawPixel( screen, x, y, p);
-			//PixelPrint(p);
+			PixelPrint(p);
 		}
 	}
 
