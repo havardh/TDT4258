@@ -23,7 +23,15 @@ void canvas() {
 
 void image() {
 
-	Image image = ImageNew("./data/picture.bmp");
+  Screen screen = ScreenNew(320, 240);
+  Canvas canvas = CanvasNew( &screen );
+
+  Image image = ImageNew("./data/picture.bmp");
+
+  CanvasAdd( &canvas, &image );
+  CanvasPaint( &canvas );
+
+  ScreenDestroy( &screen );
 
 }
 

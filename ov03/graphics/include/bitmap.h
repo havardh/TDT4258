@@ -4,7 +4,6 @@
 #include "shape.h"
 #include "pixel.h"
 
-
 #define WIDTH 320
 #define HEIGHT 240
 #define BUFFER_SIZE 1024
@@ -31,6 +30,6 @@ typedef struct {
 	Pixel *pixels;
 } Bitmap;
 
-Bitmap BitmapNew(char*);
+Bitmap *BitmapNew(char*);
 
 #endif // BITMAP_H

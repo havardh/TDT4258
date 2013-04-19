@@ -14,11 +14,11 @@ static inline unsigned short __builtin_bswap16(unsigned short a)
 
 static void fix_endian( BMPHeader *header ) {
 
-	header->signature = __builtin_bswap16(header->signature);
-	header->size	  = __builtin_bswap32(header->size);
-	header->reserved1 = __builtin_bswap16(header->reserved1);
-	header->reserved2 = __builtin_bswap16(header->reserved2);
-	header->offset	  = __builtin_bswap32(header->reserved2);
+  //    header->signature = __builtin_bswap16(header->signature);
+  //    header->size	  = __builtin_bswap32(header->size);
+  //    header->reserved1 = __builtin_bswap16(header->reserved1);
+  //	header->reserved2 = __builtin_bswap16(header->reserved2);
+  //	header->offset	  = __builtin_bswap32(header->reserved2);
 
 }
 
@@ -66,9 +66,9 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 	int fd = open( filename, O_RDWR );
 
 	BMPHeader bmp_header = ReadBMPHeader( fd );
-	printf("Size: %d, Offset: %d\n", bmp_header.size, bmp_header.offset);
+	//printf("Size: %d, Offset: %d\n", bmp_header.size, bmp_header.offset);
 	DIBHeader dib_header = ReadDIBHeader( fd );
-	printf("Width: %d, Height: %d\n", dib_header.width, dib_header.height);
+	//printf("Width: %d, Height: %d\n", dib_header.width, dib_header.height);
 
 	uint8_t buffer[BUFFER_SIZE];
 
@@ -94,7 +94,7 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 
 	close( fd );
 
-	//flip( data, width, height );
+	flip( data, width, height );
 
 	bmp->width = width;
 	bmp->height = height;
@@ -107,30 +107,21 @@ static void paint ( void *shape, Screen *screen ) {
 
 	int width = image->width;
 	int height = image->height;
+        
 
-	for (int x=0; x < width; x++) {
-		for (int y=0; y < height; y++) {
-
-			ScreenDrawPixel( screen, x, y, &image->pixels[y*width + x]);
-		}
-	}
+        for (int y=0; y < height; y++) {
+          for (int x=0; x < width; x++) {
+            ScreenDrawPixel( screen, x, y, &image->pixels[y*width + x]);
+          }
+        }
 
 }
 
-Bitmap BitmapNew( char* filename ) {
+Bitmap *BitmapNew( char* filename ) {
 
-	Bitmap bmp = {
-		.parent = NULL,
-		.paint = &paint
-	};
-	ReadBMP( filename, &bmp );
-
-	int size = bmp.width * bmp.height;
-
-	/*for (int i=0; i<2000; i++) {
-		PixelPrint( &bmp.pixels[i] );
-	}*/
-
-
-	return bmp;
+  Bitmap *bmp = malloc(sizeof(Bitmap));
+  bmp->parent = NULL;
+  bmp->paint = &paint;
+  ReadBMP( filename, bmp );
+  return bmp;
 }

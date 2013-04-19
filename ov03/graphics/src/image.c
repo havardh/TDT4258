@@ -12,13 +12,16 @@ static void paint (void *shape, Screen *screen) {
 
 Image ImageNew( char* filename ) {
 
-	Bitmap bmp = BitmapNew( filename );
+	Bitmap *bmp = BitmapNew( filename );
+        
+        
 	Image image = {
 		.parent = NULL,
 		.paint = &paint,
 		.format = BMP,
-		.image = &bmp
+		.image = bmp
 	};
+        
 
 	return image;
 
