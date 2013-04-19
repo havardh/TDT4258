@@ -13,11 +13,13 @@ typedef struct {
 	int _fd;
 	int width;
 	int height;
-	uint8_t *frame_buffer;
+        Pixel *internal_buffer;
+	uint8_t *_frame_buffer;
 } Screen;
 
 Screen ScreenNew( int width, int height );
 void ScreenDestroy( Screen* );
 void ScreenDrawPixel( Screen*, int, int, Pixel*);
+void ScreenFlush( Screen* );
 
 #endif // SCREEN_H
