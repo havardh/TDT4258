@@ -21,10 +21,10 @@ void CanvasPaint (Canvas *canvas) {
 
 	Screen *screen = canvas->screen;
 
+        Pixel pixel = PixelNew (255, 255, 255);
 	for (int y=0; y<240; y++) {
-		for (int x=0; x<320 * 3; x++) {
-			int i = y * screen->width * 3 + x;
-			screen->frame_buffer[i] = 255;
+		for (int x=0; x<320; x++) {
+                  ScreenDrawPixel( screen, x, y, &pixel );
 		}
 	}
 
@@ -34,5 +34,7 @@ void CanvasPaint (Canvas *canvas) {
 
 		(*((Shape*)shape)->paint)( canvas->shapes[i], screen );
 	}
+
+        ScreenFlush( screen );
 
 }

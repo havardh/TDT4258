@@ -108,7 +108,6 @@ static void paint ( void *shape, Screen *screen ) {
 	int width = image->width;
 	int height = image->height;
 
-
 	for (int y=0; y < height; y++) {
 	  for (int x=0; x < width; x++) {
 	    ScreenDrawPixel( screen, x, y, &image->pixels[y*width + x]);
