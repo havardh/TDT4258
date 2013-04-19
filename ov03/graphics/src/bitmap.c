@@ -41,20 +41,18 @@ static DIBHeader ReadDIBHeader ( int fd ) {
 	return header;
 }
 
-static void swapLine ( void *a, void *b, int width ) {
+static void swapLine ( uint8_t *a, uint8_t *b, int width ) {
 
-	void *tmp = malloc(width);
-	memcpy(a, tmp, width);
-	memcpy(a, b, width);
-	memcpy(tmp, b, width);
+	for (int i=0; i<width; i++) {
+		swap(&a[i], &b[i]);
+	}
 
 }
 
-static void flip ( char *data, int width, int height ) {
+static void flip ( uint8_t *data, int width, int height ) {
 
-	for (int i=0, j=(width*height)-width; i < (width*height)/2; i += width, j -= width) {
-
-		swapLine( &data[i], &data[j], width );
+	for (int i=0, j=height-1 ; i < height/2; i += 1, j -= 1) {
+		swapLine( &data[i*width*3], &data[j*width*3], width*3 );
 
 	}
 
@@ -75,30 +73,75 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 	//Size: 230522, Offset: 122
 	//Width: 320, Height: 240
 	int offset = 122;//bmp_header.offset;
-	int size = 244922;//bmp_header.size;
-	int width = 320;//dib_header.width;
-	int height = 240;//dib_header.height;
+	int size = 170;//bmp_header.size;
+	int width = 4;//dib_header.width;
+	int height = 4;//dib_header.height;
 
 	// Read pixels
 	lseek( fd, offset, SEEK_SET);
-	void *data = malloc(size);
+	uint8_t *data = malloc(size);
 	uint8_t *ptr = (uint8_t*)data;
-	for (int i=0; i < size / BUFFER_SIZE; i++ ) {
+
+	for (int i=0; i < (size - offset) / BUFFER_SIZE; i++ ) {
 		read( fd, buffer, BUFFER_SIZE );
 
 		for (int i=0; i<BUFFER_SIZE; i++) {
+			//printf("%d ", buffer[i]);
 			(*ptr++) = buffer[i];
 		}
+		//printf("\n");
 
 	}
 
-	close( fd );
+	int remaining = (size - offset) % BUFFER_SIZE;
+	if (remaining) {
+		read( fd, buffer, remaining);
 
+		for (int i=0; i<remaining; i++) {
+
+			(*ptr++) = buffer[i];
+		}
+	}
+
+	close( fd );
+	/*
+	for(int i=0; i<remaining; i++) {
+
+
+		if (i % 3 == 0) {
+			if (i != 0) { printf(") "); }
+		if (i % 12 == 0) {
+			printf("\n");
+		}
+			printf("(");
+		}
+		printf("%d ", data[i]);
+	}
+	printf(")\n");
+	*/
 	flip( data, width, height );
 
+	/*
+	for(int i=0; i<remaining; i++) {
+
+
+		if (i % 3 == 0) {
+			if (i != 0) { printf(") "); }
+		if (i % 12 == 0) {
+			printf("\n");
+		}
+			printf("(");
+		}
+		printf("%d ", data[i]);
+	}
+	printf(")\n");
+	*/
 	bmp->width = width;
 	bmp->height = height;
 	bmp->pixels = data;
+
+
+	exit(0);
 }
 
 static void paint ( void *shape, Screen *screen ) {
