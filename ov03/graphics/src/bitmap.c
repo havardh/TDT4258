@@ -70,12 +70,20 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 
 	uint8_t buffer[BUFFER_SIZE];
 
-	//Size: 230522, Offset: 122
-	//Width: 320, Height: 240
-	int offset = 122;//bmp_header.offset;
-	int size = 170;//bmp_header.size;
-	int width = 4;//dib_header.width;
-	int height = 4;//dib_header.height;
+	// Size: 230522, Offset: 122
+	// Width: 320, Height: 240
+	// Size: 244922, Offset: 122
+	// Width: 340, Height: 240
+	/*
+	int offset = bmp_header.offset;
+	int size = bmp_header.size;
+	int width = dib_header.width;
+	int height = dib_header.height;
+	*/
+	int offset = 122;
+	int size = 244922;
+	int width = 340;
+	int height = 240;
 
 	// Read pixels
 	lseek( fd, offset, SEEK_SET);
@@ -104,8 +112,8 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 	}
 
 	close( fd );
-	/*
-	for(int i=0; i<remaining; i++) {
+
+	/*for(int i=0; i<(size - offset); i++) {
 
 
 		if (i % 3 == 0) {
@@ -117,12 +125,12 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 		}
 		printf("%d ", data[i]);
 	}
-	printf(")\n");
-	*/
+	printf(")\n");*/
+
 	flip( data, width, height );
 
-	/*
-	for(int i=0; i<remaining; i++) {
+
+	/*for(int i=0; i<size - offset; i++) {
 
 
 		if (i % 3 == 0) {
@@ -134,14 +142,12 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 		}
 		printf("%d ", data[i]);
 	}
-	printf(")\n");
-	*/
+	printf(")\n");*/
+
 	bmp->width = width;
 	bmp->height = height;
 	bmp->pixels = data;
 
-
-	exit(0);
 }
 
 static void paint ( void *shape, Screen *screen ) {
@@ -152,18 +158,20 @@ static void paint ( void *shape, Screen *screen ) {
 	int height = image->height;
 
 	for (int y=0; y < height; y++) {
-	  for (int x=0; x < width; x++) {
-	    ScreenDrawPixel( screen, x, y, &image->pixels[y*width + x]);
-	  }
+		for (int x=0; x < width; x++) {
+			Pixel *p = &image->pixels[y*width + x];
+			ScreenDrawPixel( screen, x, y, p);
+			//PixelPrint(p);
+		}
 	}
 
 }
 
 Bitmap *BitmapNew( char* filename ) {
 
-  Bitmap *bmp = malloc(sizeof(Bitmap));
-  bmp->parent = NULL;
-  bmp->paint = &paint;
-  ReadBMP( filename, bmp );
-  return bmp;
+	Bitmap *bmp = malloc(sizeof(Bitmap));
+	bmp->parent = NULL;
+	bmp->paint = &paint;
+	ReadBMP( filename, bmp );
+	return bmp;
 }
