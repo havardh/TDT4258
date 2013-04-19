@@ -12,13 +12,40 @@ static inline unsigned short __builtin_bswap16(unsigned short a)
   return (a<<8)|(a>>8);
 }
 
-static void fix_endian( BMPHeader *header ) {
+static void fix_endian( BMPHeader *bmp_header, DIBHeader *dib_header ) {
 
-  //	header->signature = __builtin_bswap16(header->signature);
-  //	header->size	  = __builtin_bswap32(header->size);
-  //	header->reserved1 = __builtin_bswap16(header->reserved1);
-  //	header->reserved2 = __builtin_bswap16(header->reserved2);
-  //	header->offset	  = __builtin_bswap32(header->reserved2);
+  char *p;
+
+  // BMP header
+  p = (char*) &bmp_header->signature;
+  swap( &p[0], &p[1] );
+
+  p = (char*) &bmp_header->size;
+  swap( &p[0], &p[3] );
+  swap( &p[1], &p[2] );
+
+  p = (char*) &bmp_header->reserved1;
+  swap( &p[0], &p[1] );
+
+  p = (char*) &bmp_header->reserved1;
+  swap( &p[0], &p[1] );
+
+  p = (char*) &bmp_header->offset;
+  swap( &p[0], &p[3] );
+  swap( &p[1], &p[2] );
+
+  // DIB header
+  p = (char*) &dib_header->size;
+  swap( &p[0], &p[3] );
+  swap( &p[1], &p[2] );
+
+  p = (char*) &dib_header->width;
+  swap( &p[0], &p[3] );
+  swap( &p[1], &p[2] );
+
+  p = (char*) &dib_header->height;
+  swap( &p[0], &p[3] );
+  swap( &p[1], &p[2] );
 
 }
 
@@ -27,9 +54,9 @@ static BMPHeader ReadBMPHeader ( int fd ) {
 	BMPHeader header;
 	read( fd, &header, sizeof(header));
 
-	if (0)
-		fix_endian( &header );
-
+        /*	if (0)
+          fix_endian( &header );
+        */
 
 	return header;
 }
@@ -67,23 +94,16 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 	DIBHeader dib_header = ReadDIBHeader( fd );       
 	uint8_t buffer[BUFFER_SIZE];
 
-	// Size: 230522, Offset: 122
-	// Width: 320, Height: 240
-	// Size: 244922, Offset: 122
-	// Width: 340, Height: 240
-	/*
+        fix_endian( &bmp_header, &dib_header );
+	
 	int offset = bmp_header.offset;
 	int size = bmp_header.size;
 	int width = dib_header.width;
 	int height = dib_header.height;
-	*/
-	int offset = 122;
-	int size = 244922;
-	int width = 340;
-	int height = 240;
 
 	printf("Size: %d, Offset: %d\n", size, offset);
         printf("Width: %d, Height: %d\n", width, height);
+        
 
 	// Read pixels
 	lseek( fd, offset, SEEK_SET);
@@ -94,12 +114,8 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 		read( fd, buffer, BUFFER_SIZE );
 
 		for (int i=0; i<BUFFER_SIZE; i++) {
-			printf("%d ", buffer[i]);
 			(*ptr++) = buffer[i];
 		}
-                exit(0);
-		//printf("\n");
-
 	}
 
 	int remaining = (size - offset) % BUFFER_SIZE;
@@ -114,41 +130,11 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 
 	close( fd );
 
-	/*for(int i=0; i<(size - offset); i++) {
-
-
-		if (i % 3 == 0) {
-			if (i != 0) { printf(") "); }
-		if (i % 12 == 0) {
-			printf("\n");
-		}
-			printf("(");
-		}
-		printf("%d ", data[i]);
-	}
-	printf(")\n");*/
-
 	flip( data, width, height );
-
-
-	/*for(int i=0; i<size - offset; i++) {
-
-
-		if (i % 3 == 0) {
-			if (i != 0) { printf(") "); }
-		if (i % 12 == 0) {
-			printf("\n");
-		}
-			printf("(");
-		}
-		printf("%d ", data[i]);
-	}
-	printf(")\n");*/
 
 	bmp->width = width;
 	bmp->height = height;
 	bmp->pixels = data;
-
 }
 
 static void paint ( void *shape, Screen *screen ) {
@@ -162,10 +148,8 @@ static void paint ( void *shape, Screen *screen ) {
 		for (int x=0; x < width; x++) {
 			Pixel *p = &image->pixels[y*width + x];
 			ScreenDrawPixel( screen, x, y, p);
-			PixelPrint(p);
 		}
 	}
-
 }
 
 Bitmap *BitmapNew( char* filename ) {

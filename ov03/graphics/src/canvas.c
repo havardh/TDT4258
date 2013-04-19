@@ -29,10 +29,8 @@ void CanvasPaint (Canvas *canvas) {
 		}
 	}
 
-
 	for (int i=0; i<canvas->top; i++) {
 		Shape *shape = (Shape*)canvas->shapes[i];
-
 		(*((Shape*)shape)->paint)( canvas->shapes[i], screen );
 	}
 

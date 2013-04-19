@@ -13,9 +13,8 @@ void canvas() {
 	Rectangle r2 = RectangleNew( 30, 30, 20, 200 );
 	CanvasAdd( &canvas, &r1 );
 	CanvasAdd( &canvas, &r2 );
-
+        
 	CanvasPaint(&canvas);
-	exit(0);
 
 	ScreenDestroy(&screen);
 
@@ -26,18 +25,25 @@ void image() {
   Screen screen = ScreenNew(320, 240);
   Canvas canvas = CanvasNew( &screen );
 
-  Image image = ImageNew("./data/blackwhite.bmp");
+  printf("Loading picture\n");
+  Image image = ImageNew("./data/picture.bmp");
+  printf("Picture loaded\n");
 
+  printf("Adding picture to canvas\n");
   CanvasAdd( &canvas, &image );
+  printf("Picture added\n");
+
+  printf("Painting canvas\n");
   CanvasPaint( &canvas );
+  printf("Canvas painted\n");
 
   ScreenDestroy( &screen );
 
 }
 
 int main(void) {
-
-	image();
+  //canvas();
+  image();
 
 	return 0;
 }

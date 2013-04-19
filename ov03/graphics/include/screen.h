@@ -12,9 +12,8 @@
 typedef struct {
 	int _fd;
 	int width;
-	int height;
-        Pixel *internal_buffer;
-	uint8_t *_frame_buffer;
+        int height;
+	uint8_t *frame_buffer;
 } Screen;
 
 Screen ScreenNew( int width, int height );
