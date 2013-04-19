@@ -7,26 +7,18 @@ static void swap (char *a, char *b) {
 	*b = t;
 }
 
+static inline unsigned short __builtin_bswap16(unsigned short a)
+{
+  return (a<<8)|(a>>8);
+}
+
 static void fix_endian( BMPHeader *header ) {
 
-	char *p;
-
-	p = (char*) &header->signature;
-	swap( &p[0], &p[1] );
-
-	p = (char*) &header->size;
-	swap( &p[0], &p[3] );
-	swap( &p[1], &p[2] );
-
-	p = (char*) &header->reserved1;
-	swap( &p[0], &p[1] );
-
-	p = (char*) &header->reserved1;
-	swap( &p[0], &p[1] );
-
-	p = (char*) &header->offset;
-	swap( &p[0], &p[3] );
-	swap( &p[1], &p[2] );
+	header->signature = __builtin_bswap16(header->signature);
+	header->size	  = __builtin_bswap32(header->size);
+	header->reserved1 = __builtin_bswap16(header->reserved1);
+	header->reserved2 = __builtin_bswap16(header->reserved2);
+	header->offset	  = __builtin_bswap32(header->reserved2);
 
 }
 
@@ -35,9 +27,10 @@ static BMPHeader ReadBMPHeader ( int fd ) {
 	BMPHeader header;
 	read( fd, &header, sizeof(header));
 
-#ifdef TARGET_OS_MAC
-	fix_endian( &header );
-#endif //
+	if (0)
+		fix_endian( &header );
+
+
 	return header;
 }
 
@@ -57,7 +50,7 @@ static void swapLine ( void *a, void *b, int width ) {
 
 }
 
-static void flip ( void *data, int width, int height ) {
+static void flip ( char *data, int width, int height ) {
 
 	for (int i=0, j=(width*height)-width; i < (width*height)/2; i += width, j -= width) {
 
@@ -79,10 +72,12 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 
 	uint8_t buffer[BUFFER_SIZE];
 
-	int offset = bmp_header.offset;
-	int size = bmp_header.size;
-	int width = dib_header.width;
-	int height = dib_header.height;
+	//Size: 230522, Offset: 122
+	//Width: 320, Height: 240
+	int offset = 122;//bmp_header.offset;
+	int size = 230522;//bmp_header.size;
+	int width = 320;//dib_header.width;
+	int height = 240;//dib_header.height;
 
 	// Read pixels
 	lseek( fd, offset, SEEK_SET);
@@ -99,7 +94,7 @@ static void ReadBMP ( char* filename, Bitmap* bmp ) {
 
 	close( fd );
 
-	flip( data, width, height );
+	//flip( data, width, height );
 
 	bmp->width = width;
 	bmp->height = height;
