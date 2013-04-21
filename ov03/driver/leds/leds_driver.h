@@ -10,10 +10,10 @@ static ssize_t release_leds( struct inode *inode, struct file *filp );
 static ssize_t read_leds( struct file *filp, char __user *buff, 
 	size_t count, loff_t *offp );
 
-ssize_t write_leds ( struct file *filp, char __user *buff, 
+static ssize_t write_leds ( struct file *filp, char __user *buff, 
 	size_t count, loff_t *offp );
 
-//static void __init leds_init ( void );
+static int __init leds_init ( void );
 static void __exit leds_exit ( void );
 
 // struct leds_device {

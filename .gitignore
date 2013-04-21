@@ -13,3 +13,4 @@
 *.ko
 *.order
 *.mod*
+*.o.d
