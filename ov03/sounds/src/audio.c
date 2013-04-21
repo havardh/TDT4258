@@ -38,14 +38,16 @@ void AudioDestroy (Audio *audio) {
 
 void Play( Audio *audio, char *sample ) {
 
-	int fd[2];
-	fd[0] = audio->_fd;
-	fd[1] = open( sample, O_RDWR );
+	int fd = open( sample, O_RDWR, 0644 );
 
-	if (pipe(fd)) {
-		printf("Could not pipe\n");
+	char *buffer[BUF_SIZE];
+	int n;
+
+	while ((n = read( fd, buffer, BUF_SIZE )) > 0) {
+		write( audio->_fd, buffer, n );
 	}
 
+	close( fd );
 
 	/*	printf("Writing to %d\n", audio->_fd);
 
