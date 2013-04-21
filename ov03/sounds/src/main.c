@@ -5,7 +5,7 @@ int main( void ) {
 
 	//Audio audio = AudioNew();
 
-	Wave wave = WaveNew("./data/8k8bitpcm.wav");
+	Wave *wave = WaveNew("./data/8k8bitpcm.wav");
 
 	//Play( &audio, NULL );
 

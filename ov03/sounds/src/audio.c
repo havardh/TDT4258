@@ -35,14 +35,15 @@ void AudioDestroy (Audio *audio) {
 void Play( Audio *audio, Sample *sample ) {
 
 	printf("Writing to %d\n", audio->_fd);
-	unsigned char buffer[BUF_SIZE];
-	for (int i=0; i<BUF_SIZE; i++) {
-		buffer[i] = rand();
-	}
-	for (int i=0; i<10000; i++) {
+
+	uint8_t buffer[BUF_SIZE];
+	for (int i=0; i<sample->size; i += BUF_SIZE) {
+
+		for (int j=0; j<BUF_SIZE; j++) {
+			buffer[j] = sample->samples[i];
+		}
+
 		write( audio->_fd, &buffer, BUF_SIZE );
 	}
-	buffer[0] = EOF;
-	write( audio->_fd, &buffer, 1 );
 
 }

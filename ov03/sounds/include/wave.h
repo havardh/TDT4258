@@ -34,6 +34,6 @@ typedef struct {
 
 } Wave;
 
-Wave WaveNew( char* filename );
+Wave *WaveNew( char* filename );
 
 #endif // WAVE_H
