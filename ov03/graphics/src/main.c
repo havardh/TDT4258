@@ -26,11 +26,11 @@ void image() {
   Canvas canvas = CanvasNew( &screen );
 
   printf("Loading picture\n");
-  Image image = ImageNew("./data/box.bmp", 20, 20);
+  Image *image = ImageNew("./data/box.bmp", 50, 100);
   printf("Picture loaded\n");
 
   printf("Adding picture to canvas\n");
-  CanvasAdd( &canvas, &image );
+  CanvasAdd( &canvas, image );
   printf("Picture added\n");
 
   printf("Painting canvas\n");

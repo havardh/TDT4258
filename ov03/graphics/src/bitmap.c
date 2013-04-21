@@ -139,15 +139,16 @@ static void paint ( void *shape, Screen *screen ) {
 	Bitmap *image = (Bitmap*) shape;
 	Image *parent = (Image*) image->parent;
 
-	int x = parent->x;
-	int y = parent->y;
+        int sx = parent->x;
+        int sy = parent->y;
+
 	int width = image->width;
 	int height = image->height;
 
-	for (; y < height; y++) {
-		for (; x < width; x++) {
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
 			Pixel *p = &image->pixels[y*width + x];
-			ScreenDrawPixel( screen, x, y, p);
+			ScreenDrawPixel( screen, x+sx, y+sy, p);
 		}
 	}
 }

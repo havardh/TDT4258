@@ -9,20 +9,19 @@ static void paint (void *shape, Screen *screen) {
 
 }
 
-Image ImageNew( char* filename, int x, int y ) {
+Image *ImageNew( char* filename, int x, int y ) {
 
-	Bitmap *bmp = BitmapNew( filename );
+        Image *image = malloc(sizeof(Image));
+        Bitmap *bmp = BitmapNew( filename );
 
-	Image image = {
-		.parent = NULL,
-		.paint = &paint,
-		.x = x,
-		.y = y,
-		.format = BMP,
-		.image = bmp
-	};
-	bmp->parent = &image;
+        image->parent = NULL;
+	image->paint = &paint;
+	image->x = x;
+	image->y = y;
+        image->format = BMP;
+        image->image = bmp;
+
+        bmp->parent = mimage;
 
 	return image;
-
 }

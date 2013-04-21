@@ -18,6 +18,6 @@ typedef struct {
 	void *image;
 } Image;
 
-Image ImageNew( char*, int, int );
+Image *ImageNew( char*, int, int );
 
 #endif // IMAGE_H
