@@ -54,10 +54,6 @@ static BMPHeader ReadBMPHeader ( int fd ) {
 	BMPHeader header;
 	read( fd, &header, sizeof(header));
 
-        /*	if (0)
-          fix_endian( &header );
-        */
-
 	return header;
 }
 
@@ -87,23 +83,24 @@ static void flip ( uint8_t *data, int width, int height ) {
 
 static void ReadBMP ( char* filename, Bitmap* bmp ) {
 
-        printf("Reading: %s\n", filename);
+	printf("Reading: %s\n", filename);
 
 	int fd = open( filename, O_RDWR );
 	BMPHeader bmp_header = ReadBMPHeader( fd );
-	DIBHeader dib_header = ReadDIBHeader( fd );       
+	DIBHeader dib_header = ReadDIBHeader( fd );
 	uint8_t buffer[BUFFER_SIZE];
 
-        fix_endian( &bmp_header, &dib_header );
-	
+#ifndef __APPLE__
+	fix_endian( &bmp_header, &dib_header );
+#endif
 	int offset = bmp_header.offset;
 	int size = bmp_header.size;
 	int width = dib_header.width;
 	int height = dib_header.height;
 
 	printf("Size: %d, Offset: %d\n", size, offset);
-        printf("Width: %d, Height: %d\n", width, height);
-        
+	printf("Width: %d, Height: %d\n", width, height);
+
 
 	// Read pixels
 	lseek( fd, offset, SEEK_SET);
