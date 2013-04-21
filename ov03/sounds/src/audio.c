@@ -6,8 +6,11 @@
 
 Audio AudioNew ( void ) {
 
-	char* test_file = "./data/test";
+#ifdef __APPLE__
+	char* dsp = "./data/test";
+#else
 	char* dsp = "/dev/dsp";
+#endif
 
 	int fd = open( dsp, O_RDWR | O_CREAT | O_TRUNC );
 
@@ -17,9 +20,10 @@ Audio AudioNew ( void ) {
 	//int channels = CHANNELS;
 	//ioctl( fd, SNDCTL_DSP_CHANNELS, &channels);
 
-	//int dsp_rate = DSP_RATE;
-	//ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
-
+#ifndef __APPLE__
+	int dsp_rate = DSP_RATE;
+	ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
+#endif
 	Audio audio = {
 		._fd = fd
 	};

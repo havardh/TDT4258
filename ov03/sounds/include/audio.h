@@ -4,7 +4,9 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
+#ifndef __APPLE__
 #include <linux/soundcard.h>
+#endif
 #include <fcntl.h>
 #include <stdio.h>
 #include "sample.h"
