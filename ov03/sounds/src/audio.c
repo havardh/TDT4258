@@ -9,7 +9,7 @@ Audio AudioNew ( void ) {
 	char* test_file = "./data/test";
 	char* dsp = "/dev/dsp";
 
-	int fd = open( test_file, O_RDWR | O_CREAT | O_TRUNC );
+	int fd = open( dsp, O_RDWR | O_CREAT | O_TRUNC );
 
 	//int bitspersample = BITPERSAMPLE;
 	//ioctl( fd, SNDCTL_DSP_SETFMT &bitspersample);

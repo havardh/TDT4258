@@ -48,7 +48,7 @@ void fix_endian( RIFFHeader *riff_header, FmtHeader *fmt_header, Wave *wave) {
 #ifdef __APPLE__
 	wave->Subchunk2ID = endian_convert_uint32_t(&wave->Subchunk2ID);
 #else
-	wave->Subchunk2Size = endian_convert_uint32_t(&wave->Subchunk2Size)
+	wave->Subchunk2Size = endian_convert_uint32_t(&wave->Subchunk2Size);
 #endif
 
 	//fmt_header-> = endian_convert_uint16_t(fmt_header->);
