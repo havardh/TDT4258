@@ -13,7 +13,8 @@ Screen ScreenNew (int width, int height) {
 	Screen screen;
 	screen.width = width;
 	screen.height = height;
-	screen->internal_buffer = malloc(screen_size * sizeof(uint8_t));
+        int screen_size = 24 / 8 * 240 * 320;
+	screen.internal_buffer = malloc(screen_size * sizeof(uint8_t));
 	mmap_frame_buffer(&screen);
 	return screen;
 }
@@ -38,6 +39,8 @@ void ScreenDrawPixel( Screen *screen, int x, int y, Pixel *pixel ) {
 void ScreenFlush( Screen *screen ) {
 
 	int screen_size = 24 / 8 * 240 * 320;
-	memcpy( screen->internal_buffer, screen->frame_buffer, screen_size * sizeof(uint8_t) );
+        for (int i=0; i < screen_size; i++) {
+          screen->frame_buffer[i] = screen->internal_buffer[i];
+        }
 
 }
