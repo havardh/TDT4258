@@ -21,7 +21,7 @@ Image *ImageNew( char* filename, int x, int y ) {
         image->format = BMP;
         image->image = bmp;
 
-        bmp->parent = mimage;
+        bmp->parent = image;
 
 	return image;
 }
