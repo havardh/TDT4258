@@ -1,1 +1,0 @@
-cmd_/opt/dmlab/home/havarhoi/projects/TDT4258/ov03/driver/driver.ko := avr32-linux-ld -r  -T /opt/atstk1002_bsp/build/linux-2.6.35.4/scripts/module-common.lds --build-id -o /opt/dmlab/home/havarhoi/projects/TDT4258/ov03/driver/driver.ko /opt/dmlab/home/havarhoi/projects/TDT4258/ov03/driver/driver.o /opt/dmlab/home/havarhoi/projects/TDT4258/ov03/driver/driver.mod.o
