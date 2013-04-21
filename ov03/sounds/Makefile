@@ -7,7 +7,7 @@ AVR32PROGRAM = avr32program
 ####### RULES ##########################################################
 .PHONY : all
 all:
-	$(CC) -g --std=c99 ../util/src/endian.c src/wave.c src/main.c -I../util/include -Iinclude -o bin/sound_test
+	$(CC) -g --std=c99 ../util/src/endian.c src/audio.c src/sample.c src/wave.c src/main.c -I../util/include -Iinclude -o bin/sound_test
 
 .PHONY : clean
 clean :
