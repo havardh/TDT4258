@@ -5,7 +5,7 @@
 
 // https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
 
-typedef struct {
+typedef struct __ {
 
 	uint32_t ChunkID;
 	uint32_t ChunkSize;
