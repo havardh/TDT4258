@@ -2,17 +2,19 @@
 #define _LEDS_H_
 
 #define NUM_DEVICES			1
-#define MEM_QUANTUM			sizeof(avr32_pio_t);
 
-static void open_leds( struct inode *inode, struct file *filp );
+static ssize_t open_leds( struct inode *inode, struct file *filp );
 
-static void release_leds( struct inode *inode, struct file *filp );
+static ssize_t release_leds( struct inode *inode, struct file *filp );
 
-static void read_leds( struct file *filp, char __user *buff, 
+static ssize_t read_leds( struct file *filp, char __user *buff, 
 	size_t count, loff_t *offp );
 
-ssize_t void write_leds ( struct file *filp, char __user *buff, 
+ssize_t write_leds ( struct file *filp, char __user *buff, 
 	size_t count, loff_t *offp );
+
+//static void __init leds_init ( void );
+static void __exit leds_exit ( void );
 
 // struct leds_device {
 //	struct semaphore sem;
