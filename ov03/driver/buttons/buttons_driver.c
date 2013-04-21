@@ -22,14 +22,18 @@ volatile avr32_pio_t *piob = &AVR32_PIOB;
 dev_t dev;
 struct buttons_dev *buttons_device;
 
-static struct file_operations button_fops = { .owner = THIS_MODULE, .open =
-		open_buttons, .write = write_buttons, .read = read_buttons, .release =
-		release_buttons };
+static struct file_operations button_fops = { 
+	.owner = THIS_MODULE, 
+	.open = open_buttons, 
+	.write = write_buttons, 
+	.read = read_buttons, 
+	.release = release_buttons 
+};
 
-static void open_buttons(struct inode *inode, struct file *filp) {
+static ssize_t open_buttons(struct inode *inode, struct file *filp) {
 	return 0;
 }
-static void read_buttons( struct file *filp, char __user *buff, size_t count, loff_t *offp ) {
+static ssize_t read_buttons( struct file *filp, char __user *buff, size_t count, loff_t *offp ) {
 	char output;
 	if (count == 0)
 	return 0;
@@ -39,19 +43,20 @@ static void read_buttons( struct file *filp, char __user *buff, size_t count, lo
 	*offp += 1;
 	return 1;
 }
-static void release_buttons(struct inode *inode, struct file *filp) {
+static ssize_t release_buttons(struct inode *inode, struct file *filp) {
 	return 0;
 }
 
-ssize_t void write_buttons ( struct file *filp, char __user *buff,
+ssize_t write_buttons ( struct file *filp, char __user *buff,
 		size_t count, loff_t *offp ) {
 	return 0;
 }
 
 static int __init buttons_init ( void ) {
-	printk ( KERN_INFO "Loading driver...\n" );
-
 	int result;
+	int mem_quantum = sizeof(avr32_pio_t);
+	
+	printk ( KERN_INFO "Loading driver...\n" );
 
 	if ( buttons_major ) {
 		dev = MKDEV ( buttons_major, buttons_minor );
@@ -71,7 +76,7 @@ static int __init buttons_init ( void ) {
 
 	// int n = sizeof(avr32_pio_t);
 	// printk ( KERN_INFO "requesting region a of %dB\n", n );
-	result = request_region ( AVR32_PIOB_ADDRESS, MEM_QUANTUM, "buttons" );
+	result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, "buttons" );
 	if ( result <= 0 ) {
 		printk( KERN_WARNING "Could not request region at PIOB\n" );
 		buttons_exit ();
@@ -86,20 +91,19 @@ static int __init buttons_init ( void ) {
 	// Set up char_dev structure for the device
 	struct cdev *char_dev = cdev_alloc ();
 	cdev_init ( char_dev, &button_fops );
-	int error = cdev_add (char_dev, devno, 1);
+	int error = cdev_add (char_dev, dev, 1);
 	if ( error )
-	printk ( KERN_WARNING "Error code:%d while adding buttons\n", error );
+		printk ( KERN_WARNING "Error code:%d while adding buttons\n", error );
 	printk ( KERN_INFO "buttons initialized\n" );
 	return 0;
 }
 
 static void __exit buttons_exit ( void ) {
-	// int n = sizeof(avr32_pio_t);
-	release_region ( AVR32_PIOB_ADDRESS, MEM_QUANTUM );
-	unregister_chardev_region ( dev, NUM_DEVICES );
+	int mem_quantum = sizeof(avr32_pio_t);
+	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
+	unregister_chrdev_region ( dev, NUM_DEVICES );
+	//cdev_del(&driver_cdev);
 	printk ( KERN_INFO "buttons unloaded\n" );
-
-	cdev_del(&driver_cdev);
 }
 
 module_init( buttons_init);
