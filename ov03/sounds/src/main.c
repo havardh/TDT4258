@@ -1,11 +1,14 @@
-#include "sounds.h"
+//#include "audio.h"
+#include "wave.h"
 
 int main( void ) {
 
-	Audio audio = AudioNew();
+	//Audio audio = AudioNew();
 
-	Play( &audio, NULL );
+	Wave wave = WaveNew("./data/8k8bitpcm.wav");
 
-	AudioDestroy( &audio );
+	//Play( &audio, NULL );
+
+	//AudioDestroy( &audio );
 	return 0;
 }
