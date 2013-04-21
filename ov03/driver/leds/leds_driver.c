@@ -30,18 +30,18 @@ static struct file_operations led_fops = {
 	.release = release_leds
 };
 
-static void open_leds( struct inode *inode, struct file *filp ) {
+static ssize_t open_leds( struct inode *inode, struct file *filp ) {
 	return 0;
 }
-static void read_leds( struct file *filp, char __user *buff, 
+static ssize_t read_leds( struct file *filp, char __user *buff, 
 		size_t count, loff_t *offp ) {
 	return 0;
 }
-static void release_leds( struct inode *inode, struct file *filp ) {
+static ssize_t release_leds( struct inode *inode, struct file *filp ) {
 	return 0;
 }
 
-ssize_t void write_leds ( struct file *filp, char __user *buff, 
+ssize_t write_leds ( struct file *filp, char __user *buff, 
 		size_t count, loff_t *offp ) {
 	// volatile avr32_pio_t *piob = &AVR32_PIOB;
 	printk( KERN_INFO "Lighting leds: %s", buff );
@@ -56,9 +56,10 @@ ssize_t void write_leds ( struct file *filp, char __user *buff,
 }
 
 static int __init leds_init ( void ) {
-	printk ( KERN_INFO "Loading driver...\n" );
-	
+	int mem_quantum = sizeof( avr32_pio_t );
 	int result;
+	
+	printk ( KERN_INFO "Loading driver...\n" );
 
 	if ( leds_major ) {
 		dev = MKDEV ( leds_major, leds_minor );
@@ -78,7 +79,7 @@ static int __init leds_init ( void ) {
 
 	// int n = sizeof(avr32_pio_t);
 	// printk ( KERN_INFO "requesting region a of %dB\n", n );
-	result = request_region ( AVR32_PIOB_ADDRESS, MEM_QUANTUM, "leds" );
+	result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, "leds" );
 	if ( result <= 0 ) {
 		printk( KERN_WARNING "Could not request region at PIOB\n" );
 		leds_exit ();
@@ -92,7 +93,7 @@ static int __init leds_init ( void ) {
 	// Set up char_dev structure for the device
 	struct cdev *char_dev = cdev_alloc ();
 	cdev_init ( char_dev, &led_fops );
-	int error = cdev_add (char_dev, devno, 1);
+	int error = cdev_add (char_dev, dev, 1);
 	if ( error )
 		printk ( KERN_WARNING "Error code:%d while adding leds\n", error );
 	printk ( KERN_INFO "Leds initialized\n" );
@@ -100,10 +101,11 @@ static int __init leds_init ( void ) {
 }
 
 static void __exit leds_exit ( void ) {
-	// int n = sizeof(avr32_pio_t);
+	int mem_quantum = sizeof( avr32_pio_t );
+	
 	piob->codr = 0xff;
-	release_region ( AVR32_PIOB_ADDRESS, MEM_QUANTUM );
-	unregister_chardev_region ( dev, NUM_DEVICES );
+	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
+	unregister_chrdev_region ( dev, NUM_DEVICES );
 	printk ( KERN_INFO "Leds unloaded\n" );
 }
 
