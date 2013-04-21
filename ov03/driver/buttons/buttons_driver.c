@@ -1,110 +1,58 @@
-#include <linux/init.h>
+#include <linux/input.h>
 #include <linux/module.h>
-#include <linux/moduleparam.h>
-#include <linux/kdev_t.h>
-#include <linux/fs.h>
-#include <linux/cdev.h>
-#include <linux/ioport.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/interrupt.h>
+#include <linux/input.h>
+
 #include <asm/io.h>
-#include <asm/uaccess.h>
+#include <asm/irq.h>
+#include <asm/gpio.h>
+#include <asm/system.h>
+#include <asm/arch/at32ap7000.h>
 
-#include "../ap7000.h"
-#include "buttons_driver.h"
+#define BUTTON_PIN GPIO_PIN_PB(25)
+#define BUTTON_IRQ  gpio_to_irq(BUTTON_PIN)
 
-MODULE_LICENSE("Dual BSD/GPL");
-
-int buttons_major = 0;
-int buttons_minor = 0;
-int buttons_quantum = 0;
-
-volatile avr32_pio_t *piob = &AVR32_PIOB;
-
-dev_t dev;
-struct buttons_dev *buttons_device;
-
-static struct file_operations button_fops = { 
-	.owner = THIS_MODULE, 
-	.open = open_buttons, 
-	.write = write_buttons, 
-	.read = read_buttons, 
-	.release = release_buttons 
-};
-
-static ssize_t open_buttons(struct inode *inode, struct file *filp) {
-	return 0;
-}
-static ssize_t read_buttons( struct file *filp, char __user *buff, size_t count, loff_t *offp ) {
-	char output;
-	if (count == 0)
-	return 0;
-	output = ~piob->pdsr;
-
-	copy_to_user(buff, &output, 1);
-	*offp += 1;
-	return 1;
-}
-static ssize_t release_buttons(struct inode *inode, struct file *filp) {
-	return 0;
+static irqreturn_t button_interrupt(int irq, void *dev_id)
+{
+	printk(KERN_ALERT "int %d: interupt received. Irq number: %d\n", -EBUSY,BUTTON_PIN);
+	return IRQ_HANDLED;
 }
 
-ssize_t write_buttons ( struct file *filp, char __user *buff,
-		size_t count, loff_t *offp ) {
-	return 0;
-}
-
-static int __init buttons_init ( void ) {
-	int result;
-	int mem_quantum = sizeof(avr32_pio_t);
+static int __init button_init(void)
+{
+	unsigned int ret;
 	
-	printk ( KERN_INFO "Loading driver...\n" );
-
-	if ( buttons_major ) {
-		dev = MKDEV ( buttons_major, buttons_minor );
-		result = register_chrdev_region ( dev, NUM_DEVICES, "buttons" );
-	} else {
-		result = alloc_chrdev_region ( &dev, buttons_minor, NUM_DEVICES, "buttons" );
-		buttons_major = MAJOR( dev );
+	printk(KERN_ALERT "Module started\n");
+	printk(KERN_ALERT "Requesting GPIO %d\n",BUTTON_PIN);
+	printk(KERN_ALERT "Requesting Irq %d\n",BUTTON_IRQ);
+	
+	ret = gpio_request(BUTTON_PIN, "blah");
+	if (ret < 0) {
+		printk(KERN_ALERT "error %d: could not request gpio: %d\n", ret,BUTTON_PIN);
+		return ret;
 	}
-
-	if ( result < 0 ) {
-		printk ( KERN_WARNING "buttons: can't get major %d\n", buttons_major );
-		return result;
+	
+	if (request_irq(BUTTON_IRQ, button_interrupt, 0, "button", NULL)) {
+		printk(KERN_ALERT "error %d: could not request irq: %d\n", -EBUSY,BUTTON_PORT);
+		return -EBUSY;
 	}
-
-	// Build dev_t data item
-	dev = MKDEV( buttons_major, buttons_minor );
-
-	// int n = sizeof(avr32_pio_t);
-	// printk ( KERN_INFO "requesting region a of %dB\n", n );
-	result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, "buttons" );
-	if ( result <= 0 ) {
-		printk( KERN_WARNING "Could not request region at PIOB\n" );
-		buttons_exit ();
-		return -ENODEV;
-	}
-
-	// Initialize the buttons
-	piob->per |= 0xff;
-	piob->puer |= 0xff;
-	piob->ier |= 0xff;
-
-	// Set up char_dev structure for the device
-	struct cdev *char_dev = cdev_alloc ();
-	cdev_init ( char_dev, &button_fops );
-	int error = cdev_add (char_dev, dev, 1);
-	if ( error )
-		printk ( KERN_WARNING "Error code:%d while adding buttons\n", error );
-	printk ( KERN_INFO "buttons initialized\n" );
+	
 	return 0;
-}
+} 
 
-static void __exit buttons_exit ( void ) {
-	int mem_quantum = sizeof(avr32_pio_t);
-	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
-	unregister_chrdev_region ( dev, NUM_DEVICES );
-	//cdev_del(&driver_cdev);
-	printk ( KERN_INFO "buttons unloaded\n" );
-}
+static void __exit button_exit(void)
+{
+	printk(KERN_ALERT "exit : removing irq: %d\n",BUTTON_IRQ);
+	printk(KERN_ALERT "exit : removing button: %d\n",BUTTON_PIN);
+	free_irq(BUTTON_IRQ,  NULL);
+	gpio_free(BUTTON_PIN);
+} 
 
-module_init( buttons_init);
-module_exit( buttons_exit);
+module_init(button_init);
+module_exit(button_exit);
+
+MODULE_AUTHOR("");
+MODULE_DESCRIPTION("");
+MODULE_LICENSE("GPL");
