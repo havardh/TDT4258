@@ -22,6 +22,6 @@ typedef struct {
 Audio AudioNew( void );
 void AudioDestroy( Audio* );
 
-void Play( Audio*, Sample* );
+void Play( Audio*, char* );
 
 #endif // AUDIO_H

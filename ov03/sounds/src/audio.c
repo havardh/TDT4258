@@ -36,9 +36,18 @@ void AudioDestroy (Audio *audio) {
 	close( audio->_fd );
 }
 
-void Play( Audio *audio, Sample *sample ) {
+void Play( Audio *audio, char *sample ) {
 
-	printf("Writing to %d\n", audio->_fd);
+	int fd[2];
+	fd[0] = audio->_fd;
+	fd[1] = open( sample, O_RDWR );
+
+	if (pipe(fd)) {
+		printf("Could not pipe\n");
+	}
+
+
+	/*	printf("Writing to %d\n", audio->_fd);
 
 	uint8_t buffer[BUF_SIZE];
 	for (int i=0; i<sample->size; i += BUF_SIZE) {
@@ -48,6 +57,6 @@ void Play( Audio *audio, Sample *sample ) {
 		}
 
 		write( audio->_fd, &buffer, BUF_SIZE );
-	}
+		}*/
 
 }

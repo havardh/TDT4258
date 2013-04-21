@@ -74,6 +74,8 @@ static void ReadSamples( int fd, Wave *wave ) {
 
 	int size =  wave->Subchunk2Size;
 
+	printf("%d\n", size);
+
 	uint8_t *data = malloc(size);
 	uint8_t *ptr = data;
 
