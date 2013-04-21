@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include "pixel.h"
 
+#define SCREEN_SIZE 230400
+
 typedef struct {
 	int _fd;
 	int width;
