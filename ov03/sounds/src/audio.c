@@ -1,4 +1,4 @@
-#include "sounds.h"
+#include "audio.h"
 
 #define CHANNELS 2
 #define BITPERSAMPLE 8
@@ -6,10 +6,10 @@
 
 Audio AudioNew ( void ) {
 
-	char* test_file = "/home/avr32/project/sounds/test";
+	char* test_file = "./data/test";
 	char* dsp = "/dev/dsp";
 
-	int fd = open( dsp, O_RDWR | O_CREAT | O_TRUNC );
+	int fd = open( test_file, O_RDWR | O_CREAT | O_TRUNC );
 
 	//int bitspersample = BITPERSAMPLE;
 	//ioctl( fd, SNDCTL_DSP_SETFMT &bitspersample);
@@ -17,8 +17,8 @@ Audio AudioNew ( void ) {
 	//int channels = CHANNELS;
 	//ioctl( fd, SNDCTL_DSP_CHANNELS, &channels);
 
-	int dsp_rate = DSP_RATE;
-	ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
+	//int dsp_rate = DSP_RATE;
+	//ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
 
 	Audio audio = {
 		._fd = fd

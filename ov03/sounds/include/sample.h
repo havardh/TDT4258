@@ -9,6 +9,6 @@ typedef struct {
 	uint8_t *samples;
 } Sample;
 
-Sample SampleNew( void );
+Sample SampleNew( char *filename );
 
 #endif // SAMPLE_H
