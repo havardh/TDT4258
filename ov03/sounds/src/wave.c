@@ -21,7 +21,7 @@ static FmtHeader ReadFmtHeader( int fd ) {
 
 }
 
-void fix_endian( RIFFHeader *riff_header, FmtHeader *fmt_header) {
+void fix_endian( RIFFHeader *riff_header, FmtHeader *fmt_header, Wave *wave) {
 
 	// Fix RIFF Header
 #ifdef __APPLE__
@@ -44,10 +44,15 @@ void fix_endian( RIFFHeader *riff_header, FmtHeader *fmt_header) {
 	fmt_header->BitsPerSample = endian_convert_uint16_t(&fmt_header->BitsPerSample);
 #endif
 
+	// Fix wave
+#ifdef __APPLE__
+	wave->Subchunk2ID = endian_convert_uint32_t(&wave->Subchunk2ID);
+#else
+	wave->Subchunk2Size = endian_convert_uint32_t(&wave->Subchunk2Size)
+#endif
+
 	//fmt_header-> = endian_convert_uint16_t(fmt_header->);
 	//fmt_header-> = endian_convert_uint32_t(fmt_header->);
-
-
 
 }
 
@@ -65,32 +70,57 @@ static char* read_field(char *field) {
 
 }
 
+static void ReadSamples( int fd, Wave *wave ) {
+
+	int size =  wave->Subchunk2Size;
+
+	uint8_t *data = malloc(size);
+	uint8_t *ptr = data;
+
+	uint8_t buffer[BUFFER_SIZE];
+	for (int i=0; i < size / BUFFER_SIZE; i++) {
+		read( fd, buffer, BUFFER_SIZE );
+
+		for (int i=0; i<BUFFER_SIZE; i++) {
+			(*ptr++) = buffer[i];
+		}
+	}
+
+	int remaining = size % BUFFER_SIZE;
+	if (remaining) {
+		read( fd, buffer, remaining);
+
+		for (int i=0; i<remaining; i++) {
+
+			(*ptr++) = buffer[i];
+		}
+	}
+
+	wave->samples = data;
+
+}
+
 static void ReadWAVE( char *filename, Wave *wave ) {
 
 	int fd = open( filename, O_RDWR );
 	RIFFHeader riff_header = ReadRIFFHeader( fd );
 	FmtHeader fmt_header = ReadFmtHeader( fd );
-	//uint8_t buffer[BUFFER_SIZE];
 
-	fix_endian( &riff_header, &fmt_header );
+	read( fd, &wave->Subchunk2ID, sizeof(uint32_t));
+	read( fd, &wave->Subchunk2Size, sizeof(uint32_t));
+	fix_endian( &riff_header, &fmt_header, wave );
 
-	printf("%s\n", read_field(&riff_header.ChunkID));
-	printf("%s\n", read_field(&riff_header.Format));
-
-	printf("%d\n", fmt_header.NumChannels);
-	printf("%d\n", fmt_header.SampleRate);
-	printf("%d\n", fmt_header.BitsPerSample);
-
+	ReadSamples( fd, wave );
 
 	close( fd );
 
 }
 
-Wave WaveNew( char* filename ) {
+Wave *WaveNew( char* filename ) {
 
-	Wave wave;
+	Wave *wave = malloc(sizeof(Wave));
 
-	ReadWAVE( filename, &wave );
+	ReadWAVE( filename, wave );
 
 	return wave;
 

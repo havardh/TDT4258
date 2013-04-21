@@ -1,4 +1,4 @@
-#include "sounds.h"
+#include "audio.h"
 
 #define CHANNELS 2
 #define BITPERSAMPLE 8
@@ -6,10 +6,10 @@
 
 Audio AudioNew ( void ) {
 
-	char* test_file = "/home/avr32/project/sounds/test";
+	char* test_file = "./data/test";
 	char* dsp = "/dev/dsp";
 
-	int fd = open( dsp, O_RDWR | O_CREAT | O_TRUNC );
+	int fd = open( test_file, O_RDWR | O_CREAT | O_TRUNC );
 
 	//int bitspersample = BITPERSAMPLE;
 	//ioctl( fd, SNDCTL_DSP_SETFMT &bitspersample);
@@ -17,8 +17,8 @@ Audio AudioNew ( void ) {
 	//int channels = CHANNELS;
 	//ioctl( fd, SNDCTL_DSP_CHANNELS, &channels);
 
-	int dsp_rate = DSP_RATE;
-	ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
+	//int dsp_rate = DSP_RATE;
+	//ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
 
 	Audio audio = {
 		._fd = fd
@@ -35,14 +35,15 @@ void AudioDestroy (Audio *audio) {
 void Play( Audio *audio, Sample *sample ) {
 
 	printf("Writing to %d\n", audio->_fd);
-	unsigned char buffer[BUF_SIZE];
-	for (int i=0; i<BUF_SIZE; i++) {
-		buffer[i] = rand();
-	}
-	for (int i=0; i<10000; i++) {
+
+	uint8_t buffer[BUF_SIZE];
+	for (int i=0; i<sample->size; i += BUF_SIZE) {
+
+		for (int j=0; j<BUF_SIZE; j++) {
+			buffer[j] = sample->samples[i];
+		}
+
 		write( audio->_fd, &buffer, BUF_SIZE );
 	}
-	buffer[0] = EOF;
-	write( audio->_fd, &buffer, 1 );
 
 }

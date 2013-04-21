@@ -1,8 +1,15 @@
 .DS_Store
 .project
 .cproject
-<<<<<<< HEAD
+*.o
+*.elf
+
+#Eclipse
 .metadata
-=======
-.metadata
->>>>>>> merge
+
+#Drivers
+*.cmd
+*.symvers
+*.ko
+*.order
+*.mod*
