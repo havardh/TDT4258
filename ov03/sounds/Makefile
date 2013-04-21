@@ -1,4 +1,4 @@
-CC=gcc #avr32-linux-gcc
+CC=avr32-linux-gcc
 
 
 # Command to upload program to flash
