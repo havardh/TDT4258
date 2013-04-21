@@ -12,10 +12,12 @@ typedef enum {
 typedef struct {
 	void *parent;
 	void (*paint) ( void*, Screen*);
+	int x;
+	int y;
 	ImageFormat format;
 	void *image;
 } Image;
 
-Image ImageNew( char* );
+Image ImageNew( char*, int, int );
 
 #endif // IMAGE_H

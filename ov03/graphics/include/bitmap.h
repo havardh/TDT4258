@@ -3,6 +3,7 @@
 
 #include "shape.h"
 #include "pixel.h"
+#include "image.h"
 
 #define WIDTH 320
 #define HEIGHT 240

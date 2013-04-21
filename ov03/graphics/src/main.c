@@ -13,7 +13,7 @@ void canvas() {
 	Rectangle r2 = RectangleNew( 30, 30, 20, 200 );
 	CanvasAdd( &canvas, &r1 );
 	CanvasAdd( &canvas, &r2 );
-        
+
 	CanvasPaint(&canvas);
 
 	ScreenDestroy(&screen);
@@ -26,7 +26,7 @@ void image() {
   Canvas canvas = CanvasNew( &screen );
 
   printf("Loading picture\n");
-  Image image = ImageNew("./data/picture.bmp");
+  Image image = ImageNew("./data/box.bmp", 20, 20);
   printf("Picture loaded\n");
 
   printf("Adding picture to canvas\n");
