@@ -5,7 +5,7 @@
 ###############################################################################
 
 # navn på kjernemodul (navnet på C-fila men uten ".c")
-MODULE = driver
+MODULE = hello
 
 ifneq ($(KERNELRELEASE),)
 obj-m += ${MODULE}.o
@@ -13,13 +13,13 @@ obj-m += ${MODULE}.o
 else
 
 # sti til linux-kildekoden
-KERNELDIR := ../linux
+KERNELDIR := ../../linux
 
 default:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 
 upload:
-	scp $(MODULE).ko avr32@129.241.103.239:~/project
+	scp $(MODULE).ko avr32@129.241.103.209:~/project
 
 endif
 
