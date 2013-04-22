@@ -4,7 +4,7 @@
 #include "shape.h"
 #include "screen.h"
 
-#define BACKGROUND
+static char* field_filename = "field.bmp";
 
 typedef enum {
 
@@ -21,11 +21,11 @@ typedef struct {
 	int width;
 	int height;
 
-	int **board;
+	SquareType **board;
 
 
 } Field;
 
-Field *FieldNew( void );
+Field FieldNew( int, int );
 
 #endif // _FIELD_H_

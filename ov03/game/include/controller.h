@@ -1,28 +1,40 @@
 #ifndef _CONTROLLER_H_
 #define _CONTROLLER_H_
 
+#include "field.h"
+#include "cannon.h"
+#include "tank.h"
+#include "cannonball.h"
+#include "tankshot.h"
+#include "canvas.h"
+
+
 typedef struct {
 
-	Field *field;
-	Cannon *cannon;
-	Tank *tank;
+	Canvas *canvas;
+	Field field;
+	Cannon cannon;
+	Tank tank;
 
 } Controller;
 
-Controller *ControllerNew( void );
+Controller ControllerNew( Canvas *cavnas );
 
 // Events
-void onTick ( void );
+void onTick ( Controller* );
 
-void onGameStart ( void );
-void onGameOver ( void );
+void onGameInit( Controller* );
+void onGameExit ( Controller* );
 
-void onTankMove ( void );
-void onTankFire ( void );
-void onTankHit ( void );
+void onGameStart ( Controller* );
+void onGameOver ( Controller* );
 
-void onCannonAim ( void );
-void onCannonFire ( void );
-void onCannonHit ( void );
+void onTankMove ( Controller* );
+void onTankFire ( Controller* );
+void onTankHit ( Controller* );
+
+void onCannonAim ( Controller* );
+void onCannonFire ( Controller* );
+void onCannonHit ( Controller* );
 
 #endif // _CONTROLLER_H_

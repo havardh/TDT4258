@@ -3,7 +3,7 @@
 
 typedef struct {
 
-	void (paint*) ( Shape*, Screen* );
+	void (*paint) ( Shape*, Screen* );
 
 	Tank *tank;
 
