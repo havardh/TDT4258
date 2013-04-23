@@ -15,7 +15,7 @@ static void wait(int wait) {
 }
 
 static void bt1( void ) { onTankMove( &ctrl, 1, 0 ); }
-static void bt2( void ) { onTankMove( &ctrl, -1,0  ); }
+static void bt2( void ) { onTankMove( &ctrl, -1,0m  ); }
 static void bt3( void ) { onTankMove( &ctrl, 0, 1 ); }
 static void bt4( void ) { onTankMove( &ctrl, 0, -1 ); }
 static void bt5( void ) { printf("5\n"); }

@@ -11,7 +11,7 @@ typedef enum {
 void ButtonInit( void );
 void ButtonDestroy( void );
 
-void ButtonAddCallback( Button, void (*callback) (void) );
+void ButtonAddCallback( int, void (*callback) (void) );
 void ButtonPoll( void );
 
 #endif // _BUTTONS_H_

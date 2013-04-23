@@ -4,7 +4,7 @@
 
 static int _fd;
 
-//static void (*callbacks) (void)[8];
+static void (*callbacks[8])(void);
 
 void ButtonInit( void ) {
 
@@ -18,30 +18,35 @@ void ButtonDestroy( void ) {
 
 }
 
-void ButtonAddCallback( Button button, void (*callback) (void) ) {
+void ButtonAddCallback( int button, void (*callback) (void) ) {
 
-  //	callbacks[button] = callback;
+  	callbacks[button] = callback;
 
 }
 
 void ButtonPoll( void ) {
 
+  static uint8_t last = 0;
   	uint8_t buttons;
 	read( _fd, &buttons, 1);
         
-        printf("%d\n", buttons);
-/*
+        //mprintf("%d\n", buttons);
+
+        if (buttons != last) {
+
 	switch (buttons) {
 
-	case 1:	  callbacks[0]; break;
-	case 2:	  callbacks[1]; break;
-	case 4:	  callbacks[2]; break;
-	case 8:	  callbacks[3]; break;
-	case 16:  callbacks[4]; break;
-	case 32:  callbacks[5]; break;
-	case 64:  callbacks[6]; break;
-	case 128: callbakcs[7]; break;
+          case 1:   callbacks[0](); break;
+          case 2:   callbacks[1](); break;
+          case 4:   callbacks[2](); break;
+          case 8:   callbacks[3](); break;
+          case 16:  callbacks[4](); break;
+          case 32:  callbacks[5](); break;
+          case 64:  callbacks[6](); break;
+          case 128: callbacks[7](); break;
+            
+	}
 
-	}*/
-
+        last = buttons;
+        }
 }
