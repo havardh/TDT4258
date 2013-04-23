@@ -43,19 +43,10 @@ void onTick ( Controller *ctrl ) {
 
 }
 
-void onTankMove ( Controller *ctrl ) {
+void onTankMove ( Controller *ctrl, int dx, int dy ) {
 
-	TankMove(&ctrl->tank, 1, 0);
+	TankMove(&ctrl->tank, dx, dy);
 	CanvasPaint( ctrl->canvas);
-	for(int i=0; i<1000; i++) ;
-
-	TankMove(&ctrl->tank, 1, 0);
-	CanvasPaint( ctrl->canvas);
-	for(int i=0; i<1000; i++) ;
-
-	TankMove(&ctrl->tank, 1, 0);
-	CanvasPaint( ctrl->canvas);
-	for(int i=0; i<1000; i++) ;
 
 }
 
@@ -67,24 +58,20 @@ void onTankHit ( Controller *ctrl ) {
 
 }
 
-void onCannonAim ( Controller *ctrl ) {
+void onCannonAim ( Controller *ctrl, int dx, int dy ) {
+
+	CannonAim( &ctrl->field, dx, dy );
+	CanvasPaint( ctrl->canvas );
 
 }
 
 void onCannonFire ( Controller *ctrl ) {
 
-	FieldHit(&ctrl->field, 10, 10);
-	CanvasPaint( ctrl->canvas);
-	for(int i=0; i<1000; i++) ;
+	int x = ctrl->cannon->aimx;
+	int y = ctrl->cannon->aimy;
 
-	FieldHit(&ctrl->field, 12, 9);
+	FieldHit(&ctrl->field, x, y);
 	CanvasPaint( ctrl->canvas);
-	for(int i=0; i<1000; i++) ;
-
-	FieldHit(&ctrl->field, 3, 3);
-	CanvasPaint( ctrl->canvas);
-	for(int i=0; i<1000; i++) ;
-
 
 }
 

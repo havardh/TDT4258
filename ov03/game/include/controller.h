@@ -29,11 +29,11 @@ void onGameExit ( Controller* );
 void onGameStart ( Controller* );
 void onGameOver ( Controller* );
 
-void onTankMove ( Controller* );
+void onTankMove ( Controller*, int, int );
 void onTankFire ( Controller* );
 void onTankHit ( Controller* );
 
-void onCannonAim ( Controller* );
+void onCannonAim ( Controller*, int, int );
 void onCannonFire ( Controller* );
 void onCannonHit ( Controller* );
 
