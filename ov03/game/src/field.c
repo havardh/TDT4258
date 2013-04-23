@@ -35,6 +35,9 @@ Field FieldNew( int width, int height ) {
 		.board = malloc(sizeof(SquareType*) * height)
 	};
 
+	for (int i=0; i<height; i++) {
+		field.board[i] = malloc(sizeof(SquareType) * width);
+	}
 	FieldOnGameStart( &field );
 
 	return field;
@@ -42,9 +45,10 @@ Field FieldNew( int width, int height ) {
 
 void FieldOnGameStart( Field *field ) {
 
-	for (int i=0; i<height; i++) {
-		field.board[i] = malloc(sizeof(SquareType) * width);
-		for(int j=0; j<width; j++) { field.board[i][j] = EMPTY; }
+	for (int i=0; i<field->height; i++) {
+		for(int j=0; j<field->width; j++) {
+			field.board[i][j] = EMPTY;
+		}
 	}
 
 }
