@@ -15,7 +15,19 @@ void CanvasAdd(Canvas *canvas, void *shape) {
 	canvas->shapes[canvas->top++] = shape;
 }
 
-void CanvasRemove(Canvas *canvas, int i) {}
+void CanvasRemove(Canvas *canvas, void *shape) {
+
+	for (int i=0; i<canvas->top; i++) {
+
+		if (canvas->shapes[i] == shape) {
+			printf("Removeing a shape\n");
+			canvas->shapes[i] = NULL;
+			return;
+		}
+
+	}
+
+}
 
 void CanvasPaint (Canvas *canvas) {
 
@@ -28,15 +40,16 @@ void CanvasPaint (Canvas *canvas) {
 
 		}
 	}
-        printf("Items: %d\n", canvas->top);
-       
+	printf("Items: %d\n", canvas->top);
+
 	for (int i=0; i<canvas->top; i++) {
-                Shape *shape = (Shape*)canvas->shapes[i];
+		if (canvas->shapes[i]) {
+			Shape *shape = (Shape*)canvas->shapes[i];
 
-		(*((Shape*)shape)->paint)( canvas->shapes[i], screen );
-
+			(*((Shape*)shape)->paint)( canvas->shapes[i], screen );
+		}
 	}
-       
+
 
 	ScreenFlush( screen );
 
