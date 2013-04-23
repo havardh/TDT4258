@@ -5,10 +5,11 @@
 #include "screen.h"
 #include "image.h"
 
-static char* cannon_filename = "cannon.bmp";
+static char* cannon_filename = "./data/cannon.bmp";
 
 typedef struct {
 
+	void* parent;
 	void (*paint) ( Shape*, Screen* );
 	Image *image;
 
@@ -20,6 +21,6 @@ typedef struct {
 
 } Cannon;
 
-Cannon CannonNew( void );
+Cannon CannonNew( int, int);
 
 #endif // _CANNON_H_

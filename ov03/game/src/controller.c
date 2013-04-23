@@ -6,7 +6,7 @@ Controller ControllerNew( Canvas *canvas ) {
 
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
-		.cannon = CannonNew(),
+		.cannon = CannonNew(16, 0),
 		.tank = TankNew()
 
 	};
@@ -18,9 +18,10 @@ Controller ControllerNew( Canvas *canvas ) {
 
 void onGameInit( Controller *ctrl ) {
 
-	Canvas *canvas = ctrl->canvas; 
+	Canvas *canvas = ctrl->canvas;
 
 	CanvasAdd( canvas, &ctrl->field );
+	CanvasAdd( canvas, &ctrl->cannon );
 
 	CanvasPaint( canvas );
 }
