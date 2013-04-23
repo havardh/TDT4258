@@ -33,6 +33,8 @@ typedef struct {
 
 Field FieldNew( int, int );
 
+void FieldOnGameStart( Field*);
+
 void FieldHit( Field*, int, int );
 
 #endif // _FIELD_H_

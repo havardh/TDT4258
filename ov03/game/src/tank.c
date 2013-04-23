@@ -15,14 +15,21 @@ Tank TankNew( int x, int y ) {
 		.parent = NULL,
 		.paint = &paint,
 		.image = ImageNew(tank_filename, x * 20, y * 20),
-		.x = x,
-		.y = y,
+		.startx = x,
+		.starty = y,
 
 		.health = 100
 	};
 
+	TankOnGameStart( &tank );
+
 	return tank;
 
+}
+
+void TankOnGameStart( Tank *tank ) {
+	tank->x = tank->startx;
+	tank->y = tank->starty;
 }
 
 bool TankMove( Tank *tank, int dx, int dy ) {
@@ -31,4 +38,10 @@ bool TankMove( Tank *tank, int dx, int dy ) {
 	tank->y += dy;
 
 	return true;
+}
+
+bool TankIsOn( Tank *tank, int x, int y ) {
+
+	return x == tank->x && y == tank->y;
+
 }

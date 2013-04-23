@@ -1,4 +1,5 @@
 #include "controller.h"
+#include "assert.h"
 
 static bool CheckBounds( Controller *, int, int, int, int);
 
@@ -9,7 +10,8 @@ Controller ControllerNew( Canvas *canvas ) {
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
 		.cannon = CannonNew(15, 0),
-		.tank = TankNew(0, 11)
+		.tank = TankNew(0, 11),
+
 
 	};
 
@@ -34,10 +36,26 @@ void onGameExit ( Controller *ctrl ) {
 }
 
 void onGameStart ( Controller *ctrl ) {
+	ctrl->winner = 0;
 
+	FieldOnGameStart( &ctrl->field );
+	CannonOnGameStart( &ctrl->cannon );
+	TankOnGameStart( &ctrl->tank );
 }
 
 void onGameOver ( Controller *ctrl ) {
+
+	Image *img;
+	if (ctrl->winner == A) {
+		img = ImageNew("./data/playerawin.bmp", 0, 0);
+	} else if (ctrl->winner == B) {
+		img = ImageNew("./data/playerbwin.bmp", 0, 0);
+	} else {
+		assert(false);
+	}
+	CanvasAdd( ctrl->canvas, img );
+
+	CanvasPaint( ctrl->canvas );
 
 }
 
@@ -51,6 +69,11 @@ bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
 		TankMove(&ctrl->tank, dx, dy);
 		CanvasPaint( ctrl->canvas);
+
+		if ( CannonIsOn( &ctrl->cannon, ctrl->tank.x, ctrl->tank.y ) ) {
+			onCannonHit( ctrl );
+		}
+
 		return true;
 	}
 	return false;
@@ -61,6 +84,9 @@ void onTankFire ( Controller *ctrl ) {
 }
 
 void onTankHit ( Controller *ctrl ) {
+
+	ctrl->winner = B;
+	onGameOver( ctrl );
 
 }
 
@@ -82,9 +108,16 @@ void onCannonFire ( Controller *ctrl ) {
 	FieldHit(&ctrl->field, x, y);
 	CanvasPaint( ctrl->canvas);
 
+	if (TankIsOn(x, y)) {
+		onTankHit( ctrl );
+	}
+
 }
 
 void onCannonHit ( Controller *ctrl ) {
+
+	ctrl->winner = B;
+	onGameOver( ctrl );
 
 }
 

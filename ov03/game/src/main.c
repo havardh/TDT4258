@@ -18,13 +18,7 @@ int main ( void ) {
 
 	onGameInit( &ctrl );
 
-	onTankMove( &ctrl, 1, 0 );
-	wait(1000);
-
-	onCannonAim( &ctrl, -1, -1 );
-	wait(1000);
-
-	//onCannonFire( &ctrl );
+	onTankHit( &ctrl );
 
 	onGameExit( &ctrl );
 

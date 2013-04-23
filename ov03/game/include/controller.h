@@ -9,7 +9,13 @@
 #include "canvas.h"
 #include <stdbool.h>
 
+typedef enum {
+	A, B
+} Player;
+
 typedef struct {
+
+	Player winner;
 
 	Canvas *canvas;
 	Field field;

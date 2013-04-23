@@ -29,18 +29,24 @@ Field FieldNew( int width, int height ) {
 		.parent = NULL,
 		.paint = &paint,
 		.grass = ImageNew(field_filename, 0, 0),
-                .fire = ImageNew(fire_filename, 0, 0),
+		.fire = ImageNew(fire_filename, 0, 0),
 		.width = width,
 		.height = height,
 		.board = malloc(sizeof(SquareType*) * height)
 	};
+
+	FieldOnGameStart( &field );
+
+	return field;
+}
+
+void FieldOnGameStart( Field *field ) {
 
 	for (int i=0; i<height; i++) {
 		field.board[i] = malloc(sizeof(SquareType) * width);
 		for(int j=0; j<width; j++) { field.board[i][j] = EMPTY; }
 	}
 
-	return field;
 }
 
 void FieldHit( Field *field, int x, int y ) {

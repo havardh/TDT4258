@@ -3,8 +3,7 @@
 static void paint ( Shape *shape, Screen *screen ) {
 
 	Cannon *cannon = (Cannon*)shape;
-	//cannon->image->x = cannon->x * 20;
-	//cannon->image->y = cannon->y * 20;
+
 	cannon->image->paint( cannon->image, screen );
 
 	cannon->aim_image->x = cannon->aimx * 20;
@@ -33,9 +32,20 @@ Cannon CannonNew( int x, int y ) {
 
 }
 
+void CannonOnGameStart( Cannon *cannon ) {
+	cannon->aimx = cannon->x;
+	cannon->aimy = cannon->y;
+}
+
 void CannonAim( Cannon *cannon, int dx, int dy ) {
 
 	cannon->aimx += dx;
 	cannon->aimy += dy;
+
+}
+
+bool CannonIsOn( Cannon *cannon, int x, int y ) {
+
+	return cannon->x == x && cannon->y == y;
 
 }
