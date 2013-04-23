@@ -32,10 +32,12 @@ static int __init button_init(void)
 		return ret;
 	}
 	
-	if (request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL)) {
+	int IRQ_REQUEST = request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL);
+	
+	if (IRQ_REQUEST) {
 		//TODO: 0xff = bitmap for interrupt?
-		printk(KERN_ALERT "error %d: could not request irq: %d\n", -EBUSY,0xff);
-		return -EBUSY;
+		printk(KERN_ALERT "error %d: could not request irq: %d\n", IRQ_REQUEST, AVR32_PIOB_IRQ);
+		return IRQ_REQUEST;
 	}
 	
 	return 0;
