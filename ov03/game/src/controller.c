@@ -73,6 +73,19 @@ void onCannonAim ( Controller *ctrl ) {
 
 void onCannonFire ( Controller *ctrl ) {
 
+	FieldHit(&ctrl->field, 10, 10);
+	CanvasPaint( ctrl->canvas);
+	for(int i=0; i<1000; i++) ;
+
+	FieldHit(&ctrl->field, 12, 9);
+	CanvasPaint( ctrl->canvas);
+	for(int i=0; i<1000; i++) ;
+
+	FieldHit(&ctrl->field, 3, 3);
+	CanvasPaint( ctrl->canvas);
+	for(int i=0; i<1000; i++) ;
+
+
 }
 
 void onCannonHit ( Controller *ctrl ) {

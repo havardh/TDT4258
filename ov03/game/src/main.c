@@ -16,6 +16,7 @@ int main ( void ) {
 	onGameInit( &ctrl );
 
 	onTankMove( &ctrl );
+	onCannonFire( &ctrl );
 
 	onGameExit( &ctrl );
 

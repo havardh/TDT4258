@@ -10,7 +10,7 @@ static char* field_filename = "../graphics/data/box.bmp";
 typedef enum {
 
 	EMPTY,
-	BURNING,
+	FIRE,
 	PLAYER
 
 } SquareType;
@@ -20,6 +20,7 @@ typedef struct {
 	void (*paint) ( Shape*, Screen* );
 
 	Image *grass;
+	Image *fire;
 
 	int width;
 	int height;
@@ -30,5 +31,7 @@ typedef struct {
 } Field;
 
 Field FieldNew( int, int );
+
+void FieldHit( Field*, int, int );
 
 #endif // _FIELD_H_
