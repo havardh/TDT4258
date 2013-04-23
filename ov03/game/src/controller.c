@@ -7,7 +7,7 @@ Controller ControllerNew( Canvas *canvas ) {
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
 		.cannon = CannonNew(15, 0),
-		.tank = TankNew(0, 0)
+		.tank = TankNew(0, 11)
 
 	};
 
