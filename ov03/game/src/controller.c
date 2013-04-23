@@ -107,7 +107,7 @@ void onCannonFire ( Controller *ctrl ) {
 	FieldHit(&ctrl->field, x, y);
 	CanvasPaint( ctrl->canvas);
 
-	if (TankIsOn(x, y)) {
+	if (TankIsOn( ctrl, x, y )) {
 		onTankHit( ctrl );
 	}
 

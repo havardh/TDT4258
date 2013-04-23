@@ -47,7 +47,7 @@ void FieldOnGameStart( Field *field ) {
 
 	for (int i=0; i<field->height; i++) {
 		for(int j=0; j<field->width; j++) {
-			field.board[i][j] = EMPTY;
+			field->board[i][j] = EMPTY;
 		}
 	}
 
