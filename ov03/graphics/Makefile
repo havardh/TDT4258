@@ -11,7 +11,7 @@ AVR32PROGRAM = avr32program
 ####### RULES ##########################################################
 .PHONY : all
 all:
-	$(CC) -g --std=c99 src/image.c src/bitmap.c src/rectangle.c src/pixel.c src/line.c src/canvas.c src/shape.c src/main.c src/screen.c -Iinclude -o bin/canvas_test
+	$(CC) -g -O3 --std=c99 src/image.c src/bitmap.c src/rectangle.c src/pixel.c src/line.c src/canvas.c src/shape.c src/main.c src/screen.c -Iinclude -o bin/canvas_test
 
 upload:
 	scp bin/canvas_test avr32@${IP}:~/home/avr32/project/graphics

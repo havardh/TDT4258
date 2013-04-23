@@ -28,11 +28,15 @@ void CanvasPaint (Canvas *canvas) {
 
 		}
 	}
-
+        printf("Items: %d\n", canvas->top);
+       
 	for (int i=0; i<canvas->top; i++) {
-		Shape *shape = (Shape*)canvas->shapes[i];
+                Shape *shape = (Shape*)canvas->shapes[i];
+
 		(*((Shape*)shape)->paint)( canvas->shapes[i], screen );
+
 	}
+       
 
 	ScreenFlush( screen );
 

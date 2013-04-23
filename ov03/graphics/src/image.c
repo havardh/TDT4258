@@ -3,10 +3,9 @@
 static void paint (void *shape, Screen *screen) {
 
 	Image *image = (Image*) shape;
-	Shape *actual_image = (Shape*)image->image;
-
-	actual_image->paint(actual_image, screen);
-
+	Shape *actual_image = (Shape*)image->image;        
+	actual_image->paint( actual_image, screen  );
+ 
 }
 
 Image *ImageNew( char* filename, int x, int y ) {
@@ -14,6 +13,7 @@ Image *ImageNew( char* filename, int x, int y ) {
         Image *image = malloc(sizeof(Image));
         Bitmap *bmp = BitmapNew( filename );
 
+ 
         image->parent = NULL;
 	image->paint = &paint;
 	image->x = x;

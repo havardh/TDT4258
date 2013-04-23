@@ -5,7 +5,7 @@
 #include "screen.h"
 #include "image.h"
 
-static char* field_filename = "field.bmp";
+static char* field_filename = "../graphics/data/box.bmp";
 
 typedef enum {
 
@@ -16,6 +16,7 @@ typedef enum {
 } SquareType;
 
 typedef struct {
+        void* parent;
 
 	void (*paint) ( Shape*, Screen* );
 

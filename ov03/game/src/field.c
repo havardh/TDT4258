@@ -8,16 +8,21 @@ static void paint ( Shape *shape, Screen *screen ) {
 
 	for (int i=0; i<height; i++) {
 		for(int j=0; j<width; j++) {
-			if (field->board[i][j] == EMPTY) {
-			    field->grass->paint(shape, screen);
-			}
-		}
-	}
+                  
+                      if (field->board[i][j] == EMPTY) {
+                        field->grass->x = j * 20;
+                        field->grass->y = i * 20;
+			    field->grass->paint(field->grass, screen);
+                      }
+
+                }
+        }
 }
 
 Field FieldNew( int width, int height ) {
 
 	Field field = {
+                .parent = NULL,
 		.paint = &paint,
 		.grass = ImageNew(field_filename, 0, 0),
 		.width = width,

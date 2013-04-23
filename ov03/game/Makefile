@@ -1,4 +1,4 @@
-CC=gcc
+CC=avr32-linux-gcc
 
 include=-Iinclude\
 	-I../graphics/include\
