@@ -15,8 +15,10 @@ int main ( void ) {
 
 	onGameInit( &ctrl );
 
-	onTankMove( &ctrl );
-	onCannonFire( &ctrl );
+	onTankMove( &ctrl, 1, 1 );
+	for(int i=0; i<1000; i++) ;
+
+	//onCannonFire( &ctrl );
 
 	onGameExit( &ctrl );
 
