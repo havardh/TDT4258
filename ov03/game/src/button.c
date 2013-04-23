@@ -1,13 +1,14 @@
 #include "button.h"
 #include <stdint.h>
+#include <fcntl.h>
 
 static int _fd;
 
-static void (*callback) (void) callbacks[8];
+//static void (*callbacks) (void)[8];
 
 void ButtonInit( void ) {
 
-	_fd = open( DEV_BUTTON, O_RDONLY );
+	_fd = open( "/dev/buttons", O_RDONLY );
 
 }
 
@@ -19,15 +20,17 @@ void ButtonDestroy( void ) {
 
 void ButtonAddCallback( Button button, void (*callback) (void) ) {
 
-	callbacks[button] = callback;
+  //	callbacks[button] = callback;
 
 }
 
 void ButtonPoll( void ) {
 
-	uint8_t buttons;
+  	uint8_t buttons;
 	read( _fd, &buttons, 1);
-
+        
+        printf("%d\n", buttons);
+/*
 	switch (buttons) {
 
 	case 1:	  callbacks[0]; break;
@@ -39,6 +42,6 @@ void ButtonPoll( void ) {
 	case 64:  callbacks[6]; break;
 	case 128: callbakcs[7]; break;
 
-	}
+	}*/
 
 }

@@ -3,7 +3,7 @@
 #include "screen.h"
 #include "canvas.h"
 #include <stdbool.h>
-#include "led.h"
+//#include "led.h"
 #include "button.h"
 
 static Controller ctrl;
@@ -42,7 +42,7 @@ int main ( void ) {
 
 	// Init devices
 	ButtonInit();
-	LedInit();
+        //	LedInit();
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
 
@@ -54,7 +54,7 @@ int main ( void ) {
 
 	while(running) {
 
-		ButtonPoll()
+          ButtonPoll();
 
 	}
 
