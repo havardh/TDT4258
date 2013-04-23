@@ -20,7 +20,7 @@ void onGameInit( Controller *ctrl ) {
 
 	Canvas *canvas = ctrl->canvas;
 
-	CanvasAdd( &canvas, &field );
+	CanvasAdd( &canvas, &ctrl->field );
 
 	CanvasPaint( &canvas );
 }

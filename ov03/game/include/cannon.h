@@ -3,14 +3,14 @@
 
 #include "shape.h"
 #include "screen.h"
-
+#include "image.h"
 
 static char* cannon_filename = "cannon.bmp";
 
 typedef struct {
 
 	void (*paint) ( Shape*, Screen* );
-	Image* image;
+	Image *image;
 
 	int x;
 	int y;

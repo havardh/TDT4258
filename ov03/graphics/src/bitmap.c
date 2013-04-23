@@ -76,7 +76,6 @@ static void flip ( uint8_t *data, int width, int height ) {
 
 	for (int i=0, j=height-1 ; i < height/2; i += 1, j -= 1) {
 		swapLine( &data[i*width*3], &data[j*width*3], width*3 );
-
 	}
 
 }
@@ -139,8 +138,8 @@ static void paint ( void *shape, Screen *screen ) {
 	Bitmap *image = (Bitmap*) shape;
 	Image *parent = (Image*) image->parent;
 
-        int sx = parent->x;
-        int sy = parent->y;
+	int sx = parent->x;
+	int sy = parent->y;
 
 	int width = image->width;
 	int height = image->height;

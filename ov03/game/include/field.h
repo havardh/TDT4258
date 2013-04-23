@@ -3,6 +3,7 @@
 
 #include "shape.h"
 #include "screen.h"
+#include "image.h"
 
 static char* field_filename = "field.bmp";
 
@@ -17,6 +18,8 @@ typedef enum {
 typedef struct {
 
 	void (*paint) ( Shape*, Screen* );
+
+	Image *grass;
 
 	int width;
 	int height;

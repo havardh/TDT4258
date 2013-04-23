@@ -3,6 +3,7 @@
 
 #include "shape.h"
 #include "screen.h"
+#include "image.h"
 
 static char* tank_filename = "tank.bmp";
 

@@ -23,6 +23,8 @@ Audio AudioNew ( void ) {
 
 	int dsp_rate = DSP_RATE;
 	ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
+
+        
 #endif
 	Audio audio = {
 		._fd = fd
