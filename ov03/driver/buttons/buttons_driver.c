@@ -10,7 +10,7 @@
 #include <asm/gpio.h>
 #include <asm/system.h>
 #include "buttons_driver.h"
-#include "./ap7000.h"
+#include "../ap7000.h"
 
 static irqreturn_t button_interrupt(int irq, void *dev_id)
 {

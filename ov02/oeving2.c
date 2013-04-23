@@ -16,12 +16,12 @@ static void sleep( void ) {
 }
 
 int main(int argc, char *argv[]) {
-	init_samples();
-	init_tracks();
-	init_sounds();
+        init_samples();
+  	init_tracks();
+  	init_sounds();
 	init_hardware();
 
-	set_leds(0x88);
+	set_leds(0x01);
 
 	while (1) /* busy wait */
 		sleep();
