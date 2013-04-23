@@ -34,7 +34,10 @@ static int __init button_init(void)
 	
 	//flags: 0, SA_INTERRUPT, SA_ONESHOT or SA_PROBE.
 	int IRQ_REQUEST = request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL);
+<<<<<<< HEAD
 	
+=======
+>>>>>>> IRQ448
 	if (IRQ_REQUEST) {
 		printk(KERN_ALERT "error %d: could not request irq: %d\n", IRQ_REQUEST, AVR32_PIOB_IRQ);
 		return IRQ_REQUEST;
