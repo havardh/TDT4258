@@ -8,6 +8,7 @@
 #include <asm/io.h>
 #include <asm/irq.h>
 #include <asm/gpio.h>
+#include <asm/uaccess.h>
 #include <asm/system.h>
 #include "buttons_driver.h"
 #include "../ap7000.h"
