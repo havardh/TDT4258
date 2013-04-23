@@ -67,8 +67,8 @@ void onCannonAim ( Controller *ctrl, int dx, int dy ) {
 
 void onCannonFire ( Controller *ctrl ) {
 
-	int x = ctrl->cannon->aimx;
-	int y = ctrl->cannon->aimy;
+	int x = ctrl->cannon.aimx;
+	int y = ctrl->cannon.aimy;
 
 	FieldHit(&ctrl->field, x, y);
 	CanvasPaint( ctrl->canvas);
