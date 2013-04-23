@@ -28,9 +28,9 @@ static void cl( void ) { onCannonAim( &ctrl,-1, 0);  }
 
 static void RegisterCallbacks( void ) {
 
-	//ButtonAddCallback( 0, &tr );
-	//ButtonAddCallback( 1, &td );
-	//ButtonAddCallback( 2, &tu );
+	ButtonAddCallback( 0, &tr );
+	ButtonAddCallback( 1, &td );
+	ButtonAddCallback( 2, &tu );
 	//ButtonAddCallback( 3, &tl );
 
 	ButtonAddCallback( 3, &cannon_fire );
