@@ -3,7 +3,10 @@
 #include "screen.h"
 #include "canvas.h"
 
+static wait(int wait) {
 
+	for(int i=0; i<wait; i++) ;
+}
 
 int main ( void ) {
 
@@ -16,7 +19,10 @@ int main ( void ) {
 	onGameInit( &ctrl );
 
 	onTankMove( &ctrl, 1, 1 );
-	for(int i=0; i<1000; i++) ;
+	wait(1000);
+
+	onCannonAim( &ctrl, -1, -1 );
+	wait(1000);
 
 	//onCannonFire( &ctrl );
 

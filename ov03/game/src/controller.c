@@ -1,5 +1,7 @@
 #include "controller.h"
 
+static bool CheckBounds( Controller *, int, int, int, int);
+
 Controller ControllerNew( Canvas *canvas ) {
 
 	Controller ctrl = {
@@ -43,11 +45,15 @@ void onTick ( Controller *ctrl ) {
 
 }
 
-void onTankMove ( Controller *ctrl, int dx, int dy ) {
+bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
-	TankMove(&ctrl->tank, dx, dy);
-	CanvasPaint( ctrl->canvas);
+	if ( CheckBounds( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
 
+		TankMove(&ctrl->tank, dx, dy);
+		CanvasPaint( ctrl->canvas);
+		return true;
+	}
+	return false;
 }
 
 void onTankFire ( Controller *ctrl ) {
@@ -58,11 +64,14 @@ void onTankHit ( Controller *ctrl ) {
 
 }
 
-void onCannonAim ( Controller *ctrl, int dx, int dy ) {
+bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 
-	CannonAim( &ctrl->field, dx, dy );
-	CanvasPaint( ctrl->canvas );
-
+	if ( CheckBounds( ctrl, ctrl->cannon.x, ctrl->cannon.y, dx, dy ) ) {
+		CannonAim( &ctrl->cannon, dx, dy );
+		CanvasPaint( ctrl->canvas );
+		return true;
+	}
+	return false;
 }
 
 void onCannonFire ( Controller *ctrl ) {
@@ -76,5 +85,19 @@ void onCannonFire ( Controller *ctrl ) {
 }
 
 void onCannonHit ( Controller *ctrl ) {
+
+}
+
+static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
+
+	x += dx;
+	y += dy;
+
+	if ( x < 0 ) return false;
+	if ( x >= ctrl->field.width) return false;
+	if ( y < 0 ) return false;
+	if ( x >= ctrl->field.height ) return false;
+
+	return true;
 
 }

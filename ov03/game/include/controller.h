@@ -7,7 +7,7 @@
 #include "cannonball.h"
 #include "tankshot.h"
 #include "canvas.h"
-
+#include <stdbool.h>
 
 typedef struct {
 
@@ -29,11 +29,11 @@ void onGameExit ( Controller* );
 void onGameStart ( Controller* );
 void onGameOver ( Controller* );
 
-void onTankMove ( Controller*, int, int );
+bool onTankMove ( Controller*, int, int );
 void onTankFire ( Controller* );
 void onTankHit ( Controller* );
 
-void onCannonAim ( Controller*, int, int );
+bool onCannonAim ( Controller*, int, int );
 void onCannonFire ( Controller* );
 void onCannonHit ( Controller* );
 
