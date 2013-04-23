@@ -11,6 +11,7 @@
 #include "assert.h"
 #include <signal.h>
 #include <time.h>
+#include <unistd.h>
 
 typedef enum {
 	A, B
