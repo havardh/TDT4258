@@ -12,6 +12,7 @@ Tank TankNew( int x, int y ) {
 	Tank tank = {
 		.parent = NULL,
 		.paint = &paint,
+		.image = ImageNew(tank_filename, x * 20, y * 20),
 		.x = x,
 		.y = y,
 

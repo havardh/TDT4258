@@ -10,6 +10,7 @@ static char* tank_filename = "./data/tank.bmp";
 typedef struct {
 	void *parent;
 	void (*paint) ( Shape*, Screen* );
+	Image *image;
 
 	int x;
 	int y;
