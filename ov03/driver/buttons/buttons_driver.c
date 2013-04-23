@@ -9,14 +9,11 @@
 #include <asm/irq.h>
 #include <asm/gpio.h>
 #include <asm/system.h>
-#include <asm/arch/at32ap7000.h>
-
-#define BUTTON_PIN GPIO_PIN_PB(25)
-#define BUTTON_IRQ  gpio_to_irq(BUTTON_PIN)
+include "ap7000.h"
 
 static irqreturn_t button_interrupt(int irq, void *dev_id)
 {
-	printk(KERN_ALERT "int %d: interupt received. Irq number: %d\n", -EBUSY,BUTTON_PIN);
+	printk(KERN_ALERT "int %d: interupt received. Irq number: %d\n", -EBUSY,AVR32_PIOB_IRQ);
 	return IRQ_HANDLED;
 }
 
@@ -25,17 +22,17 @@ static int __init button_init(void)
 	unsigned int ret;
 	
 	printk(KERN_ALERT "Module started\n");
-	printk(KERN_ALERT "Requesting GPIO %d\n",BUTTON_PIN);
-	printk(KERN_ALERT "Requesting Irq %d\n",BUTTON_IRQ);
+	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB);
+	printk(KERN_ALERT "Requesting Irq %d\n",AVR32_PIOB_IRQ);
 	
-	ret = gpio_request(BUTTON_PIN, "blah");
+	ret = gpio_request(AVR32_PIOB, "buttons");
 	if (ret < 0) {
-		printk(KERN_ALERT "error %d: could not request gpio: %d\n", ret,BUTTON_PIN);
+		printk(KERN_ALERT "error %d: could not request gpio: %d\n", ret,AVR32_PIOB);
 		return ret;
 	}
 	
-	if (request_irq(BUTTON_IRQ, button_interrupt, 0, "button", NULL)) {
-		printk(KERN_ALERT "error %d: could not request irq: %d\n", -EBUSY,BUTTON_PORT);
+	if (request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL)) {
+		printk(KERN_ALERT "error %d: could not request irq: %d\n", -EBUSY,0xff);
 		return -EBUSY;
 	}
 	
@@ -44,10 +41,10 @@ static int __init button_init(void)
 
 static void __exit button_exit(void)
 {
-	printk(KERN_ALERT "exit : removing irq: %d\n",BUTTON_IRQ);
-	printk(KERN_ALERT "exit : removing button: %d\n",BUTTON_PIN);
-	free_irq(BUTTON_IRQ,  NULL);
-	gpio_free(BUTTON_PIN);
+	printk(KERN_ALERT "exit : removing irq: %d\n",AVR32_PIOB_IRQ);
+	printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB);
+	free_irq(AVR32_PIOB_IRQ,  NULL);
+	gpio_free(AVR32_PIOB);
 } 
 
 module_init(button_init);
