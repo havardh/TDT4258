@@ -14,13 +14,6 @@
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 
-<<<<<<< HEAD
-static irqreturn_t button_interrupt(int irq, void *dev_id)
-{
-	printk(KERN_ALERT "int %d: interupt received. Irq number: %d\n", -EBUSY,irq);
-	return IRQ_HANDLED;
-}
-=======
 int buttons_major =   0;
 int buttons_minor =   0;
 
@@ -31,7 +24,6 @@ static struct file_operations buttons_fops = {
 	.read = read_buttons,
 	.release = release_buttons
 };
->>>>>>> Buttons minor major
 
 static int __init button_init(void)
 {	
@@ -39,35 +31,6 @@ static int __init button_init(void)
 	int result;
 	dev_t dev;
 	
-<<<<<<< HEAD
-/*	INIT
-	volatile int isr;
-	btn_pio->per |= 0xff;
-	btn_pio->puer |= 0xff;
-	btn_pio->ier |= 0xff;
-	isr = btn_pio->isr;
-*/	
-	printk(KERN_ALERT "Module started\n");
-	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB_ADDRESS);
-	unsigned int GPIO_REQUEST = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
-	if (GPIO_REQUEST < 0) {
-		printk(KERN_ALERT "\e[00;31merror %d: could not request gpio: %d\n\e[00;m", GPIO_REQUEST,AVR32_PIOB_ADDRESS);
-		return GPIO_REQUEST;
-	}
-	
-/*
-	int i=0;
-	for (i=0; i<65; i++){
-		printk(KERN_ALERT "Requesting Irq %d\n",i);
-		//flags: 0, SA_INTERRUPT, SA_ONESHOT or SA_PROBE.
-		int IRQ_REQUEST = request_irq(i, button_interrupt, 0, "buttons", NULL);
-		if (IRQ_REQUEST) {
-			printk(KERN_ALERT "\e[00;31merror %d: could not request irq: %d\n\e[00;m", IRQ_REQUEST, i);
-			//return IRQ_REQUEST;
-		}
-	}
-*/
-=======
 	printk ( KERN_INFO "Loading driver...\n" );
 	
 	if ( buttons_major ) {
@@ -134,7 +97,6 @@ static int __init button_init(void)
 	printk ( KERN_INFO "Buttons initialized\n" );
 //STOP
 	
->>>>>>> Buttons minor major
 	return 0;
 } 
 
@@ -180,12 +142,6 @@ static ssize_t driver_read (struct file *filp, char __user *buff, size_t count, 
 module_init(button_init);
 module_exit(button_exit);
 
-<<<<<<< HEAD
-MODULE_AUTHOR("");
-MODULE_DESCRIPTION("");
-MODULE_LICENSE("GPL");
-=======
 //MODULE_AUTHOR("");
 //MODULE_DESCRIPTION("");
 MODULE_LICENSE("Dual BSD/GPL");
->>>>>>> Buttons minor major
