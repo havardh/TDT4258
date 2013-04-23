@@ -6,18 +6,35 @@
 #include "led.h"
 #include "button.h"
 
+static Controller ctrl;
+static bool running = 1;
+
 static void wait(int wait) {
 
 	for(int i=0; i<wait; i++) ;
 }
 
-static void RegisterCallbacks( Controller *ctrl ) {
+static void bt1( void ) { printf("1\n"); }
+static void bt2( void ) { printf("2\n"); }
+static void bt3( void ) { printf("3\n"); }
+static void bt4( void ) { printf("4\n"); }
+static void bt5( void ) { printf("5\n"); }
+static void bt6( void ) { printf("6\n"); }
+static void bt7( void ) { printf("7\n"); }
+static void bt8( void ) { printf("8\n"); }
 
+static void RegisterCallbacks( void ) {
 
+	ButtonAddCallback( SW0, &bt1 );
+	ButtonAddCallback( SW1, &bt2 );
+	ButtonAddCallback( SW2, &bt3 );
+	ButtonAddCallback( SW3, &bt4 );
+	ButtonAddCallback( SW4, &bt5 );
+	ButtonAddCallback( SW5, &bt6 );
+	ButtonAddCallback( SW6, &bt7 );
+	ButtonAddCallback( SW7, &bt8 );
 
 }
-
-bool running = 1;
 
 int main ( void ) {
 
@@ -30,8 +47,8 @@ int main ( void ) {
 	Canvas canvas = CanvasNew( &screen );
 
 	// Init game
-	Controller ctrl = ControllerNew( &canvas );
-	RegisterCallbacks( &ctrl );
+	ctrl = ControllerNew( &canvas );
+	RegisterCallbacks();
 
 	onGameInit( &ctrl );
 
