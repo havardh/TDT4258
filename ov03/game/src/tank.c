@@ -25,9 +25,10 @@ Tank TankNew( int x, int y ) {
 
 }
 
-void TankMove( Tank *tank, int dx, int dy ) {
+bool TankMove( Tank *tank, int dx, int dy ) {
 
 	tank->x += dx;
 	tank->y += dy;
 
+	return true;
 }
