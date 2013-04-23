@@ -9,7 +9,8 @@
 #include <asm/irq.h>
 #include <asm/gpio.h>
 #include <asm/system.h>
-include "ap7000.h"
+#include "buttons_driver.h"
+#include "./ap7000.h"
 
 static irqreturn_t button_interrupt(int irq, void *dev_id)
 {
@@ -50,6 +51,6 @@ static void __exit button_exit(void)
 module_init(button_init);
 module_exit(button_exit);
 
-MODULE_AUTHOR("");
-MODULE_DESCRIPTION("");
+//MODULE_AUTHOR("");
+//MODULE_DESCRIPTION("");
 MODULE_LICENSE("GPL");
