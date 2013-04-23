@@ -45,15 +45,15 @@ void onTick ( Controller *ctrl ) {
 
 void onTankMove ( Controller *ctrl ) {
 
-	TankMove(ctrl->tank, 1, 0);
+	TankMove(&ctrl->tank, 1, 0);
 	CanvasPaint( ctrl->canvas);
 	for(int i=0; i<1000; i++) ;
 
-	TankMove(ctrl->tank, 1, 0);
+	TankMove(&ctrl->tank, 1, 0);
 	CanvasPaint( ctrl->canvas);
 	for(int i=0; i<1000; i++) ;
 
-	TankMove(ctrl->tank, 1, 0);
+	TankMove(&ctrl->tank, 1, 0);
 	CanvasPaint( ctrl->canvas);
 	for(int i=0; i<1000; i++) ;
 
