@@ -19,23 +19,23 @@ static irqreturn_t button_interrupt(int irq, void *dev_id)
 }
 
 static int __init button_init(void)
-{
-	unsigned int ret;
-	
+{	
 	printk(KERN_ALERT "Module started\n");
 	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB_ADDRESS);
 	printk(KERN_ALERT "Requesting Irq %d\n",AVR32_PIOB_IRQ);
 	
-	ret = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
-	if (ret < 0) {
+	unsigned int GPIO_REQUEST;
+	
+	GPIO_REQUEST = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
+	if (GPIO_REQUEST < 0) {
 		printk(KERN_ALERT "error %d: could not request gpio: %d\n", ret,AVR32_PIOB_ADDRESS);
 		return ret;
 	}
 	
-	int IRQ_REQUEST = request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL);
+	//flags: 0, SA_INTERRUPT, SA_ONESHOT or SA_PROBE.
+	int IRQ_REQUEST = request_irq(AVR32_PIOB_IRQ, &button_interrupt, 0, "buttons", NULL);
 	
 	if (IRQ_REQUEST) {
-		//TODO: 0xff = bitmap for interrupt?
 		printk(KERN_ALERT "error %d: could not request irq: %d\n", IRQ_REQUEST, AVR32_PIOB_IRQ);
 		return IRQ_REQUEST;
 	}
