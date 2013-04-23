@@ -14,14 +14,14 @@ static void wait(int wait) {
 	for(int i=0; i<wait; i++) ;
 }
 
-static void bt1( void ) { onTankMove( &ctrl, 1, 0 ); }
-static void bt2( void ) { onTankMove( &ctrl, -1,0  ); }
-static void bt3( void ) { onTankMove( &ctrl, 0, 1 ); }
-static void bt4( void ) { onTankMove( &ctrl, 0, -1 ); }
-static void bt5( void ) { printf("5\n"); }
-static void bt6( void ) { printf("6\n"); }
-static void bt7( void ) { printf("7\n"); }
-static void bt8( void ) { printf("8\n"); }
+static void bt1( void ) { onTankMove( &ctrl,  1,  0 ); }
+static void bt2( void ) { onTankMove( &ctrl,  0, -1 ); }
+static void bt3( void ) { onTankMove( &ctrl,  0,  1 ); }
+static void bt4( void ) { onTankMove( &ctrl, -1,  0 ); }
+static void bt5( void ) { onCannonAim( &ctrl,  1, 0);  }
+static void bt6( void ) { onCannonAim( &ctrl,  0,-1);  }
+static void bt7( void ) { onCannonAim( &ctrl,  0, 1);  }
+static void bt8( void ) { onCannonAim( &ctrl, -1, 0);  }
 
 static void RegisterCallbacks( void ) {
 
@@ -42,7 +42,7 @@ int main ( void ) {
 
 	// Init devices
 	ButtonInit();
-        //	LedInit();
+	//	LedInit();
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
 
@@ -54,7 +54,7 @@ int main ( void ) {
 
 	while(running) {
 
-          ButtonPoll();
+	  ButtonPoll();
 
 	}
 
