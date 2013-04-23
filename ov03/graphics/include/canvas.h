@@ -14,7 +14,7 @@ typedef struct {
 
 Canvas CanvasNew(Screen*);
 void CanvasAdd(Canvas*, void*);
-void CanvasRemove(Canvas*, int);
+void CanvasRemove(Canvas*, void*);
 
 void CanvasPaint(Canvas*);
 
