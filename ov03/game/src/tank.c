@@ -37,6 +37,8 @@ bool TankMove( Tank *tank, int dx, int dy ) {
 	tank->x += dx;
 	tank->y += dy;
 
+        printf("%d, %d\n", tank->x, tank->y); 
+
 	return true;
 }
 

@@ -19,11 +19,11 @@ Cannon CannonNew( int x, int y ) {
 		.parent = NULL,
 		.paint = &paint,
 		.image = ImageNew( cannon_filename, x*20, y*20 ),
-		.aim_image = ImageNew( cannonaim_filename, x*20,y*20),
+		.aim_image = ImageNew( cannonaim_filename, 20, 20),
 		.x = x,
 		.y = y,
-		.aimx = x,
-		.aimy = y,
+		.aimx = x-1,
+		.aimy = y+1,
 		.health = 100,
 		.angle = 0
 	};
