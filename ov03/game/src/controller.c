@@ -40,6 +40,8 @@ void onGameStart ( Controller *ctrl ) {
 	FieldOnGameStart( &ctrl->field );
 	CannonOnGameStart( &ctrl->cannon );
 	TankOnGameStart( &ctrl->tank );
+
+	CanvasPaint( ctrl->canvas );
 }
 
 
