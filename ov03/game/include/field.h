@@ -6,6 +6,7 @@
 #include "image.h"
 
 static char* field_filename = "../graphics/data/box.bmp";
+static char* fire_filename = "./data/fire.bmp";
 
 typedef enum {
 

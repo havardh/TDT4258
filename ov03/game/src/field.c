@@ -29,6 +29,7 @@ Field FieldNew( int width, int height ) {
 		.parent = NULL,
 		.paint = &paint,
 		.grass = ImageNew(field_filename, 0, 0),
+                .fire = ImageNew(fire_filename, 0, 0),
 		.width = width,
 		.height = height,
 		.board = malloc(sizeof(SquareType*) * height)
