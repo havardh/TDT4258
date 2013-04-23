@@ -16,8 +16,7 @@ typedef enum {
 } SquareType;
 
 typedef struct {
-        void* parent;
-
+	void *parent;
 	void (*paint) ( Shape*, Screen* );
 
 	Image *grass;

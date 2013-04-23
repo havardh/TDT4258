@@ -5,9 +5,10 @@
 #include "screen.h"
 #include "image.h"
 
-static char* tank_filename = "tank.bmp";
+static char* tank_filename = "./data/tank.bmp";
 
 typedef struct {
+	void *parent;
 	void (*paint) ( Shape*, Screen* );
 
 	int x;
@@ -17,6 +18,6 @@ typedef struct {
 
 } Tank;
 
-Tank TankNew( void );
+Tank TankNew( int, int );
 
 #endif // _TANK_H_
