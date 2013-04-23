@@ -60,6 +60,8 @@ void onGameOver ( Controller *ctrl ) {
 	CanvasRemove( ctrl->canvas, img);
 	CanvasPaint( ctrl->canvas );
 
+	onGameStart( ctrl );
+
 }
 
 void onTick ( Controller *ctrl ) {
