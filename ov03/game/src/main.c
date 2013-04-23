@@ -14,6 +14,9 @@ int main ( void ) {
 	Controller ctrl = ControllerNew( &canvas );
 
 	onGameInit( &ctrl );
+
+	onTankMove( &ctrl );
+
 	onGameExit( &ctrl );
 
 	ScreenDestroy( &screen );

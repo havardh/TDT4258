@@ -24,3 +24,10 @@ Tank TankNew( int x, int y ) {
 	return tank;
 
 }
+
+void TankMove( Tank *tank, int dx, int dy ) {
+
+	tank->x += dx;
+	tank->y += dy;
+
+}

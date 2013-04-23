@@ -4,6 +4,7 @@
 #include "shape.h"
 #include "screen.h"
 #include "image.h"
+#include <stdbool.h>
 
 static char* tank_filename = "./data/tank.bmp";
 
@@ -20,5 +21,7 @@ typedef struct {
 } Tank;
 
 Tank TankNew( int, int );
+
+bool TankMove( Tank*, int, int );
 
 #endif // _TANK_H_
