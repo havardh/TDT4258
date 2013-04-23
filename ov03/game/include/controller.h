@@ -8,6 +8,9 @@
 #include "tankshot.h"
 #include "canvas.h"
 #include <stdbool.h>
+#include "assert.h"
+#include <signal.h>
+#include <time.h>
 
 typedef enum {
 	A, B
