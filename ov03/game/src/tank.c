@@ -3,6 +3,8 @@
 static void paint ( Shape *shape, Screen *screen ) {
 
 	Tank *tank = (Tank*)shape;
+	tank->image->x = tank->x * 20;
+	tank->image->y = tank->y * 20;
 	tank->image->paint( tank->image, screen );
 
 }

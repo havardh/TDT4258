@@ -3,6 +3,8 @@
 static void paint ( Shape *shape, Screen *screen ) {
 
 	Cannon *cannon = (Cannon*)shape;
+	//cannon->image->x = cannon->x * 20;
+	//cannon->image->y = cannon->y * 20;
 	cannon->image->paint( cannon->image, screen );
 
 }
