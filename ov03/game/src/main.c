@@ -25,6 +25,9 @@ int main ( void ) {
 	wait(1000);
 
 	onCannonFire( &ctrl );
+	wait(1000);
+	onCannonAim( &ctrl, -1, 1 );
+	wait(1000);
 
 	onGameExit( &ctrl );
 

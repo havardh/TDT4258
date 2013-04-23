@@ -23,16 +23,17 @@ static int __init button_init(void)
 	unsigned int ret;
 	
 	printk(KERN_ALERT "Module started\n");
-	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB);
+	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB_ADDRESS);
 	printk(KERN_ALERT "Requesting Irq %d\n",AVR32_PIOB_IRQ);
 	
-	ret = gpio_request(AVR32_PIOB, "buttons");
+	ret = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
 	if (ret < 0) {
-		printk(KERN_ALERT "error %d: could not request gpio: %d\n", ret,AVR32_PIOB);
+		printk(KERN_ALERT "error %d: could not request gpio: %d\n", ret,AVR32_PIOB_ADDRESS);
 		return ret;
 	}
 	
 	if (request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL)) {
+		//TODO: 0xff = bitmap for interrupt?
 		printk(KERN_ALERT "error %d: could not request irq: %d\n", -EBUSY,0xff);
 		return -EBUSY;
 	}
@@ -43,9 +44,9 @@ static int __init button_init(void)
 static void __exit button_exit(void)
 {
 	printk(KERN_ALERT "exit : removing irq: %d\n",AVR32_PIOB_IRQ);
-	printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB);
+	printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB_ADDRESS);
 	free_irq(AVR32_PIOB_IRQ,  NULL);
-	gpio_free(AVR32_PIOB);
+	gpio_free(AVR32_PIOB_ADDRESS);
 } 
 
 module_init(button_init);
