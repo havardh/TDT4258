@@ -6,3 +6,13 @@ Grafikk:
  - tanks (20x20) x4 (N, S, E, W)
  - cannon (20x20 ?) (?)
  - cannon aim (20x20)
+
+Lyd:
+ - skudd
+ - eksplosjon
+ - bom
+ - treff
+ - start lyd
+ - win (2x)
+ - credits
+ - background
