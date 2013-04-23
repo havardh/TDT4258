@@ -1,7 +1,8 @@
 #include "cannon.h"
 
 static void paint ( Shape *shape, Screen *screen ) {
-
+  
+  printf("drawing\n");
 	Cannon *cannon = (Cannon*)shape;
 	cannon->image->paint( cannon->image, screen );
 
