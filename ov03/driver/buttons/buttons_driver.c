@@ -28,8 +28,8 @@ static int __init button_init(void)
 	
 	GPIO_REQUEST = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
 	if (GPIO_REQUEST < 0) {
-		printk(KERN_ALERT "error %d: could not request gpio: %d\n", ret,AVR32_PIOB_ADDRESS);
-		return ret;
+		printk(KERN_ALERT "error %d: could not request gpio: %d\n", GPIO_REQUEST,AVR32_PIOB_ADDRESS);
+		return GPIO_REQUEST;
 	}
 	
 	//flags: 0, SA_INTERRUPT, SA_ONESHOT or SA_PROBE.
