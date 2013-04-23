@@ -66,7 +66,7 @@ void onTankHit ( Controller *ctrl ) {
 
 bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 
-	if ( CheckBounds( ctrl, ctrl->cannon.x, ctrl->cannon.y, dx, dy ) ) {
+	if ( CheckBounds( ctrl, ctrl->cannon.aimx, ctrl->cannon.aimy, dx, dy ) ) {
 		CannonAim( &ctrl->cannon, dx, dy );
 		CanvasPaint( ctrl->canvas );
 		return true;
@@ -92,11 +92,11 @@ static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 
 	x += dx;
 	y += dy;
-
-	if ( x < 0 ) return false;
-	if ( x >= ctrl->field.width) return false;
-	if ( y < 0 ) return false;
-	if ( x >= ctrl->field.height ) return false;
+       
+	if ( x < 0 || x >= ctrl->field.width
+             ||   y < 0 || y >= ctrl->field.height ) {
+          return false;
+        }
 
 	return true;
 

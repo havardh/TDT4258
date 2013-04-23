@@ -18,13 +18,13 @@ int main ( void ) {
 
 	onGameInit( &ctrl );
 
-	onTankMove( &ctrl, 1, 0 );
+	onTankMove( &ctrl, 1, -1 );
 	wait(1000);
 
-	onCannonAim( &ctrl, -1, -1 );
+	onCannonAim( &ctrl, -1, 1 );
 	wait(1000);
 
-	//onCannonFire( &ctrl );
+	onCannonFire( &ctrl );
 
 	onGameExit( &ctrl );
 
