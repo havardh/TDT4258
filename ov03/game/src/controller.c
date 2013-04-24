@@ -1,8 +1,8 @@
 #include "controller.h"
 
 
-static bool CheckBounds( Controller *, int, int, int, int);
-static bool canMove( Controller *, int, int, int, int);
+static bool CheckBounds( Controller*, int, int, int, int);
+static bool canMove( Controller* , int, int, int, int);
 
 Controller ControllerNew( Canvas *canvas, Audio *audio) {
 
@@ -20,7 +20,6 @@ Controller ControllerNew( Canvas *canvas, Audio *audio) {
 
 }
 
-
 void onGameInit( Controller *ctrl ) {
 
 	Canvas *canvas = ctrl->canvas;
@@ -36,7 +35,10 @@ void onGameExit ( Controller *ctrl ) {
 
 }
 
-void onGameStart ( Controller *ctrl ) {
+void onGameStart( void ) {}
+void onGameOver( void ) {}
+
+void onRoundStart ( Controller *ctrl ) {
 	ctrl->winner = 0;
 
 	FieldOnGameStart( &ctrl->field );
@@ -46,25 +48,32 @@ void onGameStart ( Controller *ctrl ) {
 	CanvasPaint( ctrl->canvas );
 }
 
+void onRoundOver ( Controller *ctrl ) {
 
-void onGameOver ( Controller *ctrl ) {
+	if ( ctrl->tank.heath == 0 || ctrl->cannon.health == 0 ) {
 
-	Image *img;
-	if (ctrl->winner == A) {
-		img = ImageNew("./data/playerawin.bmp", 0, 0);
-	} else if (ctrl->winner == B) {
-		img = ImageNew("./data/playerbwin.bmp", 0, 0);
+		onGameOver( ctrl );
+
 	} else {
-		assert(false);
+
+		Image *img;
+		if (ctrl->winner == A) {
+			img = ImageNew("./data/playerawin.bmp", 0, 0);
+		} else if (ctrl->winner == B) {
+			img = ImageNew("./data/playerbwin.bmp", 0, 0);
+		} else {
+			assert(false);
+		}
+
+		CanvasAdd( ctrl->canvas, img );
+		CanvasPaint( ctrl->canvas );
+		sleep( 2 );
+
+		CanvasRemove( ctrl->canvas, img );
+		CanvasPaint( ctrl->canvas );
+
+		onRoundStart( ctrl );
 	}
-	CanvasAdd( ctrl->canvas, img );
-	CanvasPaint( ctrl->canvas );
-	sleep( 4 );
-
-	CanvasRemove( ctrl->canvas, img);
-	CanvasPaint( ctrl->canvas );
-
-	onGameStart( ctrl );
 
 }
 
@@ -86,6 +95,7 @@ bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 		return true;
 	}
 	return false;
+
 }
 
 void onTankFire ( Controller *ctrl ) {
@@ -95,7 +105,8 @@ void onTankFire ( Controller *ctrl ) {
 void onTankHit ( Controller *ctrl ) {
 
 	ctrl->winner = B;
-	onGameOver( ctrl );
+	ctr->tank.health -= 1;
+	onRoundOver( ctrl );
 
 }
 
@@ -107,6 +118,7 @@ bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 		return true;
 	}
 	return false;
+
 }
 
 void onCannonFire ( Controller *ctrl ) {
@@ -114,7 +126,7 @@ void onCannonFire ( Controller *ctrl ) {
 	int x = ctrl->cannon.aimx;
 	int y = ctrl->cannon.aimy;
 
-	FieldHit(&ctrl->field, x, y);
+	FieldHit( &ctrl->field, x, y );
 	CanvasPaint( ctrl->canvas);
 
 	if (TankIsOn( &ctrl->tank, x, y )) {
@@ -126,6 +138,7 @@ void onCannonFire ( Controller *ctrl ) {
 void onCannonHit ( Controller *ctrl ) {
 
 	ctrl->winner = A;
+	ctr->tank.health -= 1;
 	onGameOver( ctrl );
 
 }

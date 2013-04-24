@@ -42,6 +42,9 @@ void onGameExit ( Controller* );
 void onGameStart ( Controller* );
 void onGameOver ( Controller* );
 
+void onRoundStart ( Controller* );
+void onRoundOver ( Controller* );
+
 bool onTankMove ( Controller*, int, int );
 void onTankFire ( Controller* );
 void onTankHit ( Controller* );

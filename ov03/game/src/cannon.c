@@ -24,7 +24,7 @@ Cannon CannonNew( int x, int y ) {
 		.y = y,
 		.aimx = x-1,
 		.aimy = y+1,
-		.health = 100,
+		.health = 4,
 		.angle = 0
 	};
 
