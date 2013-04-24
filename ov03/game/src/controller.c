@@ -28,6 +28,8 @@ void onGameInit( Controller *ctrl ) {
 	CanvasAdd( canvas, &ctrl->cannon );
 	CanvasAdd( canvas, &ctrl->tank );
 
+	ControllerUpdateScore( ctrl );
+
 	CanvasPaint( canvas );
 }
 
@@ -45,17 +47,17 @@ void onRoundStart ( Controller *ctrl ) {
 	CannonOnGameStart( &ctrl->cannon );
 	TankOnGameStart( &ctrl->tank );
 
+	ControllerUpdateScore( ctrl );
+
 	CanvasPaint( ctrl->canvas );
 }
 
 void onRoundOver ( Controller *ctrl ) {
 
 	if ( ctrl->tank.health == 0 || ctrl->cannon.health == 0 ) {
-		printf("Game over\n");
 		onGameOver( ctrl );
 
 	} else {
-		printf("New round\n");
 		Image *img;
 		if (ctrl->winner == A) {
 			img = ImageNew("./data/playerawin.bmp", 0, 0);
@@ -139,7 +141,7 @@ void onCannonHit ( Controller *ctrl ) {
 
 	ctrl->winner = A;
 	ctrl->cannon.health -= 1;
-	onGameOver( ctrl );
+	onRoundOver( ctrl );
 
 }
 
@@ -160,4 +162,29 @@ static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 static bool canMove ( Controller *ctrl, int x, int y, int dx, int dy ) {
 	return CheckBounds ( ctrl, x, y, dx, dy )
 		&& ctrl->field.board[x+dx][y+dy] != FIRE;
+}
+
+void ControllerUpdateScore( Controller *ctrl ) {
+
+	int cannon_health = ctrl->cannon.health;
+	int tank_health = ctrl->tank.health;
+
+	printf("%d %d\n", cannon_health, tank_health);
+	uint8_t val = 0;
+
+	if (tank_health == 1) {
+		val == 1;
+	}
+	if (tank_health == 2) {
+		val = 3;
+	}
+	if (tank_health == 3) {
+		val = 7;
+	}
+	if (tank_health == 4) {
+		val = 15;
+	}
+	printf("%d\n", val);
+
+	LedWrite( cannon_health + tank_health );
 }

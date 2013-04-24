@@ -53,4 +53,6 @@ bool onCannonAim ( Controller*, int, int );
 void onCannonFire ( Controller* );
 void onCannonHit ( Controller* );
 
+void ControllerUpdateScore( Controller* );
+
 #endif // _CONTROLLER_H_

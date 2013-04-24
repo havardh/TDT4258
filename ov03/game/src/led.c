@@ -7,7 +7,7 @@ static int _fd;
 
 void LedInit( void ) {
 
-	_fd = open( "", O_RDONLY );
+	_fd = open( "/dev/leds", O_WRONLY );
 
 }
 
