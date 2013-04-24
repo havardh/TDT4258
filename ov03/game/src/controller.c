@@ -172,36 +172,36 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	printf("%d %d\n", cannon_health, tank_health);
 	uint8_t val = 0;
 
-	if (tank_health <= 1) {
+	if (tank_health >= 1) {
 		val |= 1;
 	}
 	printf("%d\n", val);
-	if (tank_health <= 2) {
+	if (tank_health >= 2) {
 		val |= 2;
 	}
 	printf("%d\n", val);
-	if (tank_health <= 3) {
+	if (tank_health >= 3) {
 		val |= 4;
 	}
 	printf("%d\n", val);
-	if (tank_health <= 4) {
+	if (tank_health >= 4) {
 		val |= 8;
 	}
 	printf("%d\n", val);
 
-	if (cannon_health <= 1) {
+	if (cannon_health >= 1) {
 		val |= 128;
 	}
 	printf("%d\n", val);
-	if (cannon_health <= 2) {
+	if (cannon_health >= 2) {
 		val |= 64;
 	}
 	printf("%d\n", val);
-	if (cannon_health <= 3) {
+	if (cannon_health >= 3) {
 		val |= 32;
 	}
 	printf("%d\n", val);
-	if (cannon_health <= 4) {
+	if (cannon_health >= 4) {
 		val |= 16;
 	}
 	printf("%d\n", val);
