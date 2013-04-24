@@ -35,8 +35,8 @@ void onGameExit ( Controller *ctrl ) {
 
 }
 
-void onGameStart( void ) {}
-void onGameOver( void ) {}
+void onGameStart( Controller* ) {}
+void onGameOver( Controller* ) {}
 
 void onRoundStart ( Controller *ctrl ) {
 	ctrl->winner = 0;
