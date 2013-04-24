@@ -1,20 +1,27 @@
-\contentsline {section}{\numberline {1}Abstract}{1}
-\contentsline {section}{\numberline {2}Introduction}{3}
-\contentsline {section}{\numberline {3}Overview}{4}
-\contentsline {subsection}{\numberline {3.1}Led Driver}{5}
-\contentsline {subsection}{\numberline {3.2}Button Driver}{6}
-\contentsline {subsection}{\numberline {3.3}Graphics}{7}
-\contentsline {subsubsection}{\numberline {3.3.1}Main graphics}{7}
-\contentsline {subsubsection}{\numberline {3.3.2}Images}{7}
-\contentsline {subsubsection}{\numberline {3.3.3}Graphical objects}{7}
-\contentsline {subsection}{\numberline {3.4}Sound}{8}
-\contentsline {subsection}{\numberline {3.5}Game}{9}
-\contentsline {section}{\numberline {4}Solution}{10}
-\contentsline {subsection}{\numberline {4.1}Led Driver}{11}
-\contentsline {subsection}{\numberline {4.2}Button Driver}{12}
-\contentsline {subsection}{\numberline {4.3}Graphics}{13}
-\contentsline {subsection}{\numberline {4.4}Sound}{14}
-\contentsline {subsection}{\numberline {4.5}Game}{15}
-\contentsline {section}{\numberline {5}Test Report}{16}
-\contentsline {section}{\numberline {6}Discussion}{17}
-\contentsline {section}{\numberline {7}Conclusion}{18}
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {2}Setup}{4}
+\contentsline {subsection}{\numberline {2.1}Board}{4}
+\contentsline {subsection}{\numberline {2.2}Game}{4}
+\contentsline {subsubsection}{\numberline {2.2.1}Compilation}{4}
+\contentsline {subsubsection}{\numberline {2.2.2}Copying the executable to the board}{4}
+\contentsline {subsubsection}{\numberline {2.2.3}Running the game}{4}
+\contentsline {section}{\numberline {3}Overview}{5}
+\contentsline {subsection}{\numberline {3.1}Led Driver}{6}
+\contentsline {subsection}{\numberline {3.2}Button Driver}{7}
+\contentsline {subsection}{\numberline {3.3}Graphics}{8}
+\contentsline {subsubsection}{\numberline {3.3.1}Main graphics}{8}
+\contentsline {subsubsection}{\numberline {3.3.2}Images}{8}
+\contentsline {subsubsection}{\numberline {3.3.3}Graphical objects}{8}
+\contentsline {subsection}{\numberline {3.4}Sound}{9}
+\contentsline {subsection}{\numberline {3.5}Game}{10}
+\contentsline {subsubsection}{\numberline {3.5.1}How to play}{10}
+\contentsline {subsubsection}{\numberline {3.5.2}Design}{10}
+\contentsline {section}{\numberline {4}Solution}{11}
+\contentsline {subsection}{\numberline {4.1}Led Driver}{12}
+\contentsline {subsection}{\numberline {4.2}Button Driver}{13}
+\contentsline {subsection}{\numberline {4.3}Graphics}{14}
+\contentsline {subsection}{\numberline {4.4}Sound}{15}
+\contentsline {subsection}{\numberline {4.5}Game}{16}
+\contentsline {section}{\numberline {5}Test Report}{17}
+\contentsline {section}{\numberline {6}Discussion}{18}
+\contentsline {section}{\numberline {7}Conclusion}{19}
