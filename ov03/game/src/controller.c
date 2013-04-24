@@ -173,18 +173,24 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	uint8_t val = 0;
 
 	if (tank_health == 1) {
-		val == 1;
-	}
-	if (tank_health == 2) {
+		val = 1;
+	} else if (tank_health == 2) {
 		val = 3;
-	}
-	if (tank_health == 3) {
+	} else if (tank_health == 3) {
 		val = 7;
-	}
-	if (tank_health == 4) {
+	} else if (tank_health == 4) {
 		val = 15;
 	}
-	printf("%d\n", val);
+
+	if (cannon_health == 1) {
+		val |= 0x80;
+	} else if (cannon_health == 2) {
+		val |= 0xC0;
+	} else if (cannon_health == 3) {
+		val |= 0xE0;
+	} else if (cannon_health == 4) {
+		val |= 0xF0;
+	}
 
 	LedWrite( val );
 }

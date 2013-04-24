@@ -14,3 +14,9 @@
 *.order
 *.mod*
 *.o.d
+
+#Latex
+*main.toc
+*main.log
+*main.aux
+*main.pdf
