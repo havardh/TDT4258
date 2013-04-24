@@ -44,8 +44,12 @@ void Play( Audio *audio, char *sample ) {
 	int n;
 
 	while ((n = read( fd, buffer, BUF_SIZE )) > 0) {
+
+
 		write( audio->_fd, buffer, n );
 	}
+
+
 
 	close( fd );
 
