@@ -2,6 +2,7 @@
 
 
 static bool CheckBounds( Controller *, int, int, int, int);
+static bool canMove( Controller *, int, int, int, int);
 
 Controller ControllerNew( Canvas *canvas, Audio *audio) {
 
@@ -141,4 +142,9 @@ static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 
 	return true;
 
+}
+
+static bool canMove ( Controller *ctrl, int x, int y, int dx, int dy ) {
+	return CheckBounds ( ctrl, x, y, dx, dy )
+		&& ctrl->field.board[x+dx][y+dy] != FIRE;
 }
