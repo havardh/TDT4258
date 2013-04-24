@@ -47,6 +47,9 @@ int main ( void ) {
 	// Init devices
 	ButtonInit();
 	LedInit();
+
+	LedWrite( 1 );
+
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
 	Audio audio = AudioNew();
