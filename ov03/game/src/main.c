@@ -57,6 +57,8 @@ int main ( void ) {
 
 	onGameInit( &ctrl );
 
+	Play( &audio, "./data/test_sound.wav" );
+
 	while(running) {
 
 	  ButtonPoll();
