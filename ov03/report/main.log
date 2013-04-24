@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  24 APR 2013 12:37
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  24 APR 2013 14:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -442,18 +442,19 @@ e
 
 ] (./introduction.tex) [3
 
-] (./overview.tex) [4
+] (./setup.tex)
+(./setup/board.tex) (./setup/game.tex) [4
 
+] (./overview.tex) [5
 
-] (./overview/leddriver.tex) [5
+]
+(./overview/leddriver.tex) [6
 
-
-] (./overview/buttondriver.tex) [6
-
+] (./overview/buttondriver.tex) [7
 
 ]
 (./overview/graphics.tex
-<graphics/graphics_UML.png, id=30, 582.175pt x 231.86626pt>
+<graphics/graphics_UML.png, id=36, 582.175pt x 231.86626pt>
 File: graphics/graphics_UML.png Graphic file (type png)
 
 <use graphics/graphics_UML.png>
@@ -464,38 +465,48 @@ Overfull \hbox (6.31378pt too wide) in paragraph at lines 16--17
 [][] 
  []
 
-) [7
+) [8
 
 
- <./graphics/graphics_UML.png>] (./overview/sound.tex) [8
-
-
-]
-(./overview/game.tex) [9
-
-
-] (./solution.tex) [10
-
-
-] (./solution/leddriver.tex)
-[11
-
-
-] (./solution/buttondriver.tex) [12
-
-
-] (./solution/graphics.tex) [13
+ <./graphics/graphics_UML.png>] (./overview/sound.tex) [9
 
 
 ]
-(./solution/sound.tex) [14
+(./overview/game.tex <graphics/game_UML.png, id=45, 678.535pt x 505.89pt>
+File: graphics/game_UML.png Graphic file (type png)
+
+<use graphics/game_UML.png>
+Package pdftex.def Info: graphics/game_UML.png used on input line 13.
+(pdftex.def)             Requested size: 351.31378pt x 261.92186pt.
+
+Overfull \hbox (6.31378pt too wide) in paragraph at lines 13--14
+[][] 
+ []
+
+) [10
 
 
-] (./solution/game.tex) [15
+ <./graphics/game_UML.png>] (./solution.tex) [11
 
 
-] (./testreport.tex)
-[16
+]
+(./solution/leddriver.tex) [12
+
+
+] (./solution/buttondriver.tex) [13
+
+
+]
+(./solution/graphics.tex) [14
+
+
+] (./solution/sound.tex) [15
+
+
+] (./solution/game.tex) [16
+
+
+] (./testreport.tex) [17
 
 
 ]
@@ -504,7 +515,7 @@ No file testreport/buttondriver.tex.
 No file testreport/graphics.tex.
 No file testreport/sound.tex.
 No file testreport/game.tex.
-(./discussion.tex) [17
+(./discussion.tex) [18
 
 
 
@@ -517,28 +528,31 @@ No file testreport/game.tex.
 
 
 
-] (./conclusion.tex) [18
+] (./conclusion.tex) [19
 
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 2542 strings out of 493633
- 33855 string characters out of 3143378
- 99339 words of memory out of 3000000
- 5756 multiletter control sequences out of 15000+200000
- 9023 words of font info for 33 fonts, out of 3000000 for 9000
+ 2564 strings out of 493633
+ 34188 string characters out of 3143378
+ 102511 words of memory out of 3000000
+ 5767 multiletter control sequences out of 15000+200000
+ 9537 words of font info for 35 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  37i,7n,23p,230b,221s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r17.pfb>
-Output written on main.pdf (19 pages, 96931 bytes).
+m/cmmi10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
+0.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
+.pfb>
+Output written on main.pdf (20 pages, 167828 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 106 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
