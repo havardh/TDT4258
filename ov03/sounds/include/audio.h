@@ -15,7 +15,7 @@
 
 typedef struct {
 
-	int _fd;
+	FILE *_fd;
 
 } Audio;
 

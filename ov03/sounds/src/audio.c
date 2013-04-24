@@ -5,14 +5,16 @@
 #define BUF_SIZE 1024
 
 Audio AudioNew ( void ) {
-
+	/*
 #ifdef __APPLE__
 	char* dsp = "./data/test";
 #else
 	char* dsp = "/dev/dsp";
 #endif
 
-	int fd = open( dsp, O_RDWR | O_CREAT | O_TRUNC );
+	printf("%s\n", dsp);
+
+	int fd = fopen( dsp, "wb" );
 
 #ifndef __APPLE__
 	//int bitspersample = BITPERSAMPLE;
@@ -24,6 +26,7 @@ Audio AudioNew ( void ) {
 	int dsp_rate = DSP_RATE;
 	ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
 #endif
+*/
 	Audio audio = {
 		._fd = fd
 	};
@@ -38,38 +41,15 @@ void AudioDestroy (Audio *audio) {
 
 void Play( Audio *audio, char *sample ) {
 
-	int fd = open( sample, O_RDWR, 0644 );
+	FILE *fd1 = fopen( sample, "rb" );
+	FILE *fd2 = fopen( "/dev/dsp", "wb" );
 
-	//char *buffer[BUF_SIZE];
-	//int n;
-
-	char c = getchar();
-	while ( c != EOF ) {
-		fputc( c, fd );
-		c = getchar();
+	int c;
+	while ( (c = fgetc(fd1)) != EOF ) {
+		fputc( c, fd2 );
 	}
 
-
-	/*while ((n = read( fd, buffer, BUF_SIZE )) > 0) {
-
-
-		write( audio->_fd, buffer, n );
-		}*/
-
-
-
-	close( fd );
-
-	/*	printf("Writing to %d\n", audio->_fd);
-
-	uint8_t buffer[BUF_SIZE];
-	for (int i=0; i<sample->size; i += BUF_SIZE) {
-
-		for (int j=0; j<BUF_SIZE; j++) {
-			buffer[j] = sample->samples[i];
-		}
-
-		write( audio->_fd, &buffer, BUF_SIZE );
-		}*/
+	close( fd1 );
+	close( fd2 );
 
 }
