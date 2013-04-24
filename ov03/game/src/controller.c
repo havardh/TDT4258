@@ -101,7 +101,7 @@ void onTankHit ( Controller *ctrl ) {
 
 bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 
-	if ( CheckBounds( ctrl, ctrl->cannon.aimx, ctrl->cannon.aimy, dx, dy ) ) {
+	if ( canMove( ctrl, ctrl->cannon.aimx, ctrl->cannon.aimy, dx, dy ) ) {
 		CannonAim( &ctrl->cannon, dx, dy );
 		CanvasPaint( ctrl->canvas );
 		return true;
