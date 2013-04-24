@@ -7,6 +7,7 @@ Controller ControllerNew( Canvas *canvas ) {
 
 	Controller ctrl = {
 
+		.audio = audio,
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
 		.cannon = CannonNew(15, 0),

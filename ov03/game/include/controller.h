@@ -21,14 +21,16 @@ typedef struct {
 
 	Player winner;
 
+	Audio *audio;
 	Canvas *canvas;
+
 	Field field;
 	Cannon cannon;
 	Tank tank;
 
 } Controller;
 
-Controller ControllerNew( Canvas *cavnas );
+Controller ControllerNew( Canvas *cavnas, Audio *audio );
 
 // Events
 void onTick ( Controller* );

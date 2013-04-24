@@ -49,9 +49,10 @@ int main ( void ) {
 	//	LedInit();
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
+	Audio audio = AudioNew();
 
 	// Init game
-	ctrl = ControllerNew( &canvas );
+	ctrl = ControllerNew( &canvas, &audio );
 	RegisterCallbacks();
 
 	onGameInit( &ctrl );
