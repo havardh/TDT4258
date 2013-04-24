@@ -74,7 +74,7 @@ void onTick ( Controller *ctrl ) {
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
-	if ( CheckBounds( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
+	if ( canMove( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
 
 		TankMove(&ctrl->tank, dx, dy);
 		CanvasPaint( ctrl->canvas);
@@ -101,7 +101,7 @@ void onTankHit ( Controller *ctrl ) {
 
 bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 
-	if ( canMove( ctrl, ctrl->cannon.aimx, ctrl->cannon.aimy, dx, dy ) ) {
+	if ( CheckBounds( ctrl, ctrl->cannon.aimx, ctrl->cannon.aimy, dx, dy ) ) {
 		CannonAim( &ctrl->cannon, dx, dy );
 		CanvasPaint( ctrl->canvas );
 		return true;
