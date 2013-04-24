@@ -32,7 +32,7 @@ static void *PlaySound( void *thread_arg ) {
 
 	int c;
 	while ( (c = fgetc(fd)) != EOF ) {
-		fputc( c, dsp_fd );
+		fputc( c, dsp );
 	}
 
 	close( fd );
