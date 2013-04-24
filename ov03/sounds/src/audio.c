@@ -7,7 +7,7 @@
 Audio AudioNew ( void ) {
 
 	Audio audio = {
-		._fd = fopen( "/dev/dsp", "wb" );
+		._fd = fopen( "/dev/dsp", "wb" )
 	};
 
 	return audio;
