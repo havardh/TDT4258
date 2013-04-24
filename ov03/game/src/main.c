@@ -46,7 +46,7 @@ int main ( void ) {
 
 	// Init devices
 	ButtonInit();
-	//	LedInit();
+	LedInit();
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
 	Audio audio = AudioNew();
@@ -67,6 +67,8 @@ int main ( void ) {
 
 	onGameExit( &ctrl );
 
+	ButtonDestroy();
+	LedDestroy();
 	ScreenDestroy( &screen );
 
 	return 0;
