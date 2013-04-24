@@ -184,6 +184,7 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	if (tank_health == 4) {
 		val = 15;
 	}
+	printf("%d\n", val);
 
 	LedWrite( cannon_health + tank_health );
 }
