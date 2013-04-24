@@ -1,0 +1,3 @@
+\subsection{Sound}
+In the folder /sounds the object {\bf Audio} takes care of playing sounds. It uses ordinary
+file operations to write 8 bit {\bf wave} files to the file {\bf /dev/dsp}.
