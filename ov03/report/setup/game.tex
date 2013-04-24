@@ -1,0 +1,29 @@
+\subsection{Game}
+
+To play the game it has to be compiled from the source, copied onto the board and started.
+This can be done from any of the lab pc's in the lab which contains the {\bf avr32-linux-gcc} compiler.
+
+\subsubsection{Compilation}
+From the /game directory on the lab pc the following command will compile the game:
+\begin{verbatim}
+  make
+\end{verbatim}
+
+This produces the file /game/bin/game which is a executable that can be run under the linux distribution
+installed on the SD-card.
+
+\subsubsection{Copying the executable to the board}
+From the /game directory on the lab pc the following caommand copies the game executable to the board.
+\begin{verbatim}
+ scp bin/game avr32@<IP address>:~/
+\end{verbatim}
+Where {\it $<$IP address$>$} is the IP obtained in section <...>.
+
+\subsubsection{Running the game}
+From the /home/avr32 directory on the board the game can now be started with:
+\begin{verbatim}
+  ./game
+\end{verbatim}
+
+In order to play the game the user has to be root, this is obtained by running the {\bf su} command
+and using password = roota.

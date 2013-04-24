@@ -19,7 +19,7 @@ default:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 
 upload: 
-	scp $(MODULE).ko avr32@129.241.103.121:~/project
+	scp $(MODULE).ko avr32@129.241.102.245:~/project
 
 endif
 

@@ -3,8 +3,10 @@
 \usepackage{newclude}
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
-\title{AssignmentTDT4258 Assignment 3 - Group 1}
+
+\title{Assignment TDT4258 Assignment 3 - Group 1}
 \author{Sondre Lefsaker
   \and André Philipp
   \and Håvard Wormdal Høiby}
@@ -13,6 +15,36 @@
   \maketitle
   \newpage
 
-  \include*{problem1}
+  \include{abstract}
+  \tableofcontents
+  \include{introduction}
+
+  \include*{setup}
+  \include*{setup/board}
+  \include*{setup/game}
+
+  \include{overview}
+  \include*{overview/leddriver}
+  \include{overview/buttondriver}
+  \include{overview/graphics}
+  \include{overview/sound}
+  \include{overview/game}
+
+  \include{solution}
+  \include{solution/leddriver}
+  \include{solution/buttondriver}
+  \include{solution/graphics}
+  \include{solution/sound}
+  \include{solution/game}
+
+  \include{testreport}
+  \include{testreport/leddriver}
+  \include{testreport/buttondriver}
+  \include{testreport/graphics}
+  \include{testreport/sound}
+  \include{testreport/game}
+
+  \include{discussion}
+  \include{conclusion}
 
 \end{document}
