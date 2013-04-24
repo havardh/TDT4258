@@ -169,34 +169,42 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	int cannon_health = ctrl->cannon.health;
 	int tank_health = ctrl->tank.health;
 
-	printf("%d %d", cannon_health, tank_health);
+	printf("%d %d\n", cannon_health, tank_health);
 	uint8_t val = 0;
 
 	if (tank_health <= 1) {
 		val |= 1;
 	}
+	printf("%d\n", val);
 	if (tank_health <= 2) {
 		val |= 2;
 	}
+	printf("%d\n", val);
 	if (tank_health <= 3) {
 		val |= 4;
 	}
+	printf("%d\n", val);
 	if (tank_health <= 4) {
 		val |= 8;
 	}
+	printf("%d\n", val);
 
 	if (cannon_health <= 1) {
 		val |= 128;
 	}
+	printf("%d\n", val);
 	if (cannon_health <= 2) {
 		val |= 64;
 	}
+	printf("%d\n", val);
 	if (cannon_health <= 3) {
 		val |= 32;
 	}
+	printf("%d\n", val);
 	if (cannon_health <= 4) {
 		val |= 16;
 	}
+	printf("%d\n", val);
 
 	LedWrite( cannon_health + tank_health );
 
