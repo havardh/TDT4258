@@ -45,6 +45,8 @@ void onRoundStart ( Controller *ctrl ) {
 	CannonOnGameStart( &ctrl->cannon );
 	TankOnGameStart( &ctrl->tank );
 
+	ControllerUpdateScore( ctrl );
+
 	CanvasPaint( ctrl->canvas );
 }
 
@@ -69,8 +71,6 @@ void onRoundOver ( Controller *ctrl ) {
 
 		CanvasRemove( ctrl->canvas, img );
 		CanvasPaint( ctrl->canvas );
-
-		ControllerUpdateScore( ctrl );
 
 		onRoundStart( ctrl );
 	}
@@ -167,19 +167,8 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	int cannon_health = ctrl->cannon.health;
 	int tank_health = ctrl->tank.health;
 
+	printf("%d %d", cannon_health, tank_health);
 	uint8_t val = 0;
-	if (cannon_health <= 1) {
-		val |= 128;
-	}
-	if (cannon_health <= 2) {
-		val |= 64;
-	}
-	if (cannon_health <= 3) {
-		val |= 32;
-	}
-	if (cannon_health <= 4) {
-		val |= 16;
-	}
 
 	if (tank_health <= 1) {
 		val |= 1;
@@ -192,6 +181,19 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	}
 	if (tank_health <= 4) {
 		val |= 8;
+	}
+
+	if (cannon_health <= 1) {
+		val |= 128;
+	}
+	if (cannon_health <= 2) {
+		val |= 64;
+	}
+	if (cannon_health <= 3) {
+		val |= 32;
+	}
+	if (cannon_health <= 4) {
+		val |= 16;
 	}
 
 	LedWrite( cannon_health + tank_health );
