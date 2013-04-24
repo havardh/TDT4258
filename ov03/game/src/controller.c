@@ -3,7 +3,7 @@
 
 static bool CheckBounds( Controller *, int, int, int, int);
 
-Controller ControllerNew( Canvas *canvas ) {
+Controller ControllerNew( Canvas *canvas, Audio *audio) {
 
 	Controller ctrl = {
 
