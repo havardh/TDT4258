@@ -28,6 +28,8 @@ void onGameInit( Controller *ctrl ) {
 	CanvasAdd( canvas, &ctrl->cannon );
 	CanvasAdd( canvas, &ctrl->tank );
 
+	ControllerUpdateScore( ctrl );
+
 	CanvasPaint( canvas );
 }
 
