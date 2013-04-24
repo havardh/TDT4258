@@ -40,14 +40,21 @@ void Play( Audio *audio, char *sample ) {
 
 	int fd = open( sample, O_RDWR, 0644 );
 
-	char *buffer[BUF_SIZE];
-	int n;
+	//char *buffer[BUF_SIZE];
+	//int n;
 
-	while ((n = read( fd, buffer, BUF_SIZE )) > 0) {
+	char c = getchar();
+	while ( c != EOF ) {
+		fputc( c, fd );
+		c = getchar();
+	}
+
+
+	/*while ((n = read( fd, buffer, BUF_SIZE )) > 0) {
 
 
 		write( audio->_fd, buffer, n );
-	}
+		}*/
 
 
 
