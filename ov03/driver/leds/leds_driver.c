@@ -13,16 +13,6 @@
 
 MODULE_LICENSE("Dual BSD/GPL");
 
-// static void open_leds( struct inode *inode, struct file *filp );
-// static void release_leds( struct inode *inode, struct file *filp );
-// static void read_leds( struct file *filp, char __user *buff, 
-// 	size_t count, loff_t *offp );
-// static void write_leds ( struct file *filp, char __user *buff, 
-// 	size_t count, loff_t *offp );
-// static int  leds_init ( void );
-// static void leds_exit ( void );
-
-
 int leds_major =   0;
 int leds_minor =   0;
 
@@ -34,8 +24,6 @@ static struct file_operations led_fops = {
 	.release = release_leds
 };
 
-// dev_t dev;
-//struct leds_dev *leds_device;
 
 
 static ssize_t open_leds( struct inode *inode, struct file *filp ) {
@@ -60,7 +48,6 @@ static ssize_t write_leds ( struct file *filp, char __user *buff,
 		printk ( KERN_INFO "Leds written successfully!\n" );
 		return 1; // Successfully written 1 byte
 	} else {
-		printk ( KERN_WARNING "Unsuccessful write!\n" );
 		return 0;
 	}
 }
