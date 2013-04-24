@@ -83,7 +83,7 @@ void onTick ( Controller *ctrl ) {
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
-	if ( canMove( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
+	if ( CheckBounds( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
 
 		TankMove(&ctrl->tank, dx, dy);
 		CanvasPaint( ctrl->canvas);
