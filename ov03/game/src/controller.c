@@ -51,11 +51,11 @@ void onRoundStart ( Controller *ctrl ) {
 void onRoundOver ( Controller *ctrl ) {
 
 	if ( ctrl->tank.health == 0 || ctrl->cannon.health == 0 ) {
-
+		printf("Game over\n");
 		onGameOver( ctrl );
 
 	} else {
-
+		printf("New round\n");
 		Image *img;
 		if (ctrl->winner == A) {
 			img = ImageNew("./data/playerawin.bmp", 0, 0);
