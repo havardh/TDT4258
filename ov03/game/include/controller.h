@@ -12,6 +12,7 @@
 #include <signal.h>
 #include <time.h>
 #include <unistd.h>
+#include "audio.h"
 
 typedef enum {
 	A, B
