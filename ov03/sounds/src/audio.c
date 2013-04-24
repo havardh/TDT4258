@@ -4,6 +4,11 @@
 #define BITPERSAMPLE 8
 #define BUF_SIZE 1024
 
+struct thread_data {
+	FILE *dsp_fd;
+	char *sample_name;
+};
+
 Audio AudioNew ( void ) {
 
 	Audio audio = {
@@ -18,9 +23,12 @@ void AudioDestroy (Audio *audio) {
 	close( audio->_fd );
 }
 
-void Play( Audio *audio, char *sample ) {
+static void *PlaySound( void *thread_arg ) {
 
-	FILE *fd = fopen( sample, "rb" );
+	thread_data *td = (struct thread_data *) thread_arg;
+
+	FILE *dsp = td->dsp_fd;
+	FILE *fd = fopen( td->sample_name, "rb" );
 
 	int c;
 	while ( (c = fgetc(fd)) != EOF ) {
@@ -29,4 +37,19 @@ void Play( Audio *audio, char *sample ) {
 
 	close( fd );
 
+
+}
+
+void Play( Audio *audio, char *sample ) {
+
+	thread_data td = {
+		.dsp_fd = audio->_fd,
+		.sample_name = sample
+	};
+
+	pthread_t thread;
+	int rc = pthread_create(&thread, NULL, PlaySound, (void*) &td );
+	if (rc) {
+		printf("Could not play sound\n");
+	}
 }
