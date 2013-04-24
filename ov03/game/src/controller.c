@@ -35,8 +35,8 @@ void onGameExit ( Controller *ctrl ) {
 
 }
 
-void onGameStart( Controller* ) {}
-void onGameOver( Controller* ) {}
+void onGameStart( Controller *ctrl ) {}
+void onGameOver( Controller *ctrl ) {}
 
 void onRoundStart ( Controller *ctrl ) {
 	ctrl->winner = 0;
@@ -50,7 +50,7 @@ void onRoundStart ( Controller *ctrl ) {
 
 void onRoundOver ( Controller *ctrl ) {
 
-	if ( ctrl->tank.heath == 0 || ctrl->cannon.health == 0 ) {
+	if ( ctrl->tank.health == 0 || ctrl->cannon.health == 0 ) {
 
 		onGameOver( ctrl );
 
@@ -105,7 +105,7 @@ void onTankFire ( Controller *ctrl ) {
 void onTankHit ( Controller *ctrl ) {
 
 	ctrl->winner = B;
-	ctr->tank.health -= 1;
+	ctrl->tank.health -= 1;
 	onRoundOver( ctrl );
 
 }
@@ -138,7 +138,7 @@ void onCannonFire ( Controller *ctrl ) {
 void onCannonHit ( Controller *ctrl ) {
 
 	ctrl->winner = A;
-	ctr->tank.health -= 1;
+	ctrl->cannon.health -= 1;
 	onGameOver( ctrl );
 
 }
