@@ -14,7 +14,7 @@ sources=src/*.c\
 .PHONY: all
 
 all:
-	$(CC) -g --std=c99 $(sources) $(include) -o bin/game
+	$(CC) -g --std=c99 $(sources) $(include) -lpthread -o bin/game
 
 .PHONY: clean
 clean:
