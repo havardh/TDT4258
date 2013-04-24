@@ -186,5 +186,5 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	}
 	printf("%d\n", val);
 
-	LedWrite( cannon_health + tank_health );
+	LedWrite( val );
 }
