@@ -185,19 +185,5 @@ void ControllerUpdateScore( Controller *ctrl ) {
 		val = 15;
 	}
 
-	if (cannon_health == 1) {
-		val |= 128;
-	}
-	if (cannon_health == 2) {
-		val |= 64;
-	}
-	if (cannon_health == 3) {
-		val |= 32;
-	}
-	if (cannon_health == 4) {
-		val |= 16;
-	}
-
 	LedWrite( cannon_health + tank_health );
-
 }
