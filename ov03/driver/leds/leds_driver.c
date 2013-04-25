@@ -24,8 +24,6 @@ static struct file_operations led_fops = {
 	.release = release_leds
 };
 
-
-
 static ssize_t open_leds( struct inode *inode, struct file *filp ) {
 	return 0;
 }
@@ -106,7 +104,7 @@ static void leds_exit ( void ) {
 	volatile avr32_pio_t *piob = &AVR32_PIOB;
 	piob->codr = 0xff;
 	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
-	// unregister_chrdev_region ( dev, NUM_DEVICES );
+	unregister_chrdev_region ( dev, NUM_DEVICES );
 	printk ( KERN_INFO "Leds unloaded\n" );
 }
 

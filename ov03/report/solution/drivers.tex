@@ -7,14 +7,41 @@ file operations like read and write. The following sections
 describe the implementation of the led driver, but it is the same for
 the button driver.
 
-\subsubsection{module init}
+\subsubsection{Module initialization}
 The leds and buttons driver have the init functions \textbf{leds\_init}
-and \textbf{buttons\_init}, respectively.
-The first thing that happens is allocation of a character device region
-and assigning a mojor number to the device.
+and \textbf{buttons\_init}, respectively. They are registered, and thus 
+picked up by the kernel, by calling the function \textbf{module\_init}
+passing the init-fuction as a parameter.
+\\
 \begin{lstlisting}
-result = alloc_chrdev_region ( &dev, leds_minor, NUM_DEVICES, "leds" );
-leds_major = MAJOR ( dev );
+module_init ( leds_init );
+\end{lstlisting}
+Both the drivers have a file\_operations structure,
+defined in the C file. All it does is map different file operations,
+implemented in the driver, to the ones defined in the structure.
+This file\_operations stucture will later on be registered together
+with the actual device.
+\\
+\begin{lstlisting}
+static struct file_operations led_fops = {
+	.owner = THIS_MODULE,
+	.open = open_leds,
+	.write = write_leds,
+	.read = read_leds,
+	.release = release_leds
+};
+\end{lstlisting}
+The first thing that happens inside the leds\_init function
+is allocation of a character device region
+and assigning a mojor number to the device.
+\\
+\begin{lstlisting}
+static int leds_init ( void ) {
+	//...
+	result = alloc_chrdev_region ( &dev, leds_minor, 
+		NUM_DEVICES, "leds" );
+	leds_major = MAJOR ( dev );
+	//...
 \end{lstlisting}
 If alloc\_chrdev\_region returns a negative number there is a problem getting
 a major number to the device and the init method returns with an error.
@@ -23,6 +50,7 @@ representing the device based on the minor and major number, and requests memory
 If all goes well we initialize the \textit{per} and, 
 \textit{oer} registers at piob (\textit{per} and \textit{puer}
 for buttons), in order to be able to read and write from PIOB.
+\\
 \begin{lstlisting}
 dev = MKDEV ( leds_major, leds_minor );
 result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, "leds" );
@@ -31,3 +59,46 @@ volatile avr32_pio_t *piob = &AVR32_PIOB;
 piob->per |= 0xff;
 piob->oer |= 0xff;
 \end{lstlisting}
+Finally, the leds\_init function allocates and sets up the character 
+device structure \textit{char\_dev}. 
+It adds all the led file operations defined in
+the struct \textit{led\_fops} to \textit{char\_dev}, and 
+it registers the device with the dev\_t \textit{dev} data item.
+\\
+\begin{lstlisting}
+// Set up char_dev structure for the device
+struct cdev *char_dev = cdev_alloc ();
+cdev_init ( char_dev, &led_fops );
+char_dev->owner = THIS_MODULE;
+char_dev->ops = &led_fops;
+int error = cdev_add (char_dev, dev, 1);
+\end{lstlisting}
+If there is an error, i.e. \textit{error} is a positive number, it will
+be logged to the kernel. Otherwise, the device driver initialization 
+should have completed successfully.
+
+\subsubsection{Module termination}
+The drivers also have an exit-function, \textbf{leds\_exit} and 
+\textbf{buttons\_exit} that is registered the same way as 
+the init function. This function is called when the kernel module is 
+removed from the operating system. 
+\\
+\begin{lstlisting}
+module_exit ( leds_exit );
+\end{lstlisting}
+The termination procedure of the kernel module is much smaller than the 
+initialization procedure. It basically clears out the output register
+on the device, releases the peviously requested memory region and
+unregisteres the previously registered character device region for
+the device.
+\\
+\begin{lstlisting}
+static void leds_exit ( void ) {
+	int mem_quantum = sizeof( avr32_pio_t );
+	volatile avr32_pio_t *piob = &AVR32_PIOB;
+	piob->codr = 0xff;
+	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
+	unregister_chrdev_region ( dev, NUM_DEVICES );
+}
+\end{lstlisting}
+

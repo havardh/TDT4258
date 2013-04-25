@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.12)  25 APR 2013 17:14
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.2.12)  25 APR 2013 18:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -621,36 +621,69 @@ Overfull \hbox (6.31378pt too wide) in paragraph at lines 13--14
 
 
 ] (./solution/drivers.tex
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 30.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 31.
+Underfull \hbox (badness 10000) in paragraph at lines 11--16
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--25
+
+ []
+
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--38
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--54
+
+ []
+
+[12
+
+
+]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 59.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 31.
-) [12
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 59.
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--68
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--86
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--95
+
+ []
+
+) [13] (./solution/leddriver.tex) [14
+
+
+] (./solution/buttondriver.tex) [15
 
 
 ]
-(./solution/leddriver.tex) [13
+(./solution/graphics.tex) [16
 
 
-] (./solution/buttondriver.tex) [14
+] (./solution/sound.tex) [17
 
 
-]
-(./solution/graphics.tex) [15
+] (./solution/game.tex) [18
 
 
-] (./solution/sound.tex) [16
-
-
-] (./solution/game.tex) [17
-
-
-] (./testreport.tex) [18
+] (./testreport.tex) [19
 
 
 ]
@@ -659,7 +692,7 @@ No file testreport/buttondriver.tex.
 No file testreport/graphics.tex.
 No file testreport/sound.tex.
 No file testreport/game.tex.
-(./discussion.tex) [19
+(./discussion.tex) [20
 
 
 
@@ -672,7 +705,7 @@ No file testreport/game.tex.
 
 
 
-] (./conclusion.tex) [20
+] (./conclusion.tex) [21
 
 
 ] (./references.tex
@@ -681,18 +714,18 @@ Overfull \hbox (42.19pt too wide) in paragraph at lines 7--9
 ki/Character[]device#Character[]devices 
  []
 
-) [21
+) [22
 
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4605 strings out of 495059
- 61233 string characters out of 3182030
- 169508 words of memory out of 3000000
- 7652 multiletter control sequences out of 15000+200000
+ 4662 strings out of 495059
+ 62016 string characters out of 3182030
+ 208508 words of memory out of 3000000
+ 7709 multiletter control sequences out of 15000+200000
  9537 words of font info for 35 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,7n,49p,230b,1286s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,7n,49p,230b,1607s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -706,10 +739,10 @@ lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
 t10.pfb>
-Output written on main.pdf (22 pages, 242722 bytes).
+Output written on main.pdf (23 pages, 249449 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
+ 136 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
