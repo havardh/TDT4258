@@ -37,7 +37,6 @@ static void *PlaySound( void *thread_arg ) {
 
 	close( fd );
 
-
 }
 
 void Play( Audio *audio, char *sample ) {
