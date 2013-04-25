@@ -1,5 +1,9 @@
 #include "audio.h"
 
+struct thread_data {
+	char *sample_name;
+};
+
 static void *PlaySound( void *thread_arg ) {
 
 	struct thread_data *td = (struct thread_data *) thread_arg;
