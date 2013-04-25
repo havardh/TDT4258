@@ -67,7 +67,7 @@ int main ( void ) {
 	static tick_delay = 0;
 	while(running) {
 
-		if (tick_delay++ == 100) {
+		if (tick_delay++ == 1000) {
 			tick_delay = 0;
 			onTick( &ctrl );
 		}

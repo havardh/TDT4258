@@ -80,7 +80,8 @@ void onRoundOver ( Controller *ctrl ) {
 }
 
 void onTick ( Controller *ctrl ) {
-	printf("tick\n");
+	static int t = 0;
+	printf("tick%d\n", t++);
 }
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {
