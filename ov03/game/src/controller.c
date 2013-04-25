@@ -38,9 +38,9 @@ void onGameExit ( Controller *ctrl ) {
 	AudioPlay( "./data/gameexit.wav" );
 	Image *img;
 	if (ctrl->winner == A) {
-		img = ImageNew("./data/playerawin.bmp", 0, 0);
+		img = ImageNew("./data/playerawins_go.bmp", 0, 0);
 	} else if (ctrl->winner == B) {
-		img = ImageNew("./data/playerbwin.bmp", 0, 0);
+		img = ImageNew("./data/playerbwins_go.bmp", 0, 0);
 	}
 	// show exit splash
 	CanvasAdd( ctrl->canvas, img );
