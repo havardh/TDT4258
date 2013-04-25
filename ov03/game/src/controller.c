@@ -147,6 +147,7 @@ void onCannonHit ( Controller *ctrl ) {
 
 static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 
+
 	x += dx;
 	y += dy;
 
@@ -160,8 +161,7 @@ static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 }
 
 static bool canMove ( Controller *ctrl, int x, int y, int dx, int dy ) {
-	return CheckBounds ( ctrl, x, y, dx, dy )
-		&& ctrl->field.board[x+dx][y+dy] != FIRE;
+	return CheckBounds ( ctrl, x, y, dx, dy ) && !FieldIsBurned( &ctrl->field, x+dx, y+dy);
 }
 
 void ControllerUpdateScore( Controller *ctrl ) {
