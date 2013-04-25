@@ -1,5 +1,17 @@
 \subsection{Led Driver}
-The led driver and the button driver has a lot of similar code, mainly the 
-initialization process and the termination process of the driver. 
-They are both character devices that registers a memory region on the 
-PIOB and registers itself 
+The main difference between the two drivers is the use of the file operation
+functions, specifically the \textit{write} for leds and the \textit{read} for
+buttons.\\
+\\
+The file\_operation struct in leds registers the four file operations open,
+read, write and release, but only the write-function is implemented.
+The remaining three functions only return the value 0.\\
+\\
+The write function is passed several parameters in which the string,
+\textit{char *buff} is the only one of interest for this driver.
+When the system calls the write\_leds function, the device driver will 
+write the first byte of the buffer to the PIOB sodr register, i.e. the register
+that holds the led status. Afterwards it will return the value 1, indicating that
+one byte was written successfully.\\
+\\
+We found that while testing the driver though the terminal with the command 
