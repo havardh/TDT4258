@@ -18,4 +18,10 @@ for the operating system to use the specific hardware. This could
 not have been done if it had not been for a common interface that 
 the different drivers could implement. Linux offers such an 
 interface, and it is described in the book 
-Linux Device Drivers \cite{linux-device-drivers}.
+Linux Device Drivers \cite{linux-device-drivers}.\\
+\\
+When a device driver is installed it is usually put into the directory
+\textbf{/dev/} (for devices), and it works as an ordinary file
+that can be written to, read from and searched in; as long as it 
+implements the appropriate functions. We implemented two character
+device\cite{character-device} drivers, 
