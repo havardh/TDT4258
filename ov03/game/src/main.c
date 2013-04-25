@@ -55,7 +55,7 @@ int main ( void ) {
 	//Audio audio = AudioNew();
 
 	// Init game
-	ctrl = ControllerNew( &canvas, &audio );
+	ctrl = ControllerNew( &canvas, NULL );
 	RegisterCallbacks();
 
 	onGameInit( &ctrl );
