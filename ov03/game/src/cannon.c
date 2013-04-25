@@ -77,6 +77,11 @@ void CannonAim( Cannon *cannon, int dx, int dy ) {
 
 bool CannonIsOn( Cannon *cannon, int x, int y ) {
 
-	return cannon->x == x && cannon->y == y;
+	if (cannon->x == x || cannon->x-1 == x) {
+		if (cannon->y == y || cannon->y-1 == y) {
+			return true;
+		}
+	}
 
+	return false;
 }
