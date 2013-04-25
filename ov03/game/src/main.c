@@ -29,8 +29,6 @@ int main ( void ) {
 
 	onGameInit( &ctrl );
 
-	AudioPlay( "./data/explosion.wav" );
-
 	static tick_delay = 0;
 	while(running) {
 
