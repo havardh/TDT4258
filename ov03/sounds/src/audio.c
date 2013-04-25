@@ -12,7 +12,7 @@ static FILE* fd_dsp;
 
 Audio AudioNew ( void ) {
 
-	fd = fopen( "/dev/dsp", "wb" )
+	fd_dsp = fopen( "/dev/dsp", "wb" )
 
 	Audio audio;
 
@@ -36,7 +36,6 @@ static void *PlaySound( void *thread_arg ) {
 	}
 
 	close( fd );
-
 
 }
 
