@@ -11,7 +11,7 @@ Canvas CanvasNew(Screen *screen) {
 }
 
 void CanvasAdd(Canvas *canvas, void *shape) {
-	printf("%s\n", "Adding a shape");
+
 	canvas->shapes[canvas->top++] = shape;
 }
 
@@ -20,7 +20,7 @@ void CanvasRemove(Canvas *canvas, void *shape) {
 	for (int i=0; i<canvas->top; i++) {
 
 		if (canvas->shapes[i] == shape) {
-			printf("Removeing a shape\n");
+
 			canvas->shapes[i] = NULL;
 			return;
 		}
@@ -40,7 +40,7 @@ void CanvasPaint (Canvas *canvas) {
 
 		}
 	}
-	printf("Items: %d\n", canvas->top);
+
 
 	for (int i=0; i<canvas->top; i++) {
 		if (canvas->shapes[i]) {

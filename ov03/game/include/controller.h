@@ -1,6 +1,7 @@
 #ifndef _CONTROLLER_H_
 #define _CONTROLLER_H_
 
+#include "splash.h"
 #include "field.h"
 #include "cannon.h"
 #include "tank.h"
@@ -14,15 +15,17 @@
 #include <unistd.h>
 #include "audio.h"
 
+
 typedef enum {
 	A, B
 } Player;
 
 typedef struct {
 
+	bool running;
+
 	Player winner;
 
-	Audio *audio;
 	Canvas *canvas;
 
 	Field field;
@@ -31,7 +34,7 @@ typedef struct {
 
 } Controller;
 
-Controller ControllerNew( Canvas *cavnas, Audio *audio );
+Controller ControllerNew( Canvas *cavnas );
 
 // Events
 void onTick ( Controller* );

@@ -1,55 +1,49 @@
 #include "audio.h"
 
-#define CHANNELS 2
-#define BITPERSAMPLE 8
-#define BUF_SIZE 1024
-
 struct thread_data {
 	char *sample_name;
 };
 
-static FILE* fd_dsp;
-
-Audio AudioNew ( void ) {
-
-        fd_dsp = fopen( "/dev/dsp", "wb" );
-
-	Audio audio;
-
-	return audio;
-
-}
-
-void AudioDestroy (Audio *audio) {
-	close( fd_dsp );
-}
-
 static void *PlaySound( void *thread_arg ) {
 
-	struct thread_data *td = (struct thread_data *) thread_arg;
+        char *sample = (char*)thread_arg;
 
-	FILE *fd = fopen( td->sample_name, "rb" );
-       
+	FILE *dsp_fd = fopen( "/dev/dsp", "wb" );
+	FILE *fd = fopen( sample, "rb" );
+
+        if (!dsp_fd) {
+            printf("could not open dsp\n");
+            return;
+        }
+
+        if (!fd) {
+             printf( "Could not open sample (%s)\n", sample );
+             exit(0);
+        }
+
+        printf("opened (%d %d)\n"); 
+
 	int c;
 	while ( (c = fgetc(fd)) != EOF ) {
-		fputc( c, fd_dsp );
+		fputc( c, dsp_fd );
 	}
 
-	close( fd );
-
+	fclose( fd );
+	fclose( dsp_fd );
+        printf( "DSP closed\n" );
 }
 
-void Play( Audio *audio, char *sample ) {
+void AudioPlay( char *sample ) {
 
-        struct thread_data td = {
+	struct thread_data td = {
 		.sample_name = sample
 	};
 
 	pthread_t thread;
 
-	int rc = pthread_create(&thread, NULL, PlaySound, (void*) &td );
+	int rc = pthread_create(&thread, NULL, PlaySound, (void*) sample );
 
 	if (rc) {
 		printf("Could not play sound\n");
-        }
+	}
 }

@@ -5,8 +5,9 @@
 #include <stdbool.h>
 //#include "led.h"
 #include "button.h"
+#include "audio.h"
 
-static bool running = 1;
+
 
 int main ( void ) {
 
@@ -18,21 +19,14 @@ int main ( void ) {
 
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
-	//Audio audio = AudioNew();
 
 	// Init game
-	Controller ctrl = ControllerNew( &canvas, NULL );
-	RegisterCallbacks( &ctrl );
-
-	showSplashScreen( &canvas );
-
-
+	Controller ctrl = ControllerNew( &canvas );
 	onGameInit( &ctrl );
 
-	//Play( &audio, "./data/test_sound.wav" );
-
+	// Main loop
 	static tick_delay = 0;
-	while(running) {
+	while(ctrl.running) {
 
 		if ( tick_delay++ == 20000 ) {
 			tick_delay = 0;

@@ -59,6 +59,8 @@ void CannonAim( Cannon *cannon, int dx, int dy ) {
 	cannon->aimy += dy;
 	double rad = 1.0*cannon->aimx / cannon->aimy;
 
+	printf( "%f", rad );
+
 	if ( rad < 0.26 ) { // ~0-15 degrees
 		cannon->angle = 0;
 	} else if ( rad < 0.64 ) { // ~15-37 degrees
@@ -75,6 +77,11 @@ void CannonAim( Cannon *cannon, int dx, int dy ) {
 
 bool CannonIsOn( Cannon *cannon, int x, int y ) {
 
-	return cannon->x == x && cannon->y == y;
+	if (cannon->x == x || cannon->x-1 == x) {
+		if (cannon->y == y || cannon->y-1 == y) {
+			return true;
+		}
+	}
 
+	return false;
 }

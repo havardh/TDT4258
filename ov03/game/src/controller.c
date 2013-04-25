@@ -4,11 +4,10 @@
 static bool CheckBounds( Controller*, int, int, int, int);
 static bool canMove( Controller* , int, int, int, int);
 
-Controller ControllerNew( Canvas *canvas, Audio *audio) {
+Controller ControllerNew( Canvas *canvas ) {
 
 	Controller ctrl = {
-
-		.audio = audio,
+		.running = true,
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
 		.cannon = CannonNew(14, 0),
@@ -31,16 +30,38 @@ void onGameInit( Controller *ctrl ) {
 	ControllerUpdateScore( ctrl );
 
 	CanvasPaint( canvas );
+
+	onGameStart( ctrl );
 }
 
 void onGameExit ( Controller *ctrl ) {
+	AudioPlay( "./data/gameexit.wav" );
+	Image *img;
+	if (ctrl->winner == A) {
+		img = ImageNew("./data/playerawins_go.bmp", 0, 0);
+	} else if (ctrl->winner == B) {
+		img = ImageNew("./data/playerbwins_go.bmp", 0, 0);
+	}
+	// show exit splash
+	CanvasAdd( ctrl->canvas, img );
+	CanvasPaint( ctrl->canvas );
 
+	sleep( 3 );
 }
 
-void onGameStart( Controller *ctrl ) {}
-void onGameOver( Controller *ctrl ) {}
+void onGameStart( Controller *ctrl ) {
+	AudioPlay( "./data/gamestart.wav" );
+	showSplashScreen( ctrl->canvas );
+	RegisterCallbacks( ctrl );
+}
+
+void onGameOver( Controller *ctrl ) {
+
+	ctrl->running = false;
+}
 
 void onRoundStart ( Controller *ctrl ) {
+	AudioPlay( "./data/gamestart.wav" );
 	ctrl->winner = 0;
 
 	FieldOnGameStart( &ctrl->field );
@@ -55,10 +76,12 @@ void onRoundStart ( Controller *ctrl ) {
 void onRoundOver ( Controller *ctrl ) {
 
 	if ( ctrl->tank.health == 0 || ctrl->cannon.health == 0 ) {
+
 		onGameOver( ctrl );
 
 	} else {
 		Image *img;
+		AudioPlay( "./data/win.wav" );
 		if (ctrl->winner == A) {
 			img = ImageNew("./data/playerawin.bmp", 0, 0);
 		} else if (ctrl->winner == B) {
@@ -97,6 +120,7 @@ bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
 		return true;
 	}
+
 	return false;
 
 }
@@ -125,6 +149,8 @@ bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 }
 
 void onCannonFire ( Controller *ctrl ) {
+
+	AudioPlay( "./data/explosion.wav" );
 
 	int x = ctrl->cannon.aimx;
 	int y = ctrl->cannon.aimy;
