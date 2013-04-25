@@ -6,8 +6,8 @@
 #include "image.h"
 #include <stdbool.h>
 
-static char* cannon_filename = "./data/cannon.bmp";
-static char* cannonaim_filename = "./data/cannonaim.bmp";
+static char* cannon_filename = "./data/cannon_45.bmp";
+static char* cannonaim_filename = "./data/crosshair.bmp";
 
 typedef struct {
 
@@ -26,7 +26,7 @@ typedef struct {
 
 } Cannon;
 
-Cannon CannonNew( int, int);
+Cannon CannonNew( int, int );
 
 void CannonOnGameStart( Cannon* );
 
