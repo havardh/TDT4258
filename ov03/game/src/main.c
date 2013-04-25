@@ -22,7 +22,7 @@ int main ( void ) {
 	//Audio audio = AudioNew();
 
 	// Init game
-	Controller ctrl = ControllerNew( &canvas, NULL );
+	Controller ctrl = ControllerNew( &canvas );
 	RegisterCallbacks( &ctrl );
 
 	showSplashScreen( &canvas );
