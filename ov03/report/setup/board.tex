@@ -9,3 +9,9 @@ To prepare the board for installing the drivers and the game the following must 
 \end{enumerate}
 
 This section is a walkthrough of this process.
+
+
+// env variabel for u-boot.
+\begin{verbatim}
+  bootcmd 'mmc init; ext2load mmc 0:1 0x90400000 $(fileaddr); bootm 0x90400000'
+\end{verbatim}
