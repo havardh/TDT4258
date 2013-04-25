@@ -8,13 +8,10 @@ To prepare the board for installing the drivers and the game the following must 
   \item Linux must be booted with the help of uBoot and minicom.
 \end{enumerate}
 
-\\This section is a walkthrough of this process.
+This section is a walkthrough of this process.
 
-\\We downloaded a complete SD card image and wrote it to an empty SD card. Then the card was placed in the SD card slot on the board. To make the micro controller boot the OS on the SD card, we launched uBoot. uBoot had to be configured with some variables: 
 \begin{verbatim}
   bootcmd 'mmc init; ext2load mmc 0:1 0x90400000 $(fileaddr); bootm 0x90400000'
 \end{verbatim}
-
-\\To access the OS, we connected the board to the computer with a COM/serial cable, and launched minicom. The default settings needed to be changed, to disable ...
+We downloaded a complete SD card image and wrote it to an empty SD card. Then the card was placed in the SD card slot on the board. To make the microcontroller boot the OS on the SD card, we launched uBoot. uBoot had to be configured with some variables... To access the OS we connected the board to the computer with a COM, and launched minicom. The default settings needed to be changed, to disable ...
 We connected the board to the NTNU network, and set up ssh so we could access it from our private computers in order to work in parallel.
-

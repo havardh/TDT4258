@@ -4,14 +4,13 @@ the initialization process and the termination process of the driver.
 They are both character devices that registers a memory region on the 
 PIOB and registers itself as a character device, with major numbers and 
 file operations like read and write. The following sections 
-describe the implementation of the led driver, but it is the same for
-the button driver.
+describe the implementation of the led driver, but the procedure is equal for the buttons driver.
 
 \subsubsection{Module initialization}
 The leds and buttons driver have the init functions \textbf{leds\_init}
 and \textbf{buttons\_init}, respectively. They are registered, and thus 
 picked up by the kernel, by calling the function \textbf{module\_init}
-passing the init-fuction as a parameter.
+passing the init-function as a parameter.
 \\
 \begin{lstlisting}
 module_init ( leds_init );
@@ -19,7 +18,7 @@ module_init ( leds_init );
 Both the drivers have a file\_operations structure,
 defined in the C file. All it does is map different file operations,
 implemented in the driver, to the ones defined in the structure.
-This file\_operations stucture will later on be registered together
+This file\_operations structure will later on be registered together
 with the actual device.
 \\
 \begin{lstlisting}
@@ -33,7 +32,7 @@ static struct file_operations led_fops = {
 \end{lstlisting}
 The first thing that happens inside the leds\_init function
 is allocation of a character device region
-and assigning a mojor number to the device.
+and assigning a major number to the device.
 \\
 \begin{lstlisting}
 static int leds_init ( void ) {
@@ -88,8 +87,8 @@ module_exit ( leds_exit );
 \end{lstlisting}
 The termination procedure of the kernel module is much smaller than the 
 initialization procedure. It basically clears out the output register
-on the device, releases the peviously requested memory region and
-unregisteres the previously registered character device region for
+on the device, releases the previously requested memory region and
+unregisters the previously registered character device region for
 the device.
 \\
 \begin{lstlisting}
