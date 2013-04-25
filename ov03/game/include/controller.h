@@ -14,11 +14,14 @@
 #include <unistd.h>
 #include "audio.h"
 
+
 typedef enum {
 	A, B
 } Player;
 
 typedef struct {
+
+	bool running;
 
 	Player winner;
 

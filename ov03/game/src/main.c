@@ -7,7 +7,7 @@
 #include "button.h"
 #include "audio.h"
 
-static bool running = 1;
+
 
 int main ( void ) {
 
@@ -30,7 +30,7 @@ int main ( void ) {
 	onGameInit( &ctrl );
 
 	static tick_delay = 0;
-	while(running) {
+	while(ctrl.running) {
 
 		if ( tick_delay++ == 20000 ) {
 			tick_delay = 0;

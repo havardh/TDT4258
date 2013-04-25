@@ -7,7 +7,7 @@ static bool canMove( Controller* , int, int, int, int);
 Controller ControllerNew( Canvas *canvas ) {
 
 	Controller ctrl = {
-
+		.running = true;
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
 		.cannon = CannonNew(14, 0),
@@ -30,14 +30,23 @@ void onGameInit( Controller *ctrl ) {
 	ControllerUpdateScore( ctrl );
 
 	CanvasPaint( canvas );
+
+	onGameStart( ctrl );
 }
 
 void onGameExit ( Controller *ctrl ) {
 
 }
 
-void onGameStart( Controller *ctrl ) {}
-void onGameOver( Controller *ctrl ) {}
+void onGameStart( Controller *ctrl ) {
+
+}
+
+void onGameOver( Controller *ctrl ) {
+
+
+	ctrl->running = false;
+}
 
 void onRoundStart ( Controller *ctrl ) {
 	ctrl->winner = 0;
@@ -54,6 +63,7 @@ void onRoundStart ( Controller *ctrl ) {
 void onRoundOver ( Controller *ctrl ) {
 
 	if ( ctrl->tank.health == 0 || ctrl->cannon.health == 0 ) {
+
 		onGameOver( ctrl );
 
 	} else {
