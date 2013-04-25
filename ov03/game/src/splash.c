@@ -8,7 +8,7 @@ void showSplashScreen( Canvas *canvas ) {
 	sleep( 1 );
 	CanvasRemove( canvas, splash0 );
 	Image *splash1 = ImageNew( "./data/splash_1.bmp", 0, 0 );
-	CanvasAdd( canvas, splash1 );g
+	CanvasAdd( canvas, splash1 );
 	CanvasPaint( canvas );
 	sleep( 1 );
 	CanvasRemove( canvas, splash1 );
