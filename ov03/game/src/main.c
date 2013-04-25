@@ -14,29 +14,33 @@ static void wait(int wait) {
 	for(int i=0; i<wait; i++) ;
 }
 
-static void tr( void ) { onTankMove( &ctrl,  1, 0 ); }
-static void td( void ) { onTankMove( &ctrl,  0,-1 ); }
-static void tu( void ) { onTankMove( &ctrl,  0, 1 ); }
-static void tl( void ) { onTankMove( &ctrl, -1, 0 ); }
+static int tankmode = 0;
+static int cannonmode = 0;
+
+static void noop( void ) {}
+
+static void tr( void ) { if (tankmode) { onTankMove( &ctrl, 1, 0 ); } else { onTankMove( &ctrl, -1, 0 ); } }
+static void td( void ) { if (tankmode) { onTankMove( &ctrl,  0,-1 ); } else { onTankMove( &ctrl,  0, 1 ); } }
+static void tu( void ) { tankmode = (tankmode) ? 0 : 1; }
+
+static void cr( void ) { onCannonAim( &ctrl,  1, 0 ); }
+static void cl( void ) { onCannonAim( &ctrl, -1, 0 ); }
+static void cu( void ) { onCannonAim( &ctrl,  0,-1 ); }
+static void cd( void ) { onCannonAim( &ctrl,  0, 1 ); }
 
 
 static void cannon_fire( void ) { onCannonFire( &ctrl); }
-static void cr( void ) { onCannonAim( &ctrl, 1, 0);  }
-static void cd( void ) { onCannonAim( &ctrl, 0,-1);  }
-static void cu( void ) { onCannonAim( &ctrl, 0, 1);  }
-static void cl( void ) { onCannonAim( &ctrl,-1, 0);  }
 
 static void RegisterCallbacks( void ) {
 
 	ButtonAddCallback( 0, &tr );
 	ButtonAddCallback( 1, &td );
 	ButtonAddCallback( 2, &tu );
-	//ButtonAddCallback( 3, &tl );
 
 	ButtonAddCallback( 3, &cannon_fire );
 	ButtonAddCallback( 4, &cr );
-	ButtonAddCallback( 5, &cd );
-	ButtonAddCallback( 6, &cu );
+	ButtonAddCallback( 5, &cu );
+	ButtonAddCallback( 6, &cd );
 	ButtonAddCallback( 7, &cl );
 }
 
@@ -50,15 +54,15 @@ int main ( void ) {
 
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
-	Audio audio = AudioNew();
+	//Audio audio = AudioNew();
 
 	// Init game
-	ctrl = ControllerNew( &canvas, &audio );
+	ctrl = ControllerNew( &canvas, NULL );
 	RegisterCallbacks();
 
 	onGameInit( &ctrl );
 
-	Play( &audio, "./data/test_sound.wav" );
+	//Play( &audio, "./data/test_sound.wav" );
 
 	while(running) {
 

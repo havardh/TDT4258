@@ -85,7 +85,7 @@ void onTick ( Controller *ctrl ) {
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
-	if ( CheckBounds( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
+	if ( canMove( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
 
 		TankMove(&ctrl->tank, dx, dy);
 		CanvasPaint( ctrl->canvas);
@@ -147,6 +147,7 @@ void onCannonHit ( Controller *ctrl ) {
 
 static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 
+
 	x += dx;
 	y += dy;
 
@@ -160,8 +161,7 @@ static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 }
 
 static bool canMove ( Controller *ctrl, int x, int y, int dx, int dy ) {
-	return CheckBounds ( ctrl, x, y, dx, dy )
-		&& ctrl->field.board[x+dx][y+dy] != FIRE;
+	return CheckBounds ( ctrl, x, y, dx, dy ) && !FieldIsBurned( &ctrl->field, x+dx, y+dy);
 }
 
 void ControllerUpdateScore( Controller *ctrl ) {
@@ -173,18 +173,24 @@ void ControllerUpdateScore( Controller *ctrl ) {
 	uint8_t val = 0;
 
 	if (tank_health == 1) {
-		val == 1;
-	}
-	if (tank_health == 2) {
+		val = 1;
+	} else if (tank_health == 2) {
 		val = 3;
-	}
-	if (tank_health == 3) {
+	} else if (tank_health == 3) {
 		val = 7;
-	}
-	if (tank_health == 4) {
+	} else if (tank_health == 4) {
 		val = 15;
 	}
-	printf("%d\n", val);
 
-	LedWrite( cannon_health + tank_health );
+	if (cannon_health == 1) {
+		val |= 0x80;
+	} else if (cannon_health == 2) {
+		val |= 0xC0;
+	} else if (cannon_health == 3) {
+		val |= 0xE0;
+	} else if (cannon_health == 4) {
+		val |= 0xF0;
+	}
+
+	LedWrite( val );
 }

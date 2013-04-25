@@ -10,7 +10,6 @@ sources=src/*.c\
 	../sounds/src/*.c\
 	../util/src/*.c
 
-
 .PHONY: all
 
 all:

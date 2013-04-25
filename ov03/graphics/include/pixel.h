@@ -2,6 +2,7 @@
 #define PIXEL_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef struct __attribute__((__packed__)) {
 	uint8_t blue;
@@ -10,6 +11,8 @@ typedef struct __attribute__((__packed__)) {
 } Pixel;
 
 Pixel PixelNew(uint8_t, uint8_t, uint8_t);
+
+bool PixelNotTransparant(Pixel *pixel);
 
 void PixelPrint(Pixel *);
 

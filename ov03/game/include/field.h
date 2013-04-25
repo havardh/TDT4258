@@ -4,9 +4,11 @@
 #include "shape.h"
 #include "screen.h"
 #include "image.h"
+#include <stdbool.h>
 
-static char* field_filename = "../graphics/data/box.bmp";
+static char *background_filename = "./data/background.bmp";
 static char* fire_filename = "./data/fire.bmp";
+
 
 typedef enum {
 
@@ -20,7 +22,7 @@ typedef struct {
 	void *parent;
 	void (*paint) ( Shape*, Screen* );
 
-	Image *grass;
+	Image *background;
 	Image *fire;
 
 	int width;
@@ -34,6 +36,7 @@ typedef struct {
 Field FieldNew( int, int );
 
 void FieldOnGameStart( Field*);
+bool FieldIsBurned( Field*, int, int );
 
 void FieldHit( Field*, int, int );
 

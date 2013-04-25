@@ -6,19 +6,16 @@ static void paint ( Shape *shape, Screen *screen ) {
 	int height = field->height;
 	int width = field->width;
 
+	field->background->paint( field->background, screen );
+
 	for (int i=0; i<height; i++) {
 		for(int j=0; j<width; j++) {
 
-		      if ( field->board[i][j] == EMPTY ) {
-			      field->grass->x = j * 20;
-			      field->grass->y = i * 20;
-			      field->grass->paint( field->grass, screen );
-		      } else if ( field->board[i][j] == FIRE ) {
+		      if ( field->board[i][j] == FIRE ) {
 			      field->fire->x = j * 20;
 			      field->fire->y = i * 20;
 			      field->fire->paint( field->fire, screen );
 		      }
-
 		}
 	}
 }
@@ -28,7 +25,7 @@ Field FieldNew( int width, int height ) {
 	Field field = {
 		.parent = NULL,
 		.paint = &paint,
-		.grass = ImageNew(field_filename, 0, 0),
+		.background = ImageNew(background_filename, 0, 0),
 		.fire = ImageNew(fire_filename, 0, 0),
 		.width = width,
 		.height = height,
@@ -50,6 +47,11 @@ void FieldOnGameStart( Field *field ) {
 			field->board[i][j] = EMPTY;
 		}
 	}
+
+}
+
+bool FieldIsBurned( Field* field, int x, int y ) {
+	return field->board[y][x] == FIRE;
 
 }
 

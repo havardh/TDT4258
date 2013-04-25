@@ -26,9 +26,10 @@ void ScreenDrawPixel( Screen *screen, int x, int y, Pixel *pixel ) {
 
 
 	if (x >= 0 && x < screen->width && y >= 0 && y < screen->height) {
-
-		int coordinate = y * screen->width * 3 + x * 3;
-		*((Pixel*)&screen->internal_buffer[coordinate]) = *pixel;
+		if (PixelNotTransparant(pixel)) {
+			int coordinate = y * screen->width * 3 + x * 3;
+			*((Pixel*)&screen->internal_buffer[coordinate]) = *pixel;
+		}
 
 	}
 
