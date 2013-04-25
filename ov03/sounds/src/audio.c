@@ -6,19 +6,31 @@ struct thread_data {
 
 static void *PlaySound( void *thread_arg ) {
 
-	struct thread_data *td = (struct thread_data *) thread_arg;
+        char *sample = (char*)thread_arg;
 
 	FILE *dsp_fd = fopen( "/dev/dsp", "wb" );
-	FILE *fd = fopen( td->sample_name, "rb" );
+	FILE *fd = fopen( sample, "rb" );
+
+        if (!dsp_fd) {
+            printf("could not open dsp\n");
+            return;
+        }
+
+        if (!fd) {
+             printf( "Could not open sample (%s)\n", sample );
+             exit(0);
+        }
+
+        printf("opened (%d %d)\n"); 
 
 	int c;
 	while ( (c = fgetc(fd)) != EOF ) {
 		fputc( c, dsp_fd );
 	}
 
-	close( fd );
-	close( dsp_fd );
-
+	fclose( fd );
+	fclose( dsp_fd );
+        printf( "DSP closed\n" );
 }
 
 void AudioPlay( char *sample ) {
@@ -29,7 +41,7 @@ void AudioPlay( char *sample ) {
 
 	pthread_t thread;
 
-	int rc = pthread_create(&thread, NULL, PlaySound, (void*) &td );
+	int rc = pthread_create(&thread, NULL, PlaySound, (void*) sample );
 
 	if (rc) {
 		printf("Could not play sound\n");
