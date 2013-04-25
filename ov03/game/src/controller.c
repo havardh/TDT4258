@@ -11,7 +11,7 @@ Controller ControllerNew( Canvas *canvas, Audio *audio) {
 		.audio = audio,
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
-		.cannon = CannonNew(15, 0),
+		.cannon = CannonNew(14, 0),
 		.tank = TankNew(0, 11),
 
 	};
