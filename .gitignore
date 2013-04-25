@@ -4,6 +4,10 @@
 *.o
 *.elf
 
+#Emacs
+#*#
+.#*
+
 #Eclipse
 .metadata
 

@@ -1,0 +1,18 @@
+digraph finite_state_machine {
+	node [shape = rectangle];
+	rankdir=UD;
+
+ 	subgraph cluster1 {
+		"User process" -> "/dev/leds";
+		color=red
+		label="software"
+	}
+	"/dev/leds" -> "leds device";
+	"leds device" -> "/dev/leds";
+	"/dev/leds" -> "User process";
+        subgraph cluster0 {   
+	    "leds device" -> "Hardware";
+	    "Hardware" -> "leds device";
+            color=blue
+        }
+}
