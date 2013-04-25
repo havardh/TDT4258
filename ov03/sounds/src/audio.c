@@ -15,7 +15,7 @@ Audio AudioNew ( void ) {
 }
 
 void AudioDestroy (Audio *audio) {
-	close( fd_dsp );
+	//close( fd_dsp );
 }
 
 static void *PlaySound( void *thread_arg ) {
