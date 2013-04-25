@@ -8,13 +8,13 @@ static void paint ( Shape *shape, Screen *screen ) {
 
 	field->background->paint( field->background, screen );
 
+	Image *image = field->image_expl[tank->explosion_state];
 	for (int i=0; i<height; i++) {
 		for(int j=0; j<width; j++) {
-
 		      if ( field->board[i][j] == FIRE ) {
-			      field->fire->x = j * 20;
-			      field->fire->y = i * 20;
-			      field->fire->paint( field->fire, screen );
+			      image->x = j * 20;
+			      image->y = i * 20;
+			      image->paint( image, screen );
 		      }
 		}
 	}
@@ -27,10 +27,15 @@ Field FieldNew( int width, int height ) {
 		.paint = &paint,
 		.background = ImageNew(background_filename, 0, 0),
 		.fire = ImageNew(fire_filename, 0, 0),
+		.explosion_state = 0,
 		.width = width,
 		.height = height,
 		.board = malloc(sizeof(SquareType*) * height)
 	};
+
+	for (int i=0; i<16; i++) {
+		field->image_expl[i] = ImageNew(explosion_filename[i], 0, 0);
+	}
 
 	for (int i=0; i<height; i++) {
 		field.board[i] = malloc(sizeof(SquareType) * width);
