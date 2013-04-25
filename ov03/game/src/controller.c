@@ -80,7 +80,8 @@ void onRoundOver ( Controller *ctrl ) {
 }
 
 void onTick ( Controller *ctrl ) {
-
+	FieldIncreaseExplosionState( &ctrl->field );
+	CanvasPaint( ctrl->canvas );
 }
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {

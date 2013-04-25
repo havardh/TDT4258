@@ -64,9 +64,15 @@ int main ( void ) {
 
 	//Play( &audio, "./data/test_sound.wav" );
 
+	static tick_delay = 0;
 	while(running) {
 
-	  ButtonPoll();
+		if ( tick_delay++ == 10000 ) {
+			tick_delay = 0;
+			onTick( &ctrl );
+		}
+
+		ButtonPoll();
 
 	}
 

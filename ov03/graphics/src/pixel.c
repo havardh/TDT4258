@@ -11,9 +11,9 @@ Pixel PixelNew(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 bool PixelNotTransparant( Pixel *pixel ) {
-	if ( pixel->red == 228
-	     && pixel->green == 0
-	     && pixel->blue == 255) {
+	if ( pixel->red == RT
+	     && pixel->green == GT
+	     && pixel->blue == BT) {
 		return false;
 	}
 	return true;
