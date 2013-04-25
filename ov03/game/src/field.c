@@ -57,7 +57,7 @@ void FieldOnGameStart( Field *field ) {
 
 void FieldIncreaseExplosionState( Field *field ) {
 	field->explosion_state++;
-	if (field->explosion_state > 16) {
+	if (field->explosion_state >= 16) {
 		field->explosion_state = 0;
 	}
 }
