@@ -60,15 +60,29 @@ static int __init button_init(void)
 
 		return -ENODEV;
 	}
+
+	//
 	
-	/*
-	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB_ADDRESS);
-	unsigned int result = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
-	if (result < 0) {
-		printk(KERN_ALERT "error %d: could not request gpio: %d\n", result,AVR32_PIOB_ADDRESS);
-		return result;
+	/*INTERRUPTS
+	//For each button pin...
+	int pin;
+	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
+		//Request gpio
+		//result = gpio_request(pin, "buttons");
+		//if (result < 0) {
+		//	printk(KERN_ALERT "error %d: could not request gpio: %d\n", result,pin);
+		//	return result;
+		//}
+		
+		// Request IRQ
+		result = request_irq(gpio_to_irq(pin), button_interrupt, 0, "buttons", NULL);
+		if (result){
+			printk(KERN_ALERT "error %d: could not request irq: %d\n", result, gpio_to_irq(pin));
+			return result;
+		}
 	}
-	 */
+	*/
+
 	
 	// Initialize the buttons
 
@@ -104,20 +118,25 @@ static int __init button_init(void)
 
 static void __exit button_exit(void)
 {
+	/* INTERRUPTS
+	int pin;
+	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
+		printk(KERN_ALERT "exit : removing irq: %d\n",IRQ);
+		free_irq(gpio_to_irq(pin),  NULL);
+		printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB_ADDRESS);
+		gpio_free(pin);
+	}
+	 */
 
-	//printk(KERN_ALERT "exit : removing irq: %d\n",AVR32_PIOB_IRQ);
-	printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB_ADDRESS);
-	//free_irq(AVR32_PIOB_IRQ,  NULL);
-	gpio_free(AVR32_PIOB_ADDRESS);
-	
-//START
+
+	// POLLING
 	int mem_quantum = sizeof( avr32_pio_t );
 	piob->per &= 0x00ff;
 	piob->puer &= 0x00ff;
 	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
 	// unregister_chrdev_region ( dev, NUM_DEVICES );
+	//
 	printk ( KERN_INFO "Buttons unloaded\n" );
-//STOP
 } 
 
 static ssize_t open_buttons( struct inode *inode, struct file *filp ) { return 0; }
