@@ -51,7 +51,7 @@ void onGameExit ( Controller *ctrl ) {
 
 void onGameStart( Controller *ctrl ) {
 	AudioPlay( "./data/gamestart.wav" );
-	//showSplashScreen( ctrl->canvas );
+	showSplashScreen( ctrl->canvas );
 	RegisterCallbacks( ctrl );
 }
 
@@ -61,6 +61,7 @@ void onGameOver( Controller *ctrl ) {
 }
 
 void onRoundStart ( Controller *ctrl ) {
+	AudioPlay( "./data/gamestart.wav" );
 	ctrl->winner = 0;
 
 	FieldOnGameStart( &ctrl->field );
