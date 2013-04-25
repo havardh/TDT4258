@@ -59,6 +59,8 @@ void CannonAim( Cannon *cannon, int dx, int dy ) {
 	cannon->aimy += dy;
 	double rad = 1.0*cannon->aimx / cannon->aimy;
 
+	printf( "%f", rad );
+
 	if ( rad < 0.26 ) { // ~0-15 degrees
 		cannon->angle = 0;
 	} else if ( rad < 0.64 ) { // ~15-37 degrees
