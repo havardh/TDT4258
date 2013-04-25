@@ -37,7 +37,6 @@ int main ( void ) {
 
 	}
 
-	//
 	onGameExit( &ctrl );
 
 	ButtonDestroy();
