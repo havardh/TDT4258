@@ -29,8 +29,6 @@ void ButtonPoll( void ) {
   static uint8_t last = 0;
   	uint8_t buttons;
 	read( _fd, &buttons, 1);
-        
-        //mprintf("%d\n", buttons);
 
         if (buttons != last) {
 

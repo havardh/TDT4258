@@ -40,7 +40,7 @@ void onGameExit ( Controller *ctrl ) {
 
 void onGameStart( Controller *ctrl ) {
 	//showSplashScreen( ctrl->canvas );
-	RegisterCallbacks( &ctrl );
+	RegisterCallbacks( ctrl );
 }
 
 void onGameOver( Controller *ctrl ) {
@@ -94,7 +94,7 @@ void onTick ( Controller *ctrl ) {
 }
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {
-
+  
 	if ( canMove( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
 
 		TankMove(&ctrl->tank, dx, dy);
@@ -106,6 +106,7 @@ bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
 		return true;
 	}
+
 	return false;
 
 }
