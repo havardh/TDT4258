@@ -1,3 +1,38 @@
 \subsection{Sound}
 
 \subsubsection{Test program}
+During the development of the {\bf Audio} module the program in /sounds/test was created.
+
+The final test program tests two sounds concurrenlty by playing one first, waiting
+for two second and playing one more.
+
+\begin{lstlisting}
+int main( void ) {
+
+  char *sample1 = "./data/sample1.wav";
+  char *sample2 = "./data/sample2.wav";
+
+  AudioPlay( sample1 );
+  sleep( 2 );
+  AudioPlay( sample2 );
+
+  return 0;
+}
+
+\end{lstlisting}
+
+\subsubsection{Running the test}
+The test is compiled with the makefile in /sounds/Makefile. This generates a executable
+bin/sounds\_test. This can be executed on the board. Like the graphics driver it has to
+have a {\bf data} folder in the same folder as the test is executed from and this must
+contain the files {\bf sample1.wav} and {\bf sample2.wav}. These files must be of the
+{\bf wave} file format with specifics 8 bit per sample and 8000 samples per minute.
+
+For the sound to be audible the sound setting on the Linux on the board must be set according
+to the specifics in section \ref{sec:alsa}.
+
+\subsubsection{Expected results}
+The first sample should be audible.
+
+\subsubsection{Test results}
+As expected
