@@ -58,9 +58,9 @@ void CannonAim( Cannon *cannon, int dx, int dy ) {
 	cannon->aimx += dx;
 	cannon->aimy += dy;
 
-	if ( cannon->aimx == 0 ) {
+	if ( cannon->aimx == 11 ) {
 		cannon->angle = 0;
-	} else if ( cannon->y == 15 ) {
+	} else if ( cannon->y == 0 ) {
 		cannon->angle = 90;
 	} else {
 		cannon->angle = 45;
