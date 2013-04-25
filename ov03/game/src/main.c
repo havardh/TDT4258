@@ -68,7 +68,7 @@ int main ( void ) {
 	while(running) {
 
 		if (tick_delay == 100) {
-			onTick( ctrl );
+			onTick( &ctrl );
 		}
 
 		ButtonPoll();
