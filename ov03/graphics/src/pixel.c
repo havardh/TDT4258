@@ -14,9 +14,9 @@ bool PixelNotTransparant( Pixel *pixel ) {
 	if ( pixel->red == 228
 	     && pixel->green == 0
 	     && pixel->blue == 255) {
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 void PixelPrint(Pixel *pixel) {
