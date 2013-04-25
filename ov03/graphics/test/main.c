@@ -49,7 +49,8 @@ void image() {
 }
 
 int main(void) {
-  //canvas();
+  canvas();
+  sleep(2);
   image();
 
 	return 0;
