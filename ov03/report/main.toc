@@ -19,12 +19,14 @@
 \contentsline {subsubsection}{\numberline {3.4.1}How to play}{10}
 \contentsline {subsubsection}{\numberline {3.4.2}Design}{10}
 \contentsline {section}{\numberline {4}Solution}{11}
-\contentsline {subsection}{\numberline {4.1}Led Driver}{12}
-\contentsline {subsection}{\numberline {4.2}Button Driver}{13}
-\contentsline {subsection}{\numberline {4.3}Graphics}{14}
-\contentsline {subsection}{\numberline {4.4}Sound}{15}
-\contentsline {subsection}{\numberline {4.5}Game}{16}
-\contentsline {section}{\numberline {5}Test Report}{17}
-\contentsline {section}{\numberline {6}Discussion}{18}
-\contentsline {section}{\numberline {7}Conclusion}{19}
-\contentsline {section}{\numberline {8}References}{20}
+\contentsline {subsection}{\numberline {4.1}Drivers}{12}
+\contentsline {subsubsection}{\numberline {4.1.1}module init}{12}
+\contentsline {subsection}{\numberline {4.2}Led Driver}{13}
+\contentsline {subsection}{\numberline {4.3}Button Driver}{14}
+\contentsline {subsection}{\numberline {4.4}Graphics}{15}
+\contentsline {subsection}{\numberline {4.5}Sound}{16}
+\contentsline {subsection}{\numberline {4.6}Game}{17}
+\contentsline {section}{\numberline {5}Test Report}{18}
+\contentsline {section}{\numberline {6}Discussion}{19}
+\contentsline {section}{\numberline {7}Conclusion}{20}
+\contentsline {section}{\numberline {8}References}{21}
