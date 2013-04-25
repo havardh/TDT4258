@@ -39,7 +39,9 @@ easy to add more file formats. The reason that bitmap was chosen is that the 24 
 corresponds almost directly to the layout of the framebuffer, so the implementation was straight
 forward.
 
+%\caption{
 \begin{table}[h]
+  \centering
   \begin{tabular}{c|c|}
     \hline
     16 bits&Signature \\
@@ -53,10 +55,7 @@ forward.
     32 bits&File Offset \\
     \hline
   \end{tabular}
-  \caption{Bitmap fileheader}
-\end{table}
-
-\begin{table}[h]
+  \qquad
   \begin{tabular}{c|c|}
     \hline
     32 bits&Header size \\
@@ -67,7 +66,7 @@ forward.
     \hline
     & ...  \\
   \end{tabular}
-  \caption{First fields of DIB fileheader}
+  \caption{Bitmap fileheader and first fields of DIB fileheader}
 \end{table}
 
 The file format is defined in the headerfile {\bf bitmap.h}. The only deviation from the Bitmap
