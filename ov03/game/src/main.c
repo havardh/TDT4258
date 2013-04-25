@@ -9,28 +9,21 @@
 static Controller ctrl;
 static bool running = 1;
 
-static void wait(int wait) {
+static int tankmode = 1;
 
-	for(int i=0; i<wait; i++) ;
-}
-
-static int tankmode = 0;
-static int cannonmode = 0;
-
-static void noop( void ) {}
-
+/* Tank player button actions */
 static void tr( void ) { if (tankmode) { onTankMove( &ctrl, 1, 0 ); } else { onTankMove( &ctrl, -1, 0 ); } }
 static void td( void ) { if (tankmode) { onTankMove( &ctrl,  0,-1 ); } else { onTankMove( &ctrl,  0, 1 ); } }
 static void tu( void ) { tankmode = (tankmode) ? 0 : 1; }
 
+/* Cannon player button actions */
 static void cr( void ) { onCannonAim( &ctrl,  1, 0 ); }
 static void cl( void ) { onCannonAim( &ctrl, -1, 0 ); }
 static void cu( void ) { onCannonAim( &ctrl,  0,-1 ); }
 static void cd( void ) { onCannonAim( &ctrl,  0, 1 ); }
-
-
 static void cannon_fire( void ) { onCannonFire( &ctrl); }
 
+/* Register callback on button module */
 static void RegisterCallbacks( void ) {
 
 	ButtonAddCallback( 0, &tr );
@@ -42,6 +35,18 @@ static void RegisterCallbacks( void ) {
 	ButtonAddCallback( 5, &cu );
 	ButtonAddCallback( 6, &cd );
 	ButtonAddCallback( 7, &cl );
+}
+
+void showSplashScreen( Canvas *canvas ) {
+
+	Image *splash1 = ImageNew( "./data/splash_0.bmp", 0, 0 );
+	Image *splash1 = ImageNew( "./data/splash_1.bmp", 0, 0 );
+	Image *splash1 = ImageNew( "./data/splash_2.bmp", 0, 0 );
+	Image *splash1 = ImageNew( "./data/splash_3.bmp", 0, 0 );
+	Image *splash1 = ImageNew( "./data/splash_4.bmp", 0, 0 );
+	Image *splash1 = ImageNew( "./data/splash_5.bmp", 0, 0 );
+	Image *splash1 = ImageNew( "./data/splash_6.bmp", 0, 0 );
+
 }
 
 int main ( void ) {
@@ -59,6 +64,9 @@ int main ( void ) {
 	// Init game
 	ctrl = ControllerNew( &canvas, NULL );
 	RegisterCallbacks();
+
+	showSplashScreen( &canvas );
+
 
 	onGameInit( &ctrl );
 
