@@ -1,6 +1,7 @@
 #include <linux/input.h>
 #include <linux/module.h>
 #include <linux/init.h>
+#include <linux/cdev.h>
 #include <linux/kernel.h>
 #include <linux/interrupt.h>
 #include <linux/input.h>
@@ -54,27 +55,27 @@ static int __init button_init(void)
 	
 	result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, "buttons" );
 	
-	/*if ( result < 0 ) {
+	if ( result < 0 ) {
 		printk( KERN_WARNING "Result %d: Could not request region at PIOB\n", result );
 
 		return -ENODEV;
 	}
-	 */
+	
 	/*
 	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB_ADDRESS);
 	unsigned int result = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
-	 */
 	if (result < 0) {
 		printk(KERN_ALERT "error %d: could not request gpio: %d\n", result,AVR32_PIOB_ADDRESS);
 		return result;
 	}
+	 */
 	
 	// Initialize the buttons
-	volatile int isr;
-    piob->per |= 0xff;
-    piob->puer |= 0xff;
-    piob->ier |= 0xff;
-    isr = piob->isr;
+
+	piob->per |= 0xff00;
+	piob->puer |= 0xff00;
+	//piob->ier = 0xff;
+
 	
 	/*
 	printk(KERN_ALERT "Requesting Irq %d\n",AVR32_PIOB_IRQ);
@@ -111,7 +112,8 @@ static void __exit button_exit(void)
 	
 //START
 	int mem_quantum = sizeof( avr32_pio_t );
-	piob->codr = 0xff;//??
+	piob->per &= 0x00ff;
+	piob->puer &= 0x00ff;
 	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
 	// unregister_chrdev_region ( dev, NUM_DEVICES );
 	printk ( KERN_INFO "Buttons unloaded\n" );
@@ -128,15 +130,44 @@ static irqreturn_t button_interrupt(int irq, void *dev_id)
 	return IRQ_HANDLED;
 }
 
-static ssize_t driver_read (struct file *filp, char __user *buff, size_t count, loff_t *offp)
+static ssize_t read_buttons (struct file *filp, char __user *buff, size_t count, loff_t *offp)
 {
-    char output;
-    if (count == 0)
-        return 0;
-    output = ~piob->pdsr;
-    copy_to_user(buff, &output, 1);
-    *offp += 1;
-    return 1;
+	int output;
+	if (count == 0)
+        	return 0;
+    	output = ~piob->pdsr;
+
+	char *p = &output;
+
+	char res = 0;
+	if (p[2] & 1) {
+		res |= 1;
+	} 
+	if (p[2] & 2){
+		res |= 2;
+	}
+	 if (p[2] & 4){
+		res |= 4;
+	} 
+	if (p[2] & 32){
+		res |= 8;
+	} 
+	if (p[2] & 64){
+		res |= 16;
+	} 
+	if (p[2] & 128){
+		res |= 32;
+	} 
+	if (p[1] & 1){
+		res |= 64;
+	} 
+	if (p[0] & 64){
+		res |= 128;
+	}
+
+	copy_to_user(buff, &res, 1);
+	*offp += 1;
+	return 1;
 }
 
 
