@@ -12,17 +12,6 @@
 #include "sample.h"
 #include <pthread.h>
 
-#define DSP_RATE 44100
-
-typedef struct {
-
-	FILE *_fd;
-
-} Audio;
-
-Audio AudioNew( void );
-void AudioDestroy( Audio* );
-
-void Play( Audio*, char* );
+void AudioPlay( char* );
 
 #endif // AUDIO_H

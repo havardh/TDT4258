@@ -1,23 +1,5 @@
 #include "audio.h"
 
-#define CHANNELS 2
-#define BITPERSAMPLE 8
-#define BUF_SIZE 1024
-
-struct thread_data {
-	char *sample_name;
-};
-
-Audio AudioNew ( void ) {
-	Audio audio;
-	return audio;
-
-}
-
-void AudioDestroy (Audio *audio) {
-	//close( fd_dsp );
-}
-
 static void *PlaySound( void *thread_arg ) {
 
 	struct thread_data *td = (struct thread_data *) thread_arg;
@@ -35,7 +17,7 @@ static void *PlaySound( void *thread_arg ) {
 
 }
 
-void Play( Audio *audio, char *sample ) {
+void AudioPlay( char *sample ) {
 
 	struct thread_data td = {
 		.sample_name = sample

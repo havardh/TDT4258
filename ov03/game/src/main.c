@@ -29,7 +29,7 @@ int main ( void ) {
 
 	onGameInit( &ctrl );
 
-	Play( NULL, "./data/explosion.wav" );
+	AudioPlay( "./data/explosion.wav" );
 
 	static tick_delay = 0;
 	while(running) {
