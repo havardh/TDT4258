@@ -1,3 +1,12 @@
 \subsection{Sound}
-In the folder /sounds the object {\bf Audio} takes care of playing sounds. It uses ordinary
-file operations to write 8 bit samples from a {\bf wave} file to the file {\bf /dev/dsp}.
+In the folder /sounds the module {\bf Audio} takes care of playing sounds. It uses ordinary file
+operations, {\bf fputc} and {\bf fgetc}, to write 8 bit samples to the file {\bf /dev/dsp}. The
+interface of the module is the {\bf AudioPlay}. It takes a filename as a parameter and plays the
+sound back concurrently using the {\bf pthread} package.
+
+\subsubsection{Wave - Fileformat}
+The 8 bits per sample, 8000 samples per
+minute \footnote{http://en.wikipedia.org/wiki/BMP\_file\_format}{Wave file format} can be played
+back directly by \footnote{http://en.wikipedia.org/wiki/Pipeline\_(Unix)}{pipeing} the file to {\bf
+  /dev/dsp}. This format was chosen for this property as a complex sound module was not a priority
+in this assignment.
