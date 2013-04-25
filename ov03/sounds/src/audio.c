@@ -11,8 +11,10 @@ struct thread_data {
 
 Audio AudioNew ( void ) {
 
+  //fopen( "/dev/dsp", "wb" );
+
 	Audio audio = {
-		._fd = fopen( "/dev/dsp", "wb" )
+		._fd = NULL
 	};
 
 	return audio;
@@ -27,8 +29,12 @@ static void *PlaySound( void *thread_arg ) {
 
 	struct thread_data *td = (struct thread_data *) thread_arg;
 
-	FILE *dsp = td->dsp_fd;
+	FILE *dsp = fopen( "/dev/dsp", "wb" );
 	FILE *fd = fopen( td->sample_name, "rb" );
+        
+        printf( "%d\n", dsp );
+        printf( "%d\n", fd );
+        printf( "%s\n", td->sample_name );
 
 	int c;
 	while ( (c = fgetc(fd)) != EOF ) {
@@ -36,20 +42,23 @@ static void *PlaySound( void *thread_arg ) {
 	}
 
 	close( fd );
+        close( dsp );
 
 
 }
 
 void Play( Audio *audio, char *sample ) {
 
-	struct thread_data td = {
+        struct thread_data td = {
 		.dsp_fd = audio->_fd,
 		.sample_name = sample
 	};
 
 	pthread_t thread;
+
 	int rc = pthread_create(&thread, NULL, PlaySound, (void*) &td );
+
 	if (rc) {
 		printf("Could not play sound\n");
-	}
+        }
 }
