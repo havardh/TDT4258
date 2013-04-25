@@ -14,9 +14,6 @@
 #include "buttons_driver.h"
 #include "../ap7000.h"
 
-#define IRQ 8
-#define DEVNAME "buttons"
-
 volatile avr32_pio_t *piob = &AVR32_PIOB;
 
 int buttons_major =   0;
@@ -40,9 +37,9 @@ static int __init button_init(void)
 	
 	if ( buttons_major ) {
 		dev = MKDEV ( buttons_major, buttons_minor );
-		result = register_chrdev_region ( dev, NUM_DEVICES, DEVNAME );
+		result = register_chrdev_region ( dev, NUM_DEVICES, "buttons" );
 	} else {
-		result = alloc_chrdev_region ( &dev, buttons_minor, NUM_DEVICES, DEVNAME );
+		result = alloc_chrdev_region ( &dev, buttons_minor, NUM_DEVICES, "buttons" );
 		buttons_major = MAJOR ( dev );
 	}
 	
@@ -56,40 +53,41 @@ static int __init button_init(void)
 	printk( KERN_WARNING "devno:%d major:%d minor:%d\n", dev, buttons_major, buttons_minor );
 	// printk ( KERN_INFO "requesting region a of %dB\n", n );
 	
-	/** POLLING
-	result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, DEVNAME );
+	result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, "buttons" );
 	
 	if ( result < 0 ) {
 		printk( KERN_WARNING "Result %d: Could not request region at PIOB\n", result );
 
 		return -ENODEV;
 	}
-	*/
 	
-	//INTERRUPTS
-	//For each button pin...
-	int pin;
-	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
-		//Request gpio
-		result = gpio_request(pin, DEVNAME);
-		if (result < 0) {
-			printk(KERN_ALERT "error %d: could not request gpio: %d\n", result,pin);
-			return result;
-		}
-		
-		// Request IRQ
-		result = request_irq(gpio_to_irq(pin), button_interrupt, 0, DEVNAME, NULL);
-		if (result){
-			printk(KERN_ALERT "error %d: could not request irq: %d\n", result, gpio_to_irq(pin));
-			return result;
-		}
+	/*
+	printk(KERN_ALERT "Requesting GPIO %d\n",AVR32_PIOB_ADDRESS);
+	unsigned int result = gpio_request(AVR32_PIOB_ADDRESS, "buttons");
+	if (result < 0) {
+		printk(KERN_ALERT "error %d: could not request gpio: %d\n", result,AVR32_PIOB_ADDRESS);
+		return result;
 	}
+	 */
 	
 	// Initialize the buttons
+
 	piob->per |= 0xff00;
 	piob->puer |= 0xff00;
 	//piob->ier = 0xff;
+
 	
+	/*
+	printk(KERN_ALERT "Requesting Irq %d\n",AVR32_PIOB_IRQ);
+	//flags: 0, SA_INTERRUPT, SA_ONESHOT or SA_PROBE.
+	int IRQ_REQUEST = request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL);
+	if (IRQ_REQUEST) {
+		printk(KERN_ALERT "error %d: could not request irq: %d\n", IRQ_REQUEST, AVR32_PIOB_IRQ);
+		return IRQ_REQUEST;
+	}
+	*/
+	
+//START
 	// Set up char_dev structure for the device
 	struct cdev *char_dev = cdev_alloc ();
 	cdev_init ( char_dev, &buttons_fops );
@@ -99,28 +97,25 @@ static int __init button_init(void)
 	if ( error )
 		printk ( KERN_WARNING "Error code:%d while adding buttons\n", error );
 	printk ( KERN_INFO "Buttons initialized\n" );
+//STOP
 	
 	return 0;
 } 
 
 static void __exit button_exit(void)
 {
-	int pin;
-	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
-		printk(KERN_ALERT "exit : removing irq: %d\n",IRQ);
-		free_irq(gpio_to_irq(pin),  NULL);
-		printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB_ADDRESS);
-		gpio_free(pin);
-	}
 
+	//printk(KERN_ALERT "exit : removing irq: %d\n",AVR32_PIOB_IRQ);
+	printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB_ADDRESS);
+	//free_irq(AVR32_PIOB_IRQ,  NULL);
+	gpio_free(AVR32_PIOB_ADDRESS);
+	
+//START
+	int mem_quantum = sizeof( avr32_pio_t );
 	piob->per &= 0x00ff;
 	piob->puer &= 0x00ff;
-
-		/*POLLING
-	int mem_quantum = sizeof( avr32_pio_t );
 	release_region ( AVR32_PIOB_ADDRESS, mem_quantum );
 	// unregister_chrdev_region ( dev, NUM_DEVICES );
-		 */
 	printk ( KERN_INFO "Buttons unloaded\n" );
 //STOP
 } 
@@ -131,7 +126,7 @@ static ssize_t write_buttons ( struct file *filp, char __user *buff, size_t coun
 
 static irqreturn_t button_interrupt(int irq, void *dev_id)
 {
-	printk(KERN_ALERT "int %d: interupt received. Irq number: %d\n", -EBUSY,IRQ);
+	printk(KERN_ALERT "int %d: interupt received. Irq number: %d\n", -EBUSY,AVR32_PIOB_IRQ);
 	return IRQ_HANDLED;
 }
 
