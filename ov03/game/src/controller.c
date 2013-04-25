@@ -35,10 +35,22 @@ void onGameInit( Controller *ctrl ) {
 }
 
 void onGameExit ( Controller *ctrl ) {
+	AudioPlay( "./data/gameexit.wav" );
+	Image *img;
+	if (ctrl->winner == A) {
+		img = ImageNew("./data/playerawin.bmp", 0, 0);
+	} else if (ctrl->winner == B) {
+		img = ImageNew("./data/playerbwin.bmp", 0, 0);
+	}
 	// show exit splash
+	CanvasAdd( ctrl->canvas, img );
+	CanvasPaint( ctrl->canvas );
+
+	sleep( 3 );
 }
 
 void onGameStart( Controller *ctrl ) {
+	AudioPlay( "./data/gamestart.wav" );
 	//showSplashScreen( ctrl->canvas );
 	RegisterCallbacks( ctrl );
 }
@@ -68,6 +80,7 @@ void onRoundOver ( Controller *ctrl ) {
 
 	} else {
 		Image *img;
+		AudioPlay( "./data/win.wav" );
 		if (ctrl->winner == A) {
 			img = ImageNew("./data/playerawin.bmp", 0, 0);
 		} else if (ctrl->winner == B) {
@@ -94,7 +107,7 @@ void onTick ( Controller *ctrl ) {
 }
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {
-  
+
 	if ( canMove( ctrl, ctrl->tank.x, ctrl->tank.y, dx, dy ) ) {
 
 		TankMove(&ctrl->tank, dx, dy);
