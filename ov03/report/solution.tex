@@ -1,1 +1,20 @@
 \section{Solution}
+
+\subsection{Naming convetions and pattern}
+
+An object-oriened pattern was applied, where object method names are prefixed with the class name.
+The contructor methods are called {\it ...New} and the destructor methods are called {\it ...Destroy}.
+All methods take a pointer to the object as the first parameter.
+
+Here is the prototypes for the {\bf Screen} class as an example.
+
+\begin{lstlisting}
+typedef struct {
+  ....
+} Screen;
+
+Screen ScreenNew( int width, int height );
+void ScreenDestroy( Screen* );
+void ScreenDrawPixel( Screen*, int, int, Pixel*);
+void ScreenFlush( Screen* );
+\end{lstlisting}
