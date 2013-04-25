@@ -19,16 +19,12 @@ int main ( void ) {
 
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
-	//Audio audio = AudioNew();
 
 	// Init game
 	Controller ctrl = ControllerNew( &canvas );
-	RegisterCallbacks( &ctrl );
-
-	//showSplashScreen( &canvas );
-
 	onGameInit( &ctrl );
 
+	// Main loop
 	static tick_delay = 0;
 	while(ctrl.running) {
 
@@ -41,6 +37,7 @@ int main ( void ) {
 
 	}
 
+	//
 	onGameExit( &ctrl );
 
 	ButtonDestroy();

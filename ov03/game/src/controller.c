@@ -7,7 +7,7 @@ static bool canMove( Controller* , int, int, int, int);
 Controller ControllerNew( Canvas *canvas ) {
 
 	Controller ctrl = {
-		.running = true;
+		.running = true,
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
 		.cannon = CannonNew(14, 0),
@@ -35,15 +35,15 @@ void onGameInit( Controller *ctrl ) {
 }
 
 void onGameExit ( Controller *ctrl ) {
-
+	// show exit splash
 }
 
 void onGameStart( Controller *ctrl ) {
-
+	//showSplashScreen( ctrl->canvas );
+	RegisterCallbacks( &ctrl );
 }
 
 void onGameOver( Controller *ctrl ) {
-
 
 	ctrl->running = false;
 }
@@ -135,7 +135,7 @@ bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 
 void onCannonFire ( Controller *ctrl ) {
 
-        AudioPlay( "./data/explosion.wav" );
+	AudioPlay( "./data/explosion.wav" );
 
 	int x = ctrl->cannon.aimx;
 	int y = ctrl->cannon.aimy;

@@ -1,6 +1,7 @@
 #ifndef _CONTROLLER_H_
 #define _CONTROLLER_H_
 
+#include "splash.h"
 #include "field.h"
 #include "cannon.h"
 #include "tank.h"
