@@ -34,7 +34,7 @@ int main ( void ) {
 	static tick_delay = 0;
 	while(running) {
 
-		if ( tick_delay++ == 10000 ) {
+		if ( tick_delay++ == 20000 ) {
 			tick_delay = 0;
 			onTick( &ctrl );
 		}
