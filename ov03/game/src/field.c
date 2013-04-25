@@ -8,7 +8,7 @@ static void paint ( Shape *shape, Screen *screen ) {
 
 	field->background->paint( field->background, screen );
 
-	Image *image = field->image_expl[tank->explosion_state];
+	Image *image = field->image_expl[field->explosion_state];
 	for (int i=0; i<height; i++) {
 		for(int j=0; j<width; j++) {
 		      if ( field->board[i][j] == FIRE ) {
@@ -34,7 +34,7 @@ Field FieldNew( int width, int height ) {
 	};
 
 	for (int i=0; i<16; i++) {
-		field->image_expl[i] = ImageNew(explosion_filename[i], 0, 0);
+		field.image_expl[i] = ImageNew(explosion_filename[i], 0, 0);
 	}
 
 	for (int i=0; i<height; i++) {

@@ -25,7 +25,7 @@ static char *explosion_filename[16] = {
 	"./data/explosion_14.bmp",
 	"./data/explosion_15.bmp",
 	"./data/explosion_16.bmp"
-		};
+};
 
 static char* fire_filename = "./data/fire.bmp";
 
@@ -45,6 +45,8 @@ typedef struct {
 	Image *background;
 
 	int explosion_state;
+
+	Image *fire;
 
 	Image *image_expl[16];
 
