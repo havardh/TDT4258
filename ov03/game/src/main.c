@@ -26,10 +26,9 @@ int main ( void ) {
 
 	showSplashScreen( &canvas );
 
-
 	onGameInit( &ctrl );
 
-	//Play( &audio, "./data/test_sound.wav" );
+	Play( NULL, "./data/explosion.wav" );
 
 	static tick_delay = 0;
 	while(running) {
