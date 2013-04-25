@@ -20,7 +20,7 @@
 *.o.d
 
 #Latex
-*main.toc
-*main.log
-*main.aux
+*.toc
+*.log
+*.aux
 *main.pdf
