@@ -4,6 +4,7 @@
 #include "shape.h"
 #include "screen.h"
 #include "image.h"
+#include <stdbool.h>
 
 static char* field_filename = "../graphics/data/box.bmp";
 static char* fire_filename = "./data/fire.bmp";
@@ -34,6 +35,7 @@ typedef struct {
 Field FieldNew( int, int );
 
 void FieldOnGameStart( Field*);
+bool FieldIsBurned( Field*, int, int );
 
 void FieldHit( Field*, int, int );
 

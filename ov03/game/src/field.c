@@ -53,6 +53,11 @@ void FieldOnGameStart( Field *field ) {
 
 }
 
+bool FieldIsBurned( Field* field, int x, int y ) {
+	return field->board[y][x] == FIRE;
+
+}
+
 void FieldHit( Field *field, int x, int y ) {
 
 	field->board[y][x] = FIRE;

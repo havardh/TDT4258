@@ -1,12 +1,14 @@
 #include "controller.h"
 
 
-static bool CheckBounds( Controller *, int, int, int, int);
+static bool CheckBounds( Controller*, int, int, int, int);
+static bool canMove( Controller* , int, int, int, int);
 
-Controller ControllerNew( Canvas *canvas ) {
+Controller ControllerNew( Canvas *canvas, Audio *audio) {
 
 	Controller ctrl = {
 
+		.audio = audio,
 		.canvas = canvas,
 		.field = FieldNew(16, 12),
 		.cannon = CannonNew(15, 0),
@@ -18,7 +20,6 @@ Controller ControllerNew( Canvas *canvas ) {
 
 }
 
-
 void onGameInit( Controller *ctrl ) {
 
 	Canvas *canvas = ctrl->canvas;
@@ -27,6 +28,8 @@ void onGameInit( Controller *ctrl ) {
 	CanvasAdd( canvas, &ctrl->cannon );
 	CanvasAdd( canvas, &ctrl->tank );
 
+	ControllerUpdateScore( ctrl );
+
 	CanvasPaint( canvas );
 }
 
@@ -34,75 +37,45 @@ void onGameExit ( Controller *ctrl ) {
 
 }
 
-void onGameStart ( Controller *ctrl ) {
+void onGameStart( Controller *ctrl ) {}
+void onGameOver( Controller *ctrl ) {}
+
+void onRoundStart ( Controller *ctrl ) {
 	ctrl->winner = 0;
 
 	FieldOnGameStart( &ctrl->field );
 	CannonOnGameStart( &ctrl->cannon );
 	TankOnGameStart( &ctrl->tank );
+
+	ControllerUpdateScore( ctrl );
+
+	CanvasPaint( ctrl->canvas );
 }
-/*
-static void handler (int sig, siginfo_t *si, void *uc) {
 
-}
+void onRoundOver ( Controller *ctrl ) {
 
-static void makeTimer() {
+	if ( ctrl->tank.health == 0 || ctrl->cannon.health == 0 ) {
+		onGameOver( ctrl );
 
-	timer_t timerid;
-	struct sigevent sevp;
-	struct itimerspec its;
-	int secs;
-	sigset_t mask;
-	struct sigaction sa;
-
-	sa.sa_flags = SA_SIGINFO;
-	sa.sa_sigaction = handler;
-	sigemptyset( &sa.sa_mask );
-	if (sigaction(SIG, &sa, NULL) == -1) {
-		printf("sigaction\n");
-	}
-
-	sigemptyset( &mask );
-	sigaddset( &mask, SIG );
-	if (sigprocmaks( SIG_SETMASK, &mask, NULL) == -1) {
-		printf("sigprocmask\n")
-	}
-
-	sevp.sigev_notify = SIGEV_SIGNAL;
-	sevp.sigev_signo = SIG;
-	sevp.sigev_value.sival_ptr = &timerid;
-	if (timer_create( CLOCKID, &sevp, &timerid ) == -1) {
-		printf("timer_create\n");
-	}
-
-	secs = 4;
-	its.it_value.tv_sec = secs;
-	its.it_value.tv_nsec = 0;
-	its.it_interval.tv_sec = its.it_value.tv_sec;
-	its.it_interval.tv_nsec = its.it_value.tv_nsec;
-
-	if (timer_settime(timerid, 0, &its, NULL) == -1) {
-		printf("timer_settime\n");
-	}
-}
-*/
-
-void onGameOver ( Controller *ctrl ) {
-
-	Image *img;
-	if (ctrl->winner == A) {
-		img = ImageNew("./data/playerawin.bmp", 0, 0);
-	} else if (ctrl->winner == B) {
-		img = ImageNew("./data/playerbwin.bmp", 0, 0);
 	} else {
-		assert(false);
-	}
-	CanvasAdd( ctrl->canvas, img );
-	CanvasPaint( ctrl->canvas );
-	sleep( 4 );
+		Image *img;
+		if (ctrl->winner == A) {
+			img = ImageNew("./data/playerawin.bmp", 0, 0);
+		} else if (ctrl->winner == B) {
+			img = ImageNew("./data/playerbwin.bmp", 0, 0);
+		} else {
+			assert(false);
+		}
 
-	CanvasRemove( ctrl->canvas, img);
-	CanvasPaint( ctrl->canvas );
+		CanvasAdd( ctrl->canvas, img );
+		CanvasPaint( ctrl->canvas );
+		sleep( 2 );
+
+		CanvasRemove( ctrl->canvas, img );
+		CanvasPaint( ctrl->canvas );
+
+		onRoundStart( ctrl );
+	}
 
 }
 
@@ -124,6 +97,7 @@ bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 		return true;
 	}
 	return false;
+
 }
 
 void onTankFire ( Controller *ctrl ) {
@@ -133,7 +107,8 @@ void onTankFire ( Controller *ctrl ) {
 void onTankHit ( Controller *ctrl ) {
 
 	ctrl->winner = B;
-	onGameOver( ctrl );
+	ctrl->tank.health -= 1;
+	onRoundOver( ctrl );
 
 }
 
@@ -145,6 +120,7 @@ bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 		return true;
 	}
 	return false;
+
 }
 
 void onCannonFire ( Controller *ctrl ) {
@@ -152,7 +128,7 @@ void onCannonFire ( Controller *ctrl ) {
 	int x = ctrl->cannon.aimx;
 	int y = ctrl->cannon.aimy;
 
-	FieldHit(&ctrl->field, x, y);
+	FieldHit( &ctrl->field, x, y );
 	CanvasPaint( ctrl->canvas);
 
 	if (TankIsOn( &ctrl->tank, x, y )) {
@@ -163,12 +139,14 @@ void onCannonFire ( Controller *ctrl ) {
 
 void onCannonHit ( Controller *ctrl ) {
 
-	ctrl->winner = B;
-	onGameOver( ctrl );
+	ctrl->winner = A;
+	ctrl->cannon.health -= 1;
+	onRoundOver( ctrl );
 
 }
 
 static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
+
 
 	x += dx;
 	y += dy;
@@ -180,4 +158,39 @@ static bool CheckBounds( Controller *ctrl, int x, int y, int dx, int dy ) {
 
 	return true;
 
+}
+
+static bool canMove ( Controller *ctrl, int x, int y, int dx, int dy ) {
+	return CheckBounds ( ctrl, x, y, dx, dy ) && !FieldIsBurned( &ctrl->field, x+dx, y+dy);
+}
+
+void ControllerUpdateScore( Controller *ctrl ) {
+
+	int cannon_health = ctrl->cannon.health;
+	int tank_health = ctrl->tank.health;
+
+	printf("%d %d\n", cannon_health, tank_health);
+	uint8_t val = 0;
+
+	if (tank_health == 1) {
+		val = 1;
+	} else if (tank_health == 2) {
+		val = 3;
+	} else if (tank_health == 3) {
+		val = 7;
+	} else if (tank_health == 4) {
+		val = 15;
+	}
+
+	if (cannon_health == 1) {
+		val |= 0x80;
+	} else if (cannon_health == 2) {
+		val |= 0xC0;
+	} else if (cannon_health == 3) {
+		val |= 0xE0;
+	} else if (cannon_health == 4) {
+		val |= 0xF0;
+	}
+
+	LedWrite( val );
 }

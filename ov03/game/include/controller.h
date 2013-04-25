@@ -12,6 +12,7 @@
 #include <signal.h>
 #include <time.h>
 #include <unistd.h>
+#include "audio.h"
 
 typedef enum {
 	A, B
@@ -21,14 +22,16 @@ typedef struct {
 
 	Player winner;
 
+	Audio *audio;
 	Canvas *canvas;
+
 	Field field;
 	Cannon cannon;
 	Tank tank;
 
 } Controller;
 
-Controller ControllerNew( Canvas *cavnas );
+Controller ControllerNew( Canvas *cavnas, Audio *audio );
 
 // Events
 void onTick ( Controller* );
@@ -39,6 +42,9 @@ void onGameExit ( Controller* );
 void onGameStart ( Controller* );
 void onGameOver ( Controller* );
 
+void onRoundStart ( Controller* );
+void onRoundOver ( Controller* );
+
 bool onTankMove ( Controller*, int, int );
 void onTankFire ( Controller* );
 void onTankHit ( Controller* );
@@ -46,5 +52,7 @@ void onTankHit ( Controller* );
 bool onCannonAim ( Controller*, int, int );
 void onCannonFire ( Controller* );
 void onCannonHit ( Controller* );
+
+void ControllerUpdateScore( Controller* );
 
 #endif // _CONTROLLER_H_

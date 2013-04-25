@@ -10,12 +10,13 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "sample.h"
+#include <pthread.h>
 
 #define DSP_RATE 44100
 
 typedef struct {
 
-	int _fd;
+	FILE *_fd;
 
 } Audio;
 

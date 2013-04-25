@@ -4,61 +4,51 @@
 #define BITPERSAMPLE 8
 #define BUF_SIZE 1024
 
+struct thread_data {
+	char *sample_name;
+};
+
+static FILE* fd_dsp;
+
 Audio AudioNew ( void ) {
 
-#ifdef __APPLE__
-	char* dsp = "./data/test";
-#else
-	char* dsp = "/dev/dsp";
-#endif
+	fd = fopen( "/dev/dsp", "wb" )
 
-	int fd = open( dsp, O_RDWR | O_CREAT | O_TRUNC );
-
-#ifndef __APPLE__
-	//int bitspersample = BITPERSAMPLE;
-	//ioctl( fd, SNDCTL_DSP_SETFMT &bitspersample);
-
-	//int channels = CHANNELS;
-	//ioctl( fd, SNDCTL_DSP_CHANNELS, &channels);
-
-	int dsp_rate = DSP_RATE;
-	ioctl( fd, SOUND_PCM_WRITE_RATE, &dsp_rate );
-#endif
-	Audio audio = {
-		._fd = fd
-	};
+	Audio audio;
 
 	return audio;
 
 }
 
 void AudioDestroy (Audio *audio) {
-	close( audio->_fd );
+	close( fd_dsp );
 }
 
-void Play( Audio *audio, char *sample ) {
+static void *PlaySound( void *thread_arg ) {
 
-	int fd = open( sample, O_RDWR, 0644 );
+	struct thread_data *td = (struct thread_data *) thread_arg;
 
-	char *buffer[BUF_SIZE];
-	int n;
+	FILE *fd = fopen( td->sample_name, "rb" );
 
-	while ((n = read( fd, buffer, BUF_SIZE )) > 0) {
-		write( audio->_fd, buffer, n );
+	int c;
+	while ( (c = fgetc(fd)) != EOF ) {
+		fputc( c, fd_dsp );
 	}
 
 	close( fd );
 
-	/*	printf("Writing to %d\n", audio->_fd);
 
-	uint8_t buffer[BUF_SIZE];
-	for (int i=0; i<sample->size; i += BUF_SIZE) {
+}
 
-		for (int j=0; j<BUF_SIZE; j++) {
-			buffer[j] = sample->samples[i];
-		}
+void Play( Audio *audio, char *sample ) {
 
-		write( audio->_fd, &buffer, BUF_SIZE );
-		}*/
+	struct thread_data td = {
+		.sample_name = sample
+	};
 
+	pthread_t thread;
+	int rc = pthread_create(&thread, NULL, PlaySound, (void*) &td );
+	if (rc) {
+		printf("Could not play sound\n");
+	}
 }

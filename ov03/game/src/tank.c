@@ -18,7 +18,7 @@ Tank TankNew( int x, int y ) {
 		.startx = x,
 		.starty = y,
 
-		.health = 100
+		.health = 4
 	};
 
 	TankOnGameStart( &tank );
@@ -37,7 +37,7 @@ bool TankMove( Tank *tank, int dx, int dy ) {
 	tank->x += dx;
 	tank->y += dy;
 
-        printf("%d, %d\n", tank->x, tank->y); 
+	printf("%d, %d\n", tank->x, tank->y);
 
 	return true;
 }
