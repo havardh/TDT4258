@@ -59,6 +59,11 @@ void TankOnGameStart( Tank *tank ) {
 
 bool TankMove( Tank *tank, int dx, int dy ) {
 
+	if (dx == 1) { tank->direction = E; }
+	else if (dx == -1) { tank->direction = W; }
+	else if (dy == 1) { tank->direction = S; }
+	else if (dy == -1) { tank->direction = N; }
+
 	tank->x += dx;
 	tank->y += dy;
 
