@@ -85,9 +85,9 @@ static int leds_init ( void ) {
 
 	// Initialize the leds
 	volatile avr32_pio_t *piob = &AVR32_PIOB;
-	piob->per = 0xff;
-	piob->oer = 0xff;
-	piob->sodr = 0xff;
+	piob->per |= 0xff;
+	piob->oer |= 0xff;
+	piob->sodr |= 0xff;
 
 	// Set up char_dev structure for the device
 	struct cdev *char_dev = cdev_alloc ();
