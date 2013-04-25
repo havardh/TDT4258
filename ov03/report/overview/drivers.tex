@@ -1,32 +1,32 @@
 \subsection{Writing a driver}
 There are several steps that is necessary to go through in order
-to successfully write, install and use a Linux devie driver. This 
+to successfully write, install and use a Linux devie driver. This
 overview will briefly explain only the process of creating the driver
 for the leds, because it is pretty much the same as for the buttons.
 
 \subsubsection{Making it a kernel module}
 A Linux device driver is a kernel module, i.e. it runs in the kernel and
-not in user space. This means that it has other privileges and 
-limitations than user space programs. Firstly, it has to implement 
+not in user space. This means that it has other privileges and
+limitations than user space programs. Firstly, it has to implement
 certain functions in order to be called and executed by the kernel;
 a \textbf{module init-function} and a \textbf{module exit-function}.
 The init function is called when the device driver is mounted in the
 system, and does a couple of important things:
 
 \begin{itemize}
-	\item 	Allocates a major and a minor number that every 
-			kernel module needs to have, in order for the 
+	\item	Allocates a major and a minor number that every
+			kernel module needs to have, in order for the
 			operating system to uniquely identify and use it.
-	\item 	Runs through the process of registering and 
+	\item	Runs through the process of registering and
 			requesting the memory region
 			that the driver will use throughout execution.
-	\item 	Sets up and registers a character device structure 
-			for the device, this device structure is registered 
-			together with the major number and the different 
+	\item	Sets up and registers a character device structure
+			for the device, this device structure is registered
+			together with the major number and the different
 			file operations that can be exectued on the device.
 \end{itemize}
-The init procedure also have to handle any errors during the 
-initialization process, e.g. errors while registering the 
+The init procedure also have to handle any errors during the
+initialization process, e.g. errors while registering the
 character device structure or while requesting a memory region.\\
 \\
 The device driver also have to specify a license for distribution of
@@ -36,51 +36,51 @@ is a safe choice because of its few restrictions.
 \subsubsection{Compiling the kernel module}
 The kernel module is written as a normal C program, but there are a few
 abvious differences. Because it runs in the kernel space, a driver
-does not have access to the C standard library and all its functions. 
-There is no main function in a device driver, it is accessed only 
-through a predefined and included interface. This interface can change 
+does not have access to the C standard library and all its functions.
+There is no main function in a device driver, it is accessed only
+through a predefined and included interface. This interface can change
 depending on the different versions of the Linux operating system, and
 thus gcc needs to know about the Linux version that the driver is to be
 compiled for.\\
 \\
 When this is supplied in the Makefile, the kernel module can be compiled
 from source with a couple of extra flags attached:
-\begin{itemize}
-  \item make ARCH=avr32 CROSS\_COMPILE=avr32-linux-
-\end{itemize}
+\begin{verbatim}
+  make ARCH=avr32 CROSS_COMPILE=avr32-linux-
+\end{verbatim}
 The result will be a kernel module (with extension .ko) that can be
 mounted to the operating system.
 
 \subsubsection{Installing the kernel module}
-After all the previous described steps are finished, the kernel 
+After all the previous described steps are finished, the kernel
 module can be mounted and be used by any other program on the system.\\
 \\
-To insert the driver the \textbf{insmod} command is called with the 
+To insert the driver the \textbf{insmod} command is called with the
 kernel module as parameter:
-\begin{itemize}
-  \item insmod leds.ko
-\end{itemize}
+\begin{verbatim}
+  insmod leds.ko
+\end{verbatim}
 This will insert the module into the kernel, and the module\_init
 function will be called.\\
 \\
-Next step is to make a device file out if it, calling the 
+Next step is to make a device file out if it, calling the
 \textbf{mknod} command with the name of the driver,
-the type (character device, block device etc.) 
+the type (character device, block device etc.)
 and major and minor number will create the file representing the device.
-\begin{itemize}
-  \item mknod /dev/leds c 245 0
-\end{itemize}
+\begin{verbatim}
+  mknod /dev/leds c 245 0
+\end{verbatim}
 The file \textbf{/dev/leds} now repesents the eight leds on the GPIO,
 and the different leds will now light by writing a byte
-of data to the file, depening on the value of the byte. 
-Figure \ref{device-driver} illustrates the driver mounted in the 
+of data to the file, depening on the value of the byte.
+Figure \ref{device-driver} illustrates the driver mounted in the
 system.\\
 \\
 Finally, to remove the device, the \textbf{rmmod} command can be called
 with the device name as paramater.
-\begin{itemize}
-  \item rmmod leds
-\end{itemize}
-This will make the kernel call the module\_exit function, and the 
+\begin{verbatim}
+  rmmod leds
+\end{verbatim}
+This will make the kernel call the module\_exit function, and the
 previously registered and allocated memory and character device regions
 will be released and unregistered.
