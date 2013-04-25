@@ -62,6 +62,7 @@ Field FieldNew( int, int );
 
 void FieldOnGameStart( Field*);
 bool FieldIsBurned( Field*, int, int );
+void FieldIncreaseExplosionState( Field* );
 
 void FieldHit( Field*, int, int );
 

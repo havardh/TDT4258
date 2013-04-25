@@ -55,6 +55,13 @@ void FieldOnGameStart( Field *field ) {
 
 }
 
+void FieldIncreaseExplosionState( Field *field ) {
+	field->explosion_state++;
+	if (field->explosion_state > 16) {
+		field->explosion_state = 0;
+	}
+}
+
 bool FieldIsBurned( Field* field, int x, int y ) {
 	return field->board[y][x] == FIRE;
 

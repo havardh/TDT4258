@@ -80,8 +80,8 @@ void onRoundOver ( Controller *ctrl ) {
 }
 
 void onTick ( Controller *ctrl ) {
-	static int t = 0;
-	printf("tick%d\n", t++);
+	FieldIncreaseExplosionState( &ctrl->field );
+	CanvasPaint( ctrl->canvas );
 }
 
 bool onTankMove ( Controller *ctrl, int dx, int dy ) {
