@@ -1,1 +1,257 @@
 \subsection{Graphics}
+
+\subsubsection{Screen}
+
+The screen is opened and memory mapped in the {\bf Screen} object like this.
+
+\begin{lstlisting}
+  int fd = screen->_fd = open( "/dev/fb0", ... );
+  screen->frame_buffer = (uint8_t*)mmap( 0, SCREEN_SIZE, ... , MAP_SHARED, fd, 0 );
+\end{lstlisting}
+
+The screen has a method {\bf ScreenFlush} to flush the whole internal buffer into the frame buffer:
+
+\begin{lstlisting}
+  void ScreenFlush( Screen *screen ) {
+
+    for (int i=0; i < SCREEN_SIZE; i++) {
+      screen->frame_buffer[i] = screen->internal_buffer[i];
+    }
+
+  }
+\end{lstlisting}
+
+To draw to the internal buffer it supplies the {\bf ScreenDrawPixel} method:
+
+\begin{lstlisting}
+
+  void ScreenDrawPixel(Screen *screen, int x, int y, Pixel *pixel) {
+
+    if (x >= 0 && x < screen->width && y >= 0 && y < screen->height) {
+      if (PixelNotTransparant(pixel)) {
+	int coordinate = y * screen->width * 3 + x * 3;
+	*((Pixel*)&screen->internal_buffer[coordinate]) = *pixel;
+      }
+    }
+  }
+\end{lstlisting}
+
+The {\bf PixelNotTransparant} function lets us paint pictures with
+transparancy. If it returns {\bf false} the pixel is simply not drawn.
+The function also does boundry checks to make sure that the pixel is
+on the screen. This lets the graphical objects to not care it they
+are on the screen or not in their paint method.
+
+\subsubsection{Canvas}
+At the core of the {\bf Canvas} object the is the {\bf CanvasPaint}
+method. It is reponsible for drawing each graphical object on the
+screen. This loop runs though all objects and ask them to paint them
+selves on the screen.
+
+\begin{lstlisting}
+  for (int i=0; i<canvas->top; i++) {
+    if (canvas->shapes[i]) {
+      Shape *shape = (Shape*)canvas->shapes[i];
+
+      (*((Shape*)shape)->paint)( canvas->shapes[i], screen );
+    }
+  }
+\end{lstlisting}
+
+Afterward the method ask the {\bf Screen} object to update the screen
+buffer through the {\bf ScreenFlush} method.
+
+\subsubsection{Shape}
+The {\bf Shape} exists only to provide a structure for which other
+graphical object shall match. In this implementation the most
+importaint part is the {\bf paint} function pointer, which all
+graphical object must have as their second member. The first member is
+a pointer to the objects parent. This is only used for the {\bf Bitmap}
+type.
+\begin{lstlisting}
+  typedef struct {
+    void *parent;
+    void (*paint) ( void*, Screen* );
+    int x;
+    int y;
+    void *child;
+  } Shape;
+\end{lstlisting}
+
+\subsubsection{Image}
+The {\bf Image} object is only a abstract object, its responsibility
+is to conseal the implemented file format. Therefore its implementetion
+is fearly simple. The {\bf paint} method delegates all its work to the
+format specific object.
+\begin{lstlisting}
+  static void paint (void *shape, Screen *screen) {
+
+    Image *image = (Image*) shape;
+    Shape *actual_image = (Shape*)image->image;
+    actual_image->paint( actual_image, screen  );
+
+  }
+\end{lstlisting}
+
+\subsubsection{Bitmap}
+The {\bf Bitmap} object is by far the most complex object in the
+graphics module. It is responsible for reading the bitmap fileformat
+and rendring its contents in the internal buffer. The reading is
+implemented in three steps.
+
+\begin{enumerate}
+\item Reading the file header \newline
+The file header is read directly into the {\bf BMPHeader} structure.
+  \begin{lstlisting}
+    static BMPHeader ReadBMPHeader ( int fd ) {
+
+      BMPHeader header;
+      read( fd, &header, sizeof(header));
+
+      return header;
+    }
+  \end{lstlisting}
+
+\item Reading the DIB header \newline
+We only need the first three fields of the DIB header, these are read
+into the struct.
+  \begin{lstlisting}
+    static DIBHeader ReadDIBHeader ( int fd ) {
+
+      DIBHeader header;
+      read( fd, &header, sizeof(header));
+      return header;
+    }
+  \end{lstlisting}
+
+\item Converting endian of the file header \newline
+The fileformat headers are written in little-endian, the Linux on the
+board uses big-endian. This is fixed with a bit of byte swapping.
+  \begin{lstlisting}
+    static void fix_endian( BMPHeader *bmp_header, DIBHeader *dib_header ) {
+
+      char *p;
+
+      // BMP header
+      p = (char*) &bmp_header->signature;
+      swap( &p[0], &p[1] );
+
+      p = (char*) &bmp_header->size;
+      swap( &p[0], &p[3] );
+      swap( &p[1], &p[2] );
+
+      p = (char*) &bmp_header->reserved1;
+      swap( &p[0], &p[1] );
+
+      p = (char*) &bmp_header->reserved1;
+      swap( &p[0], &p[1] );
+
+      p = (char*) &bmp_header->offset;
+      swap( &p[0], &p[3] );
+      swap( &p[1], &p[2] );
+
+      // DIB header
+      p = (char*) &dib_header->size;
+      swap( &p[0], &p[3] );
+      swap( &p[1], &p[2] );
+
+      p = (char*) &dib_header->width;
+      swap( &p[0], &p[3] );
+      swap( &p[1], &p[2] );
+
+      p = (char*) &dib_header->height;
+      swap( &p[0], &p[3] );
+      swap( &p[1], &p[2] );
+
+    }
+  \end{lstlisting}
+
+\item Making sense of the headers
+  \begin{lstlisting}
+    int offset = bmp_header.offset;
+    int size = bmp_header.size;
+    int width = dib_header.width;
+    int height = dib_header.height;
+  \end{lstlisting}
+\item Reading the content \newline
+The actual bitmap from the offset in the header untill the end of the
+file. All of this is read into the {\bf data} variable.
+  \begin{lstlisting}
+    uint8_t *data = malloc(size);
+    uint8_t *ptr = (uint8_t*)data;
+
+    for (int i=0; i < (size - offset) / BUFFER_SIZE; i++ ) {
+      read( fd, buffer, BUFFER_SIZE );
+
+      for (int i=0; i<BUFFER_SIZE; i++) {
+	(*ptr++) = buffer[i];
+      }
+    }
+
+    int remaining = (size - offset) % BUFFER_SIZE;
+    if (remaining) {
+      read( fd, buffer, remaining);
+
+      for (int i=0; i<remaining; i++) {
+
+	(*ptr++) = buffer[i];
+      }
+    }
+  \end{lstlisting}
+
+  \item Flipping the rows of the content \newline
+Offcourse the rows in the bitmap array is stored in the wrong order so
+we have to flip them over.
+    \begin{lstlisting}
+      static void swapLine ( uint8_t *a, uint8_t *b, int width ) {
+
+	for (int i=0; i<width; i++) {
+	  swap(&a[i], &b[i]);
+	}
+
+      }
+
+      static void flip ( uint8_t *data, int width, int height ) {
+
+	for (int i=0, j=height-1 ; i < height/2; i += 1, j -= 1) {
+	  swapLine( &data[i*width*3], &data[j*width*3], width*3 );
+	}
+      }
+    \end{lstlisting}
+  \item Saving the useful data\newline
+Now we only need the {\bf width}, {\bf height} and {\bf data} inorder
+to show the image on the screen.
+    \begin{lstlisting}
+	bmp->width = width;
+	bmp->height = height;
+	bmp->pixels = data;
+    \end{lstlisting}
+\end{enumerate}
+
+
+The {\bf paint} method of the {\bf Bitmap} object copies the pixel
+values from its internal memory. It draws them on the screen with a
+vertical and horizontal shift according to its parent, {\bf Image}, x
+and y values. This enables the image to be painted at an arbitrary
+place on the screen.
+
+\begin{lstlisting}
+static void paint ( void *shape, Screen *screen ) {
+
+  Bitmap *image = (Bitmap*) shape;
+  Image *parent = (Image*) image->parent;
+
+  int sx = parent->x;
+  int sy = parent->y;
+
+  int width = image->width;
+  int height = image->height;
+
+  for (int y = 0; y < height; y++) {
+    for (int x = 0; x < width; x++) {
+      Pixel *p = &image->pixels[y*width + x];
+      ScreenDrawPixel( screen, x+sx, y+sy, p);
+    }
+  }
+}
+\end{lstlisting}
