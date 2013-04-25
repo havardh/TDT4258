@@ -12,9 +12,12 @@
 #include <asm/uaccess.h>
 #include <asm/system.h>
 #include "buttons_driver.h"
+#include "button_ioctl.h"
 #include "../ap7000.h"
 
 volatile avr32_pio_t *piob = &AVR32_PIOB;
+//const int pins[8] = {40, 41, 42, 45, 46, 47, 48, 62};
+//int irqs[8];
 
 int buttons_major =   0;
 int buttons_minor =   0;
@@ -26,6 +29,8 @@ static struct file_operations buttons_fops = {
 	.read = read_buttons,
 	.release = release_buttons
 };
+
+static struct callbacks_struct callbacks = {};
 
 static int __init button_init(void)
 {	
@@ -54,54 +59,33 @@ static int __init button_init(void)
 	// printk ( KERN_INFO "requesting region a of %dB\n", n );
 	
 	result = (int) request_region ( AVR32_PIOB_ADDRESS, mem_quantum, "buttons" );
-	
 	if ( result < 0 ) {
 		printk( KERN_WARNING "Result %d: Could not request region at PIOB\n", result );
 
 		return -ENODEV;
 	}
-
-	//
 	
 	/*INTERRUPTS
-	//For each button pin...
-	int pin;
-	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
-		//Request gpio
-		//result = gpio_request(pin, "buttons");
-		//if (result < 0) {
-		//	printk(KERN_ALERT "error %d: could not request gpio: %d\n", result,pin);
-		//	return result;
-		//}
-		
+	int i;
+	for (i=0; i < 8; i++) {
 		// Request IRQ
-		result = request_irq(gpio_to_irq(pin), button_interrupt, 0, "buttons", NULL);
+		irqs[i] = gpio_to_irq(pins[i]);
+		result = request_irq(irqs[i], button_interrupt, 0, "buttons", NULL);
 		if (result){
-			printk(KERN_ALERT "error %d: could not request irq: %d\n", result, gpio_to_irq(pin));
+			printk(KERN_ALERT "error %d: could not request irq: %d\n", result, irqs[i] , pins[i]);
 			return result;
+		}else{
+			printk(KERN_ALERT "requested pin %d with irq: %d\n", pins[i], irqs[i]);
 		}
 	}
 	*/
 
 	
 	// Initialize the buttons
-
 	piob->per |= 0xff00;
 	piob->puer |= 0xff00;
-	//piob->ier = 0xff;
-
+	//piob->ier = 0xff00;
 	
-	/*
-	printk(KERN_ALERT "Requesting Irq %d\n",AVR32_PIOB_IRQ);
-	//flags: 0, SA_INTERRUPT, SA_ONESHOT or SA_PROBE.
-	int IRQ_REQUEST = request_irq(AVR32_PIOB_IRQ, button_interrupt, 0, "buttons", NULL);
-	if (IRQ_REQUEST) {
-		printk(KERN_ALERT "error %d: could not request irq: %d\n", IRQ_REQUEST, AVR32_PIOB_IRQ);
-		return IRQ_REQUEST;
-	}
-	*/
-	
-//START
 	// Set up char_dev structure for the device
 	struct cdev *char_dev = cdev_alloc ();
 	cdev_init ( char_dev, &buttons_fops );
@@ -111,7 +95,6 @@ static int __init button_init(void)
 	if ( error )
 		printk ( KERN_WARNING "Error code:%d while adding buttons\n", error );
 	printk ( KERN_INFO "Buttons initialized\n" );
-//STOP
 	
 	return 0;
 } 
@@ -119,14 +102,14 @@ static int __init button_init(void)
 static void __exit button_exit(void)
 {
 	/* INTERRUPTS
-	int pin;
-	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
-		printk(KERN_ALERT "exit : removing irq: %d\n",IRQ);
-		free_irq(gpio_to_irq(pin),  NULL);
-		printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB_ADDRESS);
-		gpio_free(pin);
+	int i;
+	for (i = 0; i < 8; i++) {
+		printk(KERN_ALERT "exit : removing irq: %d\n",irqs[i]);
+		free_irq(irqs[i],  NULL);
+		printk(KERN_ALERT "exit : removing button: %d\n",pins[i]);
+		//gpio_free(pins[i]);
 	}
-	 */
+	*/
 
 
 	// POLLING
@@ -145,7 +128,24 @@ static ssize_t write_buttons ( struct file *filp, char __user *buff, size_t coun
 
 static irqreturn_t button_interrupt(int irq, void *dev_id)
 {
-	printk(KERN_ALERT "int %d: interupt received. Irq number: %d\n", -EBUSY,AVR32_PIOB_IRQ);
+	if (irq == irqs[0]) {
+		if (callbacks_struct.cb1) { (*callbacks_struct.cb1)(); } 
+		printk(KERN_ALERT "interrupt from sw%d", 0);
+	}else if (irq == irqs[1]) {
+		printk(KERN_ALERT "interrupt from sw%d", 1);
+	}else if (irq == irqs[2]) {
+		printk(KERN_ALERT "interrupt from sw%d", 2);
+	}else if (irq == irqs[3]) {
+		printk(KERN_ALERT "interrupt from sw%d", 3);
+	}else if (irq == irqs[4]) {
+		printk(KERN_ALERT "interrupt from sw%d", 4);
+	}else if (irq == irqs[5]) {
+		printk(KERN_ALERT "interrupt from sw%d", 5);
+	}else if (irq == irqs[6]) {
+		printk(KERN_ALERT "interrupt from sw%d", 6);
+	}else if (irq == irqs[7]) {
+		printk(KERN_ALERT "interrupt from sw%d", 7);
+	}
 	return IRQ_HANDLED;
 }
 
