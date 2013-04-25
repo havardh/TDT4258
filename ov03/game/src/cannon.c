@@ -28,7 +28,13 @@ Cannon CannonNew( int x, int y ) {
 	Cannon cannon = {
 		.parent = NULL,
 		.paint = &paint,
-		.image = ImageNew( cannon_filename, x*20, y*20 ),
+
+		.image_0 = ImageNew( cannon_0_filename, x*20, y*20 ),
+		.image_30 = ImageNew( cannon_30_filename, x*20, y*20 ),
+		.image_45 = ImageNew( cannon_45_filename, x*20, y*20 ),
+		.image_60 = ImageNew( cannon_60_filename, x*20, y*20 ),
+		.image_90 = ImageNew( cannon_90_filename, x*20, y*20 ),
+
 		.aim_image = ImageNew( cannonaim_filename, 20, 20),
 		.x = x,
 		.y = y,
