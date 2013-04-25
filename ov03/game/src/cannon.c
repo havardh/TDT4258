@@ -5,15 +5,15 @@ static void paint ( Shape *shape, Screen *screen ) {
 	Cannon *cannon = (Cannon*)shape;
 
 	if (cannon->angle == 0) {
-		cannon->image->paint( cannon->image, screen );
+		cannon->image_0->paint( cannon->image_0, screen );
 	} else if (cannon->angle == 30) {
-		cannon->image->paint( cannon->image, screen );
+		cannon->image_30->paint( cannon->image_30, screen );
 	} else if (cannon->angle == 45) {
-		cannon->image->paint( cannon->image, screen );
+		cannon->image_45->paint( cannon->image_45, screen );
 	} else if (cannon->angle == 60) {
-		cannon->image->paint( cannon->image, screen );
+		cannon->image_60->paint( cannon->image_60, screen );
 	} else if (cannon->angle == 90) {
-		cannon->image->paint( cannon->image, screen );
+		cannon->image_90->paint( cannon->image_90, screen );
 	}
 
 	cannon->aim_image->x = cannon->aimx * 20;
