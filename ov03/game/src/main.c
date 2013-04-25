@@ -52,7 +52,7 @@ int main ( void ) {
 
 	Screen screen = ScreenNew(320, 240);
 	Canvas canvas = CanvasNew( &screen );
-	Audio audio = AudioNew();
+	//Audio audio = AudioNew();
 
 	// Init game
 	ctrl = ControllerNew( &canvas, &audio );
@@ -60,7 +60,7 @@ int main ( void ) {
 
 	onGameInit( &ctrl );
 
-	Play( &audio, "./data/test_sound.wav" );
+	//Play( &audio, "./data/test_sound.wav" );
 
 	while(running) {
 
