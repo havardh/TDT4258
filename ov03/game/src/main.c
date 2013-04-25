@@ -25,7 +25,7 @@ int main ( void ) {
 	Controller ctrl = ControllerNew( &canvas );
 	RegisterCallbacks( &ctrl );
 
-	showSplashScreen( &canvas );
+	//showSplashScreen( &canvas );
 
 	onGameInit( &ctrl );
 

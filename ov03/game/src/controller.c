@@ -135,7 +135,7 @@ bool onCannonAim ( Controller *ctrl, int dx, int dy ) {
 
 void onCannonFire ( Controller *ctrl ) {
 
-	AudioPlay( "./data/explosion.wav" );
+        AudioPlay( "./data/explosion.wav" );
 
 	int x = ctrl->cannon.aimx;
 	int y = ctrl->cannon.aimy;
