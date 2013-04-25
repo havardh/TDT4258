@@ -27,7 +27,7 @@ static void *PlaySound( void *thread_arg ) {
 
 	int c;
 	while ( (c = fgetc(fd)) != EOF ) {
-		fputc( c, fd_dsp );
+		fputc( c, dsp_fd );
 	}
 
 	close( fd );

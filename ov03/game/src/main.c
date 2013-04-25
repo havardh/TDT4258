@@ -5,6 +5,7 @@
 #include <stdbool.h>
 //#include "led.h"
 #include "button.h"
+#include "audio.h"
 
 static bool running = 1;
 
