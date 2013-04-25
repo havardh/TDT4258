@@ -23,8 +23,8 @@ static void tr( void ) { if (tankmode) { onTankMove( &ctrl, 1, 0 ); } else { onT
 static void td( void ) { if (tankmode) { onTankMove( &ctrl,  0,-1 ); } else { onTankMove( &ctrl,  0, 1 ); } }
 static void tu( void ) { tankmode = (tankmode) ? 0 : 1; }
 
-static void cr( void ) { if (cannonmode) { onTankCannonMove( &ctrl, 1, 0 ); } else { onTankCannonMove( &ctrl, -1, 0 ); } }
-static void cd( void ) { if (cannonmode) { onTankCannonMove( &ctrl,  0,-1 ); } else { onTankCannonMove( &ctrl,	0, 1 ); } }
+static void cr( void ) { if (cannonmode) { onCannonAim( &ctrl, 1, 0 ); } else { onCannonAim( &ctrl, -1, 0 ); } }
+static void cd( void ) { if (cannonmode) { onCannonAim( &ctrl,  0,-1 ); } else { onCannonAim( &ctrl,	0, 1 ); } }
 static void cu( void ) { cannonmode = (cannonmode) ? 0 : 1; }
 
 static void cannon_fire( void ) { onCannonFire( &ctrl); }
@@ -34,7 +34,7 @@ static void RegisterCallbacks( void ) {
 	ButtonAddCallback( 0, &tr );
 	ButtonAddCallback( 1, &td );
 	ButtonAddCallback( 2, &tu );
-	//ButtonAddCallback( 3, &tl );
+	ButtonAddCallback( 3, &noop );
 
 	ButtonAddCallback( 4, &cannon_fire );
 	ButtonAddCallback( 5, &cr );

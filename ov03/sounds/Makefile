@@ -1,4 +1,4 @@
-CC=gcc #avr32-linux-gcc
+CC=avr32-linux-gcc
 
 
 # Command to upload program to flash
@@ -7,7 +7,7 @@ AVR32PROGRAM = avr32program
 ####### RULES ##########################################################
 .PHONY : all
 all:
-	$(CC) -g --std=c99 ../util/src/endian.c src/audio.c src/sample.c src/wave.c src/main.c -I../util/include -Iinclude -o bin/sound_test
+	$(CC) -g --std=c99 ../util/src/endian.c src/audio.c src/sample.c src/wave.c src/main.c -I../util/include -Iinclude -lpthread -o bin/sound_test
 
 #bin/%.o: src/%.c
 #	$(CC) -c src/$< -o bin/$@
