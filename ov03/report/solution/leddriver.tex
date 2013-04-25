@@ -12,6 +12,19 @@ The write function is passed several parameters in which the string,
 When the system calls the write\_leds function, the device driver will 
 write the first byte of the buffer to the PIOB sodr register, i.e. the register
 that holds the led status. Afterwards it will return the value 1, indicating that
-one byte was written successfully.\\
+one byte was written successfully.
 \\
-We found that while testing the driver though the terminal with the command 
+\begin{lstlisting}
+static ssize_t write_leds ( struct file *filp, char __user *buff, 
+		size_t count, loff_t *offp ) {
+	volatile avr32_pio_t *piob = &AVR32_PIOB;
+	if ( buff[0] != 10 ) {
+		piob->codr = 0xff;
+		piob->sodr = buff[0];// & piob->codr;
+		printk ( KERN_INFO "Leds written successfully!\n" );
+		return 1; // Successfully written 1 byte
+	} else {
+		return 0;
+	}
+}
+\end{lstlisting}
