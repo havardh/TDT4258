@@ -1,1 +1,33 @@
 \section{Introduction}
+This is the techinical report for the third and
+final exercise in the course TDT4258.
+We were already fairly known with the STK1000 
+microcontroller after the previous exercises, including the
+GNU toolchain and C programming.\\
+\\
+The new concept of this exercise was the use of device 
+drivers for the different devices on the development board.
+So the main task was to understand how the Linux device
+drivers is built and how they work in order to create our
+own drivers and use the already existing drivers in a C program.\\
+\\
+The first part of the report explains the setup on the development
+board and how we got the Linux operating system to work on it. It
+also explains how we developed the code, compiled it for the AVR32 
+microprocessor and ran it on the microcontroller.\\
+\\
+The second part roughly explains how we implemented the two drivers
+for leds and buttons, respectively, and how they work with the rest
+of the system.
+It also explains the two frameworks that we built around the 
+graphics device and the sound device, so that we could 
+draw pictures of the .bmp format and play .wav sound files without
+any trouble. Lastly it gives a short overview over the game and how
+it works.\\
+\\
+The third part shows how we solved the different problems, and what
+we had to go through in order to get the different devices to work 
+with the game.
+We use some code examples where we see fit, to explain the 
+implementation in more detail.\\
+\\
