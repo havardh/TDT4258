@@ -1,0 +1,38 @@
+\subsection{Graphics}
+
+\subsubsection{Test program}
+While developing the {\bf Graphics} module the program in
+/graphics/test was incremently modified to test each new addition to
+the module.
+
+The final test program tests the {\bf Rectangle} object which in turn
+utilizes the {\bf Line} object. And creates an animation with two {\bf
+  Bitmap} images.
+
+\begin{lstlisting}
+int main(void) {
+  canvas();
+  sleep(2);
+  image();
+
+  return 0;
+}
+\end{lstlisting}
+
+\subsubsection{Running the testprogram}
+The Graphics module has its own {\bf Makefile} in /graphics/Makefile.
+This builds the testprogram in the bin/graphics\_test executable. This
+can be transfered to the development board with the {\bf scp}
+command. In order to run it successfully the folder where it is runned
+must contain a folder named {\bf data} containing a file called {\bf
+  box.bmp}. This file must be a 24 bit {\bf BMP} file.
+
+\subsubsection{Expected result}
+The screen should show two black hollow rectangles on a white
+background. After two second the should be replaced with the two
+instances of the image in the {\bf data} folder. On of which should
+slide from left to right over the screen. When they meet the moving
+image should pass behind the fixed one.
+
+\subsubsection{Test result}
+As expected
