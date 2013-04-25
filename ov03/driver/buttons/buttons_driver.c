@@ -12,7 +12,7 @@
 #include <asm/uaccess.h>
 #include <asm/system.h>
 #include "buttons_driver.h"
-#include "../ap7000.h"IRQ
+#include "../ap7000.h"
 
 #define IRQ 8
 #define DEVNAME "buttons"
@@ -68,16 +68,17 @@ static int __init button_init(void)
 	
 	//INTERRUPTS
 	//For each button pin...
-	for (int pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; i++) {
+	int pin;
+	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
 		//Request gpio
 		result = gpio_request(pin, DEVNAME);
 		if (result < 0) {
 			printk(KERN_ALERT "error %d: could not request gpio: %d\n", result,pin);
-			return err;
+			return result;
 		}
 		
 		// Request IRQ
-		result = request_irq(gpio_to_irq(pin), callback, 0, DEVNAME, NULL)
+		result = request_irq(gpio_to_irq(pin), button_interrupt, 0, DEVNAME, NULL);
 		if (result){
 			printk(KERN_ALERT "error %d: could not request irq: %d\n", result, gpio_to_irq(pin));
 			return result;
@@ -104,7 +105,8 @@ static int __init button_init(void)
 
 static void __exit button_exit(void)
 {
-	for (int pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; i++) {
+	int pin;
+	for (pin = AVR32_PIOB_ADDRESS; pin < AVR32_PIOB_PIOB_LINES + 8; pin++) {
 		printk(KERN_ALERT "exit : removing irq: %d\n",IRQ);
 		free_irq(gpio_to_irq(pin),  NULL);
 		printk(KERN_ALERT "exit : removing button: %d\n",AVR32_PIOB_ADDRESS);
