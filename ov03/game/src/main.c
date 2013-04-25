@@ -25,8 +25,8 @@ static void tu( void ) { tankmode = (tankmode) ? 0 : 1; }
 
 static void cr( void ) { onCannonAim( &ctrl,  1, 0 ); }
 static void cl( void ) { onCannonAim( &ctrl, -1, 0 ); }
-static void cd( void ) { onCannonAim( &ctrl,  0,-1 ); }
-static void cu( void ) { onCannonAim( &ctrl,  0, 1 ); }
+static void cu( void ) { onCannonAim( &ctrl,  0,-1 ); }
+static void cd( void ) { onCannonAim( &ctrl,  0, 1 ); }
 
 
 static void cannon_fire( void ) { onCannonFire( &ctrl); }
@@ -39,9 +39,9 @@ static void RegisterCallbacks( void ) {
 
 	ButtonAddCallback( 3, &cannon_fire );
 	ButtonAddCallback( 4, &cr );
-	ButtonAddCallback( 5, &cl );
+	ButtonAddCallback( 5, &cu );
 	ButtonAddCallback( 6, &cd );
-	ButtonAddCallback( 7, &cu );
+	ButtonAddCallback( 7, &cl );
 }
 
 int main ( void ) {
