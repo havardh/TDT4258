@@ -10,6 +10,15 @@ Pixel PixelNew(uint8_t r, uint8_t g, uint8_t b) {
 	return pixel;
 }
 
+bool PixelNotTransparant( Pixel *pixel ) {
+	if ( pixel->red == 228
+	     && pixel->green == 0
+	     && pixel->blue == 255) {
+		return true;
+	}
+	return false;
+}
+
 void PixelPrint(Pixel *pixel) {
 
 	printf("(r=%d,g=%d,b=%d)\n", pixel->red, pixel->green, pixel->blue);
