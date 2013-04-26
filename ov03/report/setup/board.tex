@@ -1,5 +1,5 @@
 \subsection{Board}
-\label{section:board}
+\label{sec:boardsetup}
 
 To prepare the board for installing the drivers and the game, the following must be done:
 \begin{enumerate}
@@ -8,13 +8,31 @@ To prepare the board for installing the drivers and the game, the following must
   \item Linux must be installed onto a SD-card.
   \item Linux must be booted with the help of uBoot and minicom.
 \end{enumerate}
-This section is a walkthrough of this process.\\
-\\
-We downloaded a complete SD card image and wrote it to an empty SD card. Then the card was placed in the SD card slot on the board. We launched uBoot to get the micro
-controller to boot the OS on the SD card,
+
+This section is a walkthrough of this process.
+
+We downloaded a complete SD card image and wrote it to an empty SD card.
+\begin{verbatim}
+  dd if <image-name> of /dev/<SD-Card device file>
+\end{verbatim}
+Then the card was placed in the SD card slot on the board. To make the micro controller boot
+the OS on the SD card, we put the uBoot bootloader on the internal memory of the controller.
+\begin{verbatim}
+  avr32program program -e -f0,8Mb uBoot
+\end{verbatim}
 uBoot had to be configured with some variables:
 \begin{verbatim}
   bootcmd 'mmc init; ext2load mmc 0:1 0x90400000 $(fileaddr); bootm 0x90400000'
 \end{verbatim}
-To access the OS, we connected the board to the computer with a COM/serial cable and launched minicom. The default settings needed to be changed, to disable ...
-We connected the board to the NTNU network, and set up ssh so we could access it from our private computers in order to work in parallel.
+This is done by opening {\bf minicom} over the serialport connected form the workstation to the board.
+\begin{verbatim}
+  minicom -D /dev/ttyS0
+\end{verbatim}
+In order to boot the we have to disable hardware flow control within minicom.
+Press Ctrl-A Z, O, two steps down, enter, F to disable hardware flow control and exit.
+Linux should now boot and prompt for user login. The usernames used were avr32/avr32 for
+regular user access and root/roota for root access.
+
+As soon as we had access to the linux shell we executed the command {\bf ifconfig} after
+making sure the board was connected to an Ethernet-cable. This gave us the IP-address of the
+board and allowed us to work remotely from our own laptops through SSH.
