@@ -1,13 +1,14 @@
 \subsection{Button Driver}
 The init function of the buttons driver sets up the buttons in the same way as the previous exercise, in addition to the general procedure for the drivers described above. The buttons are only using half of the pins, the rest are used by the LEDs, the issue of disabling/enabling buttons and not LEDs is solved by OR-ing the current value with ff00:
+\\
 \begin{lstlisting}
 piob->per |= 0xff00;
 piob->puer |= 0xff00;
 \end{lstlisting}
-
-The buttons driver has, unlike the LEDs driver, a read-function. The read function provides the ability to read the status of the buttons. The status is read from PDSR of the memory map region of PIOB. The status of the pins are however not located in a sequential order. This is handled by a sequence of if sentences that accumulates the status in a proper sequential bitmap, where the first bit represents the left most button and the last bit represents the right most button. The result is written to the output buffer.
-
+The buttons driver has, unlike the LEDs driver, a read-function. The read function provides the ability to read the status of the buttons. The status is read from PDSR of the memory map region of PIOB. The status of the pins are however not located in a sequential order. This is handled by a sequence of if sentences that accumulates the status in a proper sequential bitmap, where the first bit represents the left most button and the last bit represents the right most button. The result is written to the output buffer.\\
+\\
 Interrupts were also implemented in the buttons driver but is not part of the final game. To enable interrupts each of the buttons were registered with an IRQ, and the buttons\_interrupt method to handle the interrupts. The IER register in PIOB was set to 1 as in the previous exercise.
+\\
 \begin{lstlisting}
 piob->ier = 0xff00;
 const int pins[8] = {40, 41, 42, 45, 46, 47, 48, 62};
@@ -24,8 +25,8 @@ for (i=0; i < 8; i++) {
 	}
 }
 \end{lstlisting}
-
 In the button\_exit function the IRQs are freed:
+\\
 \begin{lstlisting}
 int i;
 for (i = 0; i < 8; i++) {
@@ -33,8 +34,8 @@ for (i = 0; i < 8; i++) {
 	free_irq(irqs[i],  NULL);
 }
 \end{lstlisting}
-
 The interrupt routine in buttons\_interrupt simply prints a message telling which button was pressed, based on the IRQ:
+\\
 \begin{lstlisting}
 static irqreturn_t button_interrupt(int irq, void *dev_id)
 {
@@ -59,5 +60,4 @@ static irqreturn_t button_interrupt(int irq, void *dev_id)
 	return IRQ_HANDLED;
 }
 \end{lstlisting}
-
 To use interrupts in the game, the button\_interrupt function could send a callback to the game when interrupts occurs. The callback could be registered in the driver through a IOCTL function. But, as stated earlier, we did not implement this part in the final solution, due to lack of time.

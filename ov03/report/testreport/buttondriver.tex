@@ -1,1 +1,30 @@
 \subsection{Button Driver}
+To test the buttons driver we started by writing control messages to the message buffer of the kernel(dmesg). 
+\\
+{\bf Test Case 1}: Open the buttons through a C program \\
+{\bf Description}: It should be possible to open and close the device file through a program \\
+{\bf Precondition}: Board is set up with operating system and the driver is loaded\\
+{\bf Execution}: Run the program, calling the {\it open(file, flag)} function on the device
+file., followed by a {\it close} on the file.\\
+{\bf Expected Result}: {\it open} Should NOT return a negative number, {\it close}
+should return 0.\\
+{\bf Observed Result}: {\it open} returned a positive number, {\it close}
+returned 0. \\
+ \\
+{\bf Test Case 2}: Receive interrupts \\
+{\bf Description}: The buttons driver should receive interrupts when a button is pressed \\
+{\bf Precondition}: The driver is loaded and the board is properly set up\\
+{\bf Execution}: Press each button in turn, and run {\it dmesg}\\
+{\bf Expected Result}: should display a message stating an interrupt has been received that contains the IRQ, the PIN source, and which button was pressed.\\
+{\bf Observed Result}: The first tests found the PINs to not be sequential.  After adding some code the expected result was observed.\\
+
+\\Then we wrote a program that read the status of the buttons from the buttons driver.
+\\
+{\bf Test Case 3}: Read button status \\
+{\bf Description}: It should be possible to read the status of the buttons from a program. \\
+{\bf Precondition}: Board is properly set up and the driver is loaded. \\
+{\bf Execution}: Press the buttons in turn and let the program read and output the status of the buttons.\\
+{\bf Expected Result}: The output should correspond to the buttons that are pressed.\\
+{\bf Observed Result}:  The output did match the pressed buttons.\\
+ \\
+

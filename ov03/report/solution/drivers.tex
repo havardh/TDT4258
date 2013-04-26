@@ -15,7 +15,7 @@ passing the init-function as a parameter.
 \begin{lstlisting}
 module_init ( leds_init );
 \end{lstlisting}
-Both the drivers have a file\_operations structure,
+Both drivers have a file\_operations structure,
 defined in the C file. All it does is map different file operations,
 implemented in the driver, to the ones defined in the structure.
 This file\_operations structure will later on be registered together
@@ -45,7 +45,7 @@ static int leds_init ( void ) {
 If alloc\_chrdev\_region returns a negative number there is a problem getting
 a major number to the device and the init method returns with an error.
 If result is positive we build a dev\_t data item, 
-representing the device based on the minor and major number, and requests memory region that we are going to use on the GPIO at the PIOB address.
+representing the device based on the minor and major number, and requests a memory region that we are going to use on the GPIO at the PIOB address.
 If all goes well we initialize the \textit{per} and, 
 \textit{oer} registers at piob (\textit{per} and \textit{puer}
 for buttons), in order to be able to read and write from PIOB.
