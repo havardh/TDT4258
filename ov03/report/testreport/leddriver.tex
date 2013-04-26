@@ -6,7 +6,7 @@ To test the led driver we wrote a simple c program that did three things;
   \item Write different values to the led
   \item Close the file
 \end{enumerate}
-The simple test is testing one light at the time, before it pauses for one secound and
+The simple test is testing one light at the time, before it pauses for one second and
 lights the next one.\\
 \\
 {\bf Test Case 1}: Open leds through a C program \\
@@ -36,7 +36,7 @@ and device file is opened with the {\it O\_WRONLY} flag.\\
 {\bf Observed Result}: LED 6 and LED 0 turned ON, the others turned OFF. We also
 observed that the command did not end the execution in the terminal.\\
  \\
-There was one problem with the third test case. The exectued command did not seam to end.
+There was one problem with the third test case. The executed command did not seem to end.
 While looking over the kernel logs we found that the value {\it 10}, the ascii value for
 {\it new line}, was constantly being tried written to the device file. Thus it seams like
 the driver is not working fully as expected, but it serves its purpose when writing to it
