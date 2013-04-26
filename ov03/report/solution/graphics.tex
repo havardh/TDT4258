@@ -100,7 +100,7 @@ implemented in three steps.
 
 \begin{enumerate}
 \item Reading the file header \newline
-The file header is read directly into the {\bf BMPHeader} structure.
+  The file header is read directly into the {\bf BMPHeader} structure.
   \begin{lstlisting}
     static BMPHeader ReadBMPHeader ( int fd ) {
 
@@ -112,8 +112,8 @@ The file header is read directly into the {\bf BMPHeader} structure.
   \end{lstlisting}
 
 \item Reading the DIB header \newline
-We only need the first three fields of the DIB header, these are read
-into the struct.
+  We only need the first three fields of the DIB header, these are read
+  into the struct.
   \begin{lstlisting}
     static DIBHeader ReadDIBHeader ( int fd ) {
 
@@ -124,8 +124,8 @@ into the struct.
   \end{lstlisting}
 
 \item Converting endian of the file header \newline
-The fileformat headers are written in little-endian, the Linux on the
-board uses big-endian. This is fixed with a bit of byte swapping.
+  The fileformat headers are written in little-endian, the Linux on the
+  board uses big-endian. This is fixed with a bit of byte swapping.
   \begin{lstlisting}
     static void fix_endian( BMPHeader *bmp_header, DIBHeader *dib_header ) {
 
@@ -173,8 +173,8 @@ board uses big-endian. This is fixed with a bit of byte swapping.
     int height = dib_header.height;
   \end{lstlisting}
 \item Reading the content \newline
-The actual bitmap from the offset in the header untill the end of the
-file. All of this is read into the {\bf data} variable.
+  The actual bitmap from the offset in the header untill the end of the
+  file. All of this is read into the {\bf data} variable.
   \begin{lstlisting}
     uint8_t *data = malloc(size);
     uint8_t *ptr = (uint8_t*)data;
@@ -208,13 +208,16 @@ we have to flip them over.
 	  swap(&a[i], &b[i]);
 	}
 
+      for (int i=0; i<width; i++) {
+	swap(&a[i], &b[i]);
       }
 
-      static void flip ( uint8_t *data, int width, int height ) {
+    }
 
-	for (int i=0, j=height-1 ; i < height/2; i += 1, j -= 1) {
-	  swapLine( &data[i*width*3], &data[j*width*3], width*3 );
-	}
+    static void flip ( uint8_t *data, int width, int height ) {
+
+      for (int i=0, j=height-1 ; i < height/2; i += 1, j -= 1) {
+	swapLine( &data[i*width*3], &data[j*width*3], width*3 );
       }
     \end{lstlisting}
   \item Saving the useful data\newline
@@ -233,22 +236,73 @@ and y values. This enables the image to be painted at an arbitrary
 place on the screen.
 \\
 \begin{lstlisting}
-static void paint ( void *shape, Screen *screen ) {
+  static void paint ( void *shape, Screen *screen ) {
 
-  Bitmap *image = (Bitmap*) shape;
-  Image *parent = (Image*) image->parent;
+    Bitmap *image = (Bitmap*) shape;
+    Image *parent = (Image*) image->parent;
 
-  int sx = parent->x;
-  int sy = parent->y;
+    int sx = parent->x;
+    int sy = parent->y;
 
-  int width = image->width;
-  int height = image->height;
+    int width = image->width;
+    int height = image->height;
 
-  for (int y = 0; y < height; y++) {
-    for (int x = 0; x < width; x++) {
-      Pixel *p = &image->pixels[y*width + x];
-      ScreenDrawPixel( screen, x+sx, y+sy, p);
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+	Pixel *p = &image->pixels[y*width + x];
+	ScreenDrawPixel( screen, x+sx, y+sy, p);
+      }
     }
   }
-}
+\end{lstlisting}
+
+\subsubsection{Line}
+The {\bf Line} object is responsible for drawing lines on the {\bf Screen}. It can be
+used for making compound objects like rectangles and triangles. The paint method uses
+Simplified Bresenham's line algorithm\footnote{http://en.wikipedia.org/wiki/Bresenham's\_line\_algorithm}.
+
+\begin{lstlisting}
+  while (1) {
+    ScreenDrawPixel(screen, x0, y0, &pixel);
+    if (x0 == x1 && y0 == y1) {
+      break;
+    }
+
+    int e2 = 2*err;
+    if (e2 > -dy) {
+      err = err - dy;
+      x0 = x0 + sx;
+    }
+    if (e2 < dy) {
+      err = err + dx;
+      y0 = y0 + sy;
+    }
+  }
+
+\end{lstlisting}
+
+\subsubsection{Rectangle}
+The {\bf Rectangle} object uses the {\bf Line} object to draw a rectangle on the {\bf Screen}.
+\begin{lstlisting}
+  static void paint ( void *shape, Screen *screen ) {
+
+    Rectangle *rect = (Rectangle*)shape;
+
+    int x = rect->x;
+    int y = rect->y;
+    int dx = rect->dx;
+    int dy = rect->dy;
+
+    Line l1 = LineNew(x, y, dx, 0);
+    l1.paint( &l1, screen );
+
+    Line l2 = LineNew(x, y+dy, dx, 0);
+    l2.paint( &l2, screen );
+
+    Line l3 = LineNew(x, y, 0, dy);
+    l3.paint( &l3, screen );
+
+    Line l4 = LineNew(x+dx, y, 0, dy);
+    l4.paint( &l4, screen );
+  }
 \end{lstlisting}
