@@ -37,15 +37,15 @@ We downloaded a complete SD card image and wrote it to an empty SD card.
   dd if <image-name> of /dev/<SD-Card device file>
 \end{verbatim}
 Then the card was placed in the SD card slot on the board. To make the micro controller boot
-the OS on the SD card, we put the uBoot bootloader on the internal memory of the controller.
+the OS on the SD card, we put the uBoot boot loader in the internal memory of the controller.
 
 \subsubsection{Programming the bootloader}
-To program the bootloader we executed the following command on the workstation while the
+To program the boot loader we executed the following command on the workstation while the
 board was connected through th JTAGICE device as in assignment 1 and 2.
 \begin{verbatim}
   avr32program program -e -f0,8Mb uBoot
 \end{verbatim}
-We did not utilize this device for the rest of this assignment as communication with the board
+We did not utilize this device for the rest of this assignment, as communication with the board
 was done via Ethernet or UART\_A.
 
 \subsubsection{Booting Linux on the board}
@@ -53,11 +53,11 @@ uBoot had to be configured with some variables:
 \begin{verbatim}
   bootcmd 'mmc init; ext2load mmc 0:1 0x90400000 $(fileaddr); bootm 0x90400000'
 \end{verbatim}
-This is done by opening {\bf minicom} over the serialport connected form the workstation to the board.
+The board had to be connected to the workstation using a serial cable, and then by opening {\bf minicom}, the commands could be executed.
 \begin{verbatim}
   minicom -D /dev/ttyS0
 \end{verbatim}
-In order to boot the we have to disable hardware flow control within minicom.
+In order to boot the board we had to disable hardware flow control within minicom.
 Press Ctrl-A Z, O, two steps down, enter, F to disable hardware flow control and exit.
 Linux should now boot and prompt for user login. The usernames used were avr32/avr32 for
 regular user access and root/roota for root access.\\
