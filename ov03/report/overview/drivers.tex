@@ -67,6 +67,7 @@ Next step is to make a device file out if it, calling the
 \textbf{mknod} command with the name of the driver,
 the type (character device, block device etc.)
 and major and minor number will create the file representing the device.
+The numbers can be found in the file {\bf /proc/devices}.
 \begin{verbatim}
   mknod /dev/leds c 245 0
 \end{verbatim}
