@@ -5,15 +5,15 @@ mainly three things that should work;
 \begin{enumerate}
   \item Player A should be able to move the tank
   \item Player B should be able to move the cannon aim
-  \item The game should end in favour to player A if the tank reaches the turret, or it
+  \item The round should end in favour to player A if the tank reaches the turret, or it
   	should end in favour to player B if the turret hits the tank.
 \end{enumerate}
 
 \subsubsection{Tank movement}
 The tank should be able to move in all four directions, and accross the whole field. The only 
 restrictions is when trying to move out of the field (the bounds of the game) and when
-trying to move over fire. When the tank enters the top left tile, i.e. the location of the 
-turret, the game should end in favour to the tank. Thus the tank can find itself in four
+trying to move over fire. When the tank enters the top right tile, i.e. the location of the 
+turret, the round should end in favour to the tank. Thus the tank can find itself in four
 different situations;
 \begin{enumerate}
   \item Trying to move over open field
@@ -21,9 +21,35 @@ different situations;
   \item Trying to move out of the field
   \item Trying to move on top of the turret
 \end{enumerate}
-We have tested all these situations from two to four different angles, and they all
-work according to the expectations.
 
 \subsubsection{Turret movement}
 The turret does not have the same controls as the tank, but it beahves almost the same. 
-It should be able to aim over the whole field and shoot anything, except for itself 
+The main difference is the possibility to shoot anything execpt for itself. 
+The turret can find itself in three different situations.
+\begin{enumerate}
+  \item Trying to aim over open field
+  \item Trying to aim out of the field
+  \item Shoot where it aims. It should not have any effect if it tries to shoot at fire
+  or itself.
+\end{enumerate}
+
+\subsubsection{Ending the game}
+A round should end when either player A has reached the turret, or player B has hit the tank.
+Each player has four lives indicated by how many lights are lighting. When one player has won
+four rounds the player should also have won the game (making the other player a looser), 
+and the screen should display two different images depending on who won the game. There are
+two different scenarios;
+\begin{enumerate}
+  \item Player A wins
+  \item Player B wins
+\end{enumerate}
+
+\subsubsection{Test results}
+We have tested all the previously listed situations for tank and turret, from two to four
+different angles (depending on edges and corners of the field), and they all work
+according to the expectations. \\
+\\
+We have also tested playing the game by winning four consecutive turns for player A and for 
+player B, and we have tested different combinations of winning and losing rounds. 
+The lights represenenting the remaining lives work as expected, and the game ends displaying
+the correct image after a player has won four rounds.
