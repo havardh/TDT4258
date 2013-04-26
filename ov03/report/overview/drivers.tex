@@ -1,7 +1,7 @@
 \subsection{Writing a driver}
 There are several steps that is necessary to go through in order
-to successfully write, install and use a Linux devie driver. This
-overview will briefly explain only the process of creating the driver
+to successfully write, install and use a Linux device driver. This
+overview will briefly explain the process of creating the driver
 for the leds, because it is pretty much the same as for the buttons.
 
 \subsubsection{Making it a kernel module}
@@ -25,8 +25,8 @@ system, and does a couple of important things:
 			together with the major number and the different
 			file operations that can be exectued on the device.
 \end{itemize}
-The init procedure also have to handle any errors during the
-initialization process, e.g. errors while registering the
+The init-procedure also have to handle any errors during the
+initialization, e.g. errors while registering the
 character device structure or while requesting a memory region.\\
 \\
 The device driver also have to specify a license for distribution of
@@ -38,7 +38,8 @@ The kernel module is written as a normal C program, but there are a few
 abvious differences. Because it runs in the kernel space, a driver
 does not have access to the C standard library and all its functions.
 There is no main function in a device driver, it is accessed only
-through a predefined and included interface. This interface can change
+through a predefined and included interface (header files). 
+This interface can change
 depending on the different versions of the Linux operating system, and
 thus gcc needs to know about the Linux version that the driver is to be
 compiled for.\\
@@ -52,7 +53,7 @@ The result will be a kernel module (with extension .ko) that can be
 mounted to the operating system.
 
 \subsubsection{Installing the kernel module}
-After all the previous described steps are finished, the kernel
+After all the previously described steps are finished, the kernel
 module can be mounted and be used by any other program on the system.\\
 \\
 To insert the driver the \textbf{insmod} command is called with the
