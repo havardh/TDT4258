@@ -1,1 +1,29 @@
 \subsection{Game}
+The game was simply tested during development, the iterative process of implementing
+small parts and testing them, eventually led to a fully working game. There are 
+mainly three things that should work;
+\begin{enumerate}
+  \item Player A should be able to move the tank
+  \item Player B should be able to move the cannon aim
+  \item The game should end in favour to player A if the tank reaches the turret, or it
+  	should end in favour to player B if the turret hits the tank.
+\end{enumerate}
+
+\subsubsection{Tank movement}
+The tank should be able to move in all four directions, and accross the whole field. The only 
+restrictions is when trying to move out of the field (the bounds of the game) and when
+trying to move over fire. When the tank enters the top left tile, i.e. the location of the 
+turret, the game should end in favour to the tank. Thus the tank can find itself in four
+different situations;
+\begin{enumerate}
+  \item Trying to move over open field
+  \item Trying to move over fire
+  \item Trying to move out of the field
+  \item Trying to move on top of the turret
+\end{enumerate}
+We have tested all these situations from two to four different angles, and they all
+work according to the expectations.
+
+\subsubsection{Turret movement}
+The turret does not have the same controls as the tank, but it beahves almost the same. 
+It should be able to aim over the whole field and shoot anything, except for itself 
