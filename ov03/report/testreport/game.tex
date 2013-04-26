@@ -1,31 +1,31 @@
 \subsection{Game}
 The game was simply tested during development, the iterative process of implementing
-small parts and testing them, eventually led to a fully working game. There are 
+small parts and testing them, eventually led to a fully working game. There are
 mainly three things that should work;
 \begin{enumerate}
   \item Player A should be able to move the tank
   \item Player B should be able to move the cannon aim
-  \item The round should end in favour to player A if the tank reaches the turret, or it
-  	should end in favour to player B if the turret hits the tank.
+  \item The round should end in favour to player A if the tank reaches the cannon, or it
+	should end in favour to player B if the cannon hits the tank.
 \end{enumerate}
 
 \subsubsection{Tank movement}
-The tank should be able to move in all four directions, and accross the whole field. The only 
+The tank should be able to move in all four directions, and accross the whole field. The only
 restrictions is when trying to move out of the field (the bounds of the game) and when
-trying to move over fire. When the tank enters the top right tile, i.e. the location of the 
-turret, the round should end in favour to the tank. Thus the tank can find itself in four
+trying to move over fire. When the tank enters the top right tile, i.e. the location of the
+cannon, the round should end in favour to the tank. Thus the tank can find itself in four
 different situations;
 \begin{enumerate}
   \item Trying to move over open field
   \item Trying to move over fire
   \item Trying to move out of the field
-  \item Trying to move on top of the turret
+  \item Trying to move on top of the cannon
 \end{enumerate}
 
-\subsubsection{Turret movement}
-The turret does not have the same controls as the tank, but it beahves almost the same. 
-The main difference is the possibility to shoot anything execpt for itself. 
-The turret can find itself in three different situations.
+\subsubsection{Cannon movement}
+The cannon does not have the same controls as the tank, but it beahves almost the same.
+The main difference is the possibility to shoot anything execpt for itself.
+The cannon can find itself in three different situations.
 \begin{enumerate}
   \item Trying to aim over open field
   \item Trying to aim out of the field
@@ -34,9 +34,9 @@ The turret can find itself in three different situations.
 \end{enumerate}
 
 \subsubsection{Ending the game}
-A round should end when either player A has reached the turret, or player B has hit the tank.
+A round should end when either player A has reached the cannon, or player B has hit the tank.
 Each player has four lives indicated by how many lights are lighting. When one player has won
-four rounds the player should also have won the game (making the other player a looser), 
+four rounds the player should also have won the game (making the other player a looser),
 and the screen should display two different images depending on who won the game. There are
 two different scenarios;
 \begin{enumerate}
@@ -45,11 +45,17 @@ two different scenarios;
 \end{enumerate}
 
 \subsubsection{Test results}
-We have tested all the previously listed situations for tank and turret, from two to four
-different angles (depending on edges and corners of the field), and they all work
-according to the expectations. \\
+We have tested all the previously listed situations for tank and cannon, from two to four
+different angles (depending on edges and corners of the field). They all work
+according to the expectations exept the following: \\
 \\
-We have also tested playing the game by winning four consecutive turns for player A and for 
-player B, and we have tested different combinations of winning and losing rounds. 
+\begin{enumerate}
+  \item 5.5.1 - 4. The cannon is situated in the tile to the left of the top right tile.
+  \item The Cannon can shoot on it self. (This is a cheat to force the cannon to win)
+  \item Shooting on a tile where there is already fire triggers a new hit.
+\end{enumerate}
+
+We have also tested playing the game by winning four consecutive turns for player A and for
+player B, and we have tested different combinations of winning and losing rounds.
 The lights represenenting the remaining lives work as expected, and the game ends displaying
 the correct image after a player has won four rounds.
