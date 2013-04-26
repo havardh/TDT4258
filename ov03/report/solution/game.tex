@@ -76,7 +76,6 @@ driven driver by emitting events when buttons are pushed.
 	case 128: callbacks[7](); break;
 
       }
-
       last = buttons;
     }
   }
@@ -252,7 +251,6 @@ which updates the led lights with the current state of the game.
     } else if (cannon_health == 4) {
       val |= 0xF0;
     }
-
     LedWrite( val );
   }
 \end{lstlisting}
@@ -290,8 +288,6 @@ bool TankMove( Tank *tank, int dx, int dy ) {
   tank->x += dx;
   tank->y += dy;
 
-  printf("%d, %d\n", tank->x, tank->y);
-
   return true;
 
 }
@@ -316,10 +312,8 @@ The {\bf Cannon} model is similar to {\bf Tank} model. It also delegate it drawi
     } else if (cannon->angle == 90) {
       cannon->image_90->paint( cannon->image_90, screen );
     }
-
     cannon->aim_image->x = cannon->aimx * 20;
     cannon->aim_image->y = cannon->aimy * 20;
-
     cannon->aim_image->paint( cannon->aim_image, screen );
 
   }
