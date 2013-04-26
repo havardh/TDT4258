@@ -83,6 +83,26 @@ driven driver by emitting events when buttons are pushed.
 The polling method reads the button state and calls callback functions when one button
 is pressed. It hides the similar states and only emits events when the state changes.
 
+\subsubsection{Led}
+The {\bf Led} class is simple. It provides a wrapper around the driver and changes the interface
+so that we can write a unsigned int to the leds easily.
+\begin{lstlisting}
+  static int _fd;
+
+  void LedInit( void ) {
+    _fd = open( "/dev/leds", O_WRONLY );
+  }
+
+  void LedDestroy( void ) {
+    close( _fd );
+  }
+
+  void LedWrite( uint8_t value ) {
+    write( _fd, &value, 1 );
+  }
+\end{lstlisting}
+
+
 \subsubsection{Game Controller}
 The {\bf Controller} object receives events from the main program, button module and itself.
 It decides how to react by quering the game models ({\bf Field}, {\bf Cannon} and {\bf Tank})
@@ -257,10 +277,10 @@ the main loop emits a tick on every 20000th iteration. This event enables us to 
 The {\bf Controller} passes this event on to anyone needing it to animate something, in our case the
 {\bf Field} model animates explosions.
 \begin{lstlisting}
-void onTick ( Controller *ctrl ) {
-  FieldIncreaseExplosionState( &ctrl->field );
-  CanvasPaint( ctrl->canvas );
-}
+  void onTick ( Controller *ctrl ) {
+    FieldIncreaseExplosionState( &ctrl->field );
+    CanvasPaint( ctrl->canvas );
+  }
 \end{lstlisting}
 
 \subsubsection{Tank}
@@ -272,19 +292,19 @@ called by the {\bf Controller} class in order to change its state. It also has a
 method to allow the {\bf Controller} to query its location.
 
 \begin{lstlisting}
-bool TankMove( Tank *tank, int dx, int dy ) {
+  bool TankMove( Tank *tank, int dx, int dy ) {
 
-  if (dx == 1) { tank->direction = E; }
-  else if (dx == -1) { tank->direction = W; }
-  else if (dy == 1) { tank->direction = S; }
-  else if (dy == -1) { tank->direction = N; }
+    if (dx == 1) { tank->direction = E; }
+    else if (dx == -1) { tank->direction = W; }
+    else if (dy == 1) { tank->direction = S; }
+    else if (dy == -1) { tank->direction = N; }
 
-  tank->x += dx;
-  tank->y += dy;
+    tank->x += dx;
+    tank->y += dy;
 
-  return true;
+    return true;
 
-}
+  }
 \end{lstlisting}
 \subsubsection{Cannon}
 The {\bf Cannon} model is similar to {\bf Tank} model. It also delegate it drawing work to the {\bf
@@ -319,10 +339,10 @@ The {\bf Field} model is also build on the same pattern as the previous discusse
 thing that separates the model is the animation it does. It receives the tick event from the {\bf
   Controller} and changes the image for explosion on every tick.
 \begin{lstlisting}
-void FieldIncreaseExplosionState( Field *field ) {
-  field->explosion_state++;
-  if (field->explosion_state >= 16) {
-    field->explosion_state = 0;
+  void FieldIncreaseExplosionState( Field *field ) {
+    field->explosion_state++;
+    if (field->explosion_state >= 16) {
+      field->explosion_state = 0;
+    }
   }
-}
 \end{lstlisting}
