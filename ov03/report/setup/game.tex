@@ -17,7 +17,14 @@ From the /game directory on the lab pc the following caommand copies the game ex
 \begin{verbatim}
  scp bin/game avr32@<IP address>:~/
 \end{verbatim}
-Where {\it $<$IP address$>$} is the IP obtained in section <...>.
+Where {\it $<$IP address$>$} is the IP obtained in section \ref{sec:boardsetup}.
+
+\subsubsection{Copying the dependecies}
+From the /game/data directory all the .bmp and .wav files must be copied to the board. They must
+lie in the data folder in the directory of the game executable
+\begin{verbatim}
+  scp data/* avr32@<IP address>:~/data
+\end{verbatim}
 
 \subsubsection{Running the game}
 From the /home/avr32 directory on the board the game can now be started with:
