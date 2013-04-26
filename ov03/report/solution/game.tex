@@ -5,7 +5,7 @@ to the next.
 
 \subsubsection{Main program}
 
-The main program does three things, it setup the environment, runs the main loop and tearsdown the environment.\\
+The main program does three things, it sets up the environment, runs the main loop and tears down the environment.\\
 \\
 The setup code consists of opening the led-, button and screen driver. The audio driver is opened every
 time a sound is played.
@@ -20,9 +20,9 @@ time a sound is played.
   Controller ctrl = ControllerNew( &canvas );
   onGameInit( &ctrl );
 \end{lstlisting}
-When the devices are opened it starts up the game controller.
-
-The game is event based and within one single thread. The main loop has three responsabilities.
+When the devices are opened it starts up the game controller.\\
+\\
+The game is event based and within one single thread. The main loop has three responsibilities.
 \begin{enumerate}
 \item Check if the game is over
 \item Emit a tick every 20000th loop
@@ -51,7 +51,7 @@ When the main loop ends the resources used by the game is closed.
 \end{lstlisting}
 
 \subsubsection{Button}
-As a we were planning to implement an interrupt driven button driver the game design
+As we were planning to implement an interrupt driven button driver, the game design
 was written with this in mind. Our polling based solution tries to emulate an interrupt
 driven driver by emitting events when buttons are pushed.
 
@@ -84,10 +84,10 @@ The polling method reads the button state and calls callback functions when one 
 is pressed. It hides the similar states and only emits events when the state changes.
 
 \subsubsection{Game Controller}
-The {\bf Controller} object receives events from the main program, button module and it self.
+The {\bf Controller} object receives events from the main program, button module and itself.
 It decides how to react by quering the game models ({\bf Field}, {\bf Cannon} and {\bf Tank})
-and performs actions on the models, the {\bf Canvas}, the leds and audio device.
-
+and performs actions on the models, the {\bf Canvas}, the leds and audio device.\\
+\\
 From the main program the {\bf Controller} receives the {\bf onGameInit} and {\bf onGameExit} events.
 The first of these starts the game and emits the {\bf onGameStart} event.
 \begin{lstlisting}
@@ -124,13 +124,12 @@ The second takes care of showing the end score and playing the exit music
     sleep( 3 );
   }
 \end{lstlisting}
-
 From the buttons the {\bf Controller} receives three events. These are: {\bf onTankMove},
-{\bf onCannonAim} and {\bf onCannonFire}.
-
-The {\bf onTankMove} method checks if the tank can move to the requested square. If it
-can it ask the Tank object to move there and tells the Canvas that is has to repaint itself.
+{\bf onCannonAim} and {\bf onCannonFire}.\\
+\\
+The {\bf onTankMove} method checks if the tank is allowed to move to the requested square. If it is allowed, it asks the Tank object to move there and tells the Canvas that is has to repaint itself.
 It then checks if the Cannon has been hit, in that case it emits the {\bf onCannonHit} event.
+
 \begin{lstlisting}
   bool onTankMove ( Controller *ctrl, int dx, int dy ) {
 
@@ -146,9 +145,8 @@ It then checks if the Cannon has been hit, in that case it emits the {\bf onCann
     return false;
   }
 \end{lstlisting}
-
 When the {\bf onCannonAim} event occurs the controller checks if the cannon can move its
-aim the the desired cell. If so it tells the cannon to move its aim and the canvas to update
+aim to the desired cell. If so, it tells the cannon to move its aim and the canvas to update
 the screen.
 
 \begin{lstlisting}
@@ -162,11 +160,10 @@ the screen.
     return false;
   }
 \end{lstlisting}
-
 On the {\bf onCannonFire} event, the {\bf Controller} start by asking the audio module to play the
 sound {\it explosion}. Then it notifies the Field that the current position of the {\bf Cannon}s aim
-has been hit. After that it ask the {\bf Canvas} to update the screen and lastly it checks if the
-tank was hit. If so it emits the {\bf onTankHit} event.
+has been hit. After that, it asks the {\bf Canvas} to update the screen and lastly it checks if the
+tank was hit. If so, it emits the {\bf onTankHit} event.
 \begin{lstlisting}
   void onCannonFire ( Controller *ctrl ) {
 
@@ -184,7 +181,6 @@ tank was hit. If so it emits the {\bf onTankHit} event.
 
   }
 \end{lstlisting}
-
 When either the {\bf Tank} or {\bf Cannon} has been hit the round is over. This is
 taken care by the {\bf onRoundOver} method.
 \begin{lstlisting}
@@ -217,7 +213,6 @@ taken care by the {\bf onRoundOver} method.
 
   }
 \end{lstlisting}
-
 It makes sure that the game is not over, if it is it emits the {\bf onGameOver} event which
 terminates the game. If not it plays the asks the audio module to play the win sound and show the
 appropiate win screen. At the end it starts the next round by emitting the {\bf onRoundStart} event.
@@ -255,11 +250,11 @@ which updates the led lights with the current state of the game.
   }
 \end{lstlisting}
 The leds are used to indicate how many lifes each player has remaining. A player loses one life each
-time she loses one round.
-
+time she loses a round.\\
+\\
 The last interesting event on the {\bf Controller} is the {\bf onTick} event. As mentioned earlier
-the main loop emits an tick on every 20000th iteration. This event enables us to make animations.
-The {\bf Controller} passes this event on to anyone needing to animate something, in our case the
+the main loop emits a tick on every 20000th iteration. This event enables us to make animations.
+The {\bf Controller} passes this event on to anyone needing it to animate something, in our case the
 {\bf Field} model animates explosions.
 \begin{lstlisting}
 void onTick ( Controller *ctrl ) {
@@ -267,7 +262,6 @@ void onTick ( Controller *ctrl ) {
   CanvasPaint( ctrl->canvas );
 }
 \end{lstlisting}
-
 
 \subsubsection{Tank}
 The {\bf Tank} model is responsible for holding the state of the Tank player. And for drawing the
