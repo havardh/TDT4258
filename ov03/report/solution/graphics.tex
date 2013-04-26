@@ -3,14 +3,13 @@
 \subsubsection{Screen}
 
 The screen is opened and memory mapped in the {\bf Screen} object like this.
-
+\\
 \begin{lstlisting}
   int fd = screen->_fd = open( "/dev/fb0", ... );
   screen->frame_buffer = (uint8_t*)mmap( 0, SCREEN_SIZE, ... , MAP_SHARED, fd, 0 );
 \end{lstlisting}
-
 The screen has a method {\bf ScreenFlush} to flush the whole internal buffer into the frame buffer:
-
+\\
 \begin{lstlisting}
   void ScreenFlush( Screen *screen ) {
 
@@ -20,9 +19,8 @@ The screen has a method {\bf ScreenFlush} to flush the whole internal buffer int
 
   }
 \end{lstlisting}
-
 To draw to the internal buffer it supplies the {\bf ScreenDrawPixel} method:
-
+\\
 \begin{lstlisting}
 
   void ScreenDrawPixel(Screen *screen, int x, int y, Pixel *pixel) {
@@ -35,19 +33,19 @@ To draw to the internal buffer it supplies the {\bf ScreenDrawPixel} method:
     }
   }
 \end{lstlisting}
-
 The {\bf PixelNotTransparant} function lets us paint pictures with
-transparancy. If it returns {\bf false} the pixel is simply not drawn.
+transparency. If it returns {\bf false} the pixel is simply not drawn.
 The function also does boundry checks to make sure that the pixel is
-on the screen. This lets the graphical objects to not care it they
+on the screen. This helps the graphical objects to not care about
+whether they
 are on the screen or not in their paint method.
 
 \subsubsection{Canvas}
-At the core of the {\bf Canvas} object the is the {\bf CanvasPaint}
-method. It is reponsible for drawing each graphical object on the
-screen. This loop runs though all objects and ask them to paint them
-selves on the screen.
-
+The {\bf CanvasPaint} method is found in the core of the {\bf Canvas} object.
+It is reponsible for drawing each graphical object on to the
+screen. This loop runs though all objects and ask them to paint themselves
+ on the screen.
+\\
 \begin{lstlisting}
   for (int i=0; i<canvas->top; i++) {
     if (canvas->shapes[i]) {
@@ -57,17 +55,17 @@ selves on the screen.
     }
   }
 \end{lstlisting}
-
-Afterward the method ask the {\bf Screen} object to update the screen
+Afterwards, the method asks the {\bf Screen} object to update the screen
 buffer through the {\bf ScreenFlush} method.
 
 \subsubsection{Shape}
 The {\bf Shape} exists only to provide a structure for which other
-graphical object shall match. In this implementation the most
+graphical objects shall match. In this implementation the most
 importaint part is the {\bf paint} function pointer, which all
 graphical object must have as their second member. The first member is
 a pointer to the objects parent. This is only used for the {\bf Bitmap}
 type.
+\\
 \begin{lstlisting}
   typedef struct {
     void *parent;
@@ -79,10 +77,11 @@ type.
 \end{lstlisting}
 
 \subsubsection{Image}
-The {\bf Image} object is only a abstract object, its responsibility
-is to conseal the implemented file format. Therefore its implementetion
-is fearly simple. The {\bf paint} method delegates all its work to the
+The {\bf Image} object is only an abstract object, its responsibility
+is to conseal the implemented file format. Therefore, its implementetion
+is fairly simple. The {\bf paint} method delegates all its work to the
 format specific object.
+\\
 \begin{lstlisting}
   static void paint (void *shape, Screen *screen) {
 
@@ -96,7 +95,7 @@ format specific object.
 \subsubsection{Bitmap}
 The {\bf Bitmap} object is by far the most complex object in the
 graphics module. It is responsible for reading the bitmap fileformat
-and rendring its contents in the internal buffer. The reading is
+and rendering its contents in the internal buffer. The reading is
 implemented in three steps.
 
 \begin{enumerate}
@@ -200,7 +199,7 @@ file. All of this is read into the {\bf data} variable.
   \end{lstlisting}
 
   \item Flipping the rows of the content \newline
-Offcourse the rows in the bitmap array is stored in the wrong order so
+The rows in the bitmap array is stored in the wrong order so
 we have to flip them over.
     \begin{lstlisting}
       static void swapLine ( uint8_t *a, uint8_t *b, int width ) {
@@ -219,22 +218,20 @@ we have to flip them over.
       }
     \end{lstlisting}
   \item Saving the useful data\newline
-Now we only need the {\bf width}, {\bf height} and {\bf data} inorder
-to show the image on the screen.
+Now we only need the {\bf width}, {\bf height} and {\bf data} in order
+to draw the image on the screen.
     \begin{lstlisting}
 	bmp->width = width;
 	bmp->height = height;
 	bmp->pixels = data;
     \end{lstlisting}
 \end{enumerate}
-
-
 The {\bf paint} method of the {\bf Bitmap} object copies the pixel
 values from its internal memory. It draws them on the screen with a
 vertical and horizontal shift according to its parent, {\bf Image}, x
 and y values. This enables the image to be painted at an arbitrary
 place on the screen.
-
+\\
 \begin{lstlisting}
 static void paint ( void *shape, Screen *screen ) {
 

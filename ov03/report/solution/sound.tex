@@ -1,11 +1,11 @@
 \subsection{Sound}
 
 \subsubsection{Playing a sound}
-The 8 bit wave fileformat is mosty an array of bytes which contains samples that can be written
+The 8 bit wave fileformat is mostly an array of bytes which contains samples that can be written
 directly to the ABDAC. It does contain a fileheader shown in the file {\bf wave.h}, but as this is very
-small it is not heard when pipeing it to the ABDAC. This fact enabled us to implement a minimal audio
+small it is not heard when piping it to the ABDAC. This fact enabled us to implement a minimal audio
 module which just opens a file (the wave) and writes its content directly to the {\bf /dev/dsp}.
-
+\\
 \begin{lstlisting}
   static void *PlaySound( void *thread_arg ) {
 
@@ -28,17 +28,16 @@ module which just opens a file (the wave) and writes its content directly to the
   }
 
 \end{lstlisting}
-
-Here to files are opened, one for the device driver and one for the sound samples. The samplefile
+Here, two files are opened, one for the device driver and one for the sound samples. The samplefile
 is read and written byte by byte to the ABDAC.
 
 \subsubsection{Threads}
-To not conflict with the rest of the program and to keep the design simple each new sample is
-played in a new thread. If a new sample request comes while one is already playing it just ignored.
+To not conflict with the rest of the program and to keep the design simple, each new sample is
+played in a new thread. If a new sample request comes while one is already playing it is just ignored.
 This is done by the {\it if (!dsp\_fd)} in the previous listing. If {\bf fopen} cannot get a hold
 of the {\bf /dev/dsp} file it will return zero and the thread will stop without playing the sound.
-If {\bf fopen} return a non-zero number the sample will be played before the thread terminates.
-
+If {\bf fopen} returns a non-zero number the sample will be played before the thread terminates.\\
+\\
 The tread is created and passed the samples filename through the {\bf pthread} library call
 {\bf pthread\_create}.
 \begin{lstlisting}
