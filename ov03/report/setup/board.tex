@@ -4,22 +4,51 @@
 To prepare the board for installing the drivers and the game the following must be done:
 \begin{enumerate}
   \item The jumpers and GPIO connectors must be placed properly.
-  \item The boot loader must be installed onto the board.
   \item Linux must be installed onto a SD-card.
+  \item The boot loader must be installed onto the board.
   \item Linux must be booted with the help of uBoot and minicom.
 \end{enumerate}
 
 This section is a walkthrough of this process.
 
+\subsubsection{Jumpers and GPIO}
+
+The jumpers on the board must be configured according to this list.
+
+\begin{itemize}
+\item SW1: Set to SPI0
+\item SW2: Set to PS2A/MMCI/USART1
+\item SW3: Set to SSC0/PWM[0,1]/GCLK
+\item SW5: Set to LCDC
+\item SW6: Set to MACB0/DMAC
+\end{itemize}
+
+For this assignment we only use the GPIO port B. The cables must be connected like this:
+\begin{itemize}
+  \item J1 to LED
+  \item J2 to SWITCH
+\end{itemize}
+The reason for this is that the GPIO port C interferes with the ETH\_A port used for connecting the board to
+the internet.
+
+\subsubsection{Programming the SD-Card}
 We downloaded a complete SD card image and wrote it to an empty SD card.
 \begin{verbatim}
   dd if <image-name> of /dev/<SD-Card device file>
 \end{verbatim}
 Then the card was placed in the SD card slot on the board. To make the micro controller boot
 the OS on the SD card, we put the uBoot bootloader on the internal memory of the controller.
+
+\subsubsection{Programming the bootloader}
+To program the bootloader we executed the following command on the workstation while the
+board was connected through th JTAGICE device as in assignment 1 and 2.
 \begin{verbatim}
   avr32program program -e -f0,8Mb uBoot
 \end{verbatim}
+We did not utilize this device for the rest of this assignment as communication with the board
+was done via Ethernet or UART\_A.
+
+\subsubsection{Booting Linux on the board}
 uBoot had to be configured with some variables:
 \begin{verbatim}
   bootcmd 'mmc init; ext2load mmc 0:1 0x90400000 $(fileaddr); bootm 0x90400000'
@@ -31,8 +60,8 @@ This is done by opening {\bf minicom} over the serialport connected form the wor
 In order to boot the we have to disable hardware flow control within minicom.
 Press Ctrl-A Z, O, two steps down, enter, F to disable hardware flow control and exit.
 Linux should now boot and prompt for user login. The usernames used were avr32/avr32 for
-regular user access and root/roota for root access.
-
+regular user access and root/roota for root access.\\
+\\
 As soon as we had access to the linux shell we executed the command {\bf ifconfig} after
 making sure the board was connected to an Ethernet-cable. This gave us the IP-address of the
 board and allowed us to work remotely from our own laptops through SSH.
